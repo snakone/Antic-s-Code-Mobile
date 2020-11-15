@@ -1,3 +1,5 @@
+import { NotificationPayload } from './interfaces/interfaces';
+
 export const CATEGORIES: string[] = [
  'HTML',
  'CSS',
@@ -40,7 +42,15 @@ export const LEVELS: string[] = [
 export const BADGES: string[] = [
  'BADGE.NEW',
  'BADGE.PRO',
- 'BADGE.HOT',
- 'BADGE.CLASSIC',
- 'BADGE.LOVED'
+ 'BADGE.HOT'
 ];
+
+export const NEW_USER_PUSH: NotificationPayload = {
+  body: 'Nuevo Usuario Registrado',
+  requireInteraction: false,
+  actions: [
+    { action: 'explore', title: 'Aceptar' }
+  ],
+  broadcast: true,
+  admin: false,
+};

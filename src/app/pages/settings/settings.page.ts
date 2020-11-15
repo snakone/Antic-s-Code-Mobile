@@ -19,13 +19,13 @@ export class SettingsPage implements OnInit {
   remember: boolean;
 
   lang = [
-    { value: 'es', name: 'Español' },
-    { value: 'en', name: 'English' }
+    { value: 'es', name: 'SPANISH' },
+    { value: 'en', name: 'ENGLISH' }
   ];
 
   mail = [
-    { value: true, name: 'yes' },
-    { value: false, name: 'No' }
+    { value: true, name: 'YES' },
+    { value: false, name: 'NO' }
   ];
 
   constructor(
@@ -63,8 +63,8 @@ export class SettingsPage implements OnInit {
 
   public logout(): void {
     const confirm = this.crafter.confirm(
-      this.translate.instant('sure.exit'),
-      this.translate.instant('logout')
+      this.translate.instant('SURE.EXIT'),
+      this.translate.instant('LOGOUT')
     );
     confirm.then(res => {
       if (!res.role) {

@@ -9,6 +9,7 @@ import {
 
 import { TranslateService } from '@ngx-translate/core';
 import { ComponentRef } from '@ionic/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({providedIn: 'root'})
 
@@ -35,12 +36,12 @@ export class CrafterService {
 
   public async confirm(message: string, header: string): Promise<any> {
     const alert = await this.alertCtrl.create({
-      header,
-      message,
+      header: this.translate.instant(header),
+      message: this.translate.instant(message),
       mode: 'ios',
       buttons: [
         {
-          text: this.translate.instant('cancel'),
+          text: this.translate.instant('CANCEL'),
           role: 'cancel',
         },
         { text: 'OK' }
@@ -53,7 +54,7 @@ export class CrafterService {
 
   public async toast(message: string): Promise<void> {
     const toast = await this.toastCtrl.create({
-      message,
+      message: this.translate.instant(message),
       duration: 1500,
       color: 'light',
       position: 'top',
@@ -63,7 +64,7 @@ export class CrafterService {
   }
 
   public async modal(component: ComponentRef, data?: any): Promise<void> {
-    if (this.modalCtrl.getTop()) { return; }
+    if (await this.modalCtrl.getTop()) { return; }
     const modal = await this.modalCtrl.create({
       component,
       componentProps: data
@@ -73,7 +74,7 @@ export class CrafterService {
 
   public async loader(): Promise<void> {
     const loading = await this.loading.create({
-      message: this.translate.instant('loading')
+      message: this.translate.instant('LOADING')
     });
     await loading.present();
   }
@@ -88,6 +89,24 @@ export class CrafterService {
       componentProps: data
     });
     return popover.present();
+  }
+
+  public handleError(err: HttpErrorResponse): void {
+    switch (err.status) {
+      case 0: this.alert('ERRORS.WEB.MESSAGE');
+              break;
+      case 400: case 406:
+                this.alert('ERRORS.REQUEST.MESSAGE');
+                break;
+      case 401: return null;
+      case 403: this.alert('ERRORS.ACCESS.MESSAGE');
+                break;
+      case 409: this.alert('ERRORS.USER_ALREADY.MESSAGE');
+                break;
+      case 500: this.alert('ERRORS.SERVER.MESSAGE');
+                break;
+      default: this.alert('ERRORS.UNKNOWN.MESSAGE');
+    }
   }
 
   private translateMessage(msg: string): string {

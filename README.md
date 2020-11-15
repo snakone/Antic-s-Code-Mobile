@@ -1,2 +1,2 @@
-# Antic-s-Code-Mobile
+# Antic-s-Code
 Mobile Application of Antic's Code

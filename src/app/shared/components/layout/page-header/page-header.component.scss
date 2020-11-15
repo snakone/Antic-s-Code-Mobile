@@ -11,7 +11,16 @@ ion-img {
   height: 80px;
   left: 0;
   top: 0;
-  background: var(--ion-color-primary-shade);
+  // background-color: #ee7da8;
+  // background-image: -webkit-linear-gradient(70deg, #ee7da8 7%, #9b63f8 34%, #7e9ffc 88%);
+  // background-image: -moz-linear-gradient(70deg, #ee7da8 7%, #9b63f8 34%, #7e9ffc 88%);
+  // background-image: -o-linear-gradient(70deg, #ee7da8 7%, #9b63f8 34%, #7e9ffc 88%);
+  // background-image: linear-gradient(70deg, #ee7da8 7%, #9b63f8 34%, #7e9ffc 88%);
+
+  background: radial-gradient( circle farthest-corner at 10.7% 80.6%,  
+  #ee7da8 -5%, 
+  #9b63f8 49.3%, 
+  #7e9ffc 89% );
  }
 }
 
@@ -34,3 +43,4 @@ ion-img {
   0px 18px 23px rgba(0,0,0,0.2);
  }
 }
+

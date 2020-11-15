@@ -112,16 +112,14 @@ export class CreateComponent implements OnInit, OnDestroy {
     draft.links = this.draft.links;
     draft.author = this.userSrv.getUser().name;
     draft.user = this.userSrv.getUser()._id;
-    draft.message = this.translate.instant('here.message');
+    draft.message = this.translate.instant('HERE.MESSAGE');
 
     this.draftSrv.createDraft(draft)
     .pipe(takeUntil(this.unsubscribe$))
     .subscribe(_ => {
       this.modalCtrl.dismiss();
       this.draftSrv.getDraftsByUser().toPromise().then();
-      const confirm = this.crafter.confirm(
-        this.translate.instant('edit.now'),
-        this.translate.instant('article.saved'));
+      const confirm = this.crafter.confirm('EDIT.NOW', 'ARTICLE.SAVED');
       confirm.then(res => {
         if (!res.role) {
           this.router.navigateByUrl('detail/' + _.slug);

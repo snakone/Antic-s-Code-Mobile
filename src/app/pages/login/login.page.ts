@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CrafterService } from '@core/services/crafter/crafter.service';
-
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '@shared/interfaces/interfaces';
 import { Subject } from 'rxjs';
@@ -9,7 +8,8 @@ import { takeUntil, finalize } from 'rxjs/operators';
 import { LoginService } from '@core/services/login/login.service';
 import { StorageService } from '@core/services/storage/storage.service';
 import { NavController } from '@ionic/angular';
-import { HelpComponent } from '@app/shared/components/help/help.component';
+import { HelpComponent } from './components/help/help.component';
+
 
 @Component({
   selector: 'app-login',
@@ -23,11 +23,13 @@ export class LoginPage implements OnInit, OnDestroy {
   remember = false;
   private unsubscribe$ = new Subject<void>();
 
-  constructor(private crafter: CrafterService,
-              private userSrv: UserService,
-              private loginSrv: LoginService,
-              private ls: StorageService,
-              private nav: NavController) {}
+  constructor(
+    private crafter: CrafterService,
+    private userSrv: UserService,
+    private loginSrv: LoginService,
+    private ls: StorageService,
+    private nav: NavController
+  ) {}
 
   ngOnInit() {
     this.checkToken();

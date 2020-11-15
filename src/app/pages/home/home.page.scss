@@ -4,12 +4,16 @@ ion-item {
 }
 
 ion-avatar {
-  width: 30px;
-  height: 32px;
-  --border-radius: 4px;
+  width: 25px;
+  height: 25px;
+  --border-radius: 2px;
 }
 
-.no-articles {
+ion-fab-button {
+  --background: var(--ion-color-primary-transparent);
+}
+
+.no-content {
   width: 100%;
   height: calc(100vh - 156px);
   display: flex;
@@ -18,8 +22,10 @@ ion-avatar {
   font-size: 1.5rem;
 }
 
-.icon-draft {
-  margin-left: .5rem;
+.icon {
+  margin-left: 1.2rem;
+  margin-right: 0;
   position: relative;
   top: 2px;
+  font-size: 1.1rem;
 }

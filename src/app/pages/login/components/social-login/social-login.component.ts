@@ -1,13 +1,15 @@
-import { Component, OnInit, NgZone, OnDestroy } from '@angular/core';
-import { environment } from '@env/environment';
-import { takeUntil, finalize } from 'rxjs/operators';
-import { GoogleService } from '@core/services/login/google.service';
-import { Subject, concat } from 'rxjs';
+import { Component, OnDestroy } from '@angular/core';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 import { ThemeService } from '@services/theme/theme.service';
-import { CrafterService } from '@core/services/crafter/crafter.service';
 import { NavController } from '@ionic/angular';
-
-declare const gapi: any;
+import { AngularFireAuth } from '@angular/fire/auth';
+import { UserResponse, User, NotificationPayload } from '@shared/interfaces/interfaces';
+import { AuthService } from '@services/login/auth.service';
+import { PushService } from '@services/push/push.service';
+import { NEW_USER_PUSH } from '@shared/shared.data';
+import firebase from 'firebase/app';
+import { UserService } from '@services/user/user.service';
 
 @Component({
   selector: 'app-social-login',
@@ -15,50 +17,66 @@ declare const gapi: any;
   styleUrls: ['./social-login.component.scss'],
 })
 
-export class SocialLoginComponent implements OnInit, OnDestroy {
+export class SocialLoginComponent implements OnDestroy {
 
   private unsubscribe$ = new Subject<void>();
 
   constructor(
-    private google: GoogleService,
     private nav: NavController,
-    private zone: NgZone,
     public theme: ThemeService,
-    private crafter: CrafterService
+    private userSrv: UserService,
+    private authSrv: AuthService,
+    private fire: AngularFireAuth,
+    private sw: PushService,
   ) { }
 
-  ngOnInit() {
-    this.initGoogle();
-  }
-
-  public initGoogle(): void {
-    const element = document.getElementById('google');
-    gapi.load('auth2', ()=> {
-      this.google.auth2 = gapi.auth2.init({
-        client_id: environment.keys.google,
-        cookiepolicy: 'single_host_origin',
-        scope: 'profile email'
-      });
-      this.googlePrompt(element);
+  public google(): void {
+    this.fire.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+    .then((res: firebase.auth.UserCredential) => {
+      const authUser = this.createAuthUser(res.user);
+      this.authSrv.signIn(authUser)
+       .pipe(takeUntil(this.unsubscribe$))
+       .subscribe((user: UserResponse) => this.handleSignIn(user));
     });
   }
 
-  private googlePrompt(element: HTMLElement): void {
-    this.google.auth2.attachClickHandler(element, null,
-      (profile: any) => {
-        const token = profile.getAuthResponse().id_token;
-        concat(
-          this.crafter.loader(),
-          this.google.googleSignIn(token)
-        )
-        .pipe(
-          takeUntil(this.unsubscribe$),
-          finalize(() => this.crafter.loaderOff())
-        )
-        .subscribe(() =>
-          this.zone.run(_ => this.nav.navigateRoot('tabs'))
-        );
+  public github(): void {
+    this.fire.signInWithPopup(new firebase.auth.GithubAuthProvider())
+    .then((res: firebase.auth.UserCredential) => {
+      const authUser = this.createAuthUser(res.user);
+      this.authSrv.signIn(authUser)
+       .pipe(takeUntil(this.unsubscribe$))
+       .subscribe((user: UserResponse) => this.handleSignIn(user));
     });
+  }
+
+  private handleSignIn(data: UserResponse): void {
+    this.userSrv.UserLogIn(data);
+    this.nav.navigateRoot('tabs');
+    if (data.message.indexOf('Created') > -1) {
+      this.sw.send(
+        this.setNotification(Object.assign({}, NEW_USER_PUSH), data.user.name)
+      ).toPromise().then();
+    }
+  }
+
+  private createAuthUser(user: firebase.User): User {
+    const authUser: User = {
+      name: user.displayName,
+      email: user.email,
+      profile: {
+        avatar: user.photoURL
+      }
+    };
+
+    return authUser;
+  }
+
+  private setNotification(payload: NotificationPayload,
+                          name: string): NotificationPayload {
+      payload.body = payload.body
+      .concat(`.\n¡Bienvenido/a ${name}!`);
+      return payload;
   }
 
   ngOnDestroy(): void {

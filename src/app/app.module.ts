@@ -11,6 +11,7 @@ import { CoreModule } from '@core/core.module';
 import { HammerConfig } from '@core/hammer.config';
 import { SharedModule } from '@shared/shared.module';
 import { ComponentsModule } from '@shared/components/components.module';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,12 @@ import { ComponentsModule } from '@shared/components/components.module';
     IonicModule.forRoot(),
     AppRoutingModule,
     CoreModule,
+    StoreModule.forRoot({}, {
+      runtimeChecks: {
+        strictStateImmutability: false,
+        strictActionImmutability: false
+      }
+    }),
     SharedModule,
     ComponentsModule
   ],

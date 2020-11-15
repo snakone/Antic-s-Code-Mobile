@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { Draft } from '@shared/interfaces/interfaces';
+import { Article, Draft } from '@shared/interfaces/interfaces';
 import { ModalController } from '@ionic/angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CATEGORIES, TAGS, BADGES, LEVELS } from '@shared/shared.data';
 import { DraftsService } from '@core/services/drafts/drafts.service';
 import { CrafterService } from '@core/services/crafter/crafter.service';
 import { switchMap, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -18,7 +18,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 export class EditComponent implements OnInit, OnDestroy {
 
-  @Input() draft: Draft;
+  @Input() content$: Observable<Article | Draft>;
   editForm: FormGroup;
   categories = CATEGORIES;
   tags = TAGS;
@@ -36,40 +36,42 @@ export class EditComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.createArticleForm();
+    this.content$.pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe(res => this.createArticleForm(res));
   }
 
   public close(): void {
     this.modalCtrl.dismiss();
   }
 
-  private createArticleForm(): void {
+  private createArticleForm(article: Article): void {
     this.editForm = new FormGroup({
-      title: new FormControl(this.draft.title || null, [
+      title: new FormControl(article.title || null, [
         Validators.required,
         Validators.minLength(10),
         Validators.maxLength(35)
       ]),
-      category: new FormControl(this.draft.category || null, [
+      category: new FormControl(article.category || null, [
         Validators.required
       ]),
-      tags: new FormControl(this.draft.tags || null, [
+      tags: new FormControl(article.tags || null, [
         Validators.required,
         this.selectValidator(3).bind(this)
       ]),
-      badges: new FormControl(this.draft.badges || null, [
+      badges: new FormControl(article.badges || null, [
         Validators.required,
         this.selectValidator(2).bind(this)
       ]),
-      level: new FormControl(this.draft.level || null, [
+      level: new FormControl(article.level || null, [
         Validators.required
       ]),
-      summary: new FormControl(this.draft.summary || null, [
+      summary: new FormControl(article.summary || null, [
         Validators.required,
         Validators.minLength(100),
         Validators.maxLength(600)
       ]),
-      cover: new FormControl(this.draft.cover || null, [
+      cover: new FormControl(article.cover || null, [
         Validators.required,
         Validators.minLength(4),
         Validators.pattern(this.imagePattern)
@@ -98,20 +100,22 @@ export class EditComponent implements OnInit, OnDestroy {
       summary
     } = this.editForm.value;
 
-    this.draft.title = title;
-    this.draft.cover = cover;
-    this.draft.category = category;
-    this.draft.tags = tags;
-    this.draft.badges = badges;
-    this.draft.level = level,
-    this.draft.summary = summary;
+    const article: Article = {
+      title,
+      cover,
+      category,
+      tags,
+      badges,
+      level,
+      summary
+    };
 
-    this.draftSrv.updateDraft(this.draft)
+    this.draftSrv.updateDraft(article)
     .pipe(
       switchMap(_ => {
       this.modalCtrl.dismiss();
       this.router.navigateByUrl('/tabs/home');
-      this.crafter.alert(this.translate.instant('article.updated'));
+      this.crafter.alert('ARTICLE.UPDATED');
       return this.draftSrv.getDraftsByUser();
     }), takeUntil(this.unsubscribe$)
     ).toPromise().then();

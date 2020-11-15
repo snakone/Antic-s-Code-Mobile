@@ -13,6 +13,15 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
 import { StorageModule } from './services/storage/storage.module';
 import { NgMarkdownModule } from './markdown/markdown.module';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from '@env/environment';
+
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './nrgx/nrgx.index';
+import { EffectsModule } from '@ngrx/effects';
+import { ContentEffects } from './nrgx/content/content.effects';
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, CORE_MODULE_CONSTANTS.TRANSLATE_CONFIG.I18N_PATH,
                                  CORE_MODULE_CONSTANTS.TRANSLATE_CONFIG.SUFFIX_FILE);
@@ -26,6 +35,10 @@ export function createTranslateLoader(http: HttpClient) {
     NgMarkdownModule,
     NgxWebstorageModule.forRoot(CORE_MODULE_CONSTANTS.WEBSTORAGE_CONFIG),
     LanguageModule.forRoot(),
+    StoreModule.forFeature('AppState', reducers),
+    EffectsModule.forRoot([
+      ContentEffects
+    ]),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -33,6 +46,8 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
   ],
   providers: [
     HttpService,

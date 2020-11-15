@@ -2,8 +2,8 @@ export interface User {
  _id?: string;
  name: string;
  email: string;
- password: string;
- account: string;
+ password?: string;
+ account?: string;
  profile?: UserProfile;
 }
 
@@ -31,6 +31,16 @@ export interface UserResponse extends ServerResponse {
 
 export interface DraftResponse extends ServerResponse {
   draft?: Draft;
+  drafts?: Draft[];
+}
+
+export interface ArticleResponse extends ServerResponse {
+  article?: Draft;
+  articles?: Draft[];
+}
+
+export interface ContentResponse extends ServerResponse {
+  articles?: Article[];
   drafts?: Draft[];
 }
 
@@ -72,6 +82,9 @@ export interface Draft extends Content {
   github?: boolean;
   githubLink?: string;
 }
+
+// tslint:disable-next-line:no-empty-interface
+export interface Article extends Draft {}
 
 export interface Check {
   hasGoodTitle?: CheckStatus;
@@ -115,4 +128,32 @@ export class CustomError {
    this.author = author;
    this.platform = platform;
  }
+}
+
+// tslint:disable-next-line:no-empty-interface
+export interface SWResponse extends ServerResponse {}
+
+export interface NotificationPayload {
+  title?: string;
+  body: string;
+  icon?: string;
+  vibrate?: number[];
+  requireInteraction?: boolean;
+  image?: string;
+  data?: NotificationData;
+  actions: NotificationAction[];
+  user?: string;
+  broadcast?: boolean;
+  admin?: boolean;
+  device?: string | RegExp;
+}
+
+interface NotificationData {
+  url?: string;
+  data?: any;
+}
+
+interface NotificationAction {
+  action: string;
+  title: string;
 }

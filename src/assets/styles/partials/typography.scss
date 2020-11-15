@@ -1,0 +1,113 @@
+.bold {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.black { color: black !important }
+.white { color: var(--bg-color) !important }
+.active { color: var(--primary-color) }
+strong { font-size: inherit }
+span strong { font-size: inherit}
+
+p {
+  color: var(--p-color);
+  line-height: 1.5rem;
+}
+
+span:not(.tab), p, li, a, input, textarea, mat-label, p code, td, ion-label {
+  @media(max-width: 550px) { font-size: .9rem !important }
+}
+
+h1 {
+  color: var(--light-color);
+  font-size: 2rem;
+  margin-bottom: 0;
+  margin-top: 0;
+  font-weight: 700;
+  line-height: 1.2;
+  @media (max-width: 993px) { font-size: 1.4rem }
+  @media (max-width: 320px) { font-size: 1.2rem }
+}
+
+br {
+  display: block;
+  content: "";
+  margin-top: 12px;
+}
+
+a:not(.default) {
+  background-color: var(--ion-color-link);
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  color: #1a1a1a;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  @media(max-width: 550px) { font-size: .9rem !important }
+
+  &:hover {
+    background-color: #bbeffd;
+    border-bottom-color: #1a1a1a;
+  }
+}
+
+a.default {
+  outline: none;
+  text-decoration: none;
+}
+
+ul.none {
+  margin-left: 0;
+  padding-left: 0;
+  list-style: disc;
+
+  & li {
+    color: var(--p-color);
+  }
+}
+
+ul.check, .template ul {
+  margin-left: 0;
+  padding-left: 0;
+  & li {
+    position: relative;
+    padding-left: 2rem;
+    list-style-type: none;
+    margin: .66rem auto;
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 5px;
+      height: 11px;
+      border-width: 0 2px 2px 0;
+      border-style: solid;
+      border-color: var(--secondary-color);
+      transform-origin: bottom left;
+      transform: rotate(45deg);
+    }
+
+    &.no-mark {
+      &:before {
+        content: '';
+        width: 0;
+        height: 0;
+        border-width: 0;
+      }
+    }
+  }
+}
+
+code {
+  border-top: 0;
+  box-sizing: border-box;
+  font-family: source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace;
+  background: rgba(255, 229, 100, 0.2);
+  border-radius: 2px;
+  font-size: inherit;
+}
+
+h4 span.bold { font-size: inherit !important }
+

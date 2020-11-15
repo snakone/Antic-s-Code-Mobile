@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserService } from '@app/core/services/user/user.service';
 import { User } from '@shared/interfaces/interfaces';
 
@@ -8,14 +8,8 @@ import { User } from '@shared/interfaces/interfaces';
   styleUrls: ['profile.page.scss']
 })
 
-export class ProfilePage implements OnInit {
+export class ProfilePage {
 
-  user: User;
-
-  constructor(private userSrv: UserService) {}
-
-  ngOnInit() {
-    this.user = this.userSrv.getUser();
-  }
+  constructor(public userSrv: UserService) {}
 
 }

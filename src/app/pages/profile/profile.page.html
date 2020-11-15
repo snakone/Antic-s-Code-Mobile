@@ -1,7 +1,7 @@
 <ion-content force-overscroll="false">
-  <app-page-header [title]="'profile'"></app-page-header>
+  <app-page-header [title]="'PROFILE'"></app-page-header>
   <div class="tab-delay">
-    <ion-card *ngIf="user">
+    <ion-card *ngIf="userSrv.getUser() as user">
       <ion-card-header>
         <ion-item>
           <ion-avatar slot="start">
@@ -38,7 +38,7 @@
             [innerHTML]="(user.profile?.bio | sanitizer: 'html')">
         </p>
         <p *ngIf="!user.profile.bio">
-          {{'bio.NOT.DEFINED' | translate}} 
+          {{'BIO.NOT.DEFINED' | translate}} 
         </p>
       </ion-card-content>
     </ion-card>

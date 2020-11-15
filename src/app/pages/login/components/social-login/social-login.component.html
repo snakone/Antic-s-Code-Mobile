@@ -1,8 +1,8 @@
-<p>{{'or.enter' | translate}}</p>
+<p>{{'OR.ENTER' | translate}}</p>
 <div class="login">
   <ion-button type="button"
               class="media"
-              [disabled]="true">
+              (click)="github()">
     <img [src]="theme.isDark() ? 
                 'assets/icon/github-dark.svg' : 
                 'assets/icon/github.svg'">
@@ -10,7 +10,7 @@
   </ion-button>
   <ion-button type="button"
               class="media"
-              data-toggle="tooltip"
+              (click)="google()"
               id="google">
     <img src="assets/icon/google.svg">
     Google

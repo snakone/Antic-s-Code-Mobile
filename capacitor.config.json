@@ -1,6 +1,6 @@
 {
-  "appId": "io.antics.code.mobile.creator.com",
-  "appName": "Antic's Creator",
+  "appId": "io.antics.code.mobile.com",
+  "appName": "Antic's Mobile",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

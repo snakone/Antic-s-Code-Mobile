@@ -1,77 +1,118 @@
 {
- "articles": "Articles",
- "profile": "Profile",
- "config": "Settings",
- "web.dev": "Web",
- "front.dev": "Frontend",
- "back.dev": "Backend",
- "full.dev": "Full-Stack",
- "design.dev": "Designer",
- "design.web": "Web Designer",
- "mobile.dev": "Mobile Developer",
- "NOT.DEFINED": "Not defined",
- "bio.NOT.DEFINED": "Not Defined. Write something about You",
- "no.articles": "No Articles",
- "theme": "Theme",
- "language": "Language",
- "re.email": "Remember Email",
- "logout": "Log out",
- "exit": "Exit",
- "create.article": "Create Article",
- "title": "Title",
- "image": "Image",
- "category": "Category",
- "level": "Level",
- "tags": "Tags",
- "badge": "Badge",
- "intro": "Introduction",
- "link.name": "Link Name",
- "link.url": "Link URL",
- "insert.link": "Insert Link",
- "create": "Create",
- "Nuevo": "New",
- "Destacado": "Prominent",
- "Popular": "Hot",
- "Desarrollo": "Develop",
- "Diseño": "Design",
- "Consola": "Console",
- "Config": "Config",
- "Básico": "Basic",
- "Medio": "Medium",
- "Avanzado": "Advanced",
- "yes": "Yes",
- "cancel": "Cancel",
- "article.saved": "Article Saved",
- "edit.now": "Do You want to edit it now?",
- "here.message": "Here goes the message",
- "save.article": "Save Article",
- "save.now": "Do You want to save it?",
- "message.updated": "Message Updated",
- "edit.article": "Edit Article",
- "edit": "Edit",
- "preview": "Preview",
- "write.here": "Write here the message",
- "welcome": "Welcome",
- "email": "Email",
- "password": "Password",
- "remember": "Remember",
- "no.account": "No account? Create one",
- "here": "here",
- "or.enter": "Or enter with...",
- "overwrite": "Want to overwrite it?",
- "article.exist": "An Article already exist",
- "sure.exit": "Are You sure You want to leave?",
- "loading": "Loading...",
- "LEVEL": {
-  "ADVANCED": "Advanced",
-  "BASIC": "Basic",
-  "MEDIUM": "Medium",
-  "NAME": "Difficulty"
- },
- "BADGE": {
-  "HOT": "Hot",
-  "NEW": "New",
-  "PRO": "Prominent"
- }
+  "ARTICLE.EXIST": "An Article already exist",
+  "ARTICLE.SAVED": "Article Saved",
+  "ARTICLES": "Articles",
+  "BACK.DEV": "Backend",
+  "BADGE": {
+      "HOT": "Hot",
+      "NEW": "New",
+      "PRO": "Prominent",
+      "NAME": "Badges"
+  },
+  "BIO.NOT.DEFINED": "Not Defined. Write something about You",
+  "CANCEL": "Cancel",
+  "BACK": "Back",
+  "CATEGORY": "Category",
+  "CONFIG": "Config",
+  "CREATE": "Create",
+  "CREATE.ARTICLE": "Create Article",
+  "DESIGN.DEV": "Designer",
+  "DESIGN.WEB": "Web Designer",
+  "EDIT": "Edit",
+  "EDIT.ARTICLE": "Edit Article",
+  "EDIT.NOW": "Do You want to edit it now?",
+  "EMAIL": "Email",
+  "ERRORS": {
+      "ACCESS": {
+          "MESSAGE": "Access to this service has been denied for preventing from an unknown origin. Sorry for the inconvenience, if the problem persists, contact us."
+      },
+      "CODE": {
+          "MESSAGE": "Sorry, there was a runtime error in the code. Please try to refresh the page if the error continues, otherwise contact us. Sorry for the disturbances."
+      },
+      "EMAIL_TOKEN": {
+          "MESSAGE": "The code is invalid. Try again with another code."
+      },
+      "REQUEST": {
+          "MESSAGE": "There was an error verifying the data. Please check the entered data and try again. If the problem persists, contact us."
+      },
+      "SERVER": {
+          "MESSAGE": "There has been an internal error on the server. If the error continues, please try again later or contact us. Sorry for the disturbances."
+      },
+      "SHARE": {
+          "MESSAGE": "We are sorry. This device doesn't support the Web API Share. Please try again with another device, this usually works on mobile devices."
+      },
+      "TOKEN": {
+          "MESSAGE": "Your token to access Antic's Code has expired, but do not worry, we have updated it for you. You can continue using the page as always."
+      },
+      "UNKNOWN": {
+          "MESSAGE": "We don't know yet but something bad happened. Sorry for the inconvenience, if the problem persists, contact us."
+      },
+      "USER_ALREADY": {
+          "MESSAGE": "We are sorry, this email is already in use. Please use another one."
+      },
+      "WEB": {
+          "MESSAGE": "There seems to be a network error. Check that you have Internet access and try again. If the problem persists, contact us."
+      }
+  },
+  "EXIT": "Exit",
+  "FRONT.DEV": "Frontend",
+  "FULL.DEV": "Full-Stack",
+  "HERE": "here",
+  "HERE.MESSAGE": "Here goes the message",
+  "IMAGE": "Image",
+  "INSERT.LINK": "Insert Link",
+  "INTRO": "Introduction",
+  "MARKDOWN": "Markdown",
+  "LANGUAGE": "Language",
+  "LEVEL": {
+      "ADVANCED": "Advanced",
+      "BASIC": "Basic",
+      "MEDIUM": "Medium",
+      "NAME": "Difficulty"
+  },
+  "LINK.NAME": "Link Name",
+  "LINK.URL": "Link URL",
+  "LOADING": "Loading...",
+  "LOGIN": "Login",
+  "LOGOUT": "Log out",
+  "SPANISH": "Spanish",
+  "ENGLISH": "English",
+  "NO": "No",
+  "MESSAGE.UPDATED": "Message Updated",
+  "MOBILE.DEV": "Mobile Developer",
+  "NO.ACCOUNT": "No account? Create one",
+  "NO.ARTICLES": "No Articles",
+  "NOT.DEFINED": "Not defined",
+  "OR.ENTER": "Or enter with...",
+  "OVERWRITE": "Want to overwrite it?",
+  "PASSWORD": "Password",
+  "PREVIEW": "Preview",
+  "PROFILE": "Profile",
+  "RE.EMAIL": "Remember Email",
+  "REMEMBER": "Remember",
+  "SAVE.ARTICLE": "Save Article",
+  "SAVE.NOW": "Do You want to save it?",
+  "SURE.EXIT": "Are You sure You want to leave?",
+  "TAGS": {
+      "ANTICS": "Antic's",
+      "BACKEND": "Backend",
+      "CONFIG": "Config",
+      "CONSOLE": "Console",
+      "DATABASE": "Database",
+      "DESIGN": "Design",
+      "DEVELOP": "Develop",
+      "FRONTEND": "Frontend",
+      "GIT": "Git",
+      "IONIC": "Ionic",
+      "MATERIAL": "Material",
+      "MOBILE": "Mobile",
+      "NAME": "Tags",
+      "TYPESCRIPT": "Typescript"
+  },
+  "THEME": "Theme",
+  "TITLE": "Title",
+  "WEB.DEV": "Web",
+  "WELCOME": "Welcome",
+  "WRITE.HERE": "Write here the message",
+  "YES": "Yes"
 }
-

@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http/http.service';
-import { User, UserResponse } from '@app/shared/interfaces/interfaces';
+import { User, UserResponse } from '@shared/interfaces/interfaces';
 import { Observable, of } from 'rxjs';
-import { StorageService } from '@app/core/services/storage/storage.service';
+import { StorageService } from '@core/services/storage/storage.service';
 import { environment } from '@env/environment';
 import { filter, tap, map } from 'rxjs/operators';
+import { AuthService } from '@core/services/login/auth.service';
+import { UserFacade } from '@core/nrgx/user/user.facade';
 
 @Injectable({providedIn: 'root'})
 
@@ -16,7 +18,9 @@ export class UserService {
 
   constructor(
     private http: HttpService,
-    private ls: StorageService
+    private ls: StorageService,
+    private auth: AuthService,
+    private userFacade: UserFacade
   ) { }
 
   public getUser(): User {
@@ -25,6 +29,7 @@ export class UserService {
 
   public setUser(user: User): void {
     this.user = user;
+    this.userFacade.set(user);
   }
 
   public getUserById(id: string): Observable<User> {
@@ -60,6 +65,7 @@ export class UserService {
   public logout(): void {
     this.ls.setKey('token', null);
     this.user = null;
+    this.auth.logOut();
   }
 
   public UserLogIn(data: UserResponse): void {

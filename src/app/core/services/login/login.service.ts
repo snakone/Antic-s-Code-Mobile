@@ -24,7 +24,7 @@ export class LoginService {
         filter(res => res && !!res.ok),
         tap(res => this.userSrv.UserLogIn(res)),
         map(res => res.user)
-      )
+      );
   }
 
 }

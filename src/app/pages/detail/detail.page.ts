@@ -1,14 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Draft } from '@shared/interfaces/interfaces';
-import { Subject } from 'rxjs';
+import { Article } from '@shared/interfaces/interfaces';
+import { Observable, Subject } from 'rxjs';
 import { DraftsService } from '@core/services/drafts/drafts.service';
 import { ModalController } from '@ionic/angular';
-import { EditComponent } from '@app/shared/components/modals/edit/edit.component';
-import { PreviewComponent } from '@app/shared/components/modals/preview/preview.component';
+import { EditComponent } from '@shared/components/modals/edit/edit.component';
+import { MarkDownComponent } from '@shared/components/modals/markdown/markdown.component';
 import { takeUntil } from 'rxjs/operators';
 import { CrafterService } from '@core/services/crafter/crafter.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ContentFacade } from '@core/nrgx/content/content.facade';
 
 @Component({
   selector: 'app-detail',
@@ -18,7 +19,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 export class DetailPage implements OnInit, OnDestroy {
 
-  draft: Draft;
+  content$: Observable<Article>;
   private unsubscribe$ = new Subject<void>();
 
   constructor(
@@ -26,59 +27,47 @@ export class DetailPage implements OnInit, OnDestroy {
     private draftSrv: DraftsService,
     private modalCtrl: ModalController,
     private crafter: CrafterService,
-    private translate: TranslateService
+    private contentFacade: ContentFacade
   ) {}
 
   ngOnInit(): void {
     const slug = this.route.snapshot.paramMap.get('slug');
-    this.getDraftBySlug(slug);
-  }
-
-  private getDraftBySlug(slug: string): void {
-    this.draftSrv.getDraftBySlug(slug)
-    .pipe(takeUntil(this.unsubscribe$))
-    .subscribe((res: Draft) => {
-      this.draft = res;
-    });
+    this.contentFacade.getBySlug(slug);
+    this.content$ = this.contentFacade.bySlug$;
   }
 
   public async open(page: string): Promise<void> {
     if (page === 'edit') {
       const modal = await this.modalCtrl.create({
         component: EditComponent,
-        componentProps: { draft: this.draft}
+        componentProps: { content$: this.content$}
       });
 
       modal.present();
-    } else if (page === 'preview') {
+    } else if (page === 'markdown') {
       const modal = await this.modalCtrl.create({
-        component: PreviewComponent,
-        componentProps: { draft: this.draft}
+        component: MarkDownComponent,
+        componentProps: { content$: this.content$}
       });
 
       modal.present();
     }
   }
 
-  public update(): void {
-    const confirm = this.crafter.confirm(
-      this.translate.instant('save.now'),
-      this.translate.instant('save.article')
-    );
+  public update(article: Article): void {
+    const confirm = this.crafter.confirm('SAVE.NOW', 'SAVE.ARTICLE');
     confirm.then(res => {
       if (!res.role) {
         this.draftSrv.updateDraftMessage(
-          this.draft.message, this.draft._id
+          article.message, article._id
         ).pipe(takeUntil(this.unsubscribe$))
-         .subscribe(_ => {
-           this.draftSrv.getDraftsByUser().toPromise().then();
-           this.crafter.alert(this.translate.instant('message.updated'));
-          });
+         .subscribe(_ => this.crafter.alert('MESSAGE.UPDATED'));
       }
     });
   }
 
   ngOnDestroy() {
+    this.contentFacade.resetBySlug();
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }

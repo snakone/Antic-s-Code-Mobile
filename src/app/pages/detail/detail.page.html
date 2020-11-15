@@ -1,37 +1,36 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Markdown
-    </ion-title>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
+      <ion-back-button defaultHref="/tabs/home"
+                       [text]="'BACK' | translate">
+      </ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content force-overscroll="false">
-  <ng-container *ngIf="draft">
-    <ion-textarea [(ngModel)]="draft.message"
-                  [placeholder]="'write.here' | translate"
-                  class="full">
-    </ion-textarea>
+<ion-content force-overscroll="false" class="ion-padding">
+  <ng-container *ngIf="(content$ | async) as article">
+    <markdown class="template"
+              ngPreserveWhitespaces
+              [data]="article.message">
+    </markdown>
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button size="small">
+      <ion-fab-button size="small" class="first">
         <ion-icon name="settings-outline"></ion-icon>
       </ion-fab-button>
       <ion-fab-list side="top">
-        <ion-fab-button (click)="open('preview')">
-          <ion-icon name="reader-outline" 
-                    color="tertiary">
-          </ion-icon>
-        </ion-fab-button>
-        <ion-fab-button (click)="open('edit')">
-          <ion-icon name="brush" 
+        <ion-fab-button (click)="open('markdown')">
+          <ion-icon name="code-slash-outline" 
                     color="success">
           </ion-icon>
         </ion-fab-button>
-        <ion-fab-button (click)="update()">
-          <ion-icon name="cloud-upload-outline" 
+        <ion-fab-button (click)="open('edit')">
+          <ion-icon name="color-wand-outline" 
+                    color="tertiary">
+          </ion-icon>
+        </ion-fab-button>
+        <ion-fab-button (click)="update(article)">
+          <ion-icon name="save-outline" 
                     color="danger">
           </ion-icon>
         </ion-fab-button>

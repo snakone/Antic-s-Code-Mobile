@@ -7,3 +7,14 @@
   flex-direction: column;
  }
 }
+
+ion-back-button {
+  --color: white;
+  --icon-padding-end: .8rem;
+}
+
+ion-item { 
+  --highlight-color-invalid: transparent;
+  --highlight-color-valid: transparent;
+  --inner-padding-end: 0;
+}

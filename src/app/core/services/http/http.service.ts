@@ -10,6 +10,7 @@ import {
 import { Observable} from 'rxjs';
 import { StorageService } from '../storage/storage.service';
 import { catchError } from 'rxjs/operators';
+import { CrafterService } from '../crafter/crafter.service';
 
 @Injectable()
 
@@ -24,7 +25,8 @@ export class HttpService {
 
   constructor(
     private http: HttpClient,
-    private ls: StorageService
+    private ls: StorageService,
+    private crafter: CrafterService
   ) {}
 
   public get<T>(url: string,
@@ -77,10 +79,7 @@ export class HttpService {
   }
 
   private error(err: HttpErrorResponse): void {
-    switch (err.status) {
-      case 406: console.log('Bad')
-        break;
-      default: console.log(err)
-    }
+    this.crafter.handleError(err);
   }
+
 }

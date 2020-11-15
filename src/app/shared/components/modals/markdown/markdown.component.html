@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      {{'preview' | translate}}
+      {{'MARKDOWN' | translate}}
     </ion-title>
     <ion-buttons slot="start">
       <ion-button shape="round" (click)="close()">
@@ -11,11 +11,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ng-container *ngIf="draft">
-    <markdown class="template"
-              ngPreserveWhitespaces
-              [data]="draft.message">
-    </markdown>
+<ion-content force-overscroll="false">
+  <ng-container *ngIf="(content$ | async) as draft">
+    <ion-textarea [(ngModel)]="draft.message"
+                  [placeholder]="'write.here' | translate"
+                  class="full">
+    </ion-textarea>
   </ng-container>
 </ion-content>

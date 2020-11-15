@@ -1,15 +1,16 @@
-ion-footer {
- text-align: center;
-}
-
 ion-toolbar {
  --background: var(--ion-color-primary);
 }
 
-ion-back-button {
- --color: white;
+ion-fab-button {
+  --background: var(--ion-color-primary);
 }
 
-ion-textarea {
- --padding-start: 1rem;
+ion-fab-button:not(.first) {
+  --background: var(--ion-color-fab);
+}
+
+ion-icon {
+  font-size: 1.4rem;
+  filter: contrast(1.5);
 }

@@ -16,8 +16,16 @@
           "options": {
             "outputPath": "www",
             "index": "src/index.html",
+            "aot": true,
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
+            "allowedCommonJsDependencies": [
+              "hammerjs",
+              "firebase",
+              "firebase/app",
+              "firebase/auth",
+              "@firebase/auth"
+            ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
