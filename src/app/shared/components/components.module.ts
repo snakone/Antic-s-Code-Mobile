@@ -8,6 +8,7 @@ import { MarkDownComponent } from './modals/markdown/markdown.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MarkdownModule } from 'ngx-markdown';
 import { CreateComponent } from './modals/create/create.component';
+import { PageHeaderModule } from './layout/page-header/page-header.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CreateComponent } from './modals/create/create.component';
     IonicModule,
     FormsModule,
     ReactiveFormsModule,
+    PageHeaderModule,
     MarkdownModule.forChild()
   ],
   exports: [

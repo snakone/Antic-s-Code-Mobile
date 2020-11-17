@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
 
 import * as fromUser from './user.reducer';
-import { getAppState } from '../nrgx.index';
+import { getAppState } from '../ngrx.index';
 import { AppState } from '@app/app.config';
 
 export const getUserState = createSelector(

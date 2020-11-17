@@ -6,7 +6,7 @@
  display: flex;
  align-items: center;
  justify-content: center;
- background: var(--ion-background-color);
+ background: var(--ion-header-background);
 }
 
 .lds-dual-ring {
@@ -22,8 +22,8 @@
  height: 60px;
  margin: 1px;
  border-radius: 50%;
- border: 5px solid var(--ion-color-dark);
- border-color: var(--ion-color-dark) transparent var(--ion-color-dark) transparent;
+ border: 5px solid #fff;
+ border-color: #fff transparent #fff transparent;
  animation: lds-dual-ring 1.2s linear infinite;
 }
 

@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CrafterService } from '@core/services/crafter/crafter.service';
+import { CrafterService } from '@services/crafter/crafter.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '@shared/interfaces/interfaces';
 import { Subject } from 'rxjs';
 import { UserService } from '@core/services/user/user.service';
 import { takeUntil, finalize } from 'rxjs/operators';
-import { LoginService } from '@core/services/login/login.service';
-import { StorageService } from '@core/services/storage/storage.service';
+import { LoginService } from '@services/login/login.service';
+import { StorageService } from '@services/storage/storage.service';
 import { NavController } from '@ionic/angular';
 import { HelpComponent } from './components/help/help.component';
 
@@ -40,7 +40,7 @@ export class LoginPage implements OnInit, OnDestroy {
     this.userSrv.verifyToken()
     .pipe(takeUntil(this.unsubscribe$))
     .subscribe(_ => {
-      _ ? this.nav.navigateRoot('tabs') :
+      _ ? this.nav.navigateRoot('home') :
       this.rememberMe();
     });
   }
@@ -74,7 +74,7 @@ export class LoginPage implements OnInit, OnDestroy {
     )
     .subscribe(_ => {
       this.ls.setKey('remember', this.remember);
-      this.nav.navigateRoot('tabs');
+      this.nav.navigateRoot('home');
     });
   }
 

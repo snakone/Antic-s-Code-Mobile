@@ -24,6 +24,19 @@ interface ServerResponse {
   err?: any;
 }
 
+export interface UserContent {
+  articles?: Article[];
+  drafts?: Article[];
+}
+
+export interface MenuLink {
+  title: string;
+  icon: string;
+  route: string;
+}
+
+export interface UserContentResponse extends ServerResponse, UserContent {}
+
 export interface UserResponse extends ServerResponse {
   user: User;
   token?: string;

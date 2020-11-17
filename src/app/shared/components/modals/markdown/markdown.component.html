@@ -1,15 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      {{'MARKDOWN' | translate}}
-    </ion-title>
-    <ion-buttons slot="start">
-      <ion-button shape="round" (click)="close()">
-        <ion-icon name="arrow-back"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<app-page-header [title]="'MARKDOWN' | translate"></app-page-header>
 
 <ion-content force-overscroll="false">
   <ng-container *ngIf="(content$ | async) as draft">

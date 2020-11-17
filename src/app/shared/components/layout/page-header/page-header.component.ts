@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { MenuController } from '@ionic/angular';
+import { MenuService } from '@services/menu/menu.service';
 
 @Component({
   selector: 'app-page-header',
@@ -9,7 +11,16 @@ import { Component, Input } from '@angular/core';
 export class PageHeaderComponent {
 
   @Input() title: string;
+  @Input() showBack = true;
+  @Input() showButtons = true;
 
-  constructor() { }
+  constructor(
+    private menu: MenuController,
+    public menuSrv: MenuService
+  ) { }
+
+  public openMenu(): void {
+    this.menu.toggle('main');
+  }
 
 }

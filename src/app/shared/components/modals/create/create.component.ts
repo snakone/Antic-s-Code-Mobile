@@ -1,14 +1,13 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Draft } from '@shared/interfaces/interfaces';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CATEGORIES, TAGS, BADGES, LEVELS } from '@shared/shared.data';
 import { ModalController } from '@ionic/angular';
-import { DraftsService } from '@core/services/drafts/drafts.service';
+import { DraftsService } from '@services/drafts/drafts.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { UserService } from '@core/services/user/user.service';
-import { CrafterService } from '@core/services/crafter/crafter.service';
-import { EditComponent } from '../edit/edit.component';
+import { UserService } from '@services/user/user.service';
+import { CrafterService } from '@services/crafter/crafter.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 

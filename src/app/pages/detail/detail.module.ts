@@ -6,6 +6,7 @@ import { DetailPageRouting } from './detail.routing';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { MarkdownModule } from 'ngx-markdown';
+import { PageHeaderModule } from '@layout/page-header/page-header.module';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { MarkdownModule } from 'ngx-markdown';
     DetailPageRouting,
     FormsModule,
     TranslateModule,
+    PageHeaderModule,
     MarkdownModule.forChild()
   ],
   declarations: [DetailPage]

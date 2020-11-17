@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 import { ProfilePage } from './profile.page';
 import { ProfilePageRouting } from './profile.routing';
 import { SharedModule } from '@shared/shared.module';
-import { LayoutModule } from '@shared/components/layout/layout.module';
+import { LayoutModule } from '@layout/layout.module';
+import { PageHeaderModule } from '@layout/page-header/page-header.module';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { LayoutModule } from '@shared/components/layout/layout.module';
     CommonModule,
     ProfilePageRouting,
     SharedModule,
-    LayoutModule
+    LayoutModule,
+    PageHeaderModule
   ],
   declarations: [ProfilePage]
 })

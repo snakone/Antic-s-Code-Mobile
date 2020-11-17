@@ -18,9 +18,9 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '@env/environment';
 
 import { StoreModule } from '@ngrx/store';
-import { reducers } from './nrgx/nrgx.index';
+import { reducers } from './ngrx/ngrx.index';
 import { EffectsModule } from '@ngrx/effects';
-import { ContentEffects } from './nrgx/content/content.effects';
+import { ContentEffects } from './ngrx/content/content.effects';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, CORE_MODULE_CONSTANTS.TRANSLATE_CONFIG.I18N_PATH,

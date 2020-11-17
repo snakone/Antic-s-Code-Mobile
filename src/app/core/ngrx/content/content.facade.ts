@@ -9,7 +9,8 @@ import * as fromContent from './content.selectors';
 
 export class ContentFacade {
 
-  content$ = this.store.select(fromContent.get);
+  articles$ = this.store.select(fromContent.getArticles);
+  drafts$ = this.store.select(fromContent.getDrafts);
   loaded$ = this.store.select(fromContent.getLoaded);
   bySlug$ = this.store.select(fromContent.getBySlug);
   bySlugLoaded$ = this.store.select(fromContent.getBySlugLoaded);

@@ -1,0 +1,21 @@
+<ion-menu side="end" 
+          type="reveal" 
+          menuId="main" 
+          contentId="main"
+          (ionWillClose)="emitClose()"
+          (ionWillOpen)="emitOpen()">
+  <ion-header mode="ios" class="ion-no-border">
+    <ion-toolbar mode="md">
+    </ion-toolbar>
+  </ion-header>
+  <ion-content force-overscroll="false">
+    <ion-list inset="true"> 
+      <ion-item *ngFor="let link of menuLink"
+                [routerLink]="link.route"
+                (click)="close()">
+        <ion-icon slot="start" [name]="link.icon"></ion-icon>
+        <ion-label>{{link.title | translate}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>

@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
 
 import * as fromContent from './content.reducer';
-import { getAppState } from '../nrgx.index';
+import { getAppState } from '../ngrx.index';
 import { AppState } from '@app/app.config';
 
 export const getContentState = createSelector(
@@ -9,8 +9,12 @@ export const getContentState = createSelector(
   (state: AppState) => state.content
 );
 
-export const get = createSelector(
-  getContentState, fromContent.get
+export const getArticles = createSelector(
+  getContentState, fromContent.getArticles
+);
+
+export const getDrafts = createSelector(
+  getContentState, fromContent.getDrafts
 );
 
 export const getLoaded = createSelector(

@@ -1,4 +1,4 @@
-import { NotificationPayload } from './interfaces/interfaces';
+import { MenuLink, NotificationPayload } from './interfaces/interfaces';
 
 export const CATEGORIES: string[] = [
  'HTML',
@@ -54,3 +54,17 @@ export const NEW_USER_PUSH: NotificationPayload = {
   broadcast: true,
   admin: false,
 };
+
+export const MENU: MenuLink[] = [
+  {
+    title: 'PROFILE',
+    icon: 'person-circle-outline',
+    route: '/profile'
+  },
+  {
+    title: 'SETTINGS',
+    icon: 'settings-outline',
+    route: '/settings'
+  }
+];
+

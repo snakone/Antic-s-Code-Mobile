@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '@core/services/user/user.service';
+import { UserService } from '@services/user/user.service';
 import { Router } from '@angular/router';
-import { CrafterService } from '@core/services/crafter/crafter.service';
-import { StorageService } from '@core/services/storage/storage.service';
+import { CrafterService } from '@services/crafter/crafter.service';
+import { StorageService } from '@services/storage/storage.service';
 import { LanguageService } from '@core/language/services/language.service';
 import { TranslateService } from '@ngx-translate/core';
 

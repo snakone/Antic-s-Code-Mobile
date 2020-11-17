@@ -1,0 +1,27 @@
+<app-page-header [title]="'ARTICLES'" 
+                 [showBack]="false">
+</app-page-header>
+
+<ion-content force-overscroll="false">
+  <ion-list inset="true"
+            *ngIf="(articles$ | async) as articles; else noArticles">
+    <ion-item *ngFor="let a of articles; let i = index"
+              (click)="navigate(a)"
+              class="ion-text-wrap"
+              detail>
+      <ion-avatar slot="start">
+        <img [src]="(isDark && a.category === 'Deno' ? 
+                      a.category + '-dark' : a.category) | logo">
+      </ion-avatar>
+      <ion-label>
+        {{a.title}}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #noArticles>
+    <div class="no-content">
+      {{'NO.CONTENT' | translate}}
+    </div>
+  </ng-template>
+</ion-content>

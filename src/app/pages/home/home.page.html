@@ -1,52 +1,9 @@
-<ion-content force-overscroll="false" class="scroll">
-  <app-page-header [title]="'ARTICLES'"></app-page-header>
-  <div class="tab-delay">
-    <ion-list inset="true" 
-             *ngIf="(content$ | async) as content; else noContent">
-      <ion-item *ngFor="let c of content; let i = index"
-                (click)="navigate(c)"
-                class="ion-text-wrap">
-        <ion-avatar slot="start">
-          <img [src]="(
-            theme.isDark() && c.category === 'Deno' ? 
-            c.category + '-dark' : c.category) | logo">
-        </ion-avatar>
-        <ion-label>
-          {{c.title}}
-        </ion-label>
-        <ion-icon *ngIf="c.status === 'Draft'"
-                    name="brush-outline" 
-                    color="success"
-                    slot="end"
-                    class="icon">
-          </ion-icon>
-          <ion-icon *ngIf="c.status === 'Pending'"
-                    name="timer-outline" 
-                    color="warning"
-                    slot="end"
-                    class="icon">
-          </ion-icon>
-          <ion-icon *ngIf="c.status === 'Approved'"
-                    name="checkmark-done-outline"
-                    color="success"
-                    slot="end"
-                    class="icon">
-          </ion-icon>
-      </ion-item>
-    </ion-list>
-  
-    <ng-template #noContent>
-      <div class="no-content">
-        {{'NO.CONTENT' | translate}}
-      </div>
-    </ng-template>
-  </div>
-
-  <ion-fab vertical="bottom" 
-           horizontal="end" 
-           slot="fixed">
-    <ion-fab-button size="small" (click)="create()">
-      <ion-icon name="add-outline"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-</ion-content>
+<ion-router-outlet mode="ios"></ion-router-outlet>
+<ion-fab vertical="bottom" 
+          horizontal="end" 
+          slot="fixed"
+          *ngIf="!(open$ | async)">
+  <ion-fab-button (click)="create()" size="small"> 
+    <ion-icon name="add-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
