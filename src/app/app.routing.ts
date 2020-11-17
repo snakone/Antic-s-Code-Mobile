@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { Error404Component } from './shared/components/error404/error404.component';
+
 import { UserGuard } from '@core/guards/user.guard';
+import { Error404Component } from './shared/components/error404/error404.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -11,9 +12,15 @@ const routes: Routes = [
     .then(m => m.LoginPageModule)
   },
   {
-    path: 'tabs',
-    loadChildren: () => import('./pages/tabs/tabs.module')
-    .then(m => m.TabsPageModule),
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module')
+    .then(m => m.HomePageModule),
+    canLoad: [UserGuard]
+  },
+  {
+    path: 'create',
+    loadChildren: () => import('./pages/create/create.module')
+    .then(m => m.CreatePageModule),
     canLoad: [UserGuard]
   },
   {
@@ -22,12 +29,27 @@ const routes: Routes = [
     .then(m => m.DetailPageModule),
     canLoad: [UserGuard]
   },
+  {
+    path: 'profile',
+    loadChildren: () => import('./pages/profile/profile.module')
+    .then(m => m.ProfilePageModule),
+    canLoad: [UserGuard]
+  },
+  {
+    path: 'settings',
+    loadChildren: () => import('./pages/settings/settings.module')
+    .then(m => m.SettingsPageModule),
+    canLoad: [UserGuard]
+  },
   { path: '**', component: Error404Component }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, relativeLinkResolution: 'legacy' })
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules,
+      relativeLinkResolution: 'legacy'
+    })
   ],
   exports: [RouterModule]
 })

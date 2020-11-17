@@ -1,0 +1,27 @@
+<app-page-header [title]="'DRAFTS'" 
+                [showBack]="false">
+</app-page-header>
+
+<ion-content force-overscroll="false">
+  <ion-list inset="true"
+            *ngIf="(drafts$ | async) as drafts; else noDrafts">
+    <ion-item *ngFor="let d of drafts; let i = index"
+              (click)="navigate(d)"
+              class="ion-text-wrap"
+              detail>
+      <ion-avatar slot="start">
+        <img [src]="(isDark && d.category === 'Deno' ? 
+                     d.category + '-dark' : d.category) | logo">
+      </ion-avatar>
+      <ion-label>
+        {{d.title}}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #noDrafts>
+    <div class="no-content">
+      {{'NO.CONTENT' | translate}}
+    </div>
+  </ng-template>
+</ion-content>

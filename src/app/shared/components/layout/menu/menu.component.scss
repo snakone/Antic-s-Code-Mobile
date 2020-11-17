@@ -1,0 +1,13 @@
+ion-menu {
+  --max-width: 300px;
+  --background: #fff;
+}
+
+ion-item {
+  --full-highlight-height: 0;
+}
+
+ion-toolbar {
+  --background: var(--ion-header-background);
+  --min-height: var(--ion-nav-height);
+}

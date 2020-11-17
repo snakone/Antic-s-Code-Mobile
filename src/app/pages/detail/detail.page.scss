@@ -3,11 +3,13 @@ ion-toolbar {
 }
 
 ion-fab-button {
-  --background: var(--ion-color-primary);
+  --background: var(--ion-primary-gradient);
+  --color: #fff;
 }
 
 ion-fab-button:not(.first) {
-  --background: var(--ion-color-fab);
+  --background: var(--ion-header-background);
+  --color: #fff;
 }
 
 ion-icon {

@@ -1,46 +1,55 @@
-ion-img {
- clip-path: ellipse(75% 99% at 50% 0);
- height: 80px;
- object-fit: cover;
- z-index: 0;
-
- &:before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 80px;
-  left: 0;
-  top: 0;
-  // background-color: #ee7da8;
-  // background-image: -webkit-linear-gradient(70deg, #ee7da8 7%, #9b63f8 34%, #7e9ffc 88%);
-  // background-image: -moz-linear-gradient(70deg, #ee7da8 7%, #9b63f8 34%, #7e9ffc 88%);
-  // background-image: -o-linear-gradient(70deg, #ee7da8 7%, #9b63f8 34%, #7e9ffc 88%);
-  // background-image: linear-gradient(70deg, #ee7da8 7%, #9b63f8 34%, #7e9ffc 88%);
-
-  background: radial-gradient( circle farthest-corner at 10.7% 80.6%,  
-  #ee7da8 -5%, 
-  #9b63f8 49.3%, 
-  #7e9ffc 89% );
- }
+ion-toolbar {
+  --background: var(--ion-header-background);
+  --min-height: var(--ion-nav-height);
 }
 
-.title {
- width: 100%;
- display: flex;
- justify-content: center;
- position: absolute;
- top: 38px;
- left: 50%;
- transform: translate(-50%, -50%);
- z-index: 100;
-
- & span {
-  font-size: 2rem;
-  color: white;
-  text-shadow: 
-  0px 4px 3px rgba(0,0,0,0.8),
-  0px 8px 13px rgba(0,0,0,0.2),
-  0px 18px 23px rgba(0,0,0,0.2);
- }
+ion-button, ion-menu-button {
+  color: #fff;
+  margin-right: .5rem;
+  margin-left: .5rem;
+  --border-radius: 50% !important;
 }
 
+ion-title {
+  --color: #fff;
+  font-size: 1.1rem;
+  font-family: var(--ion-fancy-font);
+  text-shadow: 5px 6px 5px rgba(0, 0, 0, .1);
+}
+
+ion-icon {
+  font-size: 1.3rem;
+}
+
+.menu { font-size: 1.1rem }
+
+.padding {
+  padding-left: 2px;
+}
+
+.active {
+  &::after {
+    content: '';
+    transition: opacity .3s ease-in-out;
+    animation: fadeIn .3s both;
+    position: absolute;
+    display: block;
+    bottom: -1px;
+    width: 36px;
+    margin: 0 auto;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    height: 3px;
+    filter: saturate(7);
+    box-shadow: 0px -5px 100px 45px rgba(219, 219, 219, 0.7);
+    background-color: var(--ion-active-color);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  } to {
+    opacity: 1;
+  }
+}

@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { timer } from 'rxjs';
 import { APP_CONSTANTS } from './app.config';
 import { TranslateService } from '@ngx-translate/core';
 import { StorageService } from '@core/services/storage/storage.service';
+import { Plugins } from '@capacitor/core';
 
 @Component({
   selector: 'app-root',
@@ -20,22 +19,22 @@ export class AppComponent {
 
   constructor(
     private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
     private translate: TranslateService,
-    private ls: StorageService
+    private ls: StorageService,
   ) {
-    this.checkTheme();
     this.initializeApp();
+    this.checkTheme();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleLightContent();
-      this.splashScreen.hide();
-      timer(3000).subscribe(() => {
+      Plugins.SplashScreen.hide();
+      timer(2000).subscribe(() => {
         this.showSplash = false;
       });
+      if (this.platform.is('android')) {
+        Plugins.StatusBar.setOverlaysWebView({overlay: true});
+      }
     });
     this.translate.setDefaultLang(APP_CONSTANTS.DEFAULT_LANGUAGE);
     this.translate.use(APP_CONSTANTS.DEFAULT_LANGUAGE);

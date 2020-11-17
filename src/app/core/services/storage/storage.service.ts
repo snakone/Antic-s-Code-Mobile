@@ -19,7 +19,7 @@ export class StorageService {
     }
   }
 
-  public setKey(key: string, value: any):void {
+  public setKey(key: string, value: any): void {
     this.loadStorage();
     if (value === undefined) { return; }
     this.storage[key] = value;

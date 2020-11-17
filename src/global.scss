@@ -8,6 +8,8 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 /* Custom CSS */
 @import './assets/styles/main.scss';
@@ -19,7 +21,7 @@ body {
  height: 100%;
  font-size: 1rem;
  font-weight: 400;
- font-family: var(--primary-font);
+ font-family: 'Montserrat';
  line-height: 1.5;
  overscroll-behavior-y: contain;
  text-rendering: optimizeLegibility;
@@ -28,9 +30,9 @@ body {
 }
 
 @font-face {
- font-family: "Segoe UI";
+ font-family: "Montserrat";
  font-weight: 400;
- src: local("Segoe UI");
+ src: local("Montserrat");
  font-display: swap;
 }
 

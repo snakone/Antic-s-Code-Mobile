@@ -1,8 +1,37 @@
-<ion-img></ion-img>
-
-<div class="title">
-  <span class="tab">{{title | translate}}</span>
-</div>
-
+<ion-header mode="ios" class="ion-no-border">
+  <ion-toolbar mode="md">
+    <ion-buttons slot="start" *ngIf="showBack">
+      <ion-back-button defaultHref="/home"
+                       [text]="null">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="title"
+                class="animated fadeInLeft"
+               [ngClass]="{'padding': showBack}">
+               {{title | translate}}
+    </ion-title>
+    <ion-buttons slot="end" *ngIf="showButtons">
+      <ion-button [routerLink]="'/home'"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{exact: true}">
+        <ion-icon name="document-text-outline"></ion-icon>
+      </ion-button>
+      <ion-button [routerLink]="'/home/drafts'"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{exact: true}">
+        <ion-icon name="file-tray-full-outline"></ion-icon>
+      </ion-button>
+      <ion-button (click)="openMenu()">
+        <ion-icon *ngIf="menuSrv.isOpen | async; else closed" 
+                  class="menu animated fadeIn" src="assets/arrow-right-solid.svg">
+        </ion-icon>
+        <ng-template #closed>
+          <ion-icon class="menu animated fadeIn" src="assets/menu.svg">
+          </ion-icon>
+        </ng-template>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
 

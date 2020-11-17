@@ -37,7 +37,7 @@ export class JwtInterceptor implements HttpInterceptor {
         if (!id) { return throwError(error); }
         this.userSrv.refreshToken(id)
          .pipe(take(1))
-         .subscribe(_ => this.nav.navigateRoot('tabs'));
+         .subscribe(_ => this.nav.navigateRoot('home'));
       } else { return throwError(error); }
     })));
   }

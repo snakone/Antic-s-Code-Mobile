@@ -2,8 +2,8 @@
 // application elements such as components or services.
 
 import { InjectionToken } from '@angular/core';
-import * as fromContent from '@core/nrgx/content/content.reducer';
-import * as fromUser from '@core/nrgx/user/user.reducer';
+import * as fromContent from '@store/content/content.reducer';
+import * as fromUser from '@store/user/user.reducer';
 
 export const URI = 'https://anticscode.netlify.com';
 export const APP_VERSION = '0.2.0';

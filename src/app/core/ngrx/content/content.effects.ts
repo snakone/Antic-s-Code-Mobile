@@ -3,7 +3,7 @@ import { of } from 'rxjs';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import * as ContentActions from '../content/content.actions';
 import { map, concatMap, catchError } from 'rxjs/operators';
-import { ContentService } from '@core/services/content/content.service';
+import { ContentService } from '@services/content/content.service';
 
 @Injectable()
 
@@ -22,7 +22,7 @@ export class ContentEffects {
       this.contentSrv.get()
         .pipe(
           map(content => ContentActions.getSuccess({
-            content: [...content.drafts, ...content.articles]
+            content: {articles: content.articles, drafts: content.drafts}
           })),
           catchError(error =>
               of(ContentActions.getFailure({ error: error.message }))

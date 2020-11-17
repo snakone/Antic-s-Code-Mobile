@@ -7,9 +7,8 @@ import { ModalController } from '@ionic/angular';
 import { EditComponent } from '@shared/components/modals/edit/edit.component';
 import { MarkDownComponent } from '@shared/components/modals/markdown/markdown.component';
 import { takeUntil } from 'rxjs/operators';
-import { CrafterService } from '@core/services/crafter/crafter.service';
-import { TranslateService } from '@ngx-translate/core';
-import { ContentFacade } from '@core/nrgx/content/content.facade';
+import { CrafterService } from '@services/crafter/crafter.service';
+import { ContentFacade } from '@store/content/content.facade';
 
 @Component({
   selector: 'app-detail',

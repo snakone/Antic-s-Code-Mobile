@@ -1,5 +1,6 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <app-menu></app-menu>
+  <ion-router-outlet mode="ios" id="main"></ion-router-outlet>
 </ion-app>
 
 <div *ngIf="showSplash" class="splash">

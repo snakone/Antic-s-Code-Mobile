@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpService } from '../http/http.service';
 import { User, UserResponse } from '@shared/interfaces/interfaces';
 import { Observable, of } from 'rxjs';
-import { StorageService } from '@core/services/storage/storage.service';
+import { StorageService } from '@services/storage/storage.service';
 import { environment } from '@env/environment';
 import { filter, tap, map } from 'rxjs/operators';
-import { AuthService } from '@core/services/login/auth.service';
-import { UserFacade } from '@core/nrgx/user/user.facade';
+import { AuthService } from '@services/login/auth.service';
+import { UserFacade } from '@store/user/user.facade';
 
 @Injectable({providedIn: 'root'})
 

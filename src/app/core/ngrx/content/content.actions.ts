@@ -1,5 +1,5 @@
 import { props, createAction } from '@ngrx/store';
-import { Article } from '@shared/interfaces/interfaces';
+import { Article, UserContent } from '@shared/interfaces/interfaces';
 
 // GET CONTENT
 export const get =
@@ -7,7 +7,7 @@ export const get =
 
 export const getSuccess =
   createAction('[Content API] Get Content Success',
-  props<{ content: Article[] }>());
+  props<{ content: UserContent }>());
 
 export const getFailure =
   createAction('[Articles API] Get Content Failure',

@@ -13,7 +13,7 @@ export interface StorageConfig extends ModuleConfig {
 
 export const STORAGE_CONSTANTS: StorageConfig = {
   KEY: 'storage',
-  THEME: 'dark',
+  THEME: 'light',
   LANGUAGE: APP_CONSTANTS.DEFAULT_LANGUAGE,
   REMEMBER: false,
 };

@@ -1,25 +1,25 @@
 :root {
-  --ion-color-primary: #f5548e;
-  --ion-color-primary-rgb: 245, 84, 142;
-  --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #c41857;
-  --ion-color-primary-tint: #ee74a0;
-  --ion-color-primary-transparent: rgba(245, 84, 142, .8);
+  --ion-color-primary: #ee7da8;
+  --ion-color-primary-rgb: 238, 125, 168;
+  --ion-color-primary-contrast: #000000;
+  --ion-color-primary-contrast-rgb: 0, 0, 0;
+  --ion-color-primary-shade: #d16e94;
+  --ion-color-primary-tint: #f08ab1;
+  --ion-color-primary-transparent: rgba(238, 125, 168, .8);
 
-  --ion-color-secondary: #3dc2ff;
-  --ion-color-secondary-rgb: 61, 194, 255;
-  --ion-color-secondary-contrast: #ffffff;
-  --ion-color-secondary-contrast-rgb: 255, 255, 255;
-  --ion-color-secondary-shade: #36abe0;
-  --ion-color-secondary-tint: #50c8ff;
+  --ion-color-secondary: #9b63f8;
+  --ion-color-secondary-rgb: 155, 99, 248;
+  --ion-color-secondary-contrast: #000000;
+  --ion-color-secondary-contrast-rgb: 0, 0, 0;
+  --ion-color-secondary-shade: #8857da;
+  --ion-color-secondary-tint: #a573f9;
 
-  --ion-color-tertiary: #5260ff;
-  --ion-color-tertiary-rgb: 82, 96, 255;
-  --ion-color-tertiary-contrast: #ffffff;
-  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
-  --ion-color-tertiary-shade: #4854e0;
-  --ion-color-tertiary-tint: #6370ff;
+  --ion-color-tertiary: #7e9ffc;
+  --ion-color-tertiary-rgb: 126, 159, 252;
+  --ion-color-tertiary-contrast: #000000;
+  --ion-color-tertiary-contrast-rgb: 0, 0, 0;
+  --ion-color-tertiary-shade: #6f8cde;
+  --ion-color-tertiary-tint: #8ba9fc;
 
   --ion-color-success: #2dd36f;
   --ion-color-success-rgb: 45, 211, 111;
@@ -69,11 +69,20 @@
   
   --ion-color-fab: rgba(100, 100, 100, .9);
   --ion-color-link: rgba(187,239,253,0.3);
+  --ion-header-background: radial-gradient(circle farthest-corner at -10.7% 80.6%,#ee7da8 -5%,#9b63f8 49.3%,#7e9ffc 89%);
+  --ion-primary-gradient: linear-gradient(156deg, #FFBBEC 0%, #f9a0c2 50%, #ee7da8 100%);
+  --ion-nav-height: 60px;
+  --ion-active-color: rgba(135, 228, 255, .8);
+
+  --ion-text-color: #48494e;
+  --ion-text-color-rgb: rgb(72, 73, 78);
+  --ion-fancy-font: 'Fredoka One';
+
+  --ion-font-family: 'Montserrat' !important;
+    font-family: 'Montserrat' !important;
 
   // FONTS
   --primary-font-size: 16px;
-  --primary-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-  Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
   // SCROLLBAR
   ::-webkit-scrollbar { width: 8px }

@@ -3,14 +3,16 @@ import * as ContentActions from './content.actions';
 import { Article } from '@shared/interfaces/interfaces';
 
 export interface ContentState {
-  content: Article[];
+  articles: Article[];
+  drafts: Article[];
   contentLoaded: boolean;
   bySlug: Article;
   bySlugLoaded: boolean;
 }
 
 export const initialState: ContentState = {
-  content: [],
+  articles: [],
+  drafts: [],
   contentLoaded: false,
   bySlug: null,
   bySlugLoaded: false
@@ -25,8 +27,9 @@ const featureReducer = createReducer(
   on(ContentActions.getSuccess, (state, { content }) => (
     {
       ...state,
-      articlesLoaded: true,
-      content,
+      contentLoaded: true,
+      articles: content.articles,
+      drafts: content.drafts,
       error: null
     }
   )),
@@ -58,7 +61,8 @@ export function reducer(state: ContentState | undefined, action: Action) {
   return featureReducer(state, action);
 }
 
-export const get = (state: ContentState) => state.content;
+export const getArticles = (state: ContentState) => state.articles;
+export const getDrafts = (state: ContentState) => state.drafts;
 export const getLoaded = (state: ContentState) => state.contentLoaded;
 export const getBySlug = (state: ContentState) => state.bySlug;
 export const getBySlugLoaded = (state: ContentState) => state.bySlugLoaded;
