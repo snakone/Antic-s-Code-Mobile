@@ -10,9 +10,11 @@ ion-fab-button {
 ion-fab-button:not(.first) {
   --background: var(--ion-header-background);
   --color: #fff;
+
+  & ion-icon {
+    font-size: 1.4rem;
+    filter: contrast(1.5);
+  }
 }
 
-ion-icon {
-  font-size: 1.4rem;
-  filter: contrast(1.5);
-}
+

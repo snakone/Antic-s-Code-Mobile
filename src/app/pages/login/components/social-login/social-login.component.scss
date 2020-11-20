@@ -6,7 +6,7 @@
 }
 
 p { 
- font-size: .9rem;
+ font-size: .8rem !important;
  margin-bottom: 1.2rem;
  text-align: center;
 }
@@ -23,4 +23,6 @@ img {
  color: var(--ion-color-dark);
  text-transform: none;
  margin: 0 auto;
+ height: 35px;
+ font-size: .8rem;
 }

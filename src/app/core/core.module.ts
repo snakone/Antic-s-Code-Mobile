@@ -21,6 +21,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './ngrx/ngrx.index';
 import { EffectsModule } from '@ngrx/effects';
 import { ContentEffects } from './ngrx/content/content.effects';
+import { UserEffects } from './ngrx/user/user.effects';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, CORE_MODULE_CONSTANTS.TRANSLATE_CONFIG.I18N_PATH,
@@ -37,7 +38,8 @@ export function createTranslateLoader(http: HttpClient) {
     LanguageModule.forRoot(),
     StoreModule.forFeature('AppState', reducers),
     EffectsModule.forRoot([
-      ContentEffects
+      ContentEffects,
+      UserEffects
     ]),
     TranslateModule.forRoot({
       loader: {

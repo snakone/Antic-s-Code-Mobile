@@ -1,4 +1,6 @@
-<app-page-header [title]="'EDIT.ARTICLE' | translate"></app-page-header>
+<app-page-header [title]="'EDIT.ARTICLE' | translate"
+                 [href]="false">
+</app-page-header>
 
 <ion-content>
   <ng-container *ngIf="content$ | async">

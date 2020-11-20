@@ -8,12 +8,12 @@
  }
 }
 
-ion-back-button {
-  --color: white;
+hr {
+  background: var(--ion-header-background);
+  margin-top: 15px;
+  margin-bottom: 15px;
+  height: 2px;
+  border-radius: 5px;
 }
 
-ion-item { 
-  --highlight-color-invalid: transparent;
-  --highlight-color-valid: transparent;
-  --inner-padding-end: 0;
-}
+

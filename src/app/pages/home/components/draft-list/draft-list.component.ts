@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ThemeService } from '@services/theme/theme.service';
 import { Article } from '@shared/interfaces/interfaces';
@@ -10,6 +10,7 @@ import { filter, takeUntil } from 'rxjs/operators';
   selector: 'app-draft-list',
   templateUrl: './draft-list.component.html',
   styleUrls: ['./draft-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class DraftListComponent implements OnInit, OnDestroy {

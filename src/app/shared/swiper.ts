@@ -41,25 +41,6 @@ export const flipOpts = {
 
         $slideEl[0].style.zIndex = -Math.abs(Math.round(progress)) + slides.length;
 
-        if (swiper.params.flipEffect.slideShadows) {
-        // Set shadows
-        let shadowBefore = swiper.isHorizontal() ?
-                           $slideEl.find('.swiper-slide-shadow-left') :
-                           $slideEl.find('.swiper-slide-shadow-top');
-        let shadowAfter = swiper.isHorizontal() ?
-                          $slideEl.find('.swiper-slide-shadow-right') :
-                          $slideEl.find('.swiper-slide-shadow-bottom');
-        if (shadowBefore.length === 0) {
-          shadowBefore = swiper.$(`<div class="swiper-slide-shadow-${swiper.isHorizontal() ? 'left' : 'top'}"></div>`);
-          $slideEl.append(shadowBefore);
-        }
-        if (shadowAfter.length === 0) {
-          shadowAfter = swiper.$(`<div class="swiper-slide-shadow-${swiper.isHorizontal() ? 'right' : 'bottom'}"></div>`);
-          $slideEl.append(shadowAfter);
-        }
-        if (shadowBefore.length) { shadowBefore[0].style.opacity = Math.max(-progress, 0); }
-        if (shadowAfter.length) { shadowAfter[0].style.opacity = Math.max(progress, 0); }
-        }
         $slideEl
           .transform(`translate3d(${tx}px, ${ty}px, 0px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`);
       }

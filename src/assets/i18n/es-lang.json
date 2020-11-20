@@ -14,6 +14,7 @@
   "CATEGORY": "Categoría",
   "SETTINGS": "Opciones",
   "DRAFTS": "Bocetos",
+  "MENU": "Menú",
   "CONFIG": "Configuración",
   "CREATE": "Crear",
   "MARKDOWN": "Markdown",
@@ -89,6 +90,19 @@
   "SPANISH": "Español",
   "ENGLISH": "Inglés",
   "NO": "No",
+  "ARTICLE": "Artículo",
+  "START": "Comenzar",
+  "NOT.SHOW.AGAIN": "No mostrar de nuevo",
+  "SLIDES": {
+    "CREATE": {
+      "FIRST": "Sigue este corto tutorial y aprende como empezar a escribir contenido",
+      "SECOND": "No dejes escapar tus increibles ideas y conocimiento. ¡Plásmalo en Antic's!",
+      "THIRD": "Cualquier contenido que crees irá directamente a la nube. Sin preocupaciones",
+      "FOURTH": "Conoce gente nueva a la que le gusta lo mismo que a ti. ¡Programar!",
+      "FIFTH": "Sube puestos en el ranking creando contenido. La cima te espera",
+      "SIXTH": "Accede, edita, guarda y comparte tu contenido de manera rápida y sencilla"
+    }
+  },
   "RE.EMAIL": "Recordar Email",
   "REMEMBER": "Recordar",
   "SAVE.ARTICLE": "Guardar Artículo",

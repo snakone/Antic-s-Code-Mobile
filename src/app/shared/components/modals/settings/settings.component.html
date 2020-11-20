@@ -1,4 +1,7 @@
-<app-page-header [title]="'CONFIG'"></app-page-header>
+<app-page-header [title]="'CONFIG'" 
+                 [showButtons]="false"
+                 [href]="false">
+</app-page-header>
 
 <ion-content force-overscroll="false">
   <ion-list inset="true">
@@ -25,19 +28,18 @@
     <ion-item> <!-- REMEMBER -->
       <ion-icon name="mail-outline" slot="start"></ion-icon>
       <ion-label>{{'RE.EMAIL' | translate}}</ion-label>
-      <ion-select [(ngModel)]="remember"
+      <ion-toggle mode="md"
+                  color="secondary"
+                  [(ngModel)]="remember"
                   (ngModelChange)="rememberChanged($event)">
-        <ion-select-option [value]="r.value" 
-                            *ngFor="let r of mail">{{r.name | translate}}
-        </ion-select-option>
-      </ion-select>
+      </ion-toggle>
     </ion-item>
-  </ion-list>
-  <ion-list inset="true">
-    <ion-item lines="none"> <!-- LOG OUT -->
+
+    <hr>
+    
+    <ion-item detail (click)="logout()"> <!-- LOG OUT -->
       <ion-icon name="exit-outline" slot="start"></ion-icon>
-      <ion-label>{{'LOGOUT' | translate}}</ion-label>
-      <ion-button (click)="logout()">{{'EXIT' | translate}}</ion-button>
+      <ion-label color="primary">{{'LOGOUT' | translate}}</ion-label>
     </ion-item>
   </ion-list>
 </ion-content>

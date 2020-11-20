@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MENU } from '@shared/shared.data';
-import { MenuController } from '@ionic/angular';
+import { MenuController, ModalController } from '@ionic/angular';
 import { MenuService } from '@services/menu/menu.service';
+import { SettingsComponent } from '../../modals/settings/settings.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class MenuComponent {
@@ -14,20 +17,34 @@ export class MenuComponent {
   menuLink = MENU;
 
   constructor(
-    private menu: MenuController,
-    private menuSrv: MenuService
+    private menuCtrl: MenuController,
+    private menuSrv: MenuService,
+    private modalCtrl: ModalController,
+    private router: Router
   ) { }
 
-  public close(): void {
-    this.menu.close('main');
+  public async open(route: string): Promise<void> {
+    if (route === '/profile') {
+      this.menuCtrl.close();
+      this.router.navigateByUrl(route);
+      return;
+    }
+    const modal = await this.modalCtrl.create({
+      component: this.selectComp(route)
+    });
+
+    modal.present();
   }
 
-  public emitOpen(): void {
-    this.menuSrv.setMenuState(true);
+  public emit(state: boolean): void {
+    if (state) { this.menuCtrl.swipeGesture(state); }
+    this.menuSrv.setMenuState(state);
   }
 
-  public emitClose(): void {
-    this.menuSrv.setMenuState(false);
+  private selectComp<T>(route: string): typeof SettingsComponent {
+    switch (route) {
+      case '/settings': return SettingsComponent;
+    }
   }
 
 }

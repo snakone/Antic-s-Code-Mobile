@@ -1,0 +1,12 @@
+<div class="arrows" *ngIf="!(menuSrv.isOpen | async)">
+  <div class="left" *ngIf="index != (length - 1)">
+    <span class="arrow-left first"></span>
+    <span class="arrow-left second"></span>
+    <span class="arrow-left third"></span>
+  </div>
+  <div class="right" *ngIf="index != 0">
+    <span class="arrow-right first"></span>
+    <span class="arrow-right second"></span>
+    <span class="arrow-right third"></span>
+  </div>
+</div>

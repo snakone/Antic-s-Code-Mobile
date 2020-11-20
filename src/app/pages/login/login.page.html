@@ -1,7 +1,8 @@
 <ion-content force-overscroll="false">
   <ion-icon name="help-circle-outline"
             (click)="openHelp()"
-            class="help">
+            class="help"
+            slot="fixed">
   </ion-icon>
   <div class="flex flex-column">
     <h3>{{'WELCOME' | translate}}</h3>
@@ -35,7 +36,6 @@
         </ion-list>
         <ion-button type="submit"
                     expand="full"
-                    color="primary"
                     shape="round"
                     mode="md"
                     [disabled]="form.invalid">

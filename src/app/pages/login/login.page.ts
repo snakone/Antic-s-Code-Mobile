@@ -4,12 +4,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '@shared/interfaces/interfaces';
 import { Subject } from 'rxjs';
 import { UserService } from '@core/services/user/user.service';
-import { takeUntil, finalize } from 'rxjs/operators';
+import { takeUntil, finalize, tap } from 'rxjs/operators';
 import { LoginService } from '@services/login/login.service';
 import { StorageService } from '@services/storage/storage.service';
 import { NavController } from '@ionic/angular';
 import { HelpComponent } from './components/help/help.component';
-
 
 @Component({
   selector: 'app-login',
@@ -20,7 +19,7 @@ import { HelpComponent } from './components/help/help.component';
 export class LoginPage implements OnInit, OnDestroy {
 
   form: FormGroup;
-  remember = false;
+  remember: boolean;
   private unsubscribe$ = new Subject<void>();
 
   constructor(
@@ -34,15 +33,20 @@ export class LoginPage implements OnInit, OnDestroy {
   ngOnInit() {
     this.checkToken();
     this.createForm();
+    this.rememberMe();
+    this.remember = this.ls.get('remember');
   }
 
   private async checkToken(): Promise<void> {
+    if (!this.ls.get('token')) { return; }
+    await this.crafter.loader();
+
     this.userSrv.verifyToken()
-    .pipe(takeUntil(this.unsubscribe$))
-    .subscribe(_ => {
-      _ ? this.nav.navigateRoot('home') :
-      this.rememberMe();
-    });
+    .pipe(
+      takeUntil(this.unsubscribe$),
+      finalize(() => this.crafter.loaderOff())
+    )
+    .subscribe(_ => this.nav.navigateRoot('home'));
   }
 
   private createForm(): void {

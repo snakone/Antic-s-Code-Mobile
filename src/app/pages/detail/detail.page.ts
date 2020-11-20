@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from '@shared/interfaces/interfaces';
 import { Observable, Subject } from 'rxjs';
@@ -13,7 +13,8 @@ import { ContentFacade } from '@store/content/content.facade';
 @Component({
   selector: 'app-detail',
   templateUrl: 'detail.page.html',
-  styleUrls: ['detail.page.scss']
+  styleUrls: ['detail.page.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class DetailPage implements OnInit, OnDestroy {

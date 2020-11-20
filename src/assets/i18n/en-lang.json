@@ -14,6 +14,20 @@
   "DRAFTS": "Drafts",
   "SETTINGS": "Settings",
   "BACK": "Back",
+  "MENU": "Menu",
+  "ARTICLE": "Post",
+  "START": "Start",
+  "NOT.SHOW.AGAIN": "Do not show again",
+  "SLIDES": {
+    "CREATE": {
+      "FIRST": "Follow this quick tutorial and learn how you can start writing content",
+      "SECOND": "Don't let your amazing ideas and knowledge escape from you. Portray them on Antic's!",
+      "THIRD": "Any content you create will go directly to the cloud. Without worries",
+      "FOURTH": "Meet new people who like the same thing as you. Programming!",
+      "FIFTH": "Raise your position in the ranking by creating content. The top awaits you",
+      "SIXTH": "Access, edit, save and share your content quickly and easily"
+    }
+  },
   "CATEGORY": "Category",
   "CONFIG": "Config",
   "CREATE": "Create",

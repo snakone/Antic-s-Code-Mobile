@@ -1,8 +1,9 @@
 <ion-header mode="ios" class="ion-no-border">
   <ion-toolbar mode="md">
     <ion-buttons slot="start" *ngIf="showBack">
-      <ion-back-button defaultHref="/home"
-                       [text]="null">
+      <ion-back-button [attr.defaultHref]="href ? '/home' : null"
+                       [text]="null"
+                       (click)="back()">
       </ion-back-button>
     </ion-buttons>
     <ion-title *ngIf="title"
@@ -23,10 +24,10 @@
       </ion-button>
       <ion-button (click)="openMenu()">
         <ion-icon *ngIf="menuSrv.isOpen | async; else closed" 
-                  class="menu animated fadeIn" src="assets/arrow-right-solid.svg">
+                  class="menu" src="assets/img/arrow-right-solid.svg">
         </ion-icon>
         <ng-template #closed>
-          <ion-icon class="menu animated fadeIn" src="assets/menu.svg">
+          <ion-icon class="menu" src="assets/img/menu.svg">
           </ion-icon>
         </ng-template>
       </ion-button>

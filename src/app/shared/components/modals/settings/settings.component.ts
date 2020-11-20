@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { UserService } from '@services/user/user.service';
 import { Router } from '@angular/router';
 import { CrafterService } from '@services/crafter/crafter.service';
 import { StorageService } from '@services/storage/storage.service';
 import { LanguageService } from '@core/language/services/language.service';
 import { TranslateService } from '@ngx-translate/core';
+import { MenuController, ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-settings',
-  templateUrl: 'settings.page.html',
-  styleUrls: ['settings.page.scss']
+  templateUrl: 'settings.component.html',
+  styleUrls: ['settings.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class SettingsPage implements OnInit {
+export class SettingsComponent implements OnInit {
 
   theme: string;
   language: string;
@@ -34,7 +36,9 @@ export class SettingsPage implements OnInit {
     private router: Router,
     private ls: StorageService,
     private languageSrv: LanguageService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private modalCtrl: ModalController,
+    private menuCtrl: MenuController
   ) {}
 
   ngOnInit() {
@@ -66,12 +70,18 @@ export class SettingsPage implements OnInit {
       this.translate.instant('SURE.EXIT'),
       this.translate.instant('LOGOUT')
     );
-    confirm.then(res => {
+    confirm.then(async res => {
       if (!res.role) {
         this.userSrv.logout();
+        this.modalCtrl.dismiss();
+        await this.menuCtrl.close();
         this.router.navigateByUrl('login');
       }
     });
+  }
+
+  public close(): void {
+    this.modalCtrl.dismiss();
   }
 
 }

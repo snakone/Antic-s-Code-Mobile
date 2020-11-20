@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { ThemeService } from '@services/theme/theme.service';
@@ -15,6 +15,7 @@ import { UserService } from '@services/user/user.service';
   selector: 'app-social-login',
   templateUrl: './social-login.component.html',
   styleUrls: ['./social-login.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class SocialLoginComponent implements OnDestroy {
@@ -52,7 +53,7 @@ export class SocialLoginComponent implements OnDestroy {
 
   private handleSignIn(data: UserResponse): void {
     this.userSrv.UserLogIn(data);
-    this.nav.navigateRoot('tabs');
+    this.nav.navigateRoot('home');
     if (data.message.indexOf('Created') > -1) {
       this.sw.send(
         this.setNotification(Object.assign({}, NEW_USER_PUSH), data.user.name)

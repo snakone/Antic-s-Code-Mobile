@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Article, Draft } from '@shared/interfaces/interfaces';
 import { ModalController } from '@ionic/angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -14,6 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
   selector: 'app-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class EditComponent implements OnInit, OnDestroy {
@@ -111,14 +112,12 @@ export class EditComponent implements OnInit, OnDestroy {
     };
 
     this.draftSrv.updateDraft(article)
-    .pipe(
-      switchMap(_ => {
-      this.modalCtrl.dismiss();
-      this.router.navigateByUrl('/tabs/home');
-      this.crafter.alert('ARTICLE.UPDATED');
-      return this.draftSrv.getDraftsByUser();
-    }), takeUntil(this.unsubscribe$)
-    ).toPromise().then();
+    .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(_ => {
+        this.modalCtrl.dismiss();
+        this.router.navigateByUrl('/tabs/home');
+        this.crafter.alert('ARTICLE.UPDATED');
+      });
   }
 
   ngOnDestroy() {

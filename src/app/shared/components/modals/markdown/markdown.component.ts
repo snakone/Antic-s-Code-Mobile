@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Draft, Article } from '@shared/interfaces/interfaces';
 import { ModalController } from '@ionic/angular';
 import { Observable } from 'rxjs';
@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   selector: 'app-markdown',
   templateUrl: './markdown.component.html',
   styleUrls: ['./markdown.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class MarkDownComponent implements OnInit {

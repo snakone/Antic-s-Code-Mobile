@@ -9,6 +9,7 @@ export interface StorageConfig extends ModuleConfig {
   LANGUAGE: string;
   THEME: string;
   REMEMBER: boolean;
+  CREATE_TUTORIAL: boolean;
 }
 
 export const STORAGE_CONSTANTS: StorageConfig = {
@@ -16,6 +17,7 @@ export const STORAGE_CONSTANTS: StorageConfig = {
   THEME: 'light',
   LANGUAGE: APP_CONSTANTS.DEFAULT_LANGUAGE,
   REMEMBER: false,
+  CREATE_TUTORIAL: true
 };
 
 export class Storage {
@@ -24,6 +26,7 @@ export class Storage {
   user = null;
   remember = STORAGE_CONSTANTS.REMEMBER;
   theme = STORAGE_CONSTANTS.THEME;
+  createTutorial = STORAGE_CONSTANTS.CREATE_TUTORIAL;
 }
 
 export let STORAGE_CONFIG = new InjectionToken<StorageConfig>('storage.config');

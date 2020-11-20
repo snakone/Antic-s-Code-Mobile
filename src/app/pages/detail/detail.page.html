@@ -1,4 +1,4 @@
-<app-page-header></app-page-header>
+<app-page-header [title]="'ARTICLE' | translate"></app-page-header>
 
 <ion-content force-overscroll="false" class="ion-padding">
   <ng-container *ngIf="(content$ | async) as article">

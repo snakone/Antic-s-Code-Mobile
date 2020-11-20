@@ -66,6 +66,7 @@ export class UserService {
     this.ls.setKey('token', null);
     this.user = null;
     this.auth.logOut();
+    this.userFacade.logOut();
   }
 
   public UserLogIn(data: UserResponse): void {

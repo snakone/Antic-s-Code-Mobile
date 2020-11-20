@@ -1,31 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { DraftsService } from '@services/drafts/drafts.service';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CrafterService } from '@services/crafter/crafter.service';
-import { MenuController } from '@ionic/angular';
-import { Observable, from } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss']
+  styleUrls: ['home.page.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class HomePage implements OnInit {
+export class HomePage {
 
   exist: boolean;
   open$: Observable<boolean>;
 
   constructor(
-    public draftSrv: DraftsService,
     private router: Router,
-    private crafter: CrafterService,
-    public menu: MenuController
+    private crafter: CrafterService
   ) {}
-
-  ngOnInit() {
-    this.open$ = from(this.menu.isOpen());
-  }
 
   public async create(): Promise<void> {
     if (this.exist) {

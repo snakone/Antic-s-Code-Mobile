@@ -66,10 +66,12 @@
 
   --ion-background-color: #ffffff;
   --ion-background-color-rgb: 255,255,255;
+  --ion-item-padding: .5rem;
   
   --ion-color-fab: rgba(100, 100, 100, .9);
   --ion-color-link: rgba(187,239,253,0.3);
   --ion-header-background: radial-gradient(circle farthest-corner at -10.7% 80.6%,#ee7da8 -5%,#9b63f8 49.3%,#7e9ffc 89%);
+  --ion-header-background-invert: radial-gradient(circle farthest-corner at -10.7% 80.6%,#7e9ffc -5%,#9b63f8 49.3%,#ee7da8 89%);
   --ion-primary-gradient: linear-gradient(156deg, #FFBBEC 0%, #f9a0c2 50%, #ee7da8 100%);
   --ion-nav-height: 60px;
   --ion-active-color: rgba(135, 228, 255, .8);
@@ -121,8 +123,8 @@
 }
 
 .ios body.dark {
-  --ion-background-color: #000000;
-  --ion-background-color-rgb: 0,0,0;
+  --ion-background-color: #222428;
+  --ion-background-color-rgb: 34,36,40;
   --ion-text-color: #ffffff;
   --ion-text-color-rgb: 255,255,255;
   --ion-color-step-50: #0d0d0d;
@@ -144,13 +146,13 @@
   --ion-color-step-850: #d9d9d9;
   --ion-color-step-900: #e6e6e6;
   --ion-color-step-950: #f2f2f2;
-  --ion-toolbar-background: #000000;
-  --ion-item-background: #000000;
+  --ion-toolbar-background: #222428;
+  --ion-item-background: #222428;
 }
 
 .md body.dark {
-  --ion-background-color: #121212;
-  --ion-background-color-rgb: 18,18,18;
+  --ion-background-color: #222428;
+  --ion-background-color-rgb: 34,36,40;
   --ion-text-color: #ffffff;
   --ion-text-color-rgb: 255,255,255;
   --ion-border-color: #222222;
@@ -173,7 +175,7 @@
   --ion-color-step-850: #dbdbdb;
   --ion-color-step-900: #e7e7e7;
   --ion-color-step-950: #f3f3f3;
-  --ion-item-background: #121212;
-  --ion-toolbar-background: #121212;
-  --ion-tab-bar-background: #1f1f1f;
+  --ion-item-background: #222428;
+  --ion-toolbar-background: #222428;
+  --ion-tab-bar-background: #222428;
 }

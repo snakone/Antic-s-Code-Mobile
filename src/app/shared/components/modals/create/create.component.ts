@@ -117,7 +117,6 @@ export class CreateComponent implements OnInit, OnDestroy {
     .pipe(takeUntil(this.unsubscribe$))
     .subscribe(_ => {
       this.modalCtrl.dismiss();
-      this.draftSrv.getDraftsByUser().toPromise().then();
       const confirm = this.crafter.confirm('EDIT.NOW', 'ARTICLE.SAVED');
       confirm.then(res => {
         if (!res.role) {

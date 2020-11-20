@@ -35,6 +35,11 @@ export interface MenuLink {
   route: string;
 }
 
+export interface CustomSlide {
+  image: string;
+  message: string;
+}
+
 export interface UserContentResponse extends ServerResponse, UserContent {}
 
 export interface UserResponse extends ServerResponse {

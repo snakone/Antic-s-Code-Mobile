@@ -3,31 +3,70 @@ ion-item {
  --background-focused: transparent;
  --background-activated: transparent;
  --background-hover: transparent;
+ --highlight-color-valid: transparent;
+ --highlight-color-invalid: transparent;
  --full-highlight-height: 1px;
  --padding-start: 0;
+ --inner-padding-end: 0;
 }
 
-@keyframes autofill {
- to {
-   color: #f4f5f8;
-   background: transparent;
- }
+ion-back-button {
+  --color: #fff;
 }
 
-@-webkit-keyframes autofill {
- to {
-     color: #f4f5f8;
-     background: transparent;
- }
-}
-
-input:-webkit-autofill {
- animation-name: autofill;
- animation-fill-mode: both;
- -webkit-animation-name: autofill;
- -webkit-animation-fill-mode: both;
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+  box-shadow: 0 0 0 30px white inset !important;
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
 .full textarea  {
   height: calc(100vh - 45px);
- }
+}
+
+.swiper-pagination {
+  bottom: 16px !important;
+}
+
+.swiper-pagination-bullet {
+  opacity: .4;
+  &-active { 
+    opacity: 1;
+    filter: contrast(5);
+  }
+}
+
+.swiper-pagination-bullet:nth-child(1) {
+  background: var(--ion-color-primary);
+}
+
+.swiper-pagination-bullet:nth-child(2) {
+  background: var(--ion-color-secondary);
+}
+
+.swiper-pagination-bullet:nth-child(3) {
+  background: var(--ion-color-tertiary);
+}
+
+.swiper-pagination-bullet:nth-child(4) {
+  background: var(--ion-color-primary);
+}
+
+.swiper-pagination-bullet:nth-child(5) {
+  background: var(--ion-color-secondary);
+}
+
+.swiper-pagination-bullet:nth-child(6) {
+  background: var(--ion-color-tertiary);
+}
+
+.swiper-pagination-bullet:nth-child(7) {
+  background: var(--ion-color-primary);
+}
+
+.alert-button.sc-ion-alert-ios {
+  border-top: .55px solid rgba(72, 73, 78, .2);
+  border-right: .55px solid rgba(72, 73, 78, .2);
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ContentFacade } from '@store/content/content.facade';
 import { ThemeService } from '@services/theme/theme.service';
@@ -10,6 +10,7 @@ import { filter, takeUntil } from 'rxjs/operators';
   selector: 'app-articles-list',
   templateUrl: './articles-list.component.html',
   styleUrls: ['./articles-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class ArticlesListComponent implements OnInit, OnDestroy {
@@ -21,7 +22,7 @@ export class ArticlesListComponent implements OnInit, OnDestroy {
   constructor(
     private contentFacade: ContentFacade,
     private router: Router,
-    public theme: ThemeService
+    private theme: ThemeService
   ) { }
 
   ngOnInit() {

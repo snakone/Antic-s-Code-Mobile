@@ -1,4 +1,6 @@
-<app-page-header [title]="'MARKDOWN' | translate"></app-page-header>
+<app-page-header [title]="'MARKDOWN' | translate"
+                 [href]="false">
+</app-page-header>
 
 <ion-content force-overscroll="false">
   <ng-container *ngIf="(content$ | async) as draft">

@@ -76,7 +76,7 @@ export class CrafterService {
     const loading = await this.loading.create({
       message: this.translate.instant('LOADING')
     });
-    await loading.present();
+    return loading.present();
   }
 
   public async loaderOff(): Promise<void> {

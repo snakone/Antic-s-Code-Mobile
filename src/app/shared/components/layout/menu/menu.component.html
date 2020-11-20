@@ -2,17 +2,21 @@
           type="reveal" 
           menuId="main" 
           contentId="main"
-          (ionWillClose)="emitClose()"
-          (ionWillOpen)="emitOpen()">
+          (ionDidClose)="emit(false)"
+          (ionDidOpen)="emit(true)">
   <ion-header mode="ios" class="ion-no-border">
     <ion-toolbar mode="md">
+      <ion-title class="animated fadeInLeft">
+                {{'MENU' | translate}}
+      </ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content force-overscroll="false">
     <ion-list inset="true"> 
       <ion-item *ngFor="let link of menuLink"
-                [routerLink]="link.route"
-                (click)="close()">
+                (click)="open(link.route)"
+                detail 
+                lines="none">
         <ion-icon slot="start" [name]="link.icon"></ion-icon>
         <ion-label>{{link.title | translate}}</ion-label>
       </ion-item>

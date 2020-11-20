@@ -4,15 +4,17 @@ ion-content {
 }
 
 .help {
-  position: absolute;
-  top: 2rem;
-  right: 1rem;
+  position: fixed;
+  top: 1.4rem;
+  right: 1.4rem;
   font-size: 1.4rem;
 }
 
 ion-button { 
   margin: 35px auto 25px;
   width: 98%;
+  --background: var(--ion-header-background-invert);
+  color: #fff;
 }
 
 ion-list { 
@@ -32,6 +34,12 @@ ion-item {
   margin-top: .4rem;
 }
 
+ion-checkbox {
+  --checkmark-color: #fff;
+  --checkmark-width: 3px;
+  --background-checked: var(--ion-color-tertiary);
+}
+
 .md .checkbox { --padding-end: 0; }
 .ios .checkbox { --padding-end: 10px; }
 
@@ -40,9 +48,9 @@ span { color: var(--ion-color-primary-tint) }
 a { text-decoration: none }
 
 p {
-  margin-top: 1.5rem;
+  margin-top: .8rem;
   margin-bottom: 30px;
-  font-size: .75rem;
+  font-size: .8rem !important;
   text-align: center;
   color: var(--ion-color-dark-transparent);
 }
@@ -68,7 +76,10 @@ ion-checkbox { margin: 0 }
 h1 {
  margin: 5px auto 1.1rem;
  font-size: 2em;
- color: var(--ion-color-primary);
+ background: var(--ion-header-background);
+ background-clip: text;
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
  & span { 
    color: var(--ion-color-dark);
    font-size: inherit !important;
@@ -78,11 +89,6 @@ h1 {
 h3 { 
   margin-bottom: 0;
   margin-top: 30px;
-}
-
-@media (min-height: 750px) {
-  h1 { margin-bottom: 8% }
-  ion-button { margin-bottom: 20% }
 }
 
 
