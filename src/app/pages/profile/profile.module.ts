@@ -6,6 +6,8 @@ import { ProfilePageRouting } from './profile.routing';
 import { SharedModule } from '@shared/shared.module';
 import { LayoutModule } from '@layout/layout.module';
 import { PageHeaderModule } from '@layout/page-header/page-header.module';
+import { ProfileStatsComponent } from './components/profile-stats/profile-stats.component';
+import { ProfileUserComponent } from './components/profile-user/profile-user.component';
 
 @NgModule({
   imports: [
@@ -16,7 +18,11 @@ import { PageHeaderModule } from '@layout/page-header/page-header.module';
     LayoutModule,
     PageHeaderModule
   ],
-  declarations: [ProfilePage]
+  declarations: [
+    ProfilePage,
+    ProfileUserComponent,
+    ProfileStatsComponent
+  ]
 })
 
 export class ProfilePageModule {}

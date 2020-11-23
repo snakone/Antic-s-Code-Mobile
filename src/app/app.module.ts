@@ -11,14 +11,13 @@ import { CoreModule } from '@core/core.module';
 import { HammerConfig } from '@core/hammer.config';
 import { SharedModule } from '@shared/shared.module';
 import { StoreModule } from '@ngrx/store';
-import { environment } from '@env/environment';
 import { MenuComponent } from '@layout/menu/menu.component';
 
 @NgModule({
   declarations: [AppComponent, MenuComponent],
   imports: [
     BrowserModule,
-    IonicModule.forRoot({_forceStatusbarPadding: true}),
+    IonicModule.forRoot({_forceStatusbarPadding: true, mode: 'ios'}),
     AppRoutingModule,
     CoreModule,
     StoreModule.forRoot({}, {

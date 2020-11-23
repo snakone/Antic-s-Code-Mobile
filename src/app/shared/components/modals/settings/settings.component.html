@@ -5,8 +5,16 @@
 
 <ion-content force-overscroll="false">
   <ion-list inset="true">
+    <ion-item-divider mode="ios">  <!-- APPLICATION -->
+      <ion-label>
+        {{'APP' | translate}}
+      </ion-label>
+    </ion-item-divider>
     <ion-item> <!-- THEME -->
-      <ion-icon name="color-palette-outline" slot="start"></ion-icon>
+      <ion-icon name="color-palette-outline" 
+                slot="start"
+                color="primary">
+      </ion-icon>
       <ion-label>{{'THEME' | translate}}</ion-label>
       <ion-select [(ngModel)]="theme" 
                   (ngModelChange)="themeChanged($event)">
@@ -16,7 +24,10 @@
       </ion-select>
     </ion-item>
     <ion-item> <!-- LANGUAGE -->
-      <ion-icon name="language-outline" slot="start"></ion-icon>
+      <ion-icon name="language-outline" 
+               slot="start"
+               color="secondary">
+      </ion-icon>
       <ion-label>{{'LANGUAGE' | translate}}</ion-label>
       <ion-select [(ngModel)]="language"
                   (ngModelChange)="languageChanged($event)">
@@ -25,8 +36,16 @@
         </ion-select-option>
       </ion-select>
     </ion-item>
+    <ion-item-divider mode="ios">  <!-- MY ACCOUNT -->
+      <ion-label>
+        {{'MY.ACCOUNT' | translate}}
+      </ion-label>
+    </ion-item-divider>
     <ion-item> <!-- REMEMBER -->
-      <ion-icon name="mail-outline" slot="start"></ion-icon>
+      <ion-icon name="mail-outline" 
+                slot="start"
+                color="tertiary">
+      </ion-icon>
       <ion-label>{{'RE.EMAIL' | translate}}</ion-label>
       <ion-toggle mode="md"
                   color="secondary"
@@ -34,12 +53,46 @@
                   (ngModelChange)="rememberChanged($event)">
       </ion-toggle>
     </ion-item>
-
-    <hr>
     
-    <ion-item detail (click)="logout()"> <!-- LOG OUT -->
-      <ion-icon name="exit-outline" slot="start"></ion-icon>
-      <ion-label color="primary">{{'LOGOUT' | translate}}</ion-label>
+    <ion-item-divider mode="ios"> <!-- TUTORIALS -->
+      <ion-label>
+        {{'SHOW.TUTORIALS' | translate}}
+      </ion-label>
+    </ion-item-divider>
+    <ion-item> <!-- INTRO -->
+      <ion-icon name="layers-outline" 
+                slot="start"
+                color="success">
+      </ion-icon>
+      <ion-label>{{'INTRO' | translate}}</ion-label>
+      <ion-toggle mode="md"
+                  color="secondary"
+                  [(ngModel)]="intro"
+                  (ngModelChange)="introChanged($event)">
+      </ion-toggle>
     </ion-item>
+    <ion-item> <!-- CREATE -->
+      <ion-icon name="layers-outline" 
+                slot="start"
+                color="warning">
+      </ion-icon>
+      <ion-label>{{'CREATE.ARTICLE' | translate}}</ion-label>
+      <ion-toggle mode="md"
+                  color="secondary"
+                  [(ngModel)]="create"
+                  (ngModelChange)="createChanged($event)">
+      </ion-toggle>
+    </ion-item>
+    <ng-container *ngIf="user">
+      <hr>
+      <ion-item detail 
+                (click)="logout()"> <!-- LOG OUT -->
+        <ion-icon name="exit-outline" 
+                  slot="start"
+                  color="danger">
+        </ion-icon>
+        <ion-label>{{'LOGOUT' | translate}}</ion-label>
+      </ion-item>
+    </ng-container>
   </ion-list>
 </ion-content>

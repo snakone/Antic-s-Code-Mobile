@@ -9,11 +9,28 @@
 }
 
 hr {
-  background: var(--ion-header-background);
-  margin-top: 15px;
-  margin-bottom: 15px;
+  background: var(--ion-header-background-invert);
+  margin: 10px 1rem 15px 1rem;
   height: 2px;
   border-radius: 5px;
+}
+
+.category-tag {
+  line-height: 1.8rem;
+  border: 1px solid rgba(212, 187, 187, 0.4) !important;
+  margin-right: 12px;
+  margin-bottom: 12px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  display: inline-block;
+  font-size: .8rem !important;
+  padding: 0 .50667rem;
+
+  &:hover {
+    color: #fff;
+    background: var(--ion-color-primary);
+    cursor: pointer;
+  }
 }
 
 

@@ -3,6 +3,11 @@ ion-content {
   position: relative;
 }
 
+.arrows-content {
+  right: 1.6rem;
+  opacity: .3;
+}
+
 .help {
   position: fixed;
   top: 1.4rem;
@@ -89,6 +94,41 @@ h1 {
 h3 { 
   margin-bottom: 0;
   margin-top: 30px;
+}
+
+.here {
+  font-size: .8rem !important;
+}
+
+.arrows { z-index: 100 }
+
+.arrow-content-right {
+  right: 24px;
+  top: 48px;
+
+  &.is-open {
+    right: 19px;
+  }
+}
+
+.arrow-right-light { 
+  animation-name: bounceAlphaInvert;
+  background-image: url(../../../assets/img/arrow-left-light.svg);
+}
+
+.arrow-left-light { 
+  animation-name: bounceAlpha;
+  background-image: url(../../../assets/img/arrow-right-light.svg);
+}
+
+.arrow-right-dark { 
+  animation-name: bounceAlphaInvert;
+  background-image: url(../../../assets/img/arrow-left-dark.svg);
+}
+
+.arrow-left-dark { 
+  animation-name: bounceAlpha;
+  background-image: url(../../../assets/img/arrow-right-dark.svg);
 }
 
 

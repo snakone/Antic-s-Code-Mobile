@@ -1,12 +1,36 @@
-<div class="arrows" *ngIf="!(menuSrv.isOpen | async)">
-  <div class="left" *ngIf="index != (length - 1)">
-    <span class="arrow-left first"></span>
-    <span class="arrow-left second"></span>
-    <span class="arrow-left third"></span>
+<div class="arrows" *ngIf="!(menuSrv.isOpen$ | async)">
+  <div class="arrow-content-left" *ngIf="index != (length - 1)">
+    <span class="arrow-first"
+          [ngClass]="themeSrv.isDark() ? 
+                    'arrow-left-dark' : 
+                    'arrow-left-light'">
+    </span>
+    <span class="arrow-second"
+          [ngClass]="themeSrv.isDark() ? 
+                     'arrow-left-dark' : 
+                     'arrow-left-light'">
+    </span>
+    <span class="arrow-third"
+          [ngClass]="themeSrv.isDark() ? 
+                    'arrow-left-dark' : 
+                    'arrow-left-light'">
+    </span>
   </div>
-  <div class="right" *ngIf="index != 0">
-    <span class="arrow-right first"></span>
-    <span class="arrow-right second"></span>
-    <span class="arrow-right third"></span>
+  <div class="arrow-content-right" *ngIf="index != 0">
+    <span class="arrow-first"
+          [ngClass]="themeSrv.isDark() ? 
+                    'arrow-right-dark' : 
+                    'arrow-right-light'">
+    </span>
+    <span class="arrow-second"
+          [ngClass]="themeSrv.isDark() ? 
+                    'arrow-right-dark' : 
+                    'arrow-right-light'">
+    </span>
+    <span class="arrow-third"
+          [ngClass]="themeSrv.isDark() ? 
+                    'arrow-right-dark' : 
+                    'arrow-right-light'">
+    </span>
   </div>
 </div>

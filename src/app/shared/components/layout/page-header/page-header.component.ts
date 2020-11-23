@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { HeaderIcons } from '@shared/interfaces/interfaces';
 import { MenuController, ModalController } from '@ionic/angular';
 import { MenuService } from '@services/menu/menu.service';
 
@@ -15,6 +16,7 @@ export class PageHeaderComponent {
   @Input() showBack = true;
   @Input() showButtons = true;
   @Input() href = true;
+  @Input() icons: HeaderIcons[];
 
   constructor(
     private menu: MenuController,

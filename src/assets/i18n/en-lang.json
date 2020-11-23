@@ -15,6 +15,9 @@
   "SETTINGS": "Settings",
   "BACK": "Back",
   "MENU": "Menu",
+  "MY.ACCOUNT": "My account",
+  "SHOW.TUTORIALS": "Show tutorials",
+  "APP": "Application",
   "ARTICLE": "Post",
   "START": "Start",
   "NOT.SHOW.AGAIN": "Do not show again",
@@ -28,7 +31,6 @@
       "SIXTH": "Access, edit, save and share your content quickly and easily"
     }
   },
-  "CATEGORY": "Category",
   "CONFIG": "Config",
   "CREATE": "Create",
   "CREATE.ARTICLE": "Create Article",
@@ -80,11 +82,45 @@
   "INTRO": "Introduction",
   "MARKDOWN": "Markdown",
   "LANGUAGE": "Language",
+  "BEFORE.ANYTHING": "First of all",
+  "NEXT": "Next",
+  "PREVIOUS": "Previous",
+  "CATEGORY": {
+    "NAME": "Category",
+    "AVATAR": {
+      "ANDROID": "",
+      "ANGULAR": "",
+      "CSS": "",
+      "DENO": "",
+      "DESIGN": "",
+      "GIT": "",
+      "GO": "",
+      "HTML": "",
+      "JAVASCRIPT": "",
+      "MONGO": "",
+      "NODE": "",
+      "PHP": "",
+      "PYTHON": ""
+    }
+  },
+  "LIKES": "Likes",
+  "CHOOSE.CATEGORY": "Choose a category",
   "LEVEL": {
       "ADVANCED": "Advanced",
       "BASIC": "Basic",
       "MEDIUM": "Medium",
       "NAME": "Difficulty"
+  },
+  "FORMS": {
+    "CREATE": {
+      "INTRO": {
+        "ONE": "You need to know <strong>Markdown</strong> since we use this format.",
+        "TWO": "Be familiar with the topic you are writing about",
+        "THREE": "Try to write the best you can, we do not correct mistakes",
+        "FOUR": "Remember to use everything <strong> Markdown </strong> offers, lists, quotes ...",
+        "FIVE": "If you don't know where to start, review content already created."
+      }
+    }
   },
   "LINK.NAME": "Link Name",
   "LINK.URL": "Link URL",
@@ -93,6 +129,9 @@
   "LOGOUT": "Log out",
   "SPANISH": "Spanish",
   "ENGLISH": "English",
+  "CHOOSE.WELL": "",
+  "PICK.CATEGORY": "Choose wisely",
+  "MY.ARTICLES": "My Articles",
   "NO": "No",
   "MESSAGE.UPDATED": "Message Updated",
   "MOBILE.DEV": "Mobile Developer",

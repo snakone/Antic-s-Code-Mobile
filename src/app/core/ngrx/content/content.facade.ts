@@ -14,6 +14,15 @@ export class ContentFacade {
   loaded$ = this.store.select(fromContent.getLoaded);
   bySlug$ = this.store.select(fromContent.getBySlug);
   bySlugLoaded$ = this.store.select(fromContent.getBySlugLoaded);
+  full$ = this.store.select(fromContent.getFull);
+  dataLoaded$ = this.store.select(fromContent.getDataLoaded);
+  count$ = this.store.select(fromContent.getCount);
+  mostLiked$ = this.store.select(fromContent.getMostLiked);
+  mostViewed$ = this.store.select(fromContent.getMostViewed);
+  mostViewedLoaded$ = this.store.select(fromContent.getMostViewedLoaded);
+  byCategoryCount$ = this.store.select(fromContent.getByCategoryCount);
+  byCategoryCountLoaded$ = this.store.select(fromContent.getCategoryCountLoaded);
+  likes$ = this.store.select(fromContent.getTotalLikes);
 
   constructor(private store: Store<AppState>) { }
 
@@ -27,6 +36,10 @@ export class ContentFacade {
 
   public resetBySlug(): void {
     this.store.dispatch(ContentActions.resetBySlug());
+  }
+
+  public getData(): void {
+    this.store.dispatch(ContentActions.getData());
   }
 
 }

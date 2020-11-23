@@ -83,10 +83,18 @@ export class CrafterService {
     await this.loading.dismiss();
   }
 
-  public async pop<T>(component: ComponentRef, data?: any): Promise<void> {
+  public async pop<T>(
+    component: ComponentRef,
+    data?: any,
+    cssClass?: string,
+    event?: any
+  ): Promise<void> {
     const popover = await this.popCtrl.create({
       component,
-      componentProps: data
+      componentProps: data,
+      event,
+      cssClass,
+      mode: 'ios'
     });
     return popover.present();
   }

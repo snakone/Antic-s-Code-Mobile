@@ -1,0 +1,23 @@
+ion-slides {
+  --progress-bar-background-active: var(--ion-active-color);
+  --progress-bar-background: var(--ion-color-link);
+  height: 100%;
+}
+
+ion-slide {
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+ion-button {
+  font-size: .8rem !important;
+}
+
+ion-button[slot="end"] ion-icon {
+  margin-left: .5rem;
+}
+
+ion-button[slot="start"] ion-icon {
+  margin-right: .5rem;
+  transform: rotate(180deg);
+}

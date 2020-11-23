@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ThemeService } from '@services/theme/theme.service';
 import { MenuService } from '@services/menu/menu.service';
 
 @Component({
@@ -12,7 +13,10 @@ export class SlideArrowsComponent implements OnInit {
   @Input() index: number;
   @Input() length: number;
 
-  constructor(public menuSrv: MenuService) { }
+  constructor(
+    public menuSrv: MenuService,
+    public themeSrv: ThemeService
+  ) { }
 
   ngOnInit() {
     this.index = 0;

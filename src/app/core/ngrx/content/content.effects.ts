@@ -42,4 +42,17 @@ export class ContentEffects {
     ))))
   );
 
+  // GET ARTICLES DATA
+  getArticlesDataEffect$ = createEffect(() => this.actions
+    .pipe(
+      ofType(ContentActions.getData),
+      concatMap(() =>
+      this.contentSrv.getData()
+        .pipe(
+          map(res => ContentActions.getDataSuccess({ res })),
+          catchError(error =>
+              of(ContentActions.getDataFailure({ error: error.message }))
+    ))))
+  );
+
 }

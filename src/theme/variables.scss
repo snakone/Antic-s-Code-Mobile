@@ -69,37 +69,23 @@
   --ion-item-padding: .5rem;
   
   --ion-color-fab: rgba(100, 100, 100, .9);
-  --ion-color-link: rgba(187,239,253,0.3);
+  --ion-color-link: rgba(187, 239, 253, 0.3);
   --ion-header-background: radial-gradient(circle farthest-corner at -10.7% 80.6%,#ee7da8 -5%,#9b63f8 49.3%,#7e9ffc 89%);
   --ion-header-background-invert: radial-gradient(circle farthest-corner at -10.7% 80.6%,#7e9ffc -5%,#9b63f8 49.3%,#ee7da8 89%);
-  --ion-primary-gradient: linear-gradient(156deg, #FFBBEC 0%, #f9a0c2 50%, #ee7da8 100%);
+  --ion-primary-gradient: linear-gradient(156deg, #ffbbec 0%, #f9a0c2 50%, #ee7da8 100%);
+  --ion-secondary-gradient: linear-gradient(156deg, #c7a4ff 0%, #b080fd 50%, #9b63f8 100%);
+  --ion-tertiary-gradient: linear-gradient(156deg, #b4c8ff 0%, #9ab5ff 50%, #7e9ffc 100%);
   --ion-nav-height: 60px;
   --ion-active-color: rgba(135, 228, 255, .8);
-
-  --ion-text-color: #48494e;
-  --ion-text-color-rgb: rgb(72, 73, 78);
-  --ion-fancy-font: 'Fredoka One';
-
-  --ion-font-family: 'Montserrat' !important;
-    font-family: 'Montserrat' !important;
+  --menu-width: 255px;
 
   // FONTS
   --primary-font-size: 16px;
-
-  // SCROLLBAR
-  ::-webkit-scrollbar { width: 8px }
-
-  ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    box-shadow: inset 0 0 3px var(--ion-color-primary);
-    -webkit-box-shadow: inset 0 0 3px var(--ion-color-primary);
-    border-radius: 5px;
-  }
+  --ion-text-color: #48494e;
+  --ion-text-color-rgb: rgb(72, 73, 78);
+  --ion-fancy-font: 'Fredoka One';
+  --ion-font-family: 'Montserrat' !important;
+    font-family: 'Montserrat' !important;
 }
 
  body.dark {

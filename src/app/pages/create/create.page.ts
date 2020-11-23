@@ -44,7 +44,11 @@ export class CreatePage implements OnInit {
   }
 
   public start(): void {
-    if (this.hideTutorial) { this.ls.setKey('createTutorial', false); }
+    if (this.hideTutorial) {
+      this.ls.setKey('createTutorial', false);
+    }
+    this.router.navigateByUrl('/forms/create');
+    this.menuCtrl.swipeGesture(true);
   }
 
 }

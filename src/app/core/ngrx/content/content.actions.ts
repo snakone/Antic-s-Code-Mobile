@@ -1,5 +1,5 @@
 import { props, createAction } from '@ngrx/store';
-import { Article, UserContent } from '@shared/interfaces/interfaces';
+import { Article, ArticlesDataResponse, UserContent } from '@shared/interfaces/interfaces';
 
 // GET CONTENT
 export const get =
@@ -26,6 +26,18 @@ export const getBySlugFailure =
   createAction('[Content API] Get Content by Slug Failure',
   props<{ error: string }>());
 
-// GET CONTENT
+// RESET BY SLUG
 export const resetBySlug =
   createAction('[Content API] Reset By Slug');
+
+// GET ARTICLES DATA
+export const getData =
+  createAction('[Articles API] Get Articles Data');
+
+export const getDataSuccess =
+  createAction('[Articles API] Get Articles Data Success',
+  props<{ res: ArticlesDataResponse }>());
+
+export const getDataFailure =
+  createAction('[Articles API] Get Articles Data Failure',
+  props<{ error: string }>());

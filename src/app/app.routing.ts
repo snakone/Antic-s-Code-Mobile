@@ -22,7 +22,8 @@ const routes: Routes = [
     path: 'create',
     loadChildren: () => import('./pages/create/create.module')
     .then(m => m.CreatePageModule),
-    canLoad: [UserGuard, TutorialGuard]
+    canLoad: [UserGuard],
+    canActivate: [TutorialGuard]
   },
   {
     path: 'detail/:slug',
@@ -34,6 +35,12 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () => import('./pages/profile/profile.module')
     .then(m => m.ProfilePageModule),
+    canLoad: [UserGuard]
+  },
+  {
+    path: 'forms/create',
+    loadChildren: () => import('./pages/forms/create/create.form.module')
+    .then(m => m.CreateFormPageModule),
     canLoad: [UserGuard]
   },
   { path: '**', component: Error404Component }

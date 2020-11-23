@@ -5,7 +5,7 @@ ion-item {
  --background-hover: transparent;
  --highlight-color-valid: transparent;
  --highlight-color-invalid: transparent;
- --full-highlight-height: 1px;
+ --full-highlight-height: 0;
  --padding-start: 0;
  --inner-padding-end: 0;
 }
@@ -69,4 +69,19 @@ input:-webkit-autofill:active  {
 .alert-button.sc-ion-alert-ios {
   border-top: .55px solid rgba(72, 73, 78, .2);
   border-right: .55px solid rgba(72, 73, 78, .2);
+}
+
+.share-pop {
+  & .popover-content {
+    max-width: 165px !important;
+    left: calc(145px - var(--ion-safe-area-right, 0px)) !important;
+  }
+}
+
+.list-md {
+  padding: 0 !important;
+}
+
+ion-item.active {
+  color: var(--ion-color-primary);
 }

@@ -1,0 +1,20 @@
+ion-list-header {
+  padding-left: 0 !important;
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+}
+
+ion-list ion-item:nth-child(odd) ion-text {
+  padding-left: .666rem;
+}
+
+ion-item {
+  --full-highlight-height: 0;
+  --padding-bottom: calc(var(--ion-item-padding) * 2);
+  --border-width: 0 !important;
+}
+
+ion-text {
+  font-size: .8rem !important;
+  padding-right: 1.2rem;
+}

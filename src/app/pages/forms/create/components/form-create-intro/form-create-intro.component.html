@@ -1,0 +1,7 @@
+<ion-list inset="true">
+  <ion-list-header>{{'BEFORE.ANYTHING' | translate}}</ion-list-header>
+  <ion-item *ngFor="let i of intro">
+    <ion-icon [name]="i.icon" slot="start"></ion-icon>
+    <ion-text [innerHTML]="i.title | translate"></ion-text>
+  </ion-item>
+</ion-list>

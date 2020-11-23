@@ -4,17 +4,18 @@
 }
 
 .black { color: black !important }
-strong { font-size: inherit }
-span strong { font-size: inherit}
 
 p {
   color: var(--p-color);
-  line-height: 1.5rem;
+  line-height: 1.4rem;
 }
 
-span:not(.tab), p, li, a, input, textarea, mat-label, p code, td, ion-label {
+span:not(.tab), p, li, a, input, textarea, mat-label, p code, p span, td, ion-label, ion-text {
   @media(max-width: 550px) { font-size: .9rem !important }
 }
+
+strong { font-size: inherit }
+span strong, p span { font-size: inherit !important }
 
 h1 {
   color: var(--light-color);
@@ -63,6 +64,8 @@ ul.none {
   }
 }
 
+h4 { font-size: 19px }
+
 ul.check, .template ul {
   margin-left: 0;
   padding-left: 0;
@@ -108,4 +111,11 @@ code {
 }
 
 h4 span.bold { font-size: inherit !important }
+
+.summary {
+  & p { 
+    font-size: .8rem !important;
+    padding-right: 1rem;
+  }
+}
 

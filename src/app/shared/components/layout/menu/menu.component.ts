@@ -1,9 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { MENU } from '@shared/shared.data';
 import { MenuController, ModalController } from '@ionic/angular';
 import { MenuService } from '@services/menu/menu.service';
 import { SettingsComponent } from '../../modals/settings/settings.component';
 import { Router } from '@angular/router';
+import { User } from '@shared/interfaces/interfaces';
+import { Observable } from 'rxjs';
+import { UserFacade } from '@store/user/user.facade';
+import { MENU } from '@shared/shared.data';
 
 @Component({
   selector: 'app-menu',
@@ -12,23 +15,29 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class MenuComponent {
+export class MenuComponent implements OnInit {
 
-  menuLink = MENU;
+  user$: Observable<User>;
+  menu = MENU;
 
   constructor(
     private menuCtrl: MenuController,
     private menuSrv: MenuService,
     private modalCtrl: ModalController,
-    private router: Router
+    private router: Router,
+    private userFacade: UserFacade
   ) { }
 
+  ngOnInit() {
+    this.user$ = this.userFacade.user$;
+  }
+
   public async open(route: string): Promise<void> {
-    if (route === '/profile') {
+    if (route === '/profile' || route === '/home') {
       this.menuCtrl.close();
-      this.router.navigateByUrl(route);
       return;
     }
+
     const modal = await this.modalCtrl.create({
       component: this.selectComp(route)
     });

@@ -18,7 +18,7 @@
           <ion-input formControlName="cover" ></ion-input>
         </ion-item>
         <ion-item> <!-- CATEGORY -->
-          <ion-label class="select">{{'CATEGORY' | translate}}</ion-label>
+          <ion-label class="select">{{'CATEGORY.NAME' | translate}}</ion-label>
           <ion-select formControlName="category">
             <ion-select-option [value]="c" 
                                *ngFor="let c of categories">{{c}}

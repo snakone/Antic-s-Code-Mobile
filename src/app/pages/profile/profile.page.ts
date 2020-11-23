@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { UserService } from '@services/user/user.service';
-import { User } from '@shared/interfaces/interfaces';
+import { PROFILE_HEADER } from '@shared/shared.data';
 
 @Component({
   selector: 'app-profile',
@@ -11,6 +11,8 @@ import { User } from '@shared/interfaces/interfaces';
 
 export class ProfilePage {
 
-  constructor(public userSrv: UserService) {}
+  header = PROFILE_HEADER;
+
+  constructor() {}
 
 }

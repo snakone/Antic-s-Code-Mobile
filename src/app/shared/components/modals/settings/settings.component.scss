@@ -10,11 +10,23 @@ ion-select {
   padding-right: 7px;
 }
 
+ion-list {
+  margin: 0 !important;
+}
+
+ion-item-divider {
+  --inner-padding-bottom: 10px;
+  --inner-padding-top: 10px;
+  margin-bottom: 9px;
+}
+
 ion-item {
   --full-highlight-height: 0;
   --padding-bottom: var(--ion-item-padding);
   --border-width: 0 !important;
   --inner-border-width: 0 !important;
+  --padding-start: 16px !important;
+  --padding-end: 16px !important;
 }
 
 ion-button {

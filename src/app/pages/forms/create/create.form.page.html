@@ -1,0 +1,44 @@
+<app-page-header [title]="'CREATE' | translate"></app-page-header>
+<ion-content force-overscroll="false"> 
+  <ion-slides [options]="slideOpts" 
+              pager="true"
+              class="create"
+              (ionSlideWillChange)="change()">
+    <ion-slide>
+      <app-form-create-intro></app-form-create-intro>
+    </ion-slide>
+    <ion-slide>
+      <app-form-create-category [categories]="categories$ | async"
+                                [count]="count$ | async"
+                                [categoryCount]="byCategoryCount$ | async"
+                                [likes]="likes$ | async"
+                                [foo]="obs$ | async">
+      </app-form-create-category>
+    </ion-slide>
+    <ion-slide>
+      <app-form-create-intro></app-form-create-intro>
+    </ion-slide>
+  </ion-slides>
+
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-button fill="clear" 
+                slot="start" 
+                color="dark"
+                (click)="back()"
+                *ngIf="index != 0">
+      <ion-icon name="chevron-forward-outline"></ion-icon> 
+      {{'PREVIOUS' | translate}} 
+   </ion-button>
+    <ion-button fill="clear" 
+                slot="end" 
+                color="dark" 
+                (click)="next()"
+                *ngIf="index != (slidesLength - 1)">
+       {{'NEXT' | translate}} 
+       <ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

@@ -6,7 +6,7 @@
               class="ion-padding"
               #slider
               (ionSlideDidChange)="getIndex()"
-              *ngIf="!(menuSrv.isOpen | async)">
+              *ngIf="!(menuSrv.isOpen$ | async)"> 
    <ion-slide *ngFor="let s of slides; let last = last">
      <img [src]="s.image" alt="Slide"/>
      <ion-text>{{s.message | translate}}</ion-text>

@@ -28,13 +28,13 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      Plugins.SplashScreen.hide();
+      if (this.platform.is('hybrid')) {
+        Plugins.SplashScreen.hide();
+        Plugins.StatusBar.setOverlaysWebView({overlay: true});
+      }
       timer(2000).subscribe(() => {
         this.showSplash = false;
       });
-      if (this.platform.is('android')) {
-        Plugins.StatusBar.setOverlaysWebView({overlay: true});
-      }
     });
     this.translate.setDefaultLang(APP_CONSTANTS.DEFAULT_LANGUAGE);
     this.translate.use(APP_CONSTANTS.DEFAULT_LANGUAGE);

@@ -6,6 +6,8 @@ import { StorageService } from '@services/storage/storage.service';
 import { LanguageService } from '@core/language/services/language.service';
 import { TranslateService } from '@ngx-translate/core';
 import { MenuController, ModalController } from '@ionic/angular';
+import { LANGS, YESNOT } from '@shared/shared.data';
+import { User } from '@shared/interfaces/interfaces';
 
 @Component({
   selector: 'app-settings',
@@ -19,16 +21,11 @@ export class SettingsComponent implements OnInit {
   theme: string;
   language: string;
   remember: boolean;
-
-  lang = [
-    { value: 'es', name: 'SPANISH' },
-    { value: 'en', name: 'ENGLISH' }
-  ];
-
-  mail = [
-    { value: true, name: 'YES' },
-    { value: false, name: 'NO' }
-  ];
+  create: boolean;
+  intro: boolean;
+  lang = LANGS;
+  mail = YESNOT;
+  user: User;
 
   constructor(
     private userSrv: UserService,
@@ -43,12 +40,15 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit() {
     this.getLocalData();
+    this.user = this.userSrv.getUser();
   }
 
   private getLocalData(): void {
     this.theme = this.ls.get('theme');
     this.language = this.ls.get('lang');
     this.remember = this.ls.get('remember');
+    this.create = this.ls.get('createTutorial');
+    this.intro = this.ls.get('introTutorial');
   }
 
   public themeChanged(value: string): void {
@@ -61,8 +61,16 @@ export class SettingsComponent implements OnInit {
     this.languageSrv.change(value);
   }
 
-  public rememberChanged(value: string): void {
+  public rememberChanged(value: boolean): void {
     this.ls.setKey('remember', value);
+  }
+
+  public createChanged(value: boolean): void {
+    this.ls.setKey('createTutorial', value);
+  }
+
+  public introChanged(value: boolean): void {
+    this.ls.setKey('introTutorial', value);
   }
 
   public logout(): void {

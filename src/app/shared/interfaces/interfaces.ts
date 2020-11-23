@@ -35,6 +35,11 @@ export interface MenuLink {
   route: string;
 }
 
+export interface HeaderIcons {
+  icon?: string;
+  route?: string;
+}
+
 export interface CustomSlide {
   image: string;
   message: string;
@@ -73,6 +78,47 @@ interface Content {
   stars?: number;
   links?: Link[];
   index?: Index[];
+}
+
+export interface Category extends Content {
+  info?: CategoryInfo;
+  faq?: FAQ[];
+  updated?: string;
+}
+
+export interface CategoryInfo {
+  creator?: string;
+  where?: string;
+  site?: string;
+  age?: string;
+}
+
+export interface FAQ {
+  question: string;
+  answer: string;
+}
+
+export interface CategoryResponse extends ServerResponse {
+  category?: Category;
+  categories?: Category[];
+}
+
+export interface CategoryAvatar {
+  name?: string;
+  image: string;
+  selected: boolean;
+  index: number;
+  message: string;
+}
+
+export interface Settings {
+  name: string;
+  value: string | boolean;
+}
+
+export interface Item {
+  title: string;
+  icon: string;
 }
 
 export interface Index {
@@ -174,4 +220,13 @@ interface NotificationData {
 interface NotificationAction {
   action: string;
   title: string;
+}
+
+export interface ArticlesDataResponse extends ServerResponse {
+  articlesCount?: number;
+  lastArticles?: Article[];
+  categoryCount?: object;
+  likedArticles?: Article[];
+  viewedArticles?: Article[];
+  likes?: number;
 }
