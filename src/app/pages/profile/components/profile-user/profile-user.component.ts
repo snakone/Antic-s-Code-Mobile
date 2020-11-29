@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { User } from '@app/shared/interfaces/interfaces';
 import { UserService } from '@services/user/user.service';
 
 @Component({
@@ -8,6 +9,8 @@ import { UserService } from '@services/user/user.service';
 })
 
 export class ProfileUserComponent implements OnInit {
+
+  @Input() user: User;
 
   constructor(public userSrv: UserService) { }
 

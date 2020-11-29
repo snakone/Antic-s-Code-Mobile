@@ -3,12 +3,16 @@ import { CommonModule } from '@angular/common';
 import { LogoPipe } from './logo/logo.pipe';
 import { SanitizerPipe } from './sanitizer/sanitizer.pipe';
 import { ChipPipe } from './chip/chip.pipe';
+import { BadgePipe } from './badge/badge.pipe';
+import { ImagePipe } from './image/image.pipe';
 
 @NgModule({
   declarations: [
     LogoPipe,
     SanitizerPipe,
-    ChipPipe
+    ChipPipe,
+    ImagePipe,
+    BadgePipe
   ],
   imports: [
     CommonModule
@@ -16,7 +20,9 @@ import { ChipPipe } from './chip/chip.pipe';
   exports: [
     LogoPipe,
     SanitizerPipe,
-    ChipPipe
+    ChipPipe,
+    ImagePipe,
+    BadgePipe
   ]
 })
 

@@ -15,8 +15,10 @@ export class PageHeaderComponent {
   @Input() title: string;
   @Input() showBack = true;
   @Input() showButtons = true;
+  @Input() showMenu = true;
   @Input() href = true;
   @Input() icons: HeaderIcons[];
+  @Input() onDismiss: any;
 
   constructor(
     private menu: MenuController,
@@ -30,7 +32,7 @@ export class PageHeaderComponent {
 
   public async back(): Promise<void> {
     if (await this.modalCtrl.getTop()) {
-      this.modalCtrl.dismiss();
+      this.modalCtrl.dismiss(this.onDismiss || undefined);
     }
   }
 

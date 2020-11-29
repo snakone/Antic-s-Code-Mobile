@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Draft, Article } from '@shared/interfaces/interfaces';
-import { ModalController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -13,13 +12,15 @@ import { Observable } from 'rxjs';
 export class MarkDownComponent implements OnInit {
 
   @Input() content$: Observable<Article | Draft>;
+  edited = false;
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor() { }
 
   ngOnInit() { }
 
-  public close(): void {
-    this.modalCtrl.dismiss();
+  public changed(): void {
+    if (this.edited) { return; }
+    this.edited = true;
   }
 
 }

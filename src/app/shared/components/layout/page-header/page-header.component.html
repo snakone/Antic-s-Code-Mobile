@@ -11,14 +11,16 @@
                [ngClass]="{'padding': showBack}">
                {{title | translate}}
     </ion-title>
-    <ion-buttons slot="end" *ngIf="showButtons">
-      <ion-button *ngFor="let i of icons"
-                  [routerLink]="i.route"
-                  routerLinkActive="active"
-                  [routerLinkActiveOptions]="{exact: true}">
-        <ion-icon [name]="i.icon"></ion-icon>
-      </ion-button>
-      <ion-button (click)="openMenu()">
+    <ion-buttons slot="end">
+      <ng-container *ngIf="showButtons">
+        <ion-button *ngFor="let i of icons"
+                    [routerLink]="i.route"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact: true}">
+          <ion-icon [name]="i.icon"></ion-icon>
+        </ion-button>
+      </ng-container>
+      <ion-button (click)="openMenu()" *ngIf="showMenu" class="buttons">
         <ion-icon *ngIf="menuSrv.isOpen$ | async; else closed" 
                   class="menu" src="assets/img/arrow-right-solid.svg">
         </ion-icon>

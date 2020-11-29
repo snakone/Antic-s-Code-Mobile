@@ -12,7 +12,8 @@
     "e2e": "ng e2e",
     "release": "ng build --prod --buildOptimizer=true --output-hashing=all",
     "android": "npm run release && npx cap copy android",
-    "resources": "cordova-res android && node scripts/resources.js"
+    "resources": "cordova-res android && node scripts/resources.js",
+	"capacitor": "ionic cap run android -l --external"
   },
   "private": true,
   "dependencies": {

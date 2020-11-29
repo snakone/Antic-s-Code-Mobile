@@ -1,9 +1,4 @@
 .arrows {
-  width: 100%;
-  height: calc(100% - 80px);
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
   opacity: .3;
 }
 
@@ -11,14 +6,12 @@
   position: absolute;
   left: -2px;
   top: 10px;
-  width: 8%;
 }
 
 .arrow-content-right {
   position: absolute;
-  right: 4px;
+  right: 26px;
   top: 10px;
-  width: 8%;
 }
 
 .arrow-right-light,

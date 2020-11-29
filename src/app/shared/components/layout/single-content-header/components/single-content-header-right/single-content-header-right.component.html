@@ -1,0 +1,32 @@
+<div class="right-buttons" 
+    *ngIf="content.type === 'article'; else draft">
+  <span class="meta-type meta-type-like"
+        *ngIf="!content.userLiked; else isLiked"
+        (click)="doLike(1)">
+      <ion-icon name="heart"></ion-icon> {{'LIKE' | translate}}
+  </span>
+  <ng-template #isLiked>
+    <span class="meta-type meta-type-like liked"
+          (click)="doLike(-1)">
+      <ion-icon name="heart"></ion-icon> {{'LIKE' | translate}}
+    </span>
+  </ng-template>
+  <span class="meta-type meta-type-like"
+        (click)="share()">
+      <ion-icon name="share-social-outline"></ion-icon> {{'SHARE' | translate}}
+  </span>
+    <a [href]="content.githubLink"
+       target="_blank"
+       class="default">
+    <span class="git"
+          *ngIf="content.github">
+        <ion-icon name="cloud-download-outline"></ion-icon>
+    </span>
+  </a>
+</div>
+
+<ng-template #draft>
+  <ion-chip color="warning">
+    {{'THIS.DRAFT' | translate}}
+  </ion-chip>
+</ng-template>

@@ -1,5 +1,5 @@
 .bold {
-  color: var(--primary-color);
+  color: var(--ion-color-primary);
   font-weight: bold;
 }
 
@@ -10,15 +10,16 @@ p {
   line-height: 1.4rem;
 }
 
-span:not(.tab), p, li, a, input, textarea, mat-label, p code, p span, td, ion-label, ion-text {
-  @media(max-width: 550px) { font-size: .9rem !important }
+span:not(.tab), p, li, a, input, p code, p span, td {
+  font-size: .9rem
 }
+
+textarea { font-size: .9rem !important }
 
 strong { font-size: inherit }
 span strong, p span { font-size: inherit !important }
 
 h1 {
-  color: var(--light-color);
   font-size: 2rem;
   margin-bottom: 0;
   margin-top: 0;
@@ -85,7 +86,7 @@ ul.check, .template ul {
       height: 11px;
       border-width: 0 2px 2px 0;
       border-style: solid;
-      border-color: var(--secondary-color);
+      border-color: var(--ion-color-secondary);
       transform-origin: bottom left;
       transform: rotate(45deg);
     }

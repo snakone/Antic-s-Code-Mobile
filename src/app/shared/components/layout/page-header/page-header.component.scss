@@ -1,9 +1,10 @@
 ion-toolbar {
   --background: var(--ion-header-background);
   --min-height: var(--ion-nav-height);
+  box-shadow: 0 -8px 1px rgba(0, 0, 0, 0.25), 0 1px 5px rgba(0, 0, 0, 0.22);
 }
 
-ion-button, ion-menu-button {
+ion-button {
   color: #fff;
   margin-right: .5rem;
   margin-left: .5rem;
@@ -13,7 +14,6 @@ ion-button, ion-menu-button {
 ion-back-button {
   display: block;
 }
-
 
 ion-title {
   --color: #fff;

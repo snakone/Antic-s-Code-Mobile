@@ -115,7 +115,7 @@ export class EditComponent implements OnInit, OnDestroy {
     .pipe(takeUntil(this.unsubscribe$))
       .subscribe(_ => {
         this.modalCtrl.dismiss();
-        this.router.navigateByUrl('/tabs/home');
+        this.router.navigateByUrl('/home');
         this.crafter.alert('ARTICLE.UPDATED');
       });
   }

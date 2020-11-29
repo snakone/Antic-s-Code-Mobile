@@ -33,4 +33,10 @@ hr {
   }
 }
 
+.menu .active { 
+  & ion-icon {
+    color: var(--ion-color-primary) !important;
+  }
+}
+
 

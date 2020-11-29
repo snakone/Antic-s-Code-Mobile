@@ -7,9 +7,4 @@
   font-size: 1.5rem;
 }
 
-ion-content {
-  &::-webkit-scrollbar {
-    display: none;
-    width: 0;
-  }
-}
+ion-grid, ion-row, ion-col { padding: 0 }

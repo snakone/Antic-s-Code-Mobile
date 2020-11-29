@@ -1,0 +1,55 @@
+@mixin badge($color, $margin, $text) {
+  line-height: 2.3rem;
+  padding: .36667rem .66667rem;
+  color: $text;
+  font-size: .8rem !important;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  font-weight: 600;
+  background: $color;
+  margin-right: $margin;
+  &:hover { cursor: pointer }
+}
+
+@mixin badge-category($margin) {
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-left: $margin;
+
+  & span {
+    padding-left: 10px;
+    color: #5d658c;
+    font-size: .93333rem;
+    @media(max-width: 650px) and (min-width: 620px) { font-size: .8rem }
+    @media(max-width: 340px) { font-size: .8rem }
+  }
+}
+
+@mixin meta-data($color, $line) {
+  color: #fff;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 .35rem;
+  font-weight: 700;
+  border-radius: 2px;
+  margin: 0 .46667rem .46667rem 0;
+  font-size: .8rem !important;
+  padding-left: 10px;
+  background: $color;
+  line-height: $line;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  cursor: pointer;
+
+  &-icon { border: 1px solid #595a613d }
+
+  & ion-icon {
+    font-size: 1rem;
+    position: relative;
+    left: 7px;
+    padding-right: 10px;
+  }
+
+}

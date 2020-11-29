@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http/http.service';
-import { Article, ArticleResponse, ArticlesDataResponse, ContentResponse } from '@shared/interfaces/interfaces';
+
+import {
+  Article,
+  ArticleResponse,
+  ArticlesDataResponse,
+  ContentResponse,
+  DraftResponse } from '@shared/interfaces/interfaces';
+
 import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
 import { filter, map } from 'rxjs/operators';
@@ -45,6 +52,17 @@ export class ContentService {
       .get<ArticlesDataResponse>(environment.api + 'articles-data')
       .pipe(
         filter(res => res && !!res.ok)
+      );
+  }
+
+  public updateContentMessage(
+    article: Article
+  ): Observable<Article> {
+    return this.http
+      .put<DraftResponse>(this.API_CONTENT + 'message/', {article})
+      .pipe(
+        filter(res => res && !!res.ok),
+        map(res => res.draft)
       );
   }
 

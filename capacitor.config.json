@@ -22,5 +22,9 @@
       "SplashScreen": "screen",
       "FadeSplashScreen": "true"
     }
+  },
+  "server": {
+    "url": "http://192.168.1.97:8100",
+    "cleartext": true
   }
 }

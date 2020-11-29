@@ -1,10 +1,12 @@
 <app-page-header [title]="'MARKDOWN' | translate"
-                 [href]="false">
+                 [href]="false"
+                 [onDismiss]="edited">
 </app-page-header>
 
 <ion-content force-overscroll="false">
   <ng-container *ngIf="(content$ | async) as draft">
     <ion-textarea [(ngModel)]="draft.message"
+                  (ngModelChange)="changed()"
                   [placeholder]="'write.here' | translate"
                   class="full">
     </ion-textarea>

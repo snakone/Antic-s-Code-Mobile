@@ -26,6 +26,11 @@ export const getBySlugFailure =
   createAction('[Content API] Get Content by Slug Failure',
   props<{ error: string }>());
 
+// SET CONTENT BY SLUG
+export const setBySlug =
+  createAction('[Content API] Set Content by Slug',
+  props<{ article: Article }>());
+
 // RESET BY SLUG
 export const resetBySlug =
   createAction('[Content API] Reset By Slug');

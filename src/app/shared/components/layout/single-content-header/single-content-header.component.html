@@ -1,0 +1,21 @@
+<div class="content-header">
+  <ion-button fill="clear" (click)="back()">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+  </ion-button>
+  <div class="header-bg"
+       *ngIf="content"
+       [style.background-image]="'url('+ content.cover +')' | sanitizer: 'style'"
+       [ngClass]="{'bg-top' : type === 'category' && bgTop.includes(content.category) }">
+    <div class="content-header-content">
+      <div class="container">
+        <app-single-content-header-left [content]="content"
+                                        [type]="type">
+        </app-single-content-header-left>
+        <app-single-content-header-right [content]="content"
+                                          [type]="type">
+        </app-single-content-header-right>
+      </div>
+    </div>
+  </div>
+  <div class="header-bg" *ngIf="!content"></div>
+</div>

@@ -76,6 +76,16 @@ const featureReducer = createReducer(
   on(ContentActions.getBySlugFailure, (state, { error }) => (
     { ...state, bySlugLoaded: false, error }
   )),
+  // SET BY SLUG
+  on(ContentActions.setBySlug, (state, { article }) => (
+    {
+      ...state,
+      bySlug: article,
+      articles: [...state.articles].filter(a => a._id !== article._id),
+      drafts: checkDraft(state, article),
+      error: null
+    }
+  )),
   // GET ARTICLES DATA
   on(ContentActions.getData, state => (
     { ...state, error: null }
@@ -137,3 +147,10 @@ export const getDataLoaded = (state: ContentState): boolean => {
 function completed(articles: Article[]): boolean {
   return articles.length === 0 ? true : false;
 }
+
+function checkDraft(state: ContentState, draft: Article): Article[] {
+  const exist = [...state.drafts].find(d => d._id === draft._id);
+  return exist ? [...state.drafts].map(d => d._id === draft._id ? draft : d) :
+                 [...state.drafts, draft];
+}
+

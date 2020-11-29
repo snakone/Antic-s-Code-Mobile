@@ -1,6 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { MenuService } from '@services/menu/menu.service';
+import { User } from '@shared/interfaces/interfaces';
+import { MenuController } from '@ionic/angular';
 import { UserService } from '@services/user/user.service';
 import { PROFILE_HEADER } from '@shared/shared.data';
+import { ThemeService } from '@services/theme/theme.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,10 +13,15 @@ import { PROFILE_HEADER } from '@shared/shared.data';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class ProfilePage {
+export class ProfilePage implements OnInit {
 
   header = PROFILE_HEADER;
+  user: User;
 
-  constructor() {}
+  constructor(public userSrv: UserService) { }
+
+  ngOnInit() {
+    this.user = this.userSrv.getUser();
+  }
 
 }

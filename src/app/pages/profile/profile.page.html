@@ -1,8 +1,4 @@
-<app-page-header [title]="'PROFILE'" 
-                 [showBack]="false"
-                 [icons]="header">
-</app-page-header>
-
+<app-user-header [user]="user" [public]="false"></app-user-header>
 <ion-content force-overscroll="false">
-  <ion-router-outlet></ion-router-outlet>
+  <app-profile-user [user]="user"></app-profile-user>
 </ion-content>

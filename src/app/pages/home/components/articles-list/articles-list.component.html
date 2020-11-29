@@ -3,14 +3,19 @@
                  [icons]="header">
 </app-page-header>
 
-<ion-content force-overscroll="false">
+<ion-content> 
   <ng-container *ngIf="(articles$ | async) as articles; else noArticles">
-      <app-article-card *ngFor="let a of articles; let i = index" 
-                        [article]="a"
-                        [index]="i"
-                        [dark]="isDark">
-      </app-article-card>
-      
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" size-md="6"
+                  *ngFor="let a of articles; let i = index">
+            <app-article-card [article]="a"
+                              [index]="i"
+                              [dark]="isDark">
+            </app-article-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
       <ion-infinite-scroll threshold="69px" (ionInfinite)="load($event)">
         <ion-infinite-scroll-content
           loadingSpinner="circles"

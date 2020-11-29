@@ -4,6 +4,7 @@ import { AppState } from '@app/app.config';
 
 import * as ContentActions from './content.actions';
 import * as fromContent from './content.selectors';
+import { Article } from '@shared/interfaces/interfaces';
 
 @Injectable({providedIn: 'root'})
 
@@ -32,6 +33,10 @@ export class ContentFacade {
 
   public getBySlug(slug: string): void {
     this.store.dispatch(ContentActions.getBySlug({slug}));
+  }
+
+  public setBySlug(article: Article): void {
+    this.store.dispatch(ContentActions.setBySlug({article}));
   }
 
   public resetBySlug(): void {

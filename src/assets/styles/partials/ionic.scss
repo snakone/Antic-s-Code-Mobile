@@ -85,3 +85,15 @@ input:-webkit-autofill:active  {
 ion-item.active {
   color: var(--ion-color-primary);
 }
+
+ion-label, ion-text {
+  font-size: .9rem !important;
+}
+
+.alert-title.sc-ion-alert-ios {
+  margin-bottom: 8px;
+}
+
+.alert-message.sc-ion-alert-ios, .alert-input-group.sc-ion-alert-ios {
+  padding-bottom: 16px;
+}
