@@ -22,6 +22,7 @@ import { reducers } from './ngrx/ngrx.index';
 import { EffectsModule } from '@ngrx/effects';
 import { ContentEffects } from './ngrx/content/content.effects';
 import { UserEffects } from './ngrx/user/user.effects';
+import { NativeModule } from './native/native.module';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, CORE_MODULE_CONSTANTS.TRANSLATE_CONFIG.I18N_PATH,
@@ -50,6 +51,7 @@ export function createTranslateLoader(http: HttpClient) {
     }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    NativeModule
   ],
   providers: [
     HttpService,

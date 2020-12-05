@@ -3,7 +3,6 @@
   p {
     margin-top: 30px;
     line-height: 1.7 !important;
-    &:first-child { margin-top: 20px }
   }
 
   ul, ol {
@@ -243,7 +242,7 @@
   }
 
   @media(max-width: 550px) {
-    p:first-child { margin-top: 0 }
+    p:first-child { padding-top: 10px }
   }
 
   @media(min-width: 1280px) {

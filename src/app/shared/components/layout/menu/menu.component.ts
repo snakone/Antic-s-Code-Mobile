@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { User } from '@shared/interfaces/interfaces';
 import { Observable } from 'rxjs';
 import { UserFacade } from '@store/user/user.facade';
-import { MENU } from '@shared/shared.data';
+import { MENU } from '@shared/data/app';
 
 @Component({
   selector: 'app-menu',

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FORM_CREATE_INTRO } from '@shared/shared.data';
+import { FORM_CREATE_INTRO } from '@shared/data/create';
 
 @Component({
   selector: 'app-form-create-intro',

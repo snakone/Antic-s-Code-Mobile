@@ -24,11 +24,11 @@ export class CrafterService {
     private loading: LoadingController
   ) { }
 
-  public async alert(message: string): Promise<void> {
+  public async alert(message: string, header = true): Promise<void> {
     const alert = await this.alertCtrl.create({
-      header: 'Antic\'s Code Mobile',
+      header: header ? 'Antic\'s Code Mobile' : null,
       mode: 'ios',
-      message: this.translateMessage(message),
+      message: this.translateMsg(message),
       buttons: ['OK']
     });
     return alert.present();
@@ -36,12 +36,12 @@ export class CrafterService {
 
   public async confirm(message: string, header: string): Promise<any> {
     const alert = await this.alertCtrl.create({
-      header: this.translate.instant(header),
-      message: this.translate.instant(message),
+      header: this.translateMsg(header),
+      message: this.translateMsg(message),
       mode: 'ios',
       buttons: [
         {
-          text: this.translate.instant('CANCEL'),
+          text: this.translateMsg('CANCEL'),
           role: 'cancel',
         },
         { text: 'OK' }
@@ -54,7 +54,7 @@ export class CrafterService {
 
   public async toast(message: string): Promise<void> {
     const toast = await this.toastCtrl.create({
-      message: this.translate.instant(message),
+      message: this.translateMsg(message),
       duration: 1500,
       color: 'light',
       position: 'top',
@@ -74,7 +74,7 @@ export class CrafterService {
 
   public async loader(): Promise<void> {
     const loading = await this.loading.create({
-      message: this.translate.instant('LOADING')
+      message: this.translateMsg('LOADING')
     });
     return loading.present();
   }
@@ -99,7 +99,8 @@ export class CrafterService {
     return popover.present();
   }
 
-  public handleError(err: HttpErrorResponse): void {
+  public async handleError(err: HttpErrorResponse): Promise<void> {
+    if (await this.alertCtrl.getTop()) { return; }
     switch (err.status) {
       case 0: this.alert('ERRORS.WEB.MESSAGE');
               break;
@@ -117,7 +118,7 @@ export class CrafterService {
     }
   }
 
-  private translateMessage(msg: string): string {
+  private translateMsg(msg: string): string {
     return this.translate.instant(msg);
   }
 

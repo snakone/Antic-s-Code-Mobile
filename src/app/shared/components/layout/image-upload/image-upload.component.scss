@@ -1,0 +1,26 @@
+ion-card {
+  border: 2px dashed rgb(196, 196, 196);
+  border-radius: 10px;
+  height: 100%;
+  width: 98%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  box-shadow: none;
+}
+
+.card-container {
+  height: 54%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 4vh;
+}
+
+ion-icon {
+  font-size: 3rem;
+  margin-bottom: .666rem;
+  width: 100%;
+}

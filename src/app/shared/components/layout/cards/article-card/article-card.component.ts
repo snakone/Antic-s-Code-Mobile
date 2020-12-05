@@ -19,7 +19,7 @@ export class ArticleCardComponent {
   constructor(private crafter: CrafterService) { }
 
   public options(e: any): void {
-    this.crafter.pop(HelpComponent, null, 'share-pop', e);
+    this.crafter.pop(HelpComponent, null, 'share-pop');
   }
 
 }

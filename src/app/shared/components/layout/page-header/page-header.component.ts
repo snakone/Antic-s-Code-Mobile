@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { HeaderIcons } from '@shared/interfaces/interfaces';
-import { MenuController, ModalController } from '@ionic/angular';
+import { MenuController, ModalController, PickerController } from '@ionic/angular';
 import { MenuService } from '@services/menu/menu.service';
 
 @Component({
@@ -23,7 +23,8 @@ export class PageHeaderComponent {
   constructor(
     private menu: MenuController,
     private modalCtrl: ModalController,
-    public menuSrv: MenuService
+    public menuSrv: MenuService,
+    private pickerCtrl: PickerController
   ) { }
 
   public openMenu(): void {
@@ -31,6 +32,9 @@ export class PageHeaderComponent {
   }
 
   public async back(): Promise<void> {
+    if (await this.pickerCtrl.getTop()) {
+      this.pickerCtrl.dismiss();
+    }
     if (await this.modalCtrl.getTop()) {
       this.modalCtrl.dismiss(this.onDismiss || undefined);
     }

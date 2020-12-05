@@ -10,7 +10,6 @@ ul {
   -ms-flex-align: center;
 
   & li {
-    margin-right: .4rem;
     & .white { color: #fff }
     @media (max-width: 360px) { margin-right: 0 }
    }
@@ -32,6 +31,10 @@ ul {
     margin-bottom: 1.46667rem;
     @media (max-width: 991px) { margin-bottom: 1.16667rem }
   }
+}
+
+.meta-star-icon {
+  margin-left: .5rem;
 }
 
 h1 { 
@@ -57,7 +60,7 @@ p {
 }
 
 .hide-mobile {
-  margin-left: 2px;
+  margin-left: .5rem;
   @media(max-width: 330px) { display: none }
 }
 

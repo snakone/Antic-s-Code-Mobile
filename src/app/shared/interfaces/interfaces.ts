@@ -228,6 +228,12 @@ export interface NotificationPayload {
   device?: string | RegExp;
 }
 
+export interface CategoryList {
+  name: string;
+  category: string;
+  icon: string;
+}
+
 interface NotificationData {
   url?: string;
   data?: any;

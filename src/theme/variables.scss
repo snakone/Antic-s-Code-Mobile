@@ -75,10 +75,13 @@
   --ion-primary-gradient: linear-gradient(156deg, #ffbbec 0%, #f9a0c2 50%, #ee7da8 100%);
   --ion-secondary-gradient: linear-gradient(156deg, #c7a4ff 0%, #b080fd 50%, #9b63f8 100%);
   --ion-tertiary-gradient: linear-gradient(156deg, #b4c8ff 0%, #9ab5ff 50%, #7e9ffc 100%);
+  --ion-dual-gradient: radial-gradient(circle farthest-corner at -10.7% 80.6%, #7e9ffc 49.3%,#9b63f8 89%);
   --ion-nav-height: 60px;
   --ion-active-color: rgba(135, 228, 255, .8);
   --ion-active-gradient: linear-gradient(156deg, rgb(176, 228, 243) 0%, rgb(154, 232, 253) 50%, rgb(135, 228, 255) 100%);
-  --menu-width: 285px;
+  --menu-width: 290px;
+  --item-background: rgba(231, 231, 231, 0.5);
+  --ion-color-category: rgba(231, 231, 231, .9);
 
   // FONTS
   --primary-font-size: 16px;

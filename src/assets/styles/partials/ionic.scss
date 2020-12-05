@@ -14,6 +14,14 @@ ion-back-button {
   --color: #fff;
 }
 
+ion-popover {
+  div.popover-content {
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+  }
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
@@ -71,13 +79,6 @@ input:-webkit-autofill:active  {
   border-right: .55px solid rgba(72, 73, 78, .2);
 }
 
-.share-pop {
-  & .popover-content {
-    max-width: 165px !important;
-    left: calc(145px - var(--ion-safe-area-right, 0px)) !important;
-  }
-}
-
 .list-md {
   padding: 0 !important;
 }
@@ -97,3 +98,71 @@ ion-label, ion-text {
 .alert-message.sc-ion-alert-ios, .alert-input-group.sc-ion-alert-ios {
   padding-bottom: 16px;
 }
+
+.form-select {
+  & .option {
+    font-size: 1.8rem;
+
+    &:not(.action-sheet-selected) {
+      color: var(--ion-color-dark);
+    }
+
+    & span {
+      justify-content: flex-start;
+      padding-left: 3.5rem;
+    }
+  }
+
+  & img, ion-icon[slot="start"] {
+    position: absolute;
+    left: 20px;
+    top: 12px;
+    width: 30px;
+    z-index: 100;
+  }
+
+  & .detail {
+    position: absolute;
+    right: 1rem;
+    top: 22px;
+    z-index: 100;
+    font-size: 1rem;
+    color: var(--ion-color-secondary);
+  }
+}
+
+.create-tooltip {
+  --min-width: 250px;
+}
+
+.picker {
+  --height: 37vh;
+  & button {
+    opacity: .8;
+    transition: all .05s ease-in-out;
+    &.picker-opt-selected {
+      opacity: 1;
+      font-weight: bold;
+    }
+  }
+
+  &-col {
+    padding: 0 !important;
+    &:nth-of-type(1) {
+      & button {
+        color: var(--ion-color-primary);
+      }
+    }
+    &:nth-of-type(2) {
+      & button {
+        color: var(--ion-color-secondary);
+      }
+    }
+  }
+
+  &-columns {
+    position: relative;
+    top: -3.5vh;
+  }
+}
+

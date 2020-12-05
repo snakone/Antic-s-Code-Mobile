@@ -6,7 +6,7 @@ import { Article } from '@shared/interfaces/interfaces';
 import { Observable, Subject } from 'rxjs';
 import { filter, takeUntil,  } from 'rxjs/operators';
 import { IonInfiniteScroll } from '@ionic/angular';
-import { HOME_HEADER } from '@shared/shared.data';
+import { HOME_HEADER } from '@shared/data/header';
 
 @Component({
   selector: 'app-articles-list',

@@ -4,7 +4,7 @@ import { CrafterService } from '@services/crafter/crafter.service';
 import { PushService } from '@services/push/push.service';
 import { ReactionService } from '@services/reaction/reaction.service';
 import { UserService } from '@core/services/user/user.service';
-import { LIKE_PUSH } from '@shared/shared.data';
+import { LIKE_PUSH } from '@shared/data/push';
 import { Article, Category, NotificationPayload, Reaction, User } from '@shared/interfaces/interfaces';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';

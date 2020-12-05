@@ -6,7 +6,7 @@ import { StorageService } from '@services/storage/storage.service';
 import { LanguageService } from '@core/language/services/language.service';
 import { TranslateService } from '@ngx-translate/core';
 import { MenuController, ModalController } from '@ionic/angular';
-import { LANGS, YESNOT } from '@shared/shared.data';
+import { LANGS, YESNOT } from '@shared/data/app';
 import { User } from '@shared/interfaces/interfaces';
 
 @Component({

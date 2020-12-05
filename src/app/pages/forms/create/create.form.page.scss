@@ -1,12 +1,7 @@
 ion-slides {
-  --progress-bar-background-active: var(--ion-active-color);
+  --progress-bar-background-active: var(--ion-color-warning);
   --progress-bar-background: var(--ion-color-link);
   height: 100%;
-}
-
-ion-slide {
-  align-items: flex-start;
-  justify-content: flex-start;
 }
 
 ion-button {
@@ -20,4 +15,19 @@ ion-button[slot="end"] ion-icon {
 ion-button[slot="start"] ion-icon {
   margin-right: .5rem;
   transform: rotate(180deg);
+}
+
+app-form-create-intro {
+  height: 100%;
+}
+
+.data {
+  padding: 1rem;
+  display: block;
+}
+
+.intro {
+  overflow-y: scroll;
+  display: block;
+  text-align: left;
 }

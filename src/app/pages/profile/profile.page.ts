@@ -3,7 +3,7 @@ import { MenuService } from '@services/menu/menu.service';
 import { User } from '@shared/interfaces/interfaces';
 import { MenuController } from '@ionic/angular';
 import { UserService } from '@services/user/user.service';
-import { PROFILE_HEADER } from '@shared/shared.data';
+import { PROFILE_HEADER } from '@shared/data/header';
 import { ThemeService } from '@services/theme/theme.service';
 
 @Component({

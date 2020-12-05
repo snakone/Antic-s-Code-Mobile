@@ -23,9 +23,28 @@
   "SHOW.TUTORIALS": "Show tutorials",
   "APP": "Application",
   "ARTICLE": "Post",
+  "LEVELS.NAME": "Difficulty",
+  "REACT.LIBRARY": "React Library",
   "THANKS": "Thank You so much!",
   "START": "Start",
+  "ACCEPT": "Accept",
+  "LOAD.PHOTO": "Load an image...",
+  "I.KNOW.MARKDOWN": "I have read and understood that I know Markdown as much as to write content",
+  "INAPPROPIATE": "I accept that if I write content that is not allowed or inappropriate, it could be deleted",
+  "TOOLTIP": {
+    "CATEGORY": "Pick a category. It depends later on where the content is located.",
+    "TAGS": "Choose several tags related to the content. You can pick a maximum of 3",
+    "LEVELS": "Choose a difficulty level for the content. If you have doubts, consult a moderator."
+  },
+  "DENO.SERVER": "Deno Server",
+  "START.HERE": "Start your Adventure",
+  "CREATE.HERE": "From here you can create content for <strong> Antic's Code </strong>. It's very simple, enter the data, write the article and that's it!",
+  "BEFORE.START": "Before we start, we are going to give you some tips to follow to create quality content.",
   "NOT.SHOW.AGAIN": "Do not show again",
+  "ANDROID.NATIVE": "Native Android",
+  "GIT.SYSTEM": "Git System",
+  "MONGO.DB": "Mongo Database",
+  "WEB.DESIGN": "Web Design",
   "SLIDES": {
     "CREATE": {
       "FIRST": "Follow this quick tutorial and learn how you can start writing content",
@@ -36,10 +55,12 @@
       "SIXTH": "Access, edit, save and share your content quickly and easily"
     }
   },
+  "TAG.REPEAT": "It seems that you have repeated a label. Don't worry, we've handled it for you.",
   "CONFIG": "Config",
   "NO.EDITED": "You haven't edited anything, saving now is pointless.",
   "CONTENT.UPDATED": "Content updated",
   "CREATE": "Create",
+  "NONE": "None",
   "THIS.DRAFT": "Remember this is only a draft",
   "CREATE.ARTICLE": "Create Article",
   "DESIGN.DEV": "Designer",

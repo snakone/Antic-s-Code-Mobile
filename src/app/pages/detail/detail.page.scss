@@ -5,16 +5,24 @@ ion-toolbar {
 ion-fab-button {
   --background: var(--ion-primary-gradient);
   --color: #fff;
+  --close-icon-font-size: 2rem;
 }
 
 ion-fab-button:not(.first) {
   --background: var(--ion-header-background);
   --color: #fff;
+  width: 56px;
+  height: 56px;
 
   & ion-icon {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     filter: contrast(1.5);
   }
 }
+
+ion-icon {
+  font-size: 2.2rem;
+}
+
 
 

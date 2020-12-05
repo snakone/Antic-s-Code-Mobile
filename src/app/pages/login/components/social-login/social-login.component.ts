@@ -7,7 +7,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { UserResponse, User, NotificationPayload } from '@shared/interfaces/interfaces';
 import { AuthService } from '@services/login/auth.service';
 import { PushService } from '@services/push/push.service';
-import { NEW_USER_PUSH } from '@shared/shared.data';
+import { NEW_USER_PUSH } from '@shared/data/push';
 import firebase from 'firebase/app';
 import { UserService } from '@services/user/user.service';
 

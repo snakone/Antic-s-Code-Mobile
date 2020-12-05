@@ -1,10 +1,6 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { Category } from '@app/shared/interfaces/interfaces';
 import { IonSlides, MenuController } from '@ionic/angular';
-import { CategoryFacade } from '@store/categories/category.facade';
-import { combineLatest, Observable, Subject } from 'rxjs';
-import { filter, map, takeUntil } from 'rxjs/operators';
-import { ContentFacade } from '@store/content/content.facade';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-create.form',
@@ -17,49 +13,24 @@ export class CreateFormPage implements OnInit, OnDestroy {
   @ViewChild(IonSlides) slides: IonSlides;
   // tslint:disable-next-line:variable-name
   private _index = 0;
-  slidesLength = 3;
-  categories$: Observable<Category[]>;
-  count$: Observable<number>;
-  byCategoryCount$: Observable<object>;
-  likes$: Observable<number>;
+  slidesLength = 7;
   private unsubscribe$ = new Subject<void>();
-  obs$: Observable<any>;
 
   slideOpts = {
     allowTouchMove: false,
+    centeredSlides: true,
+    slidesPerView: 1,
     pagination: {
       type: 'progressbar',
       el: '.swiper-pagination'
     }
   };
 
-  constructor(
-    private menuCtrl: MenuController,
-    private categoryFacade: CategoryFacade,
-    private contentFacade: ContentFacade
-  ) { }
+  constructor(private menuCtrl: MenuController) { }
 
   ngOnInit() {
     this.menuCtrl.swipeGesture(false);
-    this.checkData();
-    this.obs$ = combineLatest([
-      this.categoryFacade.categories$
-        .pipe(map(res => res.filter(c => c.category !== 'Antic\'s'))),
-      this.contentFacade.count$,
-      this.contentFacade.byCategoryCount$,
-      this.contentFacade.likes$
-    ]);
-  }
-
-  private checkData(): void {
-    this.categoryFacade.loaded$
-     .pipe(
-       filter(res => !res),
-       takeUntil(this.unsubscribe$)
-      )
-     .subscribe(_ => {
-       this.categoryFacade.get();
-    });
+    this.slideToIndex();
   }
 
   public get index(): number {
@@ -76,6 +47,10 @@ export class CreateFormPage implements OnInit, OnDestroy {
 
   public back(): void {
     this.slides.slidePrev();
+  }
+
+  private slideToIndex(): void {
+    console.log('slide to index');
   }
 
   ngOnDestroy() {

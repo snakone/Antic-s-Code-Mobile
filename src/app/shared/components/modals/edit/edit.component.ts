@@ -2,13 +2,14 @@ import { Component, OnInit, Input, OnDestroy, ChangeDetectionStrategy } from '@a
 import { Article, Draft } from '@shared/interfaces/interfaces';
 import { ModalController } from '@ionic/angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { CATEGORIES, TAGS, BADGES, LEVELS } from '@shared/shared.data';
 import { DraftsService } from '@services/drafts/drafts.service';
 import { CrafterService } from '@services/crafter/crafter.service';
 import { switchMap, takeUntil } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { TAGS, LEVELS } from '@shared/data/article';
+import { CATEGORIES } from '@shared/data/categories';
 
 @Component({
   selector: 'app-edit',
@@ -23,7 +24,6 @@ export class EditComponent implements OnInit, OnDestroy {
   editForm: FormGroup;
   categories = CATEGORIES;
   tags = TAGS;
-  badges = BADGES;
   levels = LEVELS;
   imagePattern = '^.+\.(([pP][nN][gG])|([jJ][pP][gG]))$';  // Png, Jpg
   private unsubscribe$ = new Subject<void>();

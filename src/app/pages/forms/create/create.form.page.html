@@ -1,25 +1,34 @@
-<app-page-header [title]="'CREATE' | translate"></app-page-header>
+<app-page-header [title]="'CREATE' | translate"
+                  [showMenu]="false">
+</app-page-header>
+
 <ion-content force-overscroll="false"> 
   <ion-slides [options]="slideOpts" 
               pager="true"
               class="create"
               (ionSlideWillChange)="change()">
-    <ion-slide>
+    <ion-slide class="intro">
       <app-form-create-intro></app-form-create-intro>
     </ion-slide>
-    <ion-slide>
-      <app-form-create-category [categories]="categories$ | async"
-                                [count]="count$ | async"
-                                [categoryCount]="byCategoryCount$ | async"
-                                [likes]="likes$ | async"
-                                [foo]="obs$ | async">
-      </app-form-create-category>
+    <ion-slide class="data">
+      <app-form-create-data></app-form-create-data>
     </ion-slide>
     <ion-slide>
-      <app-form-create-intro></app-form-create-intro>
+      <app-form-create-cover></app-form-create-cover>
+    </ion-slide>
+    <ion-slide>
+      <app-form-create-links></app-form-create-links>
+    </ion-slide>
+    <ion-slide>
+      <app-form-create-summary></app-form-create-summary>
+    </ion-slide>
+    <ion-slide>
+      <app-form-create-message></app-form-create-message>
+    </ion-slide>
+    <ion-slide>
+      <app-form-create-preview></app-form-create-preview>
     </ion-slide>
   </ion-slides>
-
 </ion-content>
 
 <ion-footer class="ion-no-border">

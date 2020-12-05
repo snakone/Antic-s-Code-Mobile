@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { FormCreateCategoryComponent } from './form-create-category.component';
+import { ImageUploadComponent } from './image-upload.component';
 
-describe('FormCreateCategoryComponent', () => {
-  let component: FormCreateCategoryComponent;
-  let fixture: ComponentFixture<FormCreateCategoryComponent>;
+describe('ImageUploadComponent', () => {
+  let component: ImageUploadComponent;
+  let fixture: ComponentFixture<ImageUploadComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormCreateCategoryComponent ],
+      declarations: [ ImageUploadComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(FormCreateCategoryComponent);
+    fixture = TestBed.createComponent(ImageUploadComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

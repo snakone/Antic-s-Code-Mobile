@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HOME_HEADER } from '@shared/shared.data';
+import { HOME_HEADER } from '@shared/data/header';
 import { ThemeService } from '@services/theme/theme.service';
 import { Article } from '@shared/interfaces/interfaces';
 import { ContentFacade } from '@store/content/content.facade';

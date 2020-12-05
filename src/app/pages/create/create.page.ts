@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CREATE_SLIDES } from '@shared/shared.data';
 import { flipOpts } from '@shared/swiper';
 import { IonSlides, MenuController } from '@ionic/angular';
 import { MenuService } from '@services/menu/menu.service';
 import { Router } from '@angular/router';
 import { StorageService } from '@services/storage/storage.service';
+import { CREATE_SLIDES } from '@shared/data/slides';
 
 @Component({
   selector: 'app-create',

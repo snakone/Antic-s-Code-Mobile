@@ -1,6 +1,36 @@
 ion-card { 
   position: relative;
-  margin-bottom: 1rem;
+  margin-bottom: .4rem;
+}
+
+ion-chip {
+  color: #fff;
+  padding: 0 0.6rem 0 .8rem;
+  z-index: 5;
+  height: 29px;
+  margin: 0 .8rem .8rem 0;
+
+  & ion-icon { 
+    margin-right: .4rem;
+    font-size: 1rem;
+  }
+
+  & ion-text { font-size: .8rem !important }
+
+  & > div {
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: -2px;
+  }
+}
+
+ion-chip[color="secondary"] {
+  background: var(--ion-secondary-gradient);
+}
+
+ion-chip[color="primary"] {
+  background: var(--ion-primary-gradient);
 }
 
 .cover {
@@ -8,6 +38,7 @@ ion-card {
   border-bottom: 1px solid rgba(0, 0, 0, .1);
   opacity: .9;
   outline: none;
+  z-index: 0;
 }
 
 .first {
@@ -21,18 +52,15 @@ ion-card {
   padding: 6px;
   border-radius: 50%;
   z-index: 100;
-  bottom: 133px;
+  bottom: 175px;
   left: 18px;
   height: 41px;
+  background: var(--ion-color-category);
 
   & ion-img {
     width: 30px;
     height: 30px;
   }
-
-  &.primary { background: var(--ion-primary-gradient) }
-  &.secondary { background: var(--ion-secondary-gradient) }
-  &.tertiary { background: var(--ion-tertiary-gradient) }
 }
 
 ion-item {
