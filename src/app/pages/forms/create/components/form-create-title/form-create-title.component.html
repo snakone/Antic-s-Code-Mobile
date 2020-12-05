@@ -1,0 +1,39 @@
+<ion-list>
+  <ion-list-header>{{'ADD.TITLE' | translate}}</ion-list-header>
+  <ion-item>
+    <ion-label position="stacked">{{'TITLE' | translate}}</ion-label>
+    <ion-input clearInput 
+               autofocus
+               required
+               type="text"
+               maxlength="35"
+               minlength="10"
+               name="title">
+    </ion-input>
+  </ion-item>
+</ion-list>
+
+<ion-chip color="success">
+  <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+  {{'CHOOSE.TITLE' | translate}}
+</ion-chip>
+
+<ion-list class="summary">
+  <ion-list-header>{{'ADD.SUMMARY' | translate}}</ion-list-header>
+  <ion-item>
+    <ion-label position="stacked">{{'SUMMARY' | translate}}</ion-label>
+    <ion-textarea required
+                  inputmode="text"
+                  type="text"
+                  rows="8"
+                  maxlength="600"
+                  minlength="100"
+                  name="summary">
+    </ion-textarea>
+  </ion-item>
+</ion-list>
+
+<ion-chip color="success">
+  <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+  {{'CHOOSE.SUMMARY' | translate}}
+</ion-chip>

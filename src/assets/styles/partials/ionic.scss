@@ -166,3 +166,13 @@ ion-label, ion-text {
   }
 }
 
+ion-checkbox {
+  --checkmark-color: #fff;
+  --checkmark-width: 3px;
+  --background-checked: var(--ion-color-tertiary);
+}
+
+.native-input.sc-ion-input-ios, 
+.native-textarea.sc-ion-textarea-ios {
+  padding-left: 8px;
+}

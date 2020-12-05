@@ -15,6 +15,7 @@ import { NgMarkdownModule } from './markdown/markdown.module';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '@env/environment';
 
 import { StoreModule } from '@ngrx/store';
@@ -51,6 +52,7 @@ export function createTranslateLoader(http: HttpClient) {
     }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AngularFireStorageModule,
     NativeModule
   ],
   providers: [

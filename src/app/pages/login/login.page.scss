@@ -39,12 +39,6 @@ ion-item {
   margin-top: .4rem;
 }
 
-ion-checkbox {
-  --checkmark-color: #fff;
-  --checkmark-width: 3px;
-  --background-checked: var(--ion-color-tertiary);
-}
-
 .md .checkbox { --padding-end: 0; }
 .ios .checkbox { --padding-end: 10px; }
 

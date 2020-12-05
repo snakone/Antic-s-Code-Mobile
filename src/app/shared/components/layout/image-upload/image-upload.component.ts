@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CrafterService } from '@services/crafter/crafter.service';
 import { CameraService } from '@core/native/services/camera.service';
 
 @Component({
@@ -9,12 +10,26 @@ import { CameraService } from '@core/native/services/camera.service';
 
 export class ImageUploadComponent implements OnInit {
 
-  constructor(private cameraSrv: CameraService) { }
+  picture: string;
+
+  constructor(
+    private cameraSrv: CameraService,
+    private crafter: CrafterService
+  ) { }
 
   ngOnInit() {}
 
-  public upload(): void {
-    this.cameraSrv.openSource();
+  public async upload(): Promise<void> {
+    this.picture = null;
+    const pic = await this.cameraSrv.openSource();
+    this.crafter.loaderOff();
+    if (pic && pic.length / 1024 > 120) {
+      this.crafter.toast('MAX.LENGTH');
+      this.picture = null;
+      return;
+    } else {
+      this.picture = pic;
+    }
   }
 
 }

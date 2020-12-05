@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { CATEGORIES } from '@shared/data/categories';
 import { CrafterService } from '@services/crafter/crafter.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -21,6 +21,8 @@ export class FormCreateDataComponent {
   categorySelected: string;
   tagsSelected: string[];
   levelSelected: string;
+  index: boolean;
+  showed = false;
 
   constructor(
     private translate: TranslateService,
@@ -38,6 +40,7 @@ export class FormCreateDataComponent {
       case 'category': return this.translate.instant('TOOLTIP.CATEGORY');
       case 'tags': return this.translate.instant('TOOLTIP.TAGS');
       case 'levels': return this.translate.instant('TOOLTIP.LEVELS');
+      case 'index': return this.translate.instant('TOOLTIP.INDEX');
     }
   }
 
@@ -104,6 +107,12 @@ export class FormCreateDataComponent {
         picker.present();
       }
     }
+  }
+
+  public changed(e: boolean): void {
+    if (this.showed) { return; }
+    this.openTooltip('index');
+    this.showed = true;
   }
 }
 

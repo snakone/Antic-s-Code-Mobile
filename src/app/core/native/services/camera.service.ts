@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { UploadService } from '@services/upload/upload.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { CrafterService } from '@app/core/services/crafter/crafter.service';
 
 @Injectable({providedIn: 'root'})
 
@@ -16,17 +16,16 @@ export class CameraService {
 
   constructor(
     private camera: Camera,
-    private uploadSrv: UploadService
+    private crafter: CrafterService
   ) { }
 
-  public openSource() {
-    this.camera.getPicture(this.sourceOpts)
-     .then(async (data: string) => {
-      const image = 'data:image/jpg;base64,' + data;
-      this.uploadSrv.uploadImage(image)
-       .subscribe(res => console.log(res));
-    }, (err) => {
+  public async openSource(): Promise<string> {
+    try {
+      this.crafter.loader();
+      return 'data:image/jpg;base64,' + await this.camera.getPicture(this.sourceOpts);
+    } catch (err) {
       console.log(err);
-    });
+      this.crafter.loaderOff();
+    }
   }
 }

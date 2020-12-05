@@ -29,12 +29,20 @@
   "START": "Start",
   "ACCEPT": "Accept",
   "LOAD.PHOTO": "Load an image...",
+  "ADD.INDEX": "Add index",
+  "ADD.TITLE": "Add the main title",
+  "ADD.SUMMARY": "Add a summary",
+  "CHOOSE.SUMMARY": "The summary will be the first thing the reader see about your content. It appears in the preview before you read it.",
+  "CHOOSE.TITLE": "Choosing a good title is important, with it a unique link will be created that you can use to share your content.",
+  "SUMMARY": "Summary",
+  "MAX.LENGTH": "Size too large, please try another photo. Sorry for the inconvenient.",
   "I.KNOW.MARKDOWN": "I have read and understood that I know Markdown as much as to write content",
   "INAPPROPIATE": "I accept that if I write content that is not allowed or inappropriate, it could be deleted",
   "TOOLTIP": {
     "CATEGORY": "Pick a category. It depends later on where the content is located.",
     "TAGS": "Choose several tags related to the content. You can pick a maximum of 3",
-    "LEVELS": "Choose a difficulty level for the content. If you have doubts, consult a moderator."
+    "LEVELS": "Choose a difficulty level for the content. If you have doubts, consult a moderator.",
+    "INDEX": "Adding an index helps readers navigate more comfortably in the content."
   },
   "DENO.SERVER": "Deno Server",
   "START.HERE": "Start your Adventure",

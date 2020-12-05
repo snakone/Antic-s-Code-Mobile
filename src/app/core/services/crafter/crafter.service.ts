@@ -55,7 +55,7 @@ export class CrafterService {
   public async toast(message: string): Promise<void> {
     const toast = await this.toastCtrl.create({
       message: this.translateMsg(message),
-      duration: 1500,
+      duration: 3000,
       color: 'light',
       position: 'top',
       cssClass: 'toast-sheet'

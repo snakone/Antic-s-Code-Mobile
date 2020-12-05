@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
-import { environment } from '@env/environment';
-import { Observable } from 'rxjs';
-import { HttpService } from '../http/http.service';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Injectable({ providedIn: 'root'})
 
 export class UploadService {
 
-  private readonly IMAGEBB_URI = 'https://api.imgbb.com/1/upload';
+  constructor(private storage: AngularFireStorage) { }
 
-  constructor(private http: HttpService) { }
-
-  public uploadImage(image: string): Observable<any> {
-    return this.http.post(
-      this.IMAGEBB_URI + '?key=' + environment.imageBB, { image });
+  public uploadImage(image: string) {
+    this.storage.ref('/images');
+    const task = this.storage.upload('/images', image);
+    task.snapshotChanges().subscribe(res => console.log(res));
   }
 }

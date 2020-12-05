@@ -1,6 +1,16 @@
 <div class="card-container">
-  <ion-card button="true" (click)="upload()">
-    <ion-icon name="image-outline" color="medium"></ion-icon>
-    <ion-text>{{'LOAD.PHOTO' | translate}}</ion-text>
+  <ion-card button="true" 
+           (click)="upload()"
+           [ngClass]="{'photo' : picture}">
+    <ng-container *ngIf="!picture; else isImage">
+      <ion-icon name="image-outline" color="medium"></ion-icon>
+      <ion-text>{{'LOAD.PHOTO' | translate}}</ion-text>
+    </ng-container>
+    <ng-template #isImage>
+      <img [src]="picture"/>
+    </ng-template>
   </ion-card>
+  <div class="max">
+    Max: 100kb
+  </div>
 </div>

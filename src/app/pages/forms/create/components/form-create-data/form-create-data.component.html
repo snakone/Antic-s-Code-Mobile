@@ -10,7 +10,7 @@
       {{'CATEGORY.NAME' | translate}}
     </ion-label>
     <ng-template #chip>
-      <ion-chip color="danger">{{categorySelected | translate}}</ion-chip>
+      <ion-chip color="medium">{{categorySelected | translate}}</ion-chip>
     </ng-template>
     <ion-icon slot="end" 
               name="information-circle-outline"
@@ -28,7 +28,8 @@
     </ion-label>
     <ng-template #tags>
       <ion-chip *ngFor="let t of tagsSelected" 
-                 color="success">{{t | translate}}</ion-chip>
+                 color="medium">{{t | translate}}
+      </ion-chip>
     </ng-template>
     <ion-icon slot="end" 
               name="information-circle-outline"
@@ -45,13 +46,25 @@
       {{'LEVELS.NAME' | translate}}
     </ion-label>
     <ng-template #level>
-      <ion-chip color="warning">{{levelSelected | translate}}</ion-chip>
+      <ion-chip color="medium">{{levelSelected | translate}}</ion-chip>
     </ng-template>
     <ion-icon slot="end" 
               name="information-circle-outline"
               class="info"
               (click)="openTooltip('levels'); $event.stopPropagation()">
     </ion-icon>
+  </ion-item>
+  <ion-item>
+    <ion-icon slot="start" 
+              name="list-outline"
+              color="medium">
+    </ion-icon>
+    <ion-label class="remember">{{'ADD.INDEX' | translate}}</ion-label>
+      <ion-checkbox [(ngModel)]="index"
+                    (ngModelChange)="changed($event)"
+                    slot="end"
+                    mode="md">
+      </ion-checkbox>
   </ion-item>
 </ion-list>
 

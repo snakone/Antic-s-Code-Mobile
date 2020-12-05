@@ -141,10 +141,18 @@
   "WEB.DESIGN": "Diseño Web",
   "DENO.SERVER": "Servidor Deno",
   "LOAD.PHOTO": "Cargar imagen...",
+  "ADD.INDEX": "Añadir índice",
+  "ADD.TITLE": "Añade el título principal",
+  "ADD.SUMMARY": "Añade una introducción",
+  "CHOOSE.SUMMARY": "La introducción será lo primero que vea el lector sobre tu contenido. Aparece en la vista previa antes de leerlo.",
+  "CHOOSE.TITLE": "Escoger un buen título es importante, con él se creerá un enlace único que podrás utilizar para compartir tu contenido.",
+  "SUMMARY": "Introducción",
+  "MAX.LENGTH": "Tamaño demasiado grande, por favor prueba con otra foto. Disculpa las molestias.",
   "TOOLTIP": {
     "CATEGORY": "Escoge un categoría. Esto es importante, de ello depende donde esté ubicado el contenido.",
     "TAGS": "Escoge varias etiquetas relacionadas con el contenido. Puedes escoger hasta un máximo 2.",
-    "LEVELS": "Escoge un nivel de dificultad para el contenido. Si tienes dudas consulta a un moderador."
+    "LEVELS": "Escoge un nivel de dificultad para el contenido. Si tienes dudas consulta a un moderador.",
+    "INDEX": "Añadir un índice ayuda a los lectores a navegar mas comodamente por el contenido."
   },
   "GIT.SYSTEM": "Sistema Git",
   "REACT.LIBRARY": "Librería React",
