@@ -1,9 +1,34 @@
-<app-page-header></app-page-header>
+<app-page-header [title]="'CREATE' | translate"
+                 [showMenu]="false">
+</app-page-header>
 
-<ion-content>
-  <ion-slides [options]="slideOpts" pager=true class="ion-padding">
-   <ion-slide *ngFor="let i of [1,2,3,4]">
-     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui, laborum unde! Commodi, labore esse rerum, at, minima deserunt eaque porro adipisci ut inventore temporibus vitae ex quae unde sit aliquid.
+<ion-content force-overscroll="false">
+  <ion-slides [options]="slideOpts" 
+              pager=true 
+              class="ion-padding"
+              #slider
+              (ionSlideDidChange)="getIndex()"
+              *ngIf="!(menuSrv.isOpen$ | async)"> 
+   <ion-slide *ngFor="let s of slides; let last = last">
+     <img [src]="s.image" alt="Slide"/>
+     <ion-text>{{s.message | translate}}</ion-text>
+     <ng-container *ngIf="last">
+      <ion-button expand="full"
+                  shape="round"
+                  mode="md"
+                  (click)="start()">
+        <ion-label>{{'START' | translate}}</ion-label>
+      </ion-button>
+      <ion-item>
+        <ion-checkbox mode="md" 
+                      slot="start"
+                      [(ngModel)]="hideTutorial"></ion-checkbox>
+        <ion-label>{{'NOT.SHOW.AGAIN' | translate}}</ion-label>
+      </ion-item>
+     </ng-container>
    </ion-slide>
+   <app-slide-arrows [index]="index" 
+                     [length]="slides.length">
+   </app-slide-arrows>
   </ion-slides>
  </ion-content>

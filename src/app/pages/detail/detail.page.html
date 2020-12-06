@@ -1,13 +1,14 @@
-<app-page-header></app-page-header>
-
 <ion-content force-overscroll="false" class="ion-padding">
   <ng-container *ngIf="(content$ | async) as article">
+    <app-single-content-header type="article" 
+                               [content]="article">
+    </app-single-content-header>
     <markdown class="template"
               ngPreserveWhitespaces
               [data]="article.message">
     </markdown>
-    <ion-fab vertical="bottom"  horizontal="end" slot="fixed">
-      <ion-fab-button size="small" class="first">
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button class="first">
         <ion-icon name="settings-outline"></ion-icon>
       </ion-fab-button>
       <ion-fab-list side="top">

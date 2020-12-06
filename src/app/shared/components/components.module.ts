@@ -7,15 +7,24 @@ import { EditComponent } from './modals/edit/edit.component';
 import { MarkDownComponent } from './modals/markdown/markdown.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MarkdownModule } from 'ngx-markdown';
+import { TranslateModule } from '@ngx-translate/core';
 import { CreateComponent } from './modals/create/create.component';
 import { PageHeaderModule } from './layout/page-header/page-header.module';
+import { SettingsComponent } from './modals/settings/settings.component';
+import { IndexComponent } from './modals/index/index.component';
+import { PreviewComponent } from './modals/preview/preview.component';
+import { LinksComponent } from './modals/links/links.component';
 
 @NgModule({
   declarations: [
     Error404Component,
     EditComponent,
     MarkDownComponent,
-    CreateComponent
+    CreateComponent,
+    SettingsComponent,
+    IndexComponent,
+    PreviewComponent,
+    LinksComponent
   ],
   imports: [
     CommonModule,
@@ -24,12 +33,19 @@ import { PageHeaderModule } from './layout/page-header/page-header.module';
     FormsModule,
     ReactiveFormsModule,
     PageHeaderModule,
+    TranslateModule,
     MarkdownModule.forChild()
   ],
   exports: [
     EditComponent,
     MarkDownComponent,
-    CreateComponent
+    CreateComponent,
+    SettingsComponent,
+    PreviewComponent,
+    IndexComponent,
+    TranslateModule,
+    FormsModule,
+    LinksComponent
   ]
 })
 

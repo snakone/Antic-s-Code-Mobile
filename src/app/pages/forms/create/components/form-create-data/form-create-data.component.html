@@ -1,0 +1,70 @@
+<app-image-upload></app-image-upload>
+
+<ion-list>
+  <ion-item (click)="pick('category')">
+    <ion-icon slot="start" 
+              name="bookmark-outline"
+              color="tertiary">
+    </ion-icon>
+    <ion-label *ngIf="!categorySelected; else chip">
+      {{'CATEGORY.NAME' | translate}}
+    </ion-label>
+    <ng-template #chip>
+      <ion-chip color="medium">{{categorySelected | translate}}</ion-chip>
+    </ng-template>
+    <ion-icon slot="end" 
+              name="information-circle-outline"
+              class="info"
+              (click)="openTooltip('category'); $event.stopPropagation()">
+    </ion-icon>
+  </ion-item>
+  <ion-item (click)="pick('tags')">
+    <ion-icon slot="start" 
+              name="pricetags-outline"
+              color="secondary">
+    </ion-icon>
+    <ion-label *ngIf="!tagsSelected; else tags">
+      {{'TAGS.NAME' | translate}}
+    </ion-label>
+    <ng-template #tags>
+      <ion-chip *ngFor="let t of tagsSelected" 
+                 color="medium">{{t | translate}}
+      </ion-chip>
+    </ng-template>
+    <ion-icon slot="end" 
+              name="information-circle-outline"
+              class="info"
+              (click)="openTooltip('tags'); $event.stopPropagation()">
+    </ion-icon>
+  </ion-item>
+  <ion-item (click)="pick('levels')">
+    <ion-icon slot="start" 
+              name="bar-chart-outline"
+              color="primary">
+    </ion-icon>
+    <ion-label *ngIf="!levelSelected; else level">
+      {{'LEVELS.NAME' | translate}}
+    </ion-label>
+    <ng-template #level>
+      <ion-chip color="medium">{{levelSelected | translate}}</ion-chip>
+    </ng-template>
+    <ion-icon slot="end" 
+              name="information-circle-outline"
+              class="info"
+              (click)="openTooltip('levels'); $event.stopPropagation()">
+    </ion-icon>
+  </ion-item>
+  <ion-item>
+    <ion-icon slot="start" 
+              name="list-outline"
+              color="medium">
+    </ion-icon>
+    <ion-label class="remember">{{'ADD.INDEX' | translate}}</ion-label>
+      <ion-checkbox [(ngModel)]="showIndex"
+                    (ngModelChange)="changed($event)"
+                    slot="end"
+                    mode="md">
+      </ion-checkbox>
+  </ion-item>
+</ion-list>
+

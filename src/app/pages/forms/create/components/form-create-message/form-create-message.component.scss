@@ -1,0 +1,22 @@
+ion-list-header {
+  padding-left: 0;
+  display: flex;
+  align-items: center;
+  margin-bottom: .5rem;
+}
+
+.info {
+  margin-left: 1rem;
+}
+
+ion-textarea {
+  --padding-bottom: 1rem;
+  --background: var(--ion-color-link);
+  border-radius: 4px;
+  --padding-start: 8px;
+  height: 60vh;
+}
+
+.fab {
+  color: #fff;
+}

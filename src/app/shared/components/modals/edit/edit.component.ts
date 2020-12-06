@@ -1,19 +1,21 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Article, Draft } from '@shared/interfaces/interfaces';
 import { ModalController } from '@ionic/angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { CATEGORIES, TAGS, BADGES, LEVELS } from '@shared/shared.data';
 import { DraftsService } from '@services/drafts/drafts.service';
 import { CrafterService } from '@services/crafter/crafter.service';
 import { switchMap, takeUntil } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { TAGS, LEVELS } from '@shared/data/article';
+import { CATEGORIES } from '@shared/data/categories';
 
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class EditComponent implements OnInit, OnDestroy {
@@ -22,7 +24,6 @@ export class EditComponent implements OnInit, OnDestroy {
   editForm: FormGroup;
   categories = CATEGORIES;
   tags = TAGS;
-  badges = BADGES;
   levels = LEVELS;
   imagePattern = '^.+\.(([pP][nN][gG])|([jJ][pP][gG]))$';  // Png, Jpg
   private unsubscribe$ = new Subject<void>();
@@ -111,14 +112,12 @@ export class EditComponent implements OnInit, OnDestroy {
     };
 
     this.draftSrv.updateDraft(article)
-    .pipe(
-      switchMap(_ => {
-      this.modalCtrl.dismiss();
-      this.router.navigateByUrl('/tabs/home');
-      this.crafter.alert('ARTICLE.UPDATED');
-      return this.draftSrv.getDraftsByUser();
-    }), takeUntil(this.unsubscribe$)
-    ).toPromise().then();
+    .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(_ => {
+        this.modalCtrl.dismiss();
+        this.router.navigateByUrl('/home');
+        this.crafter.alert('ARTICLE.UPDATED');
+      });
   }
 
   ngOnDestroy() {

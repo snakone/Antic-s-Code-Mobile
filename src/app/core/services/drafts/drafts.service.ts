@@ -13,15 +13,6 @@ export class DraftsService {
 
   constructor(private http: HttpService) { }
 
-  public getDraftsByUser(): Observable<Draft[]> {
-    return this.http
-    .get<DraftResponse>(this.API_DRAFTS + 'user')
-    .pipe(
-      filter(res => res && !!res.ok),
-      map(res => res.drafts)
-    );
-  }
-
   public createDraft(draft: Draft): Observable<Draft> {
     return this.http
       .post<DraftResponse>(this.API_DRAFTS, draft)

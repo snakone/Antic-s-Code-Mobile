@@ -1,32 +1,31 @@
 <ion-header mode="ios" class="ion-no-border">
   <ion-toolbar mode="md">
     <ion-buttons slot="start" *ngIf="showBack">
-      <ion-back-button defaultHref="/home"
-                       [text]="null">
+      <ion-back-button [attr.defaultHref]="href ? '/home' : null"
+                       [text]="null"
+                       (click)="back()">
       </ion-back-button>
     </ion-buttons>
     <ion-title *ngIf="title"
-                class="animated fadeInLeft"
+                class="animated fadeInLeftBounce"
                [ngClass]="{'padding': showBack}">
                {{title | translate}}
     </ion-title>
-    <ion-buttons slot="end" *ngIf="showButtons">
-      <ion-button [routerLink]="'/home'"
-                  routerLinkActive="active"
-                  [routerLinkActiveOptions]="{exact: true}">
-        <ion-icon name="document-text-outline"></ion-icon>
-      </ion-button>
-      <ion-button [routerLink]="'/home/drafts'"
-                  routerLinkActive="active"
-                  [routerLinkActiveOptions]="{exact: true}">
-        <ion-icon name="file-tray-full-outline"></ion-icon>
-      </ion-button>
-      <ion-button (click)="openMenu()">
-        <ion-icon *ngIf="menuSrv.isOpen | async; else closed" 
-                  class="menu animated fadeIn" src="assets/arrow-right-solid.svg">
+    <ion-buttons slot="end">
+      <ng-container *ngIf="showButtons">
+        <ion-button *ngFor="let i of icons"
+                    [routerLink]="i.route"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact: true}">
+          <ion-icon [name]="i.icon"></ion-icon>
+        </ion-button>
+      </ng-container>
+      <ion-button (click)="openMenu()" *ngIf="showMenu" class="buttons">
+        <ion-icon *ngIf="menuSrv.isOpen$ | async; else closed" 
+                  class="menu" src="assets/img/arrow-right-solid.svg">
         </ion-icon>
         <ng-template #closed>
-          <ion-icon class="menu animated fadeIn" src="assets/menu.svg">
+          <ion-icon class="menu" src="assets/img/menu.svg">
           </ion-icon>
         </ng-template>
       </ion-button>

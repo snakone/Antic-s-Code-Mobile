@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { MarkdownModule } from 'ngx-markdown';
 import { PageHeaderModule } from '@layout/page-header/page-header.module';
+import { SingleContentHeaderModule } from '@layout/single-content-header/single-content-header.module';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { PageHeaderModule } from '@layout/page-header/page-header.module';
     FormsModule,
     TranslateModule,
     PageHeaderModule,
+    SingleContentHeaderModule,
     MarkdownModule.forChild()
   ],
   declarations: [DetailPage]

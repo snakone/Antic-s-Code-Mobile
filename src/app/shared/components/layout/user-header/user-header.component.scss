@@ -1,0 +1,100 @@
+.menu { 
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+ion-toolbar {
+  position: relative;
+  --background: var(--ion-header-background);
+  --min-height: calc((var(--ion-nav-height) * 3) + 10px);
+  box-shadow: 0 -8px 1px rgba(0, 0, 0, 0.25), 0 1px 5px rgba(0, 0, 0, 0.22);
+}
+
+ion-button {
+  color: #fff;
+  margin-right: .5rem;
+  margin-left: .5rem;
+  border-radius: 50% !important;
+}
+
+ion-buttons {
+  position: relative;
+  top: calc(var(--ion-nav-height) * -1);
+}
+
+.header {
+  position: absolute;
+  top: 1.4rem;
+  text-align: center;
+  width: 100%;
+
+  & img {
+    width: 70px;
+    border-radius: 50%;
+    margin-bottom: 4px;
+    position: relative;
+    left: -4.5px;
+
+    &.light { background: #fff }
+    &.dark { background: #000 }
+  }
+
+  h3, p {
+    color: #fff;
+    margin: 0;
+    position: relative;
+    left: -4.5px;
+  }
+
+  h3 {
+    font-family: var(--ion-fancy-font);
+    font-size: 1.3rem;
+  }
+
+  p {
+    position: relative;
+    top: -2px;
+    font-size: .8rem !important;
+  }
+}
+
+.user-buttons {
+  position: absolute;
+  bottom: 0;
+  right: .8rem;
+  top: calc((var(--ion-nav-height) * 3));
+  z-index: 100;
+
+  & ion-button {
+    --padding-start: 13px;
+    --padding-end: 13px;
+    transform: scale(.9);
+    margin-right: .2rem;
+    margin-left: .2rem;
+
+    &.mail { background: var(--ion-active-gradient) }
+    &.like { background: var(--ion-primary-gradient) }
+  }
+}
+
+.add {
+  position: absolute;
+  bottom: 4px;
+  left: .8rem;
+  top: calc((var(--ion-nav-height) * 3));
+  z-index: 100;
+  display: flex;
+  align-items: center;
+
+  & ion-icon {
+    margin-right: .55rem;
+    color: #fff;
+  }
+
+  & ion-label {
+    position: relative;
+    top: 1px;
+    font-size: .8rem !important;
+    color: #fff;
+  }
+}

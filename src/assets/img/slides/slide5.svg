@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 73.95 67.39"
+   version="1.1"
+   id="svg569"
+   sodipodi:docname="slide5.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <metadata
+     id="metadata573">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1167"
+     inkscape:window-height="728"
+     id="namedview571"
+     showgrid="false"
+     inkscape:zoom="2.594319"
+     inkscape:cx="14.645887"
+     inkscape:cy="22.278326"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg569"
+     inkscape:document-rotation="0" />
+  <defs
+     id="defs511">
+    <style
+       id="style502">
+			.cls-1,.cls-4,.cls-6{fill:#389bf3;}.cls-1,.cls-2{opacity:0.8;}.cls-2,.cls-5,.cls-8{fill:#ff9d23;}.cls-3,.cls-7{fill:#aa7dff;}.cls-6,.cls-7,.cls-8{opacity:0.5;}.cls-12,.cls-16,.cls-17,.cls-18,.cls-9{fill:none;stroke-miterlimit:10;}.cls-12,.cls-9{stroke:#732e54;stroke-width:2px;}.cls-16,.cls-17,.cls-18,.cls-9{stroke-linecap:round;}.cls-10{fill:#fff;}.cls-11{fill:url(#lukaszadam_gradient);}.cls-13{fill:url(#lukaszadam_gradient-2);}.cls-14{fill:url(#lukaszadam_gradient-3);}.cls-15{fill:#cec1bc;fill-rule:evenodd;}.cls-16,.cls-17,.cls-18{stroke:#fff;}.cls-16{opacity:0.3;}.cls-18{opacity:0.6;}
+		</style>
+    <linearGradient
+       id="lukaszadam_gradient"
+       x1="51.72"
+       y1="34.73"
+       x2="63.31"
+       y2="34.73"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0.04"
+         stop-color="#f27b40"
+         id="stop504" />
+      <stop
+         offset="1"
+         stop-color="#ec697d"
+         id="stop506" />
+    </linearGradient>
+    <linearGradient
+       id="lukaszadam_gradient-2"
+       x1="33.89"
+       y1="42.97"
+       x2="45.46"
+       y2="42.97"
+       xlink:href="#lukaszadam_gradient" />
+    <linearGradient
+       id="lukaszadam_gradient-3"
+       x1="15.72"
+       y1="50.55"
+       x2="27.36"
+       y2="50.55"
+       xlink:href="#lukaszadam_gradient" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#lukaszadam_gradient"
+       id="linearGradient575"
+       gradientUnits="userSpaceOnUse"
+       x1="51.72"
+       y1="34.73"
+       x2="63.31"
+       y2="34.73" />
+  </defs>
+  <title
+     id="title513">
+		Asset 22
+	</title>
+  <g
+     id="Layer_2"
+     data-name="Layer 2"
+     transform="matrix(0.81158758,0,0,0.74452923,6.464692,9.8853113)">
+    <g
+       id="Layer_1-2"
+       data-name="Layer 1">
+      <path
+         class="cls-1"
+         d="M 53.75,11.86 33.68,24.91 A 2.6419358,2.6419358 0 1 1 30.8,20.48 l 20.07,-13 a 2.6419358,2.6419358 0 0 1 2.88,4.43 z"
+         id="path515" />
+      <path
+         class="cls-2"
+         d="M 26.93,29.3 13.51,38 a 2.6419358,2.6419358 0 1 1 -2.88,-4.43 l 13.42,-8.72 a 2.6419358,2.6419358 0 0 1 2.88,4.43 z"
+         id="path517" />
+      <path
+         class="cls-3"
+         d="M 44.32,8.79 24.26,21.84 a 2.6419358,2.6419358 0 1 1 -2.88,-4.43 l 20.06,-13 a 2.6419358,2.6419358 0 1 1 2.88,4.43 z"
+         id="path519" />
+      <path
+         class="cls-4"
+         d="M 17.5,26.23 4.08,35 A 2.6629307,2.6629307 0 0 1 1.2,30.52 L 14.62,21.8 a 2.6419358,2.6419358 0 1 1 2.88,4.43 z"
+         id="path521" />
+      <path
+         class="cls-5"
+         d="M 50.38,4.86 50.25,4.94 A 2.6419358,2.6419358 0 0 1 47.37,0.51 L 47.5,0.43 a 2.6419358,2.6419358 0 0 1 2.88,4.43 z"
+         id="path523" />
+      <path
+         class="cls-6"
+         d="M 52.73,21.72 32.66,34.77 a 2.65,2.65 0 0 1 -2.88,-4.44 l 20.07,-13 a 2.6419358,2.6419358 0 0 1 2.88,4.43 z"
+         id="path525" />
+      <path
+         class="cls-7"
+         d="M 25.91,39.16 12.49,47.88 A 2.6419358,2.6419358 0 1 1 9.61,43.45 L 23,34.72 a 2.65,2.65 0 0 1 2.88,4.44 z"
+         id="path527" />
+      <path
+         class="cls-8"
+         d="m 58.78,17.79 -0.12,0.08 a 2.65,2.65 0 0 1 -2.88,-4.44 l 0.12,-0.08 a 2.65,2.65 0 1 1 2.88,4.44 z"
+         id="path529" />
+      <line
+         class="cls-9"
+         x1="16.969999"
+         y1="59.709999"
+         x2="55.529999"
+         y2="41.889999"
+         id="line531" />
+      <rect
+         class="cls-10"
+         x="33.860001"
+         y="21.16"
+         width="11.57"
+         height="38.380001"
+         id="rect533" />
+      <rect
+         class="cls-11"
+         x="51.720001"
+         y="6.25"
+         width="11.59"
+         height="56.950001"
+         id="rect535"
+         style="fill:url(#linearGradient575)" />
+      <rect
+         class="cls-12"
+         x="51.009998"
+         y="6.9699998"
+         width="12.89"
+         height="56.950001"
+         id="rect537" />
+      <rect
+         class="cls-13"
+         x="33.889999"
+         y="22.969999"
+         width="11.57"
+         height="40"
+         id="rect539"
+         style="fill:url(#lukaszadam_gradient-2)" />
+      <rect
+         class="cls-12"
+         x="33.150002"
+         y="22.059999"
+         width="12.89"
+         height="41.860001"
+         id="rect541" />
+      <rect
+         class="cls-14"
+         x="15.72"
+         y="37.400002"
+         width="11.64"
+         height="26.299999"
+         id="rect543"
+         style="fill:url(#lukaszadam_gradient-3)" />
+      <rect
+         class="cls-12"
+         x="15.3"
+         y="37.610001"
+         width="12.89"
+         height="26.299999"
+         id="rect545" />
+      <circle
+         class="cls-10"
+         cx="63.400002"
+         cy="7.8499999"
+         r="6.3000002"
+         id="circle547" />
+      <path
+         class="cls-15"
+         d="m 69.89,8.06 a 6.3,6.3 0 1 1 -12.59,0 5.81,5.81 0 0 1 0.22,-1.62 6.3,6.3 0 0 0 12.17,0 6.66,6.66 0 0 1 0.2,1.62 z"
+         id="path549" />
+      <circle
+         class="cls-12"
+         cx="63.970001"
+         cy="8.4300003"
+         r="6.3000002"
+         id="circle551" />
+      <circle
+         class="cls-10"
+         cx="16.1"
+         cy="37.23"
+         r="6.3000002"
+         id="circle553" />
+      <path
+         class="cls-15"
+         d="m 22.6,37.44 a 6.3,6.3 0 0 1 -12.6,0 5.42,5.42 0 0 1 0.23,-1.62 6.29,6.29 0 0 0 12.16,0 6.15,6.15 0 0 1 0.21,1.62 z"
+         id="path555" />
+      <circle
+         class="cls-12"
+         cx="16.68"
+         cy="37.799999"
+         r="6.3000002"
+         id="circle557" />
+      <line
+         class="cls-16"
+         x1="58.740002"
+         y1="60.400002"
+         x2="59.709999"
+         y2="60.400002"
+         id="line559" />
+      <polyline
+         class="cls-17"
+         points="54.44 54.35 54.44 60.4 56.63 60.4"
+         id="polyline561" />
+      <line
+         class="cls-18"
+         x1="54.439999"
+         y1="49.950001"
+         x2="54.439999"
+         y2="51.110001"
+         id="line563" />
+      <line
+         class="cls-17"
+         x1="54.439999"
+         y1="43.599998"
+         x2="54.439999"
+         y2="46.810001"
+         id="line565" />
+    </g>
+  </g>
+</svg>

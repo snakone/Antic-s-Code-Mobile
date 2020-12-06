@@ -1,3 +1,37 @@
+interface Content {
+  _id?: string;
+  title?: string;
+  category?: string;
+  cover?: string;
+  tags?: string[];
+  badges?: string[];
+  likes?: number;
+  stars?: number;
+  links?: Link[];
+  index?: Index[];
+  name?: string;
+  author?: string;
+  message?: string;
+  github?: boolean;
+  githubLink?: string;
+  userLiked?: boolean;
+  user?: string;
+  slug?: string;
+}
+
+export interface Article extends Content {
+  created?: string;
+  published?: string;
+  level?: string;
+  views?: number;
+  summary?: string;
+  status?: string;
+  type?: string;
+}
+
+// tslint:disable-next-line:no-empty-interface
+export interface Draft extends Article {}
+
 export interface User {
  _id?: string;
  name: string;
@@ -18,7 +52,7 @@ interface UserProfile {
  language?: string;
 }
 
-interface ServerResponse {
+export interface ServerResponse {
   ok: boolean;
   message?: string;
   err?: any;
@@ -33,6 +67,16 @@ export interface MenuLink {
   title: string;
   icon: string;
   route: string;
+}
+
+export interface HeaderIcons {
+  icon?: string;
+  route?: string;
+}
+
+export interface CustomSlide {
+  image: string;
+  message: string;
 }
 
 export interface UserContentResponse extends ServerResponse, UserContent {}
@@ -57,17 +101,46 @@ export interface ContentResponse extends ServerResponse {
   drafts?: Draft[];
 }
 
-interface Content {
-  _id?: string;
-  title?: string;
-  category?: string;
-  cover?: string;
-  tags?: string[];
-  badges?: string[];
-  likes?: number;
-  stars?: number;
-  links?: Link[];
-  index?: Index[];
+export interface Category extends Content {
+  info?: CategoryInfo;
+  faq?: FAQ[];
+  updated?: string;
+  type?: string;
+}
+
+export interface CategoryInfo {
+  creator?: string;
+  where?: string;
+  site?: string;
+  age?: string;
+}
+
+export interface FAQ {
+  question: string;
+  answer: string;
+}
+
+export interface CategoryResponse extends ServerResponse {
+  category?: Category;
+  categories?: Category[];
+}
+
+export interface CategoryAvatar {
+  name?: string;
+  image: string;
+  selected: boolean;
+  index: number;
+  message: string;
+}
+
+export interface Settings {
+  name: string;
+  value: string | boolean;
+}
+
+export interface Item {
+  title: string;
+  icon: string;
 }
 
 export interface Index {
@@ -81,23 +154,17 @@ export interface Link {
   url: string;
 }
 
-export interface Draft extends Content {
-  message?: string;
-  user?: string;
-  author?: string;
-  created?: string;
-  slug?: string;
-  level?: string;
-  views?: number;
-  summary?: string;
-  status?: string;
-  check?: Check;
-  github?: boolean;
-  githubLink?: string;
+export interface Reaction {
+  source: string;
+  user: string;
+  type: string;
+  value: number;
+  target?: string;
 }
 
-// tslint:disable-next-line:no-empty-interface
-export interface Article extends Draft {}
+export interface ReactionResponse extends ServerResponse {
+  reactions: Reaction[];
+}
 
 export interface Check {
   hasGoodTitle?: CheckStatus;
@@ -161,6 +228,12 @@ export interface NotificationPayload {
   device?: string | RegExp;
 }
 
+export interface CategoryList {
+  name: string;
+  category: string;
+  icon: string;
+}
+
 interface NotificationData {
   url?: string;
   data?: any;
@@ -169,4 +242,13 @@ interface NotificationData {
 interface NotificationAction {
   action: string;
   title: string;
+}
+
+export interface ArticlesDataResponse extends ServerResponse {
+  articlesCount?: number;
+  lastArticles?: Article[];
+  categoryCount?: object;
+  likedArticles?: Article[];
+  viewedArticles?: Article[];
+  likes?: number;
 }

@@ -1,0 +1,37 @@
+<ion-card>
+  <ion-img [src]="article.cover" 
+           class="cover"
+           [routerLink]="'/detail/' + article.slug"></ion-img>
+  <div class="category">
+    <ion-img [src]="(dark && article.category === 'Deno' ? 
+                     article.category + '-dark' : article.category) | logo">
+    </ion-img>
+  </div>
+  <ion-card-content>
+    <ion-list inset="true">
+      <ion-item class="first">
+        <ion-label [routerLink]="'/detail/' + article.slug">{{article.title}}</ion-label>
+        <ion-button slot="end" fill="clear" (click)="options($event)">
+          <ion-icon name="ellipsis-vertical-outline"
+                    color="secondary">
+          </ion-icon>
+        </ion-button>
+      </ion-item>
+      <ion-chip color="primary">
+        <div>
+          <ion-icon name="heart"></ion-icon>
+          <ion-text>{{article.likes}}</ion-text>
+        </div>
+      </ion-chip>
+      <ion-chip color="secondary">
+        <div>
+          <ion-icon src="assets/img/eye-regular.svg"></ion-icon>
+          <ion-text>{{article.views}}</ion-text>
+        </div>
+      </ion-chip>
+      <div class="summary">
+        <markdown [data]="article.summary"></markdown>
+      </div>
+    </ion-list>
+  </ion-card-content>
+</ion-card>

@@ -1,24 +1,25 @@
 .bold {
-  color: var(--primary-color);
+  color: var(--ion-color-primary);
   font-weight: bold;
 }
 
 .black { color: black !important }
-.white { color: var(--bg-color) !important }
-strong { font-size: inherit }
-span strong { font-size: inherit}
 
 p {
   color: var(--p-color);
-  line-height: 1.5rem;
+  line-height: 1.4rem;
 }
 
-span:not(.tab), p, li, a, input, textarea, mat-label, p code, td, ion-label {
-  @media(max-width: 550px) { font-size: .9rem !important }
+span:not(.tab), p, li, a, input, p code, p span, td {
+  font-size: .9rem
 }
+
+textarea, input { font-size: .9rem !important }
+
+strong { font-size: inherit }
+span strong, p span { font-size: inherit !important }
 
 h1 {
-  color: var(--light-color);
   font-size: 2rem;
   margin-bottom: 0;
   margin-top: 0;
@@ -64,6 +65,8 @@ ul.none {
   }
 }
 
+h4 { font-size: 19px }
+
 ul.check, .template ul {
   margin-left: 0;
   padding-left: 0;
@@ -83,7 +86,7 @@ ul.check, .template ul {
       height: 11px;
       border-width: 0 2px 2px 0;
       border-style: solid;
-      border-color: var(--secondary-color);
+      border-color: var(--ion-color-secondary);
       transform-origin: bottom left;
       transform: rotate(45deg);
     }
@@ -109,4 +112,11 @@ code {
 }
 
 h4 span.bold { font-size: inherit !important }
+
+.summary {
+  & p { 
+    font-size: .8rem !important;
+    padding-right: 1rem;
+  }
+}
 

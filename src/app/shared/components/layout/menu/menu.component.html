@@ -2,19 +2,33 @@
           type="reveal" 
           menuId="main" 
           contentId="main"
-          (ionWillClose)="emitClose()"
-          (ionWillOpen)="emitOpen()">
+          (ionDidClose)="emit(false)"
+          (ionDidOpen)="emit(true)">
   <ion-header mode="ios" class="ion-no-border">
     <ion-toolbar mode="md">
+      <ion-title class="animated fadeInLeft">
+                {{'MENU' | translate}}
+      </ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content force-overscroll="false">
-    <ion-list inset="true"> 
-      <ion-item *ngFor="let link of menuLink"
-                [routerLink]="link.route"
-                (click)="close()">
-        <ion-icon slot="start" [name]="link.icon"></ion-icon>
-        <ion-label>{{link.title | translate}}</ion-label>
+    <ion-list inset="true" class="menu">
+      <ng-container *ngIf="user$ | async">
+        <ion-item *ngFor="let m of menu"
+                  (click)="open(m.route)"
+                  [routerLink]="m.route"
+                  routerLinkActive="active"
+                  detail 
+                  lines="none">
+          <ion-icon slot="start" [name]="m.icon"></ion-icon>
+          <ion-label color="dark">{{m.title | translate}}</ion-label>
+        </ion-item>
+      </ng-container>
+      <ion-item (click)="open('/settings')"
+                detail 
+                lines="none">
+        <ion-icon slot="start" name="settings-outline"></ion-icon>
+        <ion-label>{{'SETTINGS' | translate}}</ion-label>
       </ion-item>
     </ion-list>
   </ion-content>

@@ -1,0 +1,46 @@
+ion-slides {
+  --progress-bar-background-active: var(--ion-color-warning);
+  --progress-bar-background: var(--ion-color-link);
+  height: 100%;
+}
+
+ion-button {
+  font-size: .8rem !important;
+}
+
+ion-button[slot="end"] ion-icon {
+  margin-left: .5rem;
+}
+
+ion-button[slot="start"] ion-icon {
+  margin-right: .5rem;
+  transform: rotate(180deg);
+}
+
+app-form-create-intro {
+  height: 100%;
+}
+
+.data, .title, .index, .message, .links {
+  padding: 1rem;
+  display: block;
+}
+
+.intro, .title {
+  overflow-y: scroll;
+  display: block;
+  text-align: left;
+}
+
+.message {
+  padding: 1rem;
+}
+
+.index, .message, .links {
+  text-align: left;
+}
+
+.data {
+  overflow-y: scroll;
+  padding-bottom: .5rem;
+}

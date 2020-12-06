@@ -1,0 +1,37 @@
+<ion-header mode="ios" class="ion-no-border">
+  <div class="add" *ngIf="public">
+    <ion-icon name="person-add"></ion-icon>
+    <ion-label>{{'ADD' | translate}}</ion-label>
+  </div>
+  <div class="user-buttons">
+    <ion-button fill="clear" 
+                class="mail"
+                (click)="mail()">
+      <ion-icon name="mail"></ion-icon>
+    </ion-button>
+    <ion-button fill="clear" 
+                class="like"
+                (click)="stats()">
+      <ion-icon [name]="public ? 'heart' : 'star'"></ion-icon>
+    </ion-button>
+  </div>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="openMenu()">
+        <ion-icon *ngIf="menuSrv.isOpen$ | async; else closed" 
+                   class="menu" src="assets/img/arrow-right-solid.svg">
+        </ion-icon>
+        <ng-template #closed>
+          <ion-icon class="menu" src="assets/img/menu.svg">
+          </ion-icon>
+        </ng-template>
+      </ion-button>
+    </ion-buttons>
+    <div class="header">
+      <img [src]="user.profile?.avatar" 
+           [ngClass]="themeSrv.isDark() ? 'dark' : 'light'"/>
+      <h3>{{user.name}}</h3>
+      <p *ngIf="user.profile?.rol">{{user.profile?.rol | translate}}</p>
+    </div>
+  </ion-toolbar>
+</ion-header>

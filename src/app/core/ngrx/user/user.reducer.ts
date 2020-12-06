@@ -18,6 +18,10 @@ const featureReducer = createReducer(
   on(UserActions.set, (state, { user }) => (
     { ...state, user, loaded: true, error: null }
   )),
+  // USER LOG OUT
+  on(UserActions.userLogOut, (state) => (
+    { ...state, error: null, user: null }
+  )),
 );
 
 export function reducer(state: UserState | undefined, action: Action) {

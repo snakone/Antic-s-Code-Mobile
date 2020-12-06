@@ -3,16 +3,23 @@ ion-content {
   position: relative;
 }
 
+.arrows-content {
+  right: 1.6rem;
+  opacity: .3;
+}
+
 .help {
-  position: absolute;
-  top: 2rem;
-  right: 1rem;
+  position: fixed;
+  top: 1.4rem;
+  right: 1.4rem;
   font-size: 1.4rem;
 }
 
 ion-button { 
   margin: 35px auto 25px;
   width: 98%;
+  --background: var(--ion-header-background-invert);
+  color: #fff;
 }
 
 ion-list { 
@@ -40,9 +47,9 @@ span { color: var(--ion-color-primary-tint) }
 a { text-decoration: none }
 
 p {
-  margin-top: 1.5rem;
+  margin-top: .8rem;
   margin-bottom: 30px;
-  font-size: .75rem;
+  font-size: .8rem !important;
   text-align: center;
   color: var(--ion-color-dark-transparent);
 }
@@ -68,7 +75,10 @@ ion-checkbox { margin: 0 }
 h1 {
  margin: 5px auto 1.1rem;
  font-size: 2em;
- color: var(--ion-color-primary);
+ background: var(--ion-header-background);
+ background-clip: text;
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
  & span { 
    color: var(--ion-color-dark);
    font-size: inherit !important;
@@ -80,9 +90,39 @@ h3 {
   margin-top: 30px;
 }
 
-@media (min-height: 750px) {
-  h1 { margin-bottom: 8% }
-  ion-button { margin-bottom: 20% }
+.here {
+  font-size: .8rem !important;
+}
+
+.arrows { z-index: 100 }
+
+.arrow-content-right {
+  right: 24px;
+  top: 48px;
+
+  &.is-open {
+    right: 19px;
+  }
+}
+
+.arrow-right-light { 
+  animation-name: bounceAlphaInvert;
+  background-image: url(../../../assets/img/arrow-left-light.svg);
+}
+
+.arrow-left-light { 
+  animation-name: bounceAlpha;
+  background-image: url(../../../assets/img/arrow-right-light.svg);
+}
+
+.arrow-right-dark { 
+  animation-name: bounceAlphaInvert;
+  background-image: url(../../../assets/img/arrow-left-dark.svg);
+}
+
+.arrow-left-dark { 
+  animation-name: bounceAlpha;
+  background-image: url(../../../assets/img/arrow-right-dark.svg);
 }
 
 

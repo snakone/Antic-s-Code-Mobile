@@ -1,13 +1,25 @@
 ion-menu {
-  --max-width: 300px;
+  --max-width: var(--menu-width);
   --background: #fff;
 }
 
 ion-item {
   --full-highlight-height: 0;
+  --padding-bottom: var(--ion-item-padding);
+  --border-width: 0 !important;
+}
+
+ion-title {
+  --color: #fff;
+  font-size: 1.2rem;
+  font-family: var(--ion-fancy-font);
+  text-shadow: 4px 5px 4px rgba(0, 0, 0, .1);
+  position: relative;
+  top: 4px;
 }
 
 ion-toolbar {
   --background: var(--ion-header-background);
   --min-height: var(--ion-nav-height);
+  box-shadow: 0 -8px 1px rgba(0, 0, 0, 0.25), 0 1px 5px rgba(0, 0, 0, 0.22);
 }

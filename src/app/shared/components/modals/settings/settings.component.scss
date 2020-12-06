@@ -1,0 +1,67 @@
+ion-select::part(icon) {
+  margin-left: .3rem;
+  color: var(--ion-color-primary) !important;
+  opacity: 1;
+}
+
+ion-select {
+  max-width: 60%;
+  font-size: .8rem;
+  padding-right: 7px;
+}
+
+ion-list {
+  margin: 0 !important;
+}
+
+ion-item-divider {
+  --inner-padding-bottom: 10px;
+  --inner-padding-top: 10px;
+  margin-bottom: 9px;
+}
+
+ion-item {
+  --full-highlight-height: 0;
+  --padding-bottom: var(--ion-item-padding);
+  --border-width: 0 !important;
+  --inner-border-width: 0 !important;
+  --padding-start: 16px !important;
+  --padding-end: 16px !important;
+}
+
+ion-button {
+  --color: #fff;
+}
+
+ion-toggle {
+  --background: var(--ion-color-dark-transparent);
+  --background-checked: var(--ion-color-tertiary);
+  --handle-background: var(--ion-color-tertiary);
+}
+
+ion-toggle, ion-button {
+  padding-right: 3px;
+}
+
+ion-toolbar {
+  --background: var(--ion-header-background);
+  --min-height: var(--ion-nav-height);
+}
+
+ion-title {
+  --color: #fff;
+  font-size: 1.2rem;
+  font-family: var(--ion-fancy-font);
+  text-shadow: 4px 5px 4px rgba(0, 0, 0, .1);
+}
+
+ion-title, ion-buttons {
+  position: relative;
+  top: 4px;
+}
+
+.padding {
+  padding-left: 3px;
+}
+
+ 

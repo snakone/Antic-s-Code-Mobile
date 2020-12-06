@@ -1,23 +1,28 @@
 <app-page-header [title]="'ARTICLES'" 
-                 [showBack]="false">
+                 [showBack]="false"
+                 [icons]="header">
 </app-page-header>
 
-<ion-content force-overscroll="false">
-  <ion-list inset="true"
-            *ngIf="(articles$ | async) as articles; else noArticles">
-    <ion-item *ngFor="let a of articles; let i = index"
-              (click)="navigate(a)"
-              class="ion-text-wrap"
-              detail>
-      <ion-avatar slot="start">
-        <img [src]="(isDark && a.category === 'Deno' ? 
-                      a.category + '-dark' : a.category) | logo">
-      </ion-avatar>
-      <ion-label>
-        {{a.title}}
-      </ion-label>
-    </ion-item>
-  </ion-list>
+<ion-content> 
+  <ng-container *ngIf="(articles$ | async) as articles; else noArticles">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" size-md="6"
+                  *ngFor="let a of articles; let i = index">
+            <app-article-card [article]="a"
+                              [index]="i"
+                              [dark]="isDark">
+            </app-article-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-infinite-scroll threshold="69px" (ionInfinite)="load($event)">
+        <ion-infinite-scroll-content
+          loadingSpinner="circles"
+          [loadingText]="'LOADING' | translate">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+  </ng-container>
 
   <ng-template #noArticles>
     <div class="no-content">

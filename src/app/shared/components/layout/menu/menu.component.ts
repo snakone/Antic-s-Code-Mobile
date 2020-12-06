@@ -1,33 +1,59 @@
-import { Component } from '@angular/core';
-import { MENU } from '@shared/shared.data';
-import { MenuController } from '@ionic/angular';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { MenuController, ModalController } from '@ionic/angular';
 import { MenuService } from '@services/menu/menu.service';
+import { SettingsComponent } from '../../modals/settings/settings.component';
+import { Router } from '@angular/router';
+import { User } from '@shared/interfaces/interfaces';
+import { Observable } from 'rxjs';
+import { UserFacade } from '@store/user/user.facade';
+import { MENU } from '@shared/data/app';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class MenuComponent {
+export class MenuComponent implements OnInit {
 
-  menuLink = MENU;
+  user$: Observable<User>;
+  menu = MENU;
 
   constructor(
-    private menu: MenuController,
-    private menuSrv: MenuService
+    private menuCtrl: MenuController,
+    private menuSrv: MenuService,
+    private modalCtrl: ModalController,
+    private router: Router,
+    private userFacade: UserFacade
   ) { }
 
-  public close(): void {
-    this.menu.close('main');
+  ngOnInit() {
+    this.user$ = this.userFacade.user$;
   }
 
-  public emitOpen(): void {
-    this.menuSrv.setMenuState(true);
+  public async open(route: string): Promise<void> {
+    if (route === '/profile' || route === '/home') {
+      this.menuCtrl.close();
+      return;
+    }
+
+    const modal = await this.modalCtrl.create({
+      component: this.selectComp(route)
+    });
+
+    modal.present();
   }
 
-  public emitClose(): void {
-    this.menuSrv.setMenuState(false);
+  public emit(state: boolean): void {
+    if (state) { this.menuCtrl.swipeGesture(state); }
+    this.menuSrv.setMenuState(state);
+  }
+
+  private selectComp<T>(route: string): typeof SettingsComponent {
+    switch (route) {
+      case '/settings': return SettingsComponent;
+    }
   }
 
 }

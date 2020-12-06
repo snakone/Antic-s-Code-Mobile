@@ -15,12 +15,15 @@ import { NgMarkdownModule } from './markdown/markdown.module';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '@env/environment';
 
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './ngrx/ngrx.index';
 import { EffectsModule } from '@ngrx/effects';
 import { ContentEffects } from './ngrx/content/content.effects';
+import { UserEffects } from './ngrx/user/user.effects';
+import { NativeModule } from './native/native.module';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, CORE_MODULE_CONSTANTS.TRANSLATE_CONFIG.I18N_PATH,
@@ -37,7 +40,8 @@ export function createTranslateLoader(http: HttpClient) {
     LanguageModule.forRoot(),
     StoreModule.forFeature('AppState', reducers),
     EffectsModule.forRoot([
-      ContentEffects
+      ContentEffects,
+      UserEffects
     ]),
     TranslateModule.forRoot({
       loader: {
@@ -48,6 +52,8 @@ export function createTranslateLoader(http: HttpClient) {
     }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AngularFireStorageModule,
+    NativeModule
   ],
   providers: [
     HttpService,

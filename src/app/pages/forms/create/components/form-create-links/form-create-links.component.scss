@@ -1,0 +1,37 @@
+ion-item {
+  --inner-border-width: 0 !important;
+}
+
+ion-list-header {
+  padding-left: 0;
+  display: flex;
+  align-items: center;
+}
+
+ion-chip {
+  height: 70px;
+  margin: .5rem 0;
+}
+
+.info {
+  margin-left: 1rem;
+}
+
+.fab {
+  color: #fff;
+}
+
+ion-input {
+  --background: var(--ion-color-link);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  --color: var(--ion-color-dark);
+}
+
+ion-button {
+  width: 50%;
+  margin: .8rem auto .5rem auto;
+  color: #fff;
+  --background: var(--ion-header-background-invert);
+  --background-activated: var(--ion-header-background);
+}

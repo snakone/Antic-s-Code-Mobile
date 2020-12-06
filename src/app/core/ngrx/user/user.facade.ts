@@ -19,4 +19,8 @@ export class UserFacade {
     this.store.dispatch(UserActions.set({user}));
   }
 
+  public logOut(): void {
+    this.store.dispatch(UserActions.userLogOut());
+  }
+
 }

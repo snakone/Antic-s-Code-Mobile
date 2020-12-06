@@ -1,0 +1,12 @@
+<app-page-header [title]="'MESSAGE.PREVIEW' | translate"
+                 [href]="false"
+                 [showMenu]="false">
+</app-page-header>
+
+<ion-content force-overscroll="false">
+  <ng-container *ngIf="message">
+    <markdown class="template no-margin" 
+              [data]="message">
+    </markdown>
+  </ng-container>
+</ion-content>

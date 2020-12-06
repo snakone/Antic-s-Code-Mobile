@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HOME_HEADER } from '@shared/data/header';
 import { ThemeService } from '@services/theme/theme.service';
 import { Article } from '@shared/interfaces/interfaces';
 import { ContentFacade } from '@store/content/content.facade';
@@ -10,6 +11,7 @@ import { filter, takeUntil } from 'rxjs/operators';
   selector: 'app-draft-list',
   templateUrl: './draft-list.component.html',
   styleUrls: ['./draft-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class DraftListComponent implements OnInit, OnDestroy {
@@ -17,6 +19,7 @@ export class DraftListComponent implements OnInit, OnDestroy {
   drafts$: Observable<Article[]>;
   private unsubscribe$ = new Subject<void>();
   isDark: boolean;
+  header = HOME_HEADER;
 
   constructor(
     private router: Router,

@@ -5,10 +5,10 @@ import { Subject } from 'rxjs';
 
 export class MenuService {
 
-  public isOpen: Subject<boolean> = new Subject<boolean>();
+  public isOpen$: Subject<boolean> = new Subject<false>();
 
   public setMenuState(state: boolean): void {
-    this.isOpen.next(state);
+    this.isOpen$.next(state);
   }
 
 }

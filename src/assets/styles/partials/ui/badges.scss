@@ -1,0 +1,101 @@
+// BADGES
+.badge-featured {
+  @include badge(#fa8b0c, 0, #fff);
+}
+
+.badge-popular {
+  @include badge(#fd4868, 0, #fff);
+}
+
+.badge-new {
+  @include badge(#4471ee, 0, #fff);
+}
+
+.badge-classic {
+  @include badge(#b0faff, 0, #333);
+}
+
+.badge-loved {
+  @include badge(#fd71e6, 0, rgb(24, 20, 20));
+}
+
+.badge-featured-article {
+  @include badge(#108106, 10px, #fff);
+  border: 1px solid #ffffffa4;
+  padding: .36667rem .66667rem .52222rem;
+}
+
+.badge-popular-article {
+  @include badge(#ee0000, 10px, #fff);
+  border: 1px solid #ffffffa4;
+  padding: .36667rem .66667rem .52222rem;
+}
+
+.badge-new-article {
+  @include badge(#214cc2, 10px, #fff);
+  border: 1px solid #ffffffa4;
+  padding: .36667rem .66667rem .52222rem;
+}
+
+.badge-classic-article {
+  @include badge(#b0faff, 10px, #333);
+  border: 1px solid #ffffffa4;
+  padding: .36667rem .66667rem .52222rem;
+}
+
+.badge-loved-article {
+  @include badge(#fd71e6, 10px, rgb(24, 20, 20));
+  border: 1px solid #ffffffa4;
+  padding: .36667rem .66667rem .52222rem;
+}
+
+.badge-category {
+  @include badge-category(15px);
+}
+
+.badge-card-category {
+  @include badge-category(0);
+}
+
+.meta-star {
+  @include meta-data(var(--ion-color-success), 2rem);
+  & ion-icon { top: -1px }
+}
+
+.meta-star-card {
+  @include meta-data(#03963eef, 2rem);
+}
+
+.meta-like {
+  @include meta-data(var(--ion-color-primary), 2rem);
+}
+
+.meta-like-card {
+  @include meta-data(#d40350e8, 1.5rem);
+}
+
+.meta-view {
+  @include meta-data(#1288E9, 2.2rem);
+}
+
+.meta-view-card {
+  @include meta-data(#1288E9d5, 1.5rem);
+}
+
+.meta-review {
+  @include meta-data(#6f32cc, 2rem)
+}
+
+.meta-type {
+  @include meta-data(transparent, 2rem);
+  border: 1px solid rgba(255,255,255,.5);
+  padding-left: 0;
+  padding: 0 1rem;
+  @media(max-width: 450px) { padding: 0 .7rem }
+  &:hover {
+    color: var(--ion-color-primary) !important;
+    border: 1px solid var(--ion-color-primary) !important;
+  }
+
+   & ion-icon { left: 0 }
+}

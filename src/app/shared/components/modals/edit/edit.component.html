@@ -1,4 +1,7 @@
-<app-page-header [title]="'EDIT.ARTICLE' | translate"></app-page-header>
+<app-page-header [title]="'EDIT.ARTICLE' | translate"
+                 [href]="false"
+                 [showMenu]="false">
+</app-page-header>
 
 <ion-content>
   <ng-container *ngIf="content$ | async">
@@ -18,7 +21,7 @@
           <ion-input formControlName="cover"></ion-input>
         </ion-item>
         <ion-item> <!-- CATEGORY -->
-          <ion-label class="select">{{'CATEGORY' | translate}}</ion-label>
+          <ion-label class="select">{{'CATEGORY.NAME' | translate}}</ion-label>
           <ion-select formControlName="category">
             <ion-select-option [value]="c" 
                                *ngFor="let c of categories">{{c}}
@@ -42,17 +45,6 @@
             <ion-select-option [value]="t" 
                                *ngFor="let t of tags">
                                {{t | translate}}
-            </ion-select-option>
-          </ion-select>
-        </ion-item>
-        <ion-item> <!-- BADGES -->
-          <ion-label class="select">{{'BADGE.NAME' | translate}} 
-            <span class="white">(Max 2)</span>
-          </ion-label>
-          <ion-select formControlName="badges" multiple="true">
-            <ion-select-option [value]="b" 
-                               *ngFor="let b of badges">
-                               {{b | translate}}
             </ion-select-option>
           </ion-select>
         </ion-item>

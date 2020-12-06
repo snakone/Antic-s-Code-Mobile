@@ -1,0 +1,93 @@
+.arrows {
+  opacity: .3;
+}
+
+.arrow-content-left {
+  position: absolute;
+  left: -2px;
+  top: 10px;
+}
+
+.arrow-content-right {
+  position: absolute;
+  right: 26px;
+  top: 10px;
+}
+
+.arrow-right-light,
+.arrow-left-light,
+.arrow-right-dark,
+.arrow-left-dark {
+  position: absolute; 
+  bottom: 0; 
+  margin-left: 0px; 
+  width: 12px; 
+  height: 12px; 
+  background-size: contain; 
+  top: 15px;
+}
+
+.arrow-second { margin-left: 8px }
+.arrow-first { margin-left: 16px }
+
+@keyframes bounceAlpha {
+  0% { opacity: 1; transform: translateX(0px) scale(1)}
+  25%{ opacity: 0; transform:translateX(11px) scale(0.9) }
+  26%{ opacity: 0; transform:translateX(-11px) scale(0.9) }
+  55% { opacity: 1; transform: translateX(0px) scale(1) }
+}
+
+@keyframes bounceAlphaInvert {
+  0% { opacity: 1; transform: translateX(0px) scale(1)}
+  25%{ opacity: 0; transform:translateX(-11px) scale(0.9) }
+  26%{ opacity: 0; transform:translateX(11px) scale(0.9) }
+  55% { opacity: 1; transform: translateX(0px) scale(1) }
+}
+
+.arrow-right-light.arrow-first,
+.arrow-right-light.arrow-second,
+.arrow-right-light.arrow-third,
+.arrow-left-light.arrow-first,
+.arrow-left-light.arrow-second,
+.arrow-left-light.arrow-third, 
+.arrow-right-dark.arrow-first,
+.arrow-right-dark.arrow-second,
+.arrow-right-dark.arrow-third,
+.arrow-left-dark.arrow-first,
+.arrow-left-dark.arrow-second,
+.arrow-left-dark.arrow-third {
+  animation-duration: 1.4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.arrow-right-light { 
+  animation-name: bounceAlpha;
+  background-image: url(../../../assets/img/arrow-right-light.svg);
+}
+
+.arrow-left-light { 
+  animation-name: bounceAlphaInvert;
+  background-image: url(../../../assets/img/arrow-left-light.svg);
+}
+
+.arrow-right-dark { 
+  animation-name: bounceAlpha;
+  background-image: url(../../../assets/img/arrow-right-dark.svg);
+}
+
+.arrow-left-dark { 
+  animation-name: bounceAlphaInvert;
+  background-image: url(../../../assets/img/arrow-left-dark.svg);
+}
+
+.arrow-right-light.arrow-first,
+.arrow-left-light.arrow-first,
+.arrow-right-dark.arrow-first,
+.arrow-left-dark.arrow-first { animation-delay: .4s }
+
+.arrow-right-light.arrow-second,
+.arrow-left-light.arrow-first,
+.arrow-right-dark.arrow-second,
+.arrow-left-dark.arrow-first { animation-delay: .2s }
+

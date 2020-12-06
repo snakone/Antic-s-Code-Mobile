@@ -44,6 +44,9 @@
       "@pages/*": [
         "app/pages/*"
       ],
+      "@modals/*": [
+        "app/shared/components/modals/*"
+      ],
       "@store/*": [
         "app/core/ngrx/*"
       ]

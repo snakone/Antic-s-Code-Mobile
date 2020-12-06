@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Draft } from '@shared/interfaces/interfaces';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { CATEGORIES, TAGS, BADGES, LEVELS } from '@shared/shared.data';
 import { ModalController } from '@ionic/angular';
 import { DraftsService } from '@services/drafts/drafts.service';
 import { Subject } from 'rxjs';
@@ -10,6 +9,8 @@ import { UserService } from '@services/user/user.service';
 import { CrafterService } from '@services/crafter/crafter.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { TAGS, LEVELS } from '@shared/data/article';
+import { CATEGORIES } from '@shared/data/categories';
 
 @Component({
   selector: 'app-create',
@@ -23,7 +24,6 @@ export class CreateComponent implements OnInit, OnDestroy {
   createForm: FormGroup;
   categories = CATEGORIES;
   tags = TAGS;
-  badges = BADGES;
   levels = LEVELS;
   imagePattern = '^.+\.(([pP][nN][gG])|([jJ][pP][gG]))$';  // Png, Jpg
   private unsubscribe$ = new Subject<void>();
@@ -117,7 +117,6 @@ export class CreateComponent implements OnInit, OnDestroy {
     .pipe(takeUntil(this.unsubscribe$))
     .subscribe(_ => {
       this.modalCtrl.dismiss();
-      this.draftSrv.getDraftsByUser().toPromise().then();
       const confirm = this.crafter.confirm('EDIT.NOW', 'ARTICLE.SAVED');
       confirm.then(res => {
         if (!res.role) {

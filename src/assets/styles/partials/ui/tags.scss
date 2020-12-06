@@ -1,0 +1,7 @@
+.tag-text {
+  @include tag;
+ }
+
+ .category-tag {
+  @include category-tag(#5d658c, #bbbfcc);
+ }

@@ -1,0 +1,32 @@
+ion-item {
+  --padding-bottom: .5rem;
+  --inner-border-width: 0 !important;
+}
+
+ion-list-header {
+  padding-left: 0;
+}
+
+ion-chip {
+  height: 86px;
+  margin: 0;
+}
+
+ion-input {
+  --background: var(--ion-color-link);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  --color: var(--ion-color-dark);
+}
+
+ion-textarea {
+  --background: var(--ion-color-link);
+  border-radius: 4px;
+  padding-bottom: .666rem;
+  --padding-start: 8px;
+  margin-bottom: 1rem;
+}
+
+.summary {
+  margin-top: 1.2rem;
+}

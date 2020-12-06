@@ -1,0 +1,29 @@
+.info {
+  font-size: 1.2rem;
+  margin-right: 0;
+}
+
+ion-label {
+  padding-left: 8px;
+}
+
+ion-list {
+  margin-top: 2rem;
+}
+
+ion-item {
+  position: relative;
+  --full-highlight-height: 0;
+  --padding-bottom: .5rem;
+  --border-width: 0 !important;
+  --inner-border-width: 0 !important;
+}
+
+ion-icon[slot="start"] {
+  font-size: 1.3rem;
+}
+
+ion-checkbox {
+  margin: 0 1px 0 0;
+}
+
