@@ -23,6 +23,15 @@ export function markedOptionsFactory(): MarkedOptions {
       '<a role="link" tabindex="0" target="_blank" rel="nofollow noopener noreferrer" ');
   };
 
+  renderer.heading = (text, level, raw, selector) => {
+    if (level >= 3 || level === 1) { return `<h${level}>${text}</h${level}>`; }
+    const id = slugify(text);
+    return `
+      <div class="anchor" id="${id}"></div>
+      <h${level}>${text}</h${level}>
+    `;
+  };
+
   return {
     renderer,
     gfm: true,
@@ -38,3 +47,16 @@ export function markedOptionsFactory(): MarkedOptions {
 })
 
 export class NgMarkdownModule { }
+
+const slugify = ( text: string ) => {
+  return text
+  .toString()
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .toLowerCase()
+  .trim()
+  .replace('.', '-')
+  .replace(/\s+/g, '-')
+  .replace(/[^\w\-]+/g, '')
+  .replace(/\-\-+/g, '-');
+};

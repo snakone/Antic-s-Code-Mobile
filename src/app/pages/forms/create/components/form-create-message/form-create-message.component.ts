@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { PreviewComponent } from '@shared/components/modals/preview/preview.component';
+import { CrafterService } from '@services/crafter/crafter.service';
 
 @Component({
   selector: 'app-form-create-message',
@@ -9,8 +11,18 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 export class FormCreateMessageComponent implements OnInit {
 
-  constructor() { }
+  message: string;
+
+  constructor(private crafter: CrafterService) { }
 
   ngOnInit() {}
+
+  public openTooltip(): void {
+    this.crafter.alert('TOOLTIP.MESSAGE', false);
+  }
+
+  public preview(): void {
+    this.crafter.modal(PreviewComponent, { message: this.message });
+  }
 
 }

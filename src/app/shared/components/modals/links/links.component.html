@@ -1,0 +1,10 @@
+<app-page-header [title]="'LINKS.PREVIEW' | translate"
+                 [href]="false"
+                 [showMenu]="false">
+</app-page-header>
+
+<ion-content force-overscroll="false">
+  <ng-container *ngIf="links">
+    {{links | json}}
+  </ng-container>
+</ion-content>

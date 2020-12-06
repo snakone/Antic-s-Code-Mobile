@@ -3,18 +3,17 @@
   <ion-item>
     <ion-label position="stacked">{{'TITLE' | translate}}</ion-label>
     <ion-input clearInput 
-               autofocus
                required
                type="text"
                maxlength="35"
                minlength="10"
+               #title
                name="title">
     </ion-input>
   </ion-item>
 </ion-list>
 
 <ion-chip color="success">
-  <ion-icon slot="start" name="information-circle-outline"></ion-icon>
   {{'CHOOSE.TITLE' | translate}}
 </ion-chip>
 

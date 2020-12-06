@@ -1,4 +1,9 @@
 <div class="card-container">
+  <input type="file" 
+         name="picture" 
+         id="input" 
+         style="display: none;"
+         accept="image/jpeg, image/png">
   <ion-card button="true" 
            (click)="upload()"
            [ngClass]="{'photo' : picture}">

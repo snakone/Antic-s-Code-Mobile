@@ -162,7 +162,7 @@ ion-label, ion-text {
 
   &-columns {
     position: relative;
-    top: -3.5vh;
+    top: -1.5vh;
   }
 }
 
@@ -173,6 +173,12 @@ ion-checkbox {
 }
 
 .native-input.sc-ion-input-ios, 
-.native-textarea.sc-ion-textarea-ios {
+.native-textarea.sc-ion-textarea-ios
+{
   padding-left: 8px;
+}
+
+.message .native-textarea.sc-ion-textarea-ios {
+  height: 60vh;
+  padding-bottom: 10px;
 }

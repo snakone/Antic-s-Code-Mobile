@@ -1,3 +1,16 @@
-<p>
-  form-create-preview works!
-</p>
+<ng-container *ngIf="saved">
+  <div class="animated fadeIn">
+    <img src="assets/img/congrats.svg"/>
+    <h2>{{'CONGRATS' | translate}}</h2>
+    <p>{{'DRAFT.PUBLISHED' | translate}}</p>
+    <ion-button size="small" color="secondary" shape="round">
+      <span>{{'SEE.DRAFT' | translate}}</span>
+    </ion-button>
+    <ion-button size="small" 
+                color="danger" 
+                shape="round"
+                (click)="back()">
+      {{'BACK' | translate}}
+    </ion-button>
+  </div>
+</ng-container>

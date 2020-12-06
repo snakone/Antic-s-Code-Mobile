@@ -72,9 +72,9 @@ export class CrafterService {
     return modal.present();
   }
 
-  public async loader(): Promise<void> {
+  public async loader(msg?: string): Promise<void> {
     const loading = await this.loading.create({
-      message: this.translateMsg('LOADING')
+      message: this.translateMsg(msg ? msg : 'LOADING')
     });
     return loading.present();
   }

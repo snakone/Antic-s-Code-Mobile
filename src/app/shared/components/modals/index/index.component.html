@@ -1,0 +1,12 @@
+<app-page-header [title]="'INDEX.PREVIEW' | translate"
+                 [href]="false"
+                 [showMenu]="false">
+</app-page-header>
+
+<ion-content force-overscroll="false">
+  <ng-container *ngIf="markdown">
+    <markdown class="template no-margin" 
+              [data]="markdown">
+    </markdown>
+  </ng-container>
+</ion-content>

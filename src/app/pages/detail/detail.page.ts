@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from '@shared/interfaces/interfaces';
 import { Observable, Subject } from 'rxjs';
-import { DraftsService } from '@core/services/drafts/drafts.service';
 import { ModalController } from '@ionic/angular';
 import { EditComponent } from '@shared/components/modals/edit/edit.component';
 import { MarkDownComponent } from '@shared/components/modals/markdown/markdown.component';

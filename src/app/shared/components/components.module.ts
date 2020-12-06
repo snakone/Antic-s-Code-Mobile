@@ -11,6 +11,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CreateComponent } from './modals/create/create.component';
 import { PageHeaderModule } from './layout/page-header/page-header.module';
 import { SettingsComponent } from './modals/settings/settings.component';
+import { IndexComponent } from './modals/index/index.component';
+import { PreviewComponent } from './modals/preview/preview.component';
+import { LinksComponent } from './modals/links/links.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { SettingsComponent } from './modals/settings/settings.component';
     EditComponent,
     MarkDownComponent,
     CreateComponent,
-    SettingsComponent
+    SettingsComponent,
+    IndexComponent,
+    PreviewComponent,
+    LinksComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +40,12 @@ import { SettingsComponent } from './modals/settings/settings.component';
     EditComponent,
     MarkDownComponent,
     CreateComponent,
-    SettingsComponent
+    SettingsComponent,
+    PreviewComponent,
+    IndexComponent,
+    TranslateModule,
+    FormsModule,
+    LinksComponent
   ]
 })
 

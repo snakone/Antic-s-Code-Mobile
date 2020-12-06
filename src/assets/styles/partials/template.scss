@@ -261,6 +261,12 @@
         }
       }
     }
+    
+    &.no-margin h2:first-of-type:before {
+      border-bottom: none;
+      padding-top: 0;
+      margin-bottom: 10px;
+    }
 }
 
 

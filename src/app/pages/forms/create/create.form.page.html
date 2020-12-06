@@ -11,22 +11,22 @@
       <app-form-create-intro></app-form-create-intro>
     </ion-slide>
     <ion-slide class="data">
-      <app-form-create-data></app-form-create-data>
+      <app-form-create-data (index)="showIndex($event)"></app-form-create-data>
     </ion-slide>
     <ion-slide class="title">
       <app-form-create-title></app-form-create-title>
     </ion-slide>
-    <ion-slide>
+    <ion-slide *ngIf="userIndex" class="index">
       <app-form-create-index></app-form-create-index>
     </ion-slide>
-    <ion-slide>
+    <ion-slide class="message">
       <app-form-create-message></app-form-create-message>
     </ion-slide>
-    <ion-slide>
+    <ion-slide class="links">
       <app-form-create-links></app-form-create-links>
     </ion-slide>
     <ion-slide>
-      <app-form-create-preview></app-form-create-preview>
+      <app-form-create-preview [saved]="saved"></app-form-create-preview>
     </ion-slide>
   </ion-slides>
 </ion-content>
@@ -37,7 +37,7 @@
                 slot="start" 
                 color="dark"
                 (click)="back()"
-                *ngIf="index != 0">
+                *ngIf="index != 0 && index != (slidesLength - 1)">
       <ion-icon name="chevron-forward-outline"></ion-icon> 
       {{'PREVIOUS' | translate}} 
    </ion-button>

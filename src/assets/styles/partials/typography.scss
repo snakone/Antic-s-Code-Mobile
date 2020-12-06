@@ -14,7 +14,7 @@ span:not(.tab), p, li, a, input, p code, p span, td {
   font-size: .9rem
 }
 
-textarea { font-size: .9rem !important }
+textarea, input { font-size: .9rem !important }
 
 strong { font-size: inherit }
 span strong, p span { font-size: inherit !important }

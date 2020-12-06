@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CATEGORIES } from '@shared/data/categories';
 import { CrafterService } from '@services/crafter/crafter.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -15,14 +15,15 @@ import { RandomizerPipe } from '@shared/pipes/randomizer/randomizer.pipe';
 
 export class FormCreateDataComponent {
 
+  @Output() index = new EventEmitter<boolean>();
   categories = CATEGORIES;
   tags = TAGS;
   levels = LEVELS;
   categorySelected: string;
   tagsSelected: string[];
   levelSelected: string;
-  index: boolean;
   showed = false;
+  showIndex = true;
 
   constructor(
     private translate: TranslateService,
@@ -110,6 +111,7 @@ export class FormCreateDataComponent {
   }
 
   public changed(e: boolean): void {
+    this.index.emit(e);
     if (this.showed) { return; }
     this.openTooltip('index');
     this.showed = true;

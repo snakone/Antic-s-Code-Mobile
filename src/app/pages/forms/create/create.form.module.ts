@@ -3,11 +3,10 @@ import { CommonModule } from '@angular/common';
 import { CreateFormPageRouting } from './create.form.routing';
 import { IonicModule } from '@ionic/angular';
 import { PageHeaderModule } from '@layout/page-header/page-header.module';
-import { TranslateModule } from '@ngx-translate/core';
 import { CreateFormPage } from './create.form.page';
-import { FormsModule } from '@angular/forms';
 import { PipesModule } from '@shared/pipes/pipes.module';
 import { LayoutModule } from '@layout/layout.module';
+import { ComponentsModule } from '@shared/components/components.module';
 import { RandomizerPipe } from '@shared/pipes/randomizer/randomizer.pipe';
 
 import { FormCreateIntroComponent } from './components/form-create-intro/form-create-intro.component';
@@ -32,12 +31,11 @@ import { FormCreatePreviewComponent } from './components/form-create-preview/for
   imports: [
     CommonModule,
     CreateFormPageRouting,
-    FormsModule,
     IonicModule,
-    TranslateModule,
     PageHeaderModule,
     PipesModule,
-    LayoutModule
+    LayoutModule,
+    ComponentsModule
   ],
   providers: [
     RandomizerPipe

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-form-create-preview',
@@ -8,8 +9,14 @@ import { Component, OnInit } from '@angular/core';
 
 export class FormCreatePreviewComponent implements OnInit {
 
-  constructor() { }
+  @Input() saved: boolean;
+
+  constructor(private nav: NavController) { }
 
   ngOnInit() {}
+
+  public back(): void {
+    this.nav.navigateRoot('/home');
+  }
 
 }
