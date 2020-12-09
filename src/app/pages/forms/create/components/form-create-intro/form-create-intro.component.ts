@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { DraftForm } from '@app/core/ngrx/forms/forms.reducer';
 import { FORM_CREATE_INTRO } from '@shared/data/create';
+import { FormGroupState } from 'ngrx-forms';
 
 @Component({
   selector: 'app-form-create-intro',
@@ -10,10 +12,13 @@ import { FORM_CREATE_INTRO } from '@shared/data/create';
 
 export class FormCreateIntroComponent implements OnInit {
 
+  @Input() draftForm: FormGroupState<DraftForm>;
+
   intro = FORM_CREATE_INTRO;
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
 
 }

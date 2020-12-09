@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CATEGORIES } from '@shared/data/categories';
 import { CrafterService } from '@services/crafter/crafter.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -6,6 +6,9 @@ import { TAGS, LEVELS } from '@app/shared/data/article';
 import { PickerController } from '@ionic/angular';
 import { PickerColumnOption } from '@ionic/core';
 import { RandomizerPipe } from '@shared/pipes/randomizer/randomizer.pipe';
+import { DraftForm } from '@core/ngrx/forms/forms.reducer';
+import { FormGroupState } from 'ngrx-forms';
+import { FormsFacade } from '@store/forms/forms.facade';
 
 @Component({
   selector: 'app-form-create-data',
@@ -13,15 +16,13 @@ import { RandomizerPipe } from '@shared/pipes/randomizer/randomizer.pipe';
   styleUrls: ['./form-create-data.component.scss']
 })
 
-export class FormCreateDataComponent {
+export class FormCreateDataComponent implements OnInit {
 
   @Output() index = new EventEmitter<boolean>();
+  @Input() draftForm: FormGroupState<DraftForm>;
   categories = CATEGORIES;
   tags = TAGS;
   levels = LEVELS;
-  categorySelected: string;
-  tagsSelected: string[];
-  levelSelected: string;
   showed = false;
   showIndex = true;
 
@@ -29,8 +30,13 @@ export class FormCreateDataComponent {
     private translate: TranslateService,
     private crafter: CrafterService,
     private pickerCtrl: PickerController,
-    private randomizer: RandomizerPipe
+    private randomizer: RandomizerPipe,
+    private formsFacade: FormsFacade
   ) { }
+
+  ngOnInit(): void { }
+
+  public get properties() { return this.draftForm.userDefinedProperties; }
 
   public async openTooltip(type: string): Promise<void> {
     this.crafter.alert(this.getMessage(type), false);
@@ -57,7 +63,7 @@ export class FormCreateDataComponent {
           buttons: [
             { text: this.translate.instant('CANCEL'), role: 'cancel' },
             { text: this.translate.instant('ACCEPT'),
-              handler: res => this.categorySelected = res.category.value
+              handler: res => this.formsFacade.action('category', res.category.value)
             }
           ]
         });
@@ -81,9 +87,10 @@ export class FormCreateDataComponent {
             { text: this.translate.instant('CANCEL'), role: 'cancel' },
             { text: this.translate.instant('ACCEPT'),
               handler: (res: CustomColumnS) => {
-                const tags = Object.entries(res).map(c => c[1].value);
-                tags.reduce((a, c) =>  a === c ? this.crafter.alert('TAG.REPEAT', false) : a);
-                this.tagsSelected = [...new Set(tags)].filter(x => x && !!x);
+                const arr = Object.entries(res).map(c => c[1].value);
+                arr.reduce((a, c) =>  a === c ? this.crafter.alert('TAG.REPEAT', false) : a);
+                const tags  = [...new Set(arr)].filter(x => x && !!x);
+                this.formsFacade.action('tags', tags);
               }
             }
           ]
@@ -101,7 +108,7 @@ export class FormCreateDataComponent {
           buttons: [
             { text: this.translate.instant('CANCEL'), role: 'cancel' },
             { text: this.translate.instant('ACCEPT'),
-              handler: res => this.levelSelected = res.levels.value
+              handler: res => this.formsFacade.action('level', res.levels.value)
             }
           ]
         });

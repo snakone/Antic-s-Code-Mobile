@@ -9,8 +9,10 @@ ion-list-header {
 }
 
 ion-chip {
-  height: 70px;
+  height: auto;
   margin: .5rem 0;
+  font-size: 0.8rem;
+  line-height: inherit;
 }
 
 .info {
@@ -25,7 +27,7 @@ ion-input {
   --background: var(--ion-color-link);
   border-radius: 4px;
   margin-bottom: 1rem;
-  --color: var(--ion-color-dark);
+  --color: #222428;
 }
 
 ion-button {

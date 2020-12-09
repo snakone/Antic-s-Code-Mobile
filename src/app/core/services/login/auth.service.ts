@@ -3,7 +3,7 @@ import { environment } from '@env/environment';
 import { HttpService } from '../http/http.service';
 import { Observable } from 'rxjs';
 import { User, UserResponse } from '@shared/interfaces/interfaces';
-import { filter, tap } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({providedIn: 'root'})

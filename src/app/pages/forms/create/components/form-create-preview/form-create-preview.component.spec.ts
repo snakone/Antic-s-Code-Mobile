@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { FormCreatePreviewComponent } from './form-create-preview.component';
@@ -7,7 +7,7 @@ describe('FormCreatePreviewComponent', () => {
   let component: FormCreatePreviewComponent;
   let fixture: ComponentFixture<FormCreatePreviewComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ FormCreatePreviewComponent ],
       imports: [IonicModule.forRoot()]

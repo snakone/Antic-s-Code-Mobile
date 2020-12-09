@@ -7,7 +7,10 @@ import { CreateFormPage } from './create.form.page';
 import { PipesModule } from '@shared/pipes/pipes.module';
 import { LayoutModule } from '@layout/layout.module';
 import { ComponentsModule } from '@shared/components/components.module';
+import { SnippetsModule } from '@shared/components/snippets/snippets.module';
 import { RandomizerPipe } from '@shared/pipes/randomizer/randomizer.pipe';
+import { NgrxFormsModule } from 'ngrx-forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { FormCreateIntroComponent } from './components/form-create-intro/form-create-intro.component';
 import { FormCreateDataComponent } from './components/form-create-data/form-create-data.component';
@@ -31,11 +34,14 @@ import { FormCreatePreviewComponent } from './components/form-create-preview/for
   imports: [
     CommonModule,
     CreateFormPageRouting,
+    ReactiveFormsModule,
     IonicModule,
     PageHeaderModule,
     PipesModule,
     LayoutModule,
-    ComponentsModule
+    ComponentsModule,
+    NgrxFormsModule,
+    SnippetsModule
   ],
   providers: [
     RandomizerPipe

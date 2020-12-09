@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { DraftForm } from '@store/forms/forms.reducer';
+import { FormGroupState } from 'ngrx-forms';
 
 @Component({
   selector: 'app-form-create-title',
@@ -9,7 +11,12 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 export class FormCreateTitleComponent implements OnInit {
 
+  @Input() draftForm: FormGroupState<DraftForm>;
+
   constructor() { }
+
+  public get title() { return this.draftForm.controls.title; }
+  public get summary() { return this.draftForm.controls.summary; }
 
   ngOnInit() {}
 

@@ -1,15 +1,14 @@
 <ion-list>
   <ion-list-header>{{'ADD.TITLE' | translate}}</ion-list-header>
-  <ion-item>
+  <ion-item>  <!-- TITLE -->
     <ion-label position="stacked">{{'TITLE' | translate}}</ion-label>
     <ion-input clearInput 
-               required
                type="text"
-               maxlength="35"
-               minlength="10"
-               #title
-               name="title">
+               [maxlength]="35"
+               [minlength]="10"
+               [ngrxFormControlState]="title">
     </ion-input>
+    <app-ngrx-form-error [control]="title"></app-ngrx-form-error>
   </ion-item>
 </ion-list>
 
@@ -19,16 +18,16 @@
 
 <ion-list class="summary">
   <ion-list-header>{{'ADD.SUMMARY' | translate}}</ion-list-header>
-  <ion-item>
+  <ion-item>  <!-- SUMMARY -->
     <ion-label position="stacked">{{'SUMMARY' | translate}}</ion-label>
-    <ion-textarea required
-                  inputmode="text"
+    <ion-textarea inputmode="text"
                   type="text"
                   rows="8"
-                  maxlength="600"
-                  minlength="100"
-                  name="summary">
+                  [ngrxFormControlState]="summary"
+                  [maxlength]="600"
+                  [minlength]="100">
     </ion-textarea>
+    <app-ngrx-form-error [control]="summary"></app-ngrx-form-error>
   </ion-item>
 </ion-list>
 

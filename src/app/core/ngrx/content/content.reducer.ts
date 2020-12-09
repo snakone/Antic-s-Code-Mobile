@@ -145,7 +145,7 @@ export const getDataLoaded = (state: ContentState): boolean => {
 };
 
 function completed(articles: Article[]): boolean {
-  return articles.length === 0 ? true : false;
+  return articles.length === 0;
 }
 
 function checkDraft(state: ContentState, draft: Article): Article[] {

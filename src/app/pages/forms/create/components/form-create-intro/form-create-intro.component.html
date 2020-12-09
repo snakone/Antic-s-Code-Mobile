@@ -1,23 +1,35 @@
-<div class="welcome">
-  <h2>{{'START.HERE' | translate}}</h2>
-  <p [innerHTML]="'CREATE.HERE' | translate"></p>
-  <p class="tips">{{'BEFORE.START' | translate}}</p>
-</div>
-
-<ion-list inset="true">
-  <ion-item *ngFor="let i of intro">
-    <ion-icon [name]="i.icon" slot="start"></ion-icon>
-    <ion-text [innerHTML]="i.title | translate"></ion-text>
-  </ion-item>
-</ion-list>
-
-<ion-list inset="true" class="check">
-  <ion-item class="default">
-    <ion-checkbox slot="start" mode="md"></ion-checkbox>
-    <ion-label class="ion-text-wrap">{{'I.KNOW.MARKDOWN' | translate}}</ion-label>
-  </ion-item>
-  <ion-item class="default">
-    <ion-checkbox slot="start" mode="md"></ion-checkbox>
-    <ion-label class="ion-text-wrap">{{'INAPPROPIATE' | translate}}</ion-label>
-  </ion-item>
-</ion-list>
+<form [ngrxFormState]="draftForm">
+  <div class="welcome">
+    <h2>{{'START.HERE' | translate}}</h2>
+    <p [innerHTML]="'CREATE.HERE' | translate"></p>
+    <p class="tips">{{'BEFORE.START' | translate}}</p>
+  </div>
+  
+  <ion-list inset="true">
+    <ion-item *ngFor="let i of intro">
+      <ion-icon [name]="i.icon" slot="start"></ion-icon>
+      <ion-text [innerHTML]="i.title | translate"></ion-text>
+    </ion-item>
+  </ion-list>
+  
+  <ion-list inset="true" class="check">
+    <ion-item class="default">
+      <ion-checkbox slot="start" 
+                    mode="md"
+                    [ngrxFormControlState]="draftForm.controls.markdown">
+      </ion-checkbox>  <!-- MARKDOWN -->
+      <ion-label class="ion-text-wrap"
+                 [innerHTML]="'I.KNOW.MARKDOWN' | translate">
+      </ion-label>
+    </ion-item>
+    <ion-item class="default">  <!-- ACCEPT -->
+      <ion-checkbox slot="start" 
+                    mode="md" 
+                    [ngrxFormControlState]="draftForm.controls.accept">
+      </ion-checkbox>
+      <ion-label class="ion-text-wrap" 
+                 [innerHTML]="'INAPPROPIATE' | translate">
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</form>

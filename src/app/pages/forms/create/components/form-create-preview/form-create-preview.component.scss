@@ -6,6 +6,10 @@ img {
   left: 2px;
 }
 
+.animated {
+  margin-top: 38px;  // Slide Footer
+}
+
 ion-button {
   max-width: 50%;
   margin: .3rem auto .5rem auto;
@@ -13,6 +17,7 @@ ion-button {
   
   & span {
     color: #fff !important;
+    font-size: 13px;
   }
 }
 

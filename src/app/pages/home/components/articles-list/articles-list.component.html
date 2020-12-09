@@ -16,7 +16,9 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-      <ion-infinite-scroll threshold="69px" (ionInfinite)="load($event)">
+      <ion-infinite-scroll [disabled]="disabled" 
+                           threshold="69px" 
+                           (ionInfinite)="load($event)">
         <ion-infinite-scroll-content
           loadingSpinner="circles"
           [loadingText]="'LOADING' | translate">

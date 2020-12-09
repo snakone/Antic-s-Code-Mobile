@@ -4,11 +4,12 @@
     <ion-icon class="info" 
               (click)="openTooltip()"
               name="help-circle-outline"></ion-icon>
-  </ion-list-header>
-  <ion-textarea [(ngModel)]="message"
-                class="message"
+  </ion-list-header>  <!-- MESSAGE -->
+  <ion-textarea class="message"
+                [ngrxFormControlState]="message"
                 [placeholder]="'WRITE.HERE' | translate">
   </ion-textarea>
+  <app-ngrx-form-error [control]="message"></app-ngrx-form-error>
 </ion-list>
 
 <ion-fab vertical="bottom" 
