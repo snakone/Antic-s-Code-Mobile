@@ -6,8 +6,8 @@ import { FireStorageService } from '@services/storage/fire-storage.service';
 import { last, switchMap, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { FormsFacade } from '@store/forms/forms.facade';
-import { DraftForm } from '@store/forms/forms.reducer';
 import { FormGroupState } from 'ngrx-forms';
+import { DraftForm } from '@shared/interfaces/interfaces';
 
 @Component({
   selector: 'app-image-upload',
@@ -24,7 +24,6 @@ export class ImageUploadComponent implements OnInit, OnDestroy {
     private cameraSrv: CameraService,
     private crafter: CrafterService,
     private platform: Platform,
-    private fire: FireStorageService,
     private formFacade: FormsFacade
   ) { }
 
@@ -49,7 +48,6 @@ export class ImageUploadComponent implements OnInit, OnDestroy {
       const file: File = e.target.files[0];
       if (!file) { return; }
       this.setPicture(file);
-      // this.uploadFile(file);
     });
   }
 
@@ -63,16 +61,6 @@ export class ImageUploadComponent implements OnInit, OnDestroy {
     pic && pic.length / 1024 > 120 ?
     this.crafter.toast('MAX.LENGTH') :
     this.formFacade.action('cover', pic);
-  }
-
-  private uploadFile(file: File): void {
-    const task = this.fire.upload(file.name, file);
-    const ref = this.fire.ref(file.name);
-    task.snapshotChanges().pipe(
-      last(),
-      takeUntil(this.unsubscribe$),
-      switchMap(() => ref.getDownloadURL())
-    ).subscribe(url => this.formFacade.action('cover', url));
   }
 
   ngOnDestroy() {

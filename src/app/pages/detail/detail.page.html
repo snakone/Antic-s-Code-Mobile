@@ -12,9 +12,9 @@
         <ion-icon name="settings-outline"></ion-icon>
       </ion-fab-button>
       <ion-fab-list side="top">
-        <ion-fab-button (click)="open('markdown')">
-          <ion-icon name="code-slash-outline">
-          </ion-icon>
+        <ion-fab-button *ngIf="article.type === 'draft'" 
+                        (click)="delete(article)">
+          <ion-icon name="trash-outline"></ion-icon>
         </ion-fab-button>
         <ion-fab-button (click)="open('edit')">
           <ion-icon name="color-wand-outline">
@@ -22,6 +22,10 @@
         </ion-fab-button>
         <ion-fab-button (click)="update(article)">
           <ion-icon name="save-outline">
+          </ion-icon>
+        </ion-fab-button>
+        <ion-fab-button (click)="open('markdown')">
+          <ion-icon name="code-slash-outline">
           </ion-icon>
         </ion-fab-button>
       </ion-fab-list>

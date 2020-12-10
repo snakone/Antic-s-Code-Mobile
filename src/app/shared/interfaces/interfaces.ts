@@ -29,7 +29,7 @@ export interface Article extends Content {
   type?: string;
 }
 
-// tslint:disable-next-line:no-empty-interface
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface Draft extends Article {}
 
 export interface User {
@@ -210,7 +210,7 @@ export class CustomError {
  }
 }
 
-// tslint:disable-next-line:no-empty-interface
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SWResponse extends ServerResponse {}
 
 export interface NotificationPayload {
@@ -251,4 +251,22 @@ export interface ArticlesDataResponse extends ServerResponse {
   likedArticles?: Article[];
   viewedArticles?: Article[];
   likes?: number;
+}
+
+export interface DraftForm {
+  markdown: boolean;
+  accept: boolean;
+  title: string;
+  summary: string;
+  message: string;
+}
+
+export interface DraftFormData {
+  cover: string;
+  category: string;
+  tags: string[];
+  level: string;
+  index: Index[];
+  links: Link[],
+  slideIndex: number;
 }

@@ -32,7 +32,8 @@ ion-input {
 
 ion-button {
   width: 50%;
-  margin: .8rem auto .5rem auto;
+  display: block;
+  margin: .8rem 0 .3rem 0;
   color: #fff;
   --background: var(--ion-header-background-invert);
   --background-activated: var(--ion-header-background);

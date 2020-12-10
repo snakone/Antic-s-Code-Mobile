@@ -4,25 +4,30 @@
 </app-page-header>
 
 <ion-content force-overscroll="false">
-  <ion-list inset="true"
-            *ngIf="(drafts$ | async) as drafts; else noDrafts">
-    <ion-item *ngFor="let d of drafts; let i = index"
-              (click)="navigate(d)"
-              class="ion-text-wrap"
-              detail>
-      <ion-avatar slot="start">
-        <img [src]="(isDark && d.category === 'Deno' ? 
-                     d.category + '-dark' : d.category) | logo">
-      </ion-avatar>
-      <ion-label>
-        {{d.title}}
-      </ion-label>
-    </ion-item>
-  </ion-list>
+  <ng-container *ngIf="(drafts$ | async) as drafts">
+    <ng-container *ngIf="drafts.length > 0; else noDrafts">
+      <ion-list inset="true">
+        <ion-item *ngFor="let d of drafts; let i = index"
+                  (click)="navigate(d)"
+                  class="ion-text-wrap"
+                  detail>
+          <ion-avatar slot="start">
+            <img [src]="(isDark && d.category === 'Deno' ? 
+                        d.category + '-dark' : d.category) | logo">
+          </ion-avatar>
+          <ion-label>
+            {{d.title}}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ng-container>
+  </ng-container>
 
   <ng-template #noDrafts>
     <div class="no-content">
-      {{'NO.CONTENT' | translate}}
+      <img src="assets/img/empty-draft.svg"/>
+      <p>{{'NO.HORIZON' | translate}}</p>
+      <p>{{'CREATE.NOW' | translate}}</p>
     </div>
   </ng-template>
 </ion-content>

@@ -3,14 +3,9 @@ ion-content {
   position: relative;
 }
 
-.arrows-content {
-  right: 1.6rem;
-  opacity: .3;
-}
-
 .help {
   position: fixed;
-  top: 1.4rem;
+  top: 2.2rem;
   right: 1.4rem;
   font-size: 1.4rem;
 }
@@ -94,11 +89,16 @@ h3 {
   font-size: .8rem !important;
 }
 
+.arrows-content {
+  right: 1.6rem;
+  bottom: 3.6rem;
+  opacity: .3;
+}
+
 .arrows { z-index: 100 }
 
 .arrow-content-right {
   right: 24px;
-  top: 48px;
 
   &.is-open {
     right: 19px;

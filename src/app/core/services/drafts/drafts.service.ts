@@ -41,4 +41,15 @@ export class DraftsService {
       );
   }
 
+  public deleteDraftById(
+    id: string
+  ): Observable<Draft> {
+    return this.http
+    .delete<DraftResponse>(this.API_DRAFTS + id)
+    .pipe(
+      filter(res => res && !!res.ok),
+      map(res => res.draft)
+    );
+  }
+
 }

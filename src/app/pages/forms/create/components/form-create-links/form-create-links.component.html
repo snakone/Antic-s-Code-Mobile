@@ -36,6 +36,12 @@
                 [disabled]="form.invalid || !name.value || !url.value">
       {{'INSERT.LINK' | translate}}
     </ion-button>
+    <ion-button size="small"
+                (click)="delete()"
+                color="danger"
+                [disabled]="properties.links?.length === 0">
+      {{'DELETE.LINKS' | translate}}
+    </ion-button>
   </form>
 </ion-list>
 

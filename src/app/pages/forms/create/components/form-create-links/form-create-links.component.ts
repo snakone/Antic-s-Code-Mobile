@@ -4,7 +4,7 @@ import { CrafterService } from '@services/crafter/crafter.service';
 import { LinksComponent } from '@modals/links/links.component';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormsFacade } from '@store/forms/forms.facade';
-import { DraftForm } from '@store/forms/forms.reducer';
+import { DraftForm } from '@shared/interfaces/interfaces';
 import { FormGroupState } from 'ngrx-forms';
 import { URL_PATTERN } from '@shared/data/patterns';
 
@@ -67,6 +67,10 @@ export class FormCreateLinksComponent implements OnInit {
     this.crafter.modal(LinksComponent, {
       links: this.properties.links
     });
+  }
+
+  public delete(): void {
+    this.formsFacade.action('deleteLinks', true);
   }
 
 }

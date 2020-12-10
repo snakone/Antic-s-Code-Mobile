@@ -6,9 +6,9 @@ import { TAGS, LEVELS } from '@app/shared/data/article';
 import { PickerController } from '@ionic/angular';
 import { PickerColumnOption } from '@ionic/core';
 import { RandomizerPipe } from '@shared/pipes/randomizer/randomizer.pipe';
-import { DraftForm } from '@core/ngrx/forms/forms.reducer';
 import { FormGroupState } from 'ngrx-forms';
 import { FormsFacade } from '@store/forms/forms.facade';
+import { DraftForm } from '@app/shared/interfaces/interfaces';
 
 @Component({
   selector: 'app-form-create-data',
@@ -23,8 +23,6 @@ export class FormCreateDataComponent implements OnInit {
   categories = CATEGORIES;
   tags = TAGS;
   levels = LEVELS;
-  showed = false;
-  showIndex = true;
 
   constructor(
     private translate: TranslateService,
@@ -115,13 +113,6 @@ export class FormCreateDataComponent implements OnInit {
         picker.present();
       }
     }
-  }
-
-  public changed(e: boolean): void {
-    this.index.emit(e);
-    if (this.showed) { return; }
-    this.openTooltip('index');
-    this.showed = true;
   }
 }
 

@@ -1,0 +1,19 @@
+ion-item {
+  --full-highlight-height: 0;
+  --border-width: 0 !important;
+  --min-height: 38px;
+}
+
+ion-list {
+  margin: .5rem 10px .5rem 1rem !important;
+}
+
+ion-label {
+  font-size: .8rem;
+  margin: 0;
+  padding-right: 1rem;
+}
+
+ion-icon {
+  font-size: 1.4rem
+}

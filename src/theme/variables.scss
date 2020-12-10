@@ -64,6 +64,13 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 
+  --ion-color-orange: #ff813d;
+  --ion-color-orange-rgb: 255,129,61;
+  --ion-color-orange-contrast: #000000;
+  --ion-color-orange-contrast-rgb: 0,0,0;
+  --ion-color-orange-shade: #e07236;
+  --ion-color-orange-tint: #ff8e50;
+
   --ion-background-color: #ffffff;
   --ion-background-color-rgb: 255,255,255;
   --ion-item-padding: .5rem;
@@ -86,7 +93,6 @@
   // FONTS
   --primary-font-size: 16px;
   --ion-text-color: #48494e;
-  --ion-text-color-rgb: rgb(72, 73, 78);
   --ion-fancy-font: 'Fredoka One';
   --ion-font-family: 'Montserrat' !important;
     font-family: 'Montserrat' !important;

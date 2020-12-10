@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { DraftForm } from '@store/forms/forms.reducer';
+import { DraftForm } from '@shared/interfaces/interfaces';
 import { FormGroupState } from 'ngrx-forms';
 
 @Component({

@@ -6,6 +6,7 @@ import * as fromContent from '@store/content/content.reducer';
 import * as fromUser from '@store/user/user.reducer';
 import * as fromForms from '@store/forms/forms.reducer';
 import { FormGroupState } from 'ngrx-forms';
+import { DraftForm } from './shared/interfaces/interfaces';
 
 export const URI = 'https://anticscode.netlify.com';
 export const APP_VERSION = '0.2.0';
@@ -27,7 +28,7 @@ export const APP_CONSTANTS: AppConfig = {
 export interface AppState {
   content: fromContent.ContentState;
   user: fromUser.UserState;
-  forms: FormGroupState<fromForms.DraftForm>;
+  forms: FormGroupState<DraftForm>;
 }
 
 export let APP_CONFIG = new InjectionToken<AppConfig>('app.config');

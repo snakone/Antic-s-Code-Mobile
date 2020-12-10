@@ -204,3 +204,11 @@ ion-checkbox {
   background: linear-gradient(to bottom, var(--background, var(--ion-background-color, #fff)) 20%, 
               rgba(var(--background-rgb, var(--ion-background-color-rgb, 255, 255, 255)), 0.3) 100%);
 }
+
+.card-options .popover-content {
+  max-width: max-content !important;
+}
+
+.alert-message.sc-ion-alert-ios:empty {
+  padding-bottom: 0 !important;
+}

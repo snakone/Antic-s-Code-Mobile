@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { CrafterService } from '@services/crafter/crafter.service';
-import { Index } from '@shared/interfaces/interfaces';
+import { DraftForm, Index } from '@shared/interfaces/interfaces';
 import { IndexComponent } from '@modals/index/index.component';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormsFacade } from '@store/forms/forms.facade';
-import { DraftForm } from '@store/forms/forms.reducer';
 import { FormGroupState } from 'ngrx-forms';
 
 @Component({
@@ -69,6 +68,10 @@ export class FormCreateIndexComponent implements OnInit {
 
   public openTooltip(): void {
     this.crafter.alert('TOOLTIP.INDEX.USAGE', false);
+  }
+
+  public delete(): void {
+    this.formsFacade.action('deleteIndex', true);
   }
 
 }

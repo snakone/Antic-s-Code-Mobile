@@ -4,7 +4,8 @@
 </app-page-header>
 
 <ion-content> 
-  <ng-container *ngIf="(articles$ | async) as articles; else noArticles">
+  <ng-container *ngIf="(articles$ | async) as articles">
+    <ng-container *ngIf="articles.length > 0; else noArticles">
       <ion-grid>
         <ion-row>
           <ion-col size="12" size-md="6"
@@ -24,11 +25,14 @@
           [loadingText]="'LOADING' | translate">
         </ion-infinite-scroll-content>
       </ion-infinite-scroll>
+    </ng-container>
   </ng-container>
 
   <ng-template #noArticles>
     <div class="no-content">
-      {{'NO.CONTENT' | translate}}
+      <img src="assets/img/empty-content.svg"/>
+      <p>{{'FOUND.NOTHING' | translate}}</p>
+      <p>{{'GO.AHEAD' | translate}}</p>
     </div>
   </ng-template>
 </ion-content>

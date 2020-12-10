@@ -1,7 +1,8 @@
 import { InjectionToken } from '@angular/core';
 import { APP_CONSTANTS } from '../../../app.config';
 import { FormGroupState } from 'ngrx-forms';
-import { DraftForm, newForm } from '@app/core/ngrx/forms/forms.reducer';
+import { newForm } from '@store/forms/forms.reducer';
+import { DraftForm } from '@shared/interfaces/interfaces';
 
 export interface ModuleConfig {
   KEY: string;
@@ -14,6 +15,7 @@ export interface StorageConfig extends ModuleConfig {
   CREATE_TUTORIAL: boolean;
   INTRO_TUTORIAL: boolean;
   DRAFT_FORM: FormGroupState<DraftForm>;
+  AUTO_LOGIN: boolean;
 }
 
 export const STORAGE_CONSTANTS: StorageConfig = {
@@ -23,7 +25,8 @@ export const STORAGE_CONSTANTS: StorageConfig = {
   REMEMBER: false,
   CREATE_TUTORIAL: true,
   INTRO_TUTORIAL: true,
-  DRAFT_FORM: newForm()
+  DRAFT_FORM: newForm(),
+  AUTO_LOGIN: true
 };
 
 export class Storage {
@@ -35,6 +38,7 @@ export class Storage {
   createTutorial = STORAGE_CONSTANTS.CREATE_TUTORIAL;
   introTutorial = STORAGE_CONSTANTS.INTRO_TUTORIAL;
   draftForm = STORAGE_CONSTANTS.DRAFT_FORM;
+  autoLogin= STORAGE_CONSTANTS.AUTO_LOGIN;
 }
 
 export let STORAGE_CONFIG = new InjectionToken<StorageConfig>('storage.config');

@@ -13,14 +13,13 @@
         <app-form-create-intro [draftForm]="form"></app-form-create-intro>
       </ion-slide>
       <ion-slide class="data">
-        <app-form-create-data (index)="showIndex($event)"
-                              [draftForm]="form">
+        <app-form-create-data [draftForm]="form">
         </app-form-create-data>
       </ion-slide>
       <ion-slide class="title">
         <app-form-create-title [draftForm]="form"></app-form-create-title>
       </ion-slide>
-      <ion-slide *ngIf="userIndex" class="index">
+      <ion-slide class="index">
         <app-form-create-index [draftForm]="form"></app-form-create-index>
       </ion-slide>
       <ion-slide class="message">
@@ -30,7 +29,8 @@
         <app-form-create-links [draftForm]="form"></app-form-create-links>
       </ion-slide>
       <ion-slide>
-        <app-form-create-preview [saved]="saved"></app-form-create-preview>
+        <app-form-create-preview [draftForm]="form">
+        </app-form-create-preview>
       </ion-slide>
     </ion-slides>
   </ng-container>
@@ -55,7 +55,7 @@
                             index === enums.DATA && !(dataValid$ | async) ||
                             index === enums.TITLE && !(titleValid$ | async) ||
                             index === enums.MESSAGE && !(messageValid$ | async)">
-       {{'NEXT' | translate}} 
+       {{'NEXT' | translate}}
        <ion-icon name="chevron-forward-outline"></ion-icon>
     </ion-button>
   </ion-toolbar>

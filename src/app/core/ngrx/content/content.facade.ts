@@ -4,7 +4,7 @@ import { AppState } from '@app/app.config';
 
 import * as ContentActions from './content.actions';
 import * as fromContent from './content.selectors';
-import { Article } from '@shared/interfaces/interfaces';
+import { Article, Draft } from '@shared/interfaces/interfaces';
 
 @Injectable({providedIn: 'root'})
 
@@ -45,6 +45,14 @@ export class ContentFacade {
 
   public getData(): void {
     this.store.dispatch(ContentActions.getData());
+  }
+
+  public addNewDraft(draft: Draft): void {
+    this.store.dispatch(ContentActions.addNewDraft({draft}));
+  }
+
+  public removeDraft(draft: Draft): void {
+    this.store.dispatch(ContentActions.removeDraft({draft}));
   }
 
 }

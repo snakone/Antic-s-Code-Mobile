@@ -1,5 +1,5 @@
 import { Action, createReducer } from '@ngrx/store';
-import { Index, Link } from '@shared/interfaces/interfaces';
+import { DraftForm, Index, Link } from '@shared/interfaces/interfaces';
 import { FormGroupState, onNgrxForms, SetValueAction, updateGroup, validate } from 'ngrx-forms';
 import { createFormGroupState, onNgrxFormsAction } from 'ngrx-forms';
 import { maxLength, minLength, required, requiredTrue } from 'ngrx-forms/validation';
@@ -12,14 +12,6 @@ export enum DraftSlides {
   MESSAGE = 4,
   LINKS = 5,
   END = 6
-}
-
-export interface DraftForm {
-  markdown: boolean;
-  accept: boolean;
-  title: string;
-  summary: string;
-  message: string;
 }
 
 export const inititalDraftFormState =
@@ -64,7 +56,6 @@ const featureReducer = createReducer(
   onNgrxForms(),
   onNgrxFormsAction(SetValueAction, (state, action) => {
     state = validateInputs(state);
-    console.log(action);
     switch (action.controlId) {
       case 'slideIndex': {
         return {
@@ -114,12 +105,28 @@ const featureReducer = createReducer(
       case 'index': {
         return {
           ...state,
+          controls: {
+            ...state.controls,
+            message: {
+              ...state.controls.message,
+              value: convertMessage(state, action.value as Index)
+            }
+          },
           userDefinedProperties: {
             ...state.userDefinedProperties,
             index: [
               ...state.userDefinedProperties.index,
               action.value as Index
             ]
+          },
+        };
+      }
+      case 'deleteIndex': {
+        return {
+          ...state,
+          userDefinedProperties: {
+            ...state.userDefinedProperties,
+            index: []
           }
         };
       }
@@ -132,6 +139,16 @@ const featureReducer = createReducer(
               ...state.userDefinedProperties.links,
               action.value as Link
             ]
+          },
+          
+        };
+      }
+      case 'deleteLinks': {
+        return {
+          ...state,
+          userDefinedProperties: {
+            ...state.userDefinedProperties,
+            links: []
           }
         };
       }
@@ -188,4 +205,13 @@ export const getMessageValid = (state: FormGroupState<DraftForm>): boolean =>
   !state.controls.message.isInvalid &&
   (state.userDefinedProperties.slideIndex) === DraftSlides.MESSAGE
 );
+
+const convertMessage = (
+  state: FormGroupState<DraftForm>,
+  index: Index
+): string => {
+  let msg = state.controls.message.value;
+  msg = msg ? msg + '\n\n' : '';
+  return `${msg}## ${index.title}`;
+}
 

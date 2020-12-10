@@ -10,8 +10,10 @@
   <ion-card-content>
     <ion-list inset="true">
       <ion-item class="first">
-        <ion-label [routerLink]="'/detail/' + article.slug">{{article.title}}</ion-label>
-        <ion-button slot="end" fill="clear" (click)="options($event)">
+        <ion-label [routerLink]="'/detail/' + article.slug">
+          {{article.title}}
+        </ion-label>
+        <ion-button slot="end" fill="clear" (click)="options()">
           <ion-icon name="ellipsis-vertical-outline"
                     color="secondary">
           </ion-icon>

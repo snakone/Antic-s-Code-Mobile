@@ -64,7 +64,18 @@ export class HttpService {
         ));
   }
 
-// tslint:disable-next-line: variable-name
+  public delete<T>(url: string,
+                   headers?: HttpHeaders,
+                   params?: HttpParams): Observable<T> {
+    return this.http.delete<T>(url, { headers: this.createHeaders(headers), params })
+            .pipe(catchError((err: HttpErrorResponse) => {
+              this.error(err);
+              throw err;
+            }
+    ));
+  }
+
+// eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle, id-blacklist, id-match
   private createHeaders(_headers?: HttpHeaders): HttpHeaders {
     const contentType = _headers ? (_headers.get(this.type) || this.default) : this.default;
     const accept = _headers ? (_headers.get(this.accept) || this.default) : this.default;

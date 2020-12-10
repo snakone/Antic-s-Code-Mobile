@@ -31,10 +31,16 @@
       </app-form-error>
     </ion-item>
     <ion-button size="small"
-                type="submit" 
+                type="submit"
                 strong
                 [disabled]="form.invalid || !title.value || !subtitle.value">
       {{'INSERT.INDEX' | translate}}
+    </ion-button>
+    <ion-button size="small"
+                (click)="delete()"
+                color="danger"
+                [disabled]="properties.index?.length === 0">
+      {{'DELETE.INDEX' | translate}}
     </ion-button>
   </form>
 </ion-list>
