@@ -20,6 +20,7 @@
   <ion-list-header>{{'ADD.SUMMARY' | translate}}</ion-list-header>
   <ion-item>  <!-- SUMMARY -->
     <ion-label position="stacked">{{'SUMMARY' | translate}}</ion-label>
+    <app-ngrx-form-error [control]="summary" position="top"></app-ngrx-form-error>
     <ion-textarea inputmode="text"
                   type="text"
                   rows="8"
@@ -27,7 +28,6 @@
                   [maxlength]="600"
                   [minlength]="100">
     </ion-textarea>
-    <app-ngrx-form-error [control]="summary"></app-ngrx-form-error>
   </ion-item>
 </ion-list>
 

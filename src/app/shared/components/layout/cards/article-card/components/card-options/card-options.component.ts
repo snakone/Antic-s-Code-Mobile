@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { URI } from '@app/app.config';
+import { ShareService } from '@core/native/services/share.service';
 import { CrafterService } from '@services/crafter/crafter.service';
 import { Article } from '@shared/interfaces/interfaces';
-import { ShareService } from '@services/share/share.service';
 
 @Component({
   selector: 'app-card-options',
@@ -40,7 +41,7 @@ export class CardOptionsComponent implements OnInit {
   private async share(): Promise<void> {
     const data: ShareData = {
       title: this.article.title,
-      url: this.article.slug,
+      url: `${URI}/article/${this.article.slug}`,
       text: 'Antic\'s Code - ' + this.article.title 
     }
     await this.shareSrv.share(data);

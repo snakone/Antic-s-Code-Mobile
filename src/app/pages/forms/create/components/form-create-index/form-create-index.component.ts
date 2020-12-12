@@ -34,12 +34,10 @@ export class FormCreateIndexComponent implements OnInit {
   private createForm(): void {
     this.form = new FormGroup({
        title: new FormControl('', [
-         Validators.required,
          Validators.minLength(5),
          Validators.maxLength(35)
        ]),
       subtitle: new FormControl('', [
-        Validators.required,
         Validators.minLength(5),
         Validators.maxLength(25)
     ])});

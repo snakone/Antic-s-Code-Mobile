@@ -6,13 +6,15 @@
          accept="image/jpeg, image/png">
   <ion-card button="true" 
            (click)="upload()"
-           [ngClass]="{'photo': properties.cover}">
+           [ngClass]="{'photo': properties.cover}"
+           [style.background-image]="'url('+ properties.cover +')' | sanitizer:'style'">
     <ng-container *ngIf="!properties.cover; else isImage">
       <ion-icon name="image-outline" color="medium"></ion-icon>
       <ion-text>{{'LOAD.PHOTO' | translate}}</ion-text>
     </ng-container>
     <ng-template #isImage>
-      <img [src]="properties.cover"/>
+      <div class="cover" >
+      </div>
     </ng-template>
   </ion-card>
   <div class="max">

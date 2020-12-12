@@ -11,6 +11,7 @@ export class FormErrorComponent {
 
   @Input() control: FormControl;
   @Input() validator: string[];
+  @Input() position: string;
 
   constructor() { }
 

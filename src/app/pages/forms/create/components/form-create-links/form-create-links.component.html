@@ -5,6 +5,10 @@
               (click)="openTooltip()"
               name="help-circle-outline"></ion-icon>
   </ion-list-header>
+  <div class="form-error default" 
+       *ngIf="properties.links?.length >= 3">
+    <span>{{'LINKS.LIMIT' | translate}}</span>
+  </div>
   <ion-chip color="success">
     {{'LINKS.USE' | translate}}
   </ion-chip>
@@ -33,7 +37,10 @@
     <ion-button size="small"
                 type="submit"
                 strong
-                [disabled]="form.invalid || !name.value || !url.value">
+                [disabled]="form.invalid || 
+                            !name.value || 
+                            !url.value || 
+                            properties.links?.length >= 3">
       {{'INSERT.LINK' | translate}}
     </ion-button>
     <ion-button size="small"

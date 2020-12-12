@@ -52,7 +52,11 @@
   "EDIT.ARTICLE": "Edit Article",
   "EDIT.NOW": "Do You want to edit it now?",
   "EMAIL": "Email",
+  "MESSAGE.EMPTY": "The message is empty",
   "ENGLISH": "English",
+  "LINKS.LIMIT": "Link limit reached",
+  "CHECK.LINKS": "Here you can check if the links ain't working well",
+  "FILE.ERROR": "The file could not be created. Please try again later.",
   "ERRORS": {
       "ACCESS": {
           "MESSAGE": "Access to this service has been denied for preventing from an unknown origin. Sorry for the inconvenience, if the problem persists, contact us."
@@ -71,6 +75,9 @@
       },
       "SHARE": {
           "MESSAGE": "We are sorry. This device doesn't support the Web API Share. Please try again with another device, this usually works on mobile devices."
+      },
+      "CAMERA": {
+        "MESSAGE": "There was an error while loading your image. Please try again with a different one."
       },
       "TOKEN": {
           "MESSAGE": "Your token to access Antic's Code has expired, but do not worry, we have updated it for you. You can continue using the page as always."

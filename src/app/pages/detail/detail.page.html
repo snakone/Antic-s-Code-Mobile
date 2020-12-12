@@ -16,6 +16,10 @@
                         (click)="delete(article)">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-fab-button>
+        <ion-fab-button *ngIf="article.type === 'article'" 
+                        (click)="pdf(article)">
+          <ion-icon name="cloud-download-outline"></ion-icon>
+        </ion-fab-button>
         <ion-fab-button (click)="open('edit')">
           <ion-icon name="color-wand-outline">
           </ion-icon>

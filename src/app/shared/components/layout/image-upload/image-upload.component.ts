@@ -2,8 +2,6 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { CrafterService } from '@services/crafter/crafter.service';
 import { CameraService } from '@core/native/services/camera.service';
 import { Platform } from '@ionic/angular';
-import { FireStorageService } from '@services/storage/fire-storage.service';
-import { last, switchMap, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { FormsFacade } from '@store/forms/forms.facade';
 import { FormGroupState } from 'ngrx-forms';
@@ -54,13 +52,22 @@ export class ImageUploadComponent implements OnInit, OnDestroy {
   private setPicture(file: File): void {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = (ev: any) => this.checkLength(ev.target.result);
+    try {
+      reader.onload = (ev: any) => this.checkLength(ev.target.result);
+    } catch (err) {
+      this.error();
+    }
   }
 
   private checkLength(pic: string): void {
+    if (!pic) { return this.error(); }
     pic && pic.length / 1024 > 120 ?
     this.crafter.toast('MAX.LENGTH') :
     this.formFacade.action('cover', pic);
+  }
+
+  public error(): void {
+    this.crafter.alert('ERROS.CAMERA.MESSAGE');
   }
 
   ngOnDestroy() {

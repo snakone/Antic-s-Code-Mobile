@@ -9,6 +9,8 @@ ion-card {
   margin: 0;
   box-shadow: none;
   transition: border .3s ease-in;
+  background-position: center center;
+  background-size: cover;
 
   &.photo {
     border: none;

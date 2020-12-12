@@ -11,6 +11,7 @@ import { ContentFacade } from '@store/content/content.facade';
 import { ContentService } from '@services/content/content.service';
 import { DraftsService } from '@services/drafts/drafts.service';
 import { TranslateService } from '@ngx-translate/core';
+import { PDFService } from '@core/native/services/pdf.service';
 
 @Component({
   selector: 'app-detail',
@@ -32,7 +33,8 @@ export class DetailPage implements OnInit, OnDestroy {
     private contentSrv: ContentService,
     private draftSrv: DraftsService,
     private translate: TranslateService,
-    private router: Router
+    private router: Router,
+    private pdfMaker: PDFService
   ) {}
 
   ngOnInit(): void {
@@ -95,6 +97,11 @@ export class DetailPage implements OnInit, OnDestroy {
         });
       }
     });
+  }
+
+  public async pdf(article: Article): Promise<void> {
+    await this.crafter.loader();
+    this.pdfMaker.createPDF(article);
   }
 
   ngOnDestroy() {

@@ -10,6 +10,7 @@ import { FormControlState } from 'ngrx-forms';
 export class NgrxFormErrorComponent {
 
   @Input() control: FormControlState<any>;
+  @Input() position: string;
 
   constructor() { }
 

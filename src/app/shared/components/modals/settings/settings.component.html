@@ -20,7 +20,7 @@
       <ion-select [(ngModel)]="theme" 
                   (ngModelChange)="change('theme', $event)">
         <ion-select-option [value]="t" 
-                            *ngFor="let t of ['LIGHT', 'DARK']">{{t | translate}}
+                            *ngFor="let t of ['light', 'dark']">{{t.toUpperCase() | translate}}
         </ion-select-option>
       </ion-select>
     </ion-item>

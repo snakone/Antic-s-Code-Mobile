@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides, MenuController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { FormGroupState } from 'ngrx-forms';
@@ -15,7 +15,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./create.form.page.scss']
 })
 
-export class CreateFormPage implements OnInit, OnDestroy {
+export class CreateFormPage implements OnInit {
 
   @ViewChild(IonSlides) slides: IonSlides;
   private _index = 0;
@@ -49,7 +49,6 @@ export class CreateFormPage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.draftForm$ = this.formsFacade.form$;
-    this.menuCtrl.swipeGesture(false);
     this.getValidators();
   }
 
@@ -121,10 +120,6 @@ export class CreateFormPage implements OnInit, OnDestroy {
         this.slides.slideNext();
       }
     });
-  }
-
-  ngOnDestroy() {
-    this.menuCtrl.swipeGesture(true);
   }
 
 }

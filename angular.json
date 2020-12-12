@@ -28,7 +28,8 @@
               "firebase",
               "firebase/app",
               "firebase/auth",
-              "@firebase/auth"
+              "@firebase/auth",
+              "file-saver"
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [

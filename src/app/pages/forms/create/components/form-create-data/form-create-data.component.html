@@ -1,10 +1,11 @@
 <app-image-upload [draftForm]="draftForm"></app-image-upload>
 
 <ion-list>
-  <ion-item (click)="pick('category')">
-    <ion-icon slot="start" 
-              name="bookmark-outline"
-              color="tertiary">
+  <ion-item (click)="pick('category')" [detail]="!properties.category">
+    <ion-icon slot="end" 
+              name="close-circle-outline"
+              *ngIf="properties.category"
+              (click)="reset('resetCategory'); $event.stopPropagation()">
     </ion-icon>
     <ion-label *ngIf="!properties.category; else chip">
       {{'CATEGORY.NAME' | translate}}
@@ -12,16 +13,18 @@
     <ng-template #chip>
       <ion-chip color="dark">{{properties.category | translate}}</ion-chip>
     </ng-template>
-    <ion-icon slot="end" 
+    <ion-icon slot="start" 
               name="information-circle-outline"
               class="info"
+              color="primary"
               (click)="openTooltip('category'); $event.stopPropagation()">
     </ion-icon>
   </ion-item>
-  <ion-item (click)="pick('tags')">
-    <ion-icon slot="start" 
-              name="pricetags-outline"
-              color="secondary">
+  <ion-item (click)="pick('tags')" [detail]="properties.tags.length === 0">
+    <ion-icon slot="end" 
+              name="close-circle-outline"
+              *ngIf="properties.tags.length > 0"
+              (click)="reset('resetTags'); $event.stopPropagation()">
     </ion-icon>  <!-- TAGS -->
     <ion-label *ngIf="properties.tags.length === 0; else tags">
       {{'TAGS.NAME' | translate}}
@@ -31,16 +34,18 @@
                  color="dark">{{t | translate}}
       </ion-chip>
     </ng-template>
-    <ion-icon slot="end" 
+    <ion-icon slot="start" 
               name="information-circle-outline"
               class="info"
+              color="secondary"
               (click)="openTooltip('tags'); $event.stopPropagation()">
     </ion-icon>
   </ion-item>
-  <ion-item (click)="pick('levels')">
-    <ion-icon slot="start" 
-              name="bar-chart-outline"
-              color="primary">
+  <ion-item (click)="pick('levels')" [detail]="!properties.level">
+    <ion-icon slot="end" 
+              name="close-circle-outline"
+              *ngIf="properties.level"
+              (click)="reset('resetLevel'); $event.stopPropagation()">
     </ion-icon>  <!-- LEVEL -->
     <ion-label *ngIf="!properties.level; else level">
       {{'LEVELS.NAME' | translate}}
@@ -48,7 +53,8 @@
     <ng-template #level>
       <ion-chip color="dark">{{properties.level | translate}}</ion-chip>
     </ng-template>
-    <ion-icon slot="end" 
+    <ion-icon slot="start"
+              color="tertiary"
               name="information-circle-outline"
               class="info"
               (click)="openTooltip('levels'); $event.stopPropagation()">

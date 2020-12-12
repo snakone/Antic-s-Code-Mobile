@@ -37,12 +37,10 @@ export class FormCreateLinksComponent implements OnInit {
   private createForm(): void {
     this.form = new FormGroup({
        name: new FormControl('', [
-         Validators.required,
          Validators.minLength(5),
          Validators.maxLength(35)
        ]),
       url: new FormControl('', [
-        Validators.required,
         Validators.minLength(5),
         Validators.pattern(this.urlPattern)
     ])});

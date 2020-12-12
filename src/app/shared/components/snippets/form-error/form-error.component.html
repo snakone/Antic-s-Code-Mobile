@@ -1,5 +1,6 @@
 <div *ngIf="control.invalid && (control.dirty || control.touched)" 
-     class="form-error">
+     class="form-error"
+     [ngClass]="{'top': position === 'top'}">
   <ng-container *ngFor="let v of validator">
     <span *ngIf="v === 'minlength' && control.errors.minlength">
       {{'MIN.LENGTH' | translate: {length: control.errors.minlength.requiredLength} }}

@@ -23,7 +23,7 @@ export function markedOptionsFactory(): MarkedOptions {
       '<a role="link" tabindex="0" target="_blank" rel="nofollow noopener noreferrer" ');
   };
 
-  renderer.heading = (text, level, raw, selector) => {
+  renderer.heading = (text, level) => {
     if (level >= 3 || level === 1) { return `<h${level}>${text}</h${level}>`; }
     const id = slugify(text);
     return `
@@ -31,6 +31,30 @@ export function markedOptionsFactory(): MarkedOptions {
       <h${level}>${text}</h${level}>
     `;
   };
+
+  return {
+    renderer,
+    gfm: true,
+    breaks: false,
+    pedantic: false,
+    smartLists: true,
+    smartypants: false,
+  };
+}
+
+export function markedOptionsPDF(): MarkedOptions {
+  const renderer = new MarkedRenderer();
+
+  renderer.image = (href, title) => {
+    return `<a role="link" 
+               tabindex="0" 
+               target="_blank" 
+               href="${href}" 
+               rel="nofollow 
+               noopener 
+               noreferrer">${title}
+            </a>`
+  }
 
   return {
     renderer,
@@ -60,3 +84,4 @@ const slugify = ( text: string ) => {
   .replace(/[^\w\-]+/g, '')
   .replace(/\-\-+/g, '-');
 };
+

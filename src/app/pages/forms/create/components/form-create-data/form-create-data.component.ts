@@ -114,6 +114,10 @@ export class FormCreateDataComponent implements OnInit {
       }
     }
   }
+
+  public reset(input: string): void {
+    this.formsFacade.action(input, '');
+  }
 }
 
 interface CustomColumnS {

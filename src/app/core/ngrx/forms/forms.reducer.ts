@@ -1,6 +1,6 @@
 import { Action, createReducer } from '@ngrx/store';
 import { DraftForm, Index, Link } from '@shared/interfaces/interfaces';
-import { FormGroupState, onNgrxForms, SetValueAction, updateGroup, validate } from 'ngrx-forms';
+import { FormGroupState, onNgrxForms, reset, SetValueAction, updateGroup, validate } from 'ngrx-forms';
 import { createFormGroupState, onNgrxFormsAction } from 'ngrx-forms';
 import { maxLength, minLength, required, requiredTrue } from 'ngrx-forms/validation';
 
@@ -152,6 +152,33 @@ const featureReducer = createReducer(
           }
         };
       }
+      case 'resetCategory': {
+        return {
+          ...state,
+          userDefinedProperties: {
+            ...state.userDefinedProperties,
+            category: ''
+          }
+        };
+      }
+      case 'resetTags': {
+        return {
+          ...state,
+          userDefinedProperties: {
+            ...state.userDefinedProperties,
+            tags: []
+          }
+        };
+      }
+      case 'resetLevel': {
+        return {
+          ...state,
+          userDefinedProperties: {
+            ...state.userDefinedProperties,
+            level: ''
+          }
+        };
+      }
       case 'loadForm': {
         return {
           ...action.value as FormGroupState<DraftForm>
@@ -162,7 +189,7 @@ const featureReducer = createReducer(
           ...newForm()
         };
       }
-      default: return { ...state};
+      default: return { ...state };
     }
   })
 );
