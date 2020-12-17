@@ -1,7 +1,8 @@
 <app-image-upload [draftForm]="draftForm"></app-image-upload>
 
-<ion-list>
-  <ion-item (click)="pick('category')" [detail]="!properties.category">
+<ion-list [ngClass]="{'edit': editable}">
+  <ion-item (click)="pick('category')" 
+            [detail]="!properties.category">
     <ion-icon slot="end" 
               name="close-circle-outline"
               *ngIf="properties.category"
@@ -20,7 +21,8 @@
               (click)="openTooltip('category'); $event.stopPropagation()">
     </ion-icon>
   </ion-item>
-  <ion-item (click)="pick('tags')" [detail]="properties.tags.length === 0">
+  <ion-item (click)="pick('tags')" 
+            [detail]="properties.tags.length === 0">
     <ion-icon slot="end" 
               name="close-circle-outline"
               *ngIf="properties.tags.length > 0"
@@ -41,7 +43,8 @@
               (click)="openTooltip('tags'); $event.stopPropagation()">
     </ion-icon>
   </ion-item>
-  <ion-item (click)="pick('levels')" [detail]="!properties.level">
+  <ion-item (click)="pick('levels')" 
+            [detail]="!properties.level">
     <ion-icon slot="end" 
               name="close-circle-outline"
               *ngIf="properties.level"
@@ -61,4 +64,3 @@
     </ion-icon>
   </ion-item>
 </ion-list>
-

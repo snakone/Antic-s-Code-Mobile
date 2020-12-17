@@ -14,7 +14,9 @@
   "ARTICLE.SAVED": "Artículo guardado",
   "ARTICLES": "Artículos",
   "BACK": "Volver",
+  "ABOUT.ME": "Sobre mí",
   "BACK.DEV": "Backend",
+  "MY.SOCIAL": "Mis redes",
   "BADGE": {
       "CLASSIC": "Clásico",
       "HOT": "Popular",
@@ -22,10 +24,13 @@
       "NEW": "Nuevo",
       "PRO": "Destacado"
   },
+  "ALRIGHT": "¡Vamos a ello!",
   "BEFORE.ANYTHING": "Antes que nada",
   "BEFORE.START": "Antes de empezar, vamos a darte algunos consejos a seguir para crear contenido de calidad.",
   "BIO.NOT.DEFINED": "No definido. Escribe algo sobre tí.",
   "CANCEL": "Cancelar",
+  "SEE": "Ver",
+  "DOWNLOAD": "Descargar",
   "CATEGORY": {
       "NAME": "Categoría"
   },
@@ -171,10 +176,12 @@
   "REACT.LIBRARY": "Librería React",
   "REMEMBER": "Recordar",
   "SAVE.ARTICLE": "Guardar Artículo",
-  "SAVE.NOW": "¿Quieres guardar el mensaje?",
+  "SAVE.NOW": "¿Quieres guardar tu edición?",
   "SAVING.DRAFT": "Guardando boceto...",
   "SEE.DRAFT": "Ver el boceto",
   "SETTINGS": "Opciones",
+  "TITLE.EDIT": "Edita el título principal",
+  "SUMMARY.EDIT": "Edita la introducción",
   "SHARE": "Compartir",
   "SHOW.TUTORIALS": "Mostrar tutoriales",
   "SLIDES": {
@@ -185,6 +192,14 @@
           "SECOND": "No dejes escapar tus increibles ideas y conocimiento. ¡Plásmalo en Antic's!",
           "SIXTH": "Accede, edita, guarda y comparte tu contenido de manera rápida y sencilla",
           "THIRD": "Cualquier contenido que crees irá directamente a la nube. Sin preocupaciones"
+      },
+      "INTRO": {
+        "FIRST": "Bienvenido/a a <strong>Antic's Mobile</strong>. Sigue este corto tutorial para enterarte de que va todo esto",
+        "SECOND": "Antic's Mobile te permite <strong>gestionar</strong> el contenido que aparece en <a href='https://anticscode.netlify.com/' target='_blank'>Antic's Code</a>",
+        "THIRD": "Crea contenido desde <strong>Antic's Mobile</strong> y aparecerá en Antic's Code automáticamente!",
+        "FOURTH": "Podrás crear, eliminar, compartir, editar tu contenido desde cualquier momento y lugar",
+        "FIFTH": "Serás parte de una comunidad de <strong>programadores</strong>, aprovecha y haz nuevos contactos",
+        "SIXTH": "Cada vez que creas o interactúas con Antic's <strong>recibes puntos</strong>. ¿Te crees capaz de llegar a la cima?"
       }
   },
   "SPANISH": "Español",

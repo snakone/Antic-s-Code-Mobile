@@ -12,6 +12,8 @@ import { HelpComponent } from './components/help/help.component';
 import { MenuService } from '@services/menu/menu.service';
 import { ThemeService } from '@services/theme/theme.service';
 
+import { Plugins } from '@capacitor/core';
+
 @Component({
   selector: 'app-login',
   templateUrl: 'login.page.html',
@@ -41,6 +43,7 @@ export class LoginPage implements OnInit, OnDestroy {
     this.rememberMe();
     this.watchMenu();
     this.remember = this.ls.get('remember');
+    Plugins.StatusBar.setBackgroundColor({color: '#000000'});
   }
 
   private async checkToken(): Promise<void> {
@@ -53,7 +56,12 @@ export class LoginPage implements OnInit, OnDestroy {
       takeUntil(this.unsubscribe$),
       finalize(() => this.crafter.loaderOff())
     )
-    .subscribe(_ => this.nav.navigateRoot('home'));
+    .subscribe(_ => {
+      this.nav.navigateRoot('home');
+      if (this.ls.get('introTutorial')) {
+        this.openHelp();
+      }
+    });
   }
 
   private loginForm(): void {
@@ -86,6 +94,9 @@ export class LoginPage implements OnInit, OnDestroy {
     .subscribe(_ => {
       this.ls.setKey('remember', this.remember);
       this.nav.navigateRoot('home');
+      if (this.ls.get('introTutorial')) {
+        this.openHelp();
+      }
     });
   }
 
@@ -96,26 +107,27 @@ export class LoginPage implements OnInit, OnDestroy {
     if ( re && id) {
       this.userSrv.getUserById(id)
        .pipe(takeUntil(this.unsubscribe$))
-       .subscribe((res: User) => {
-          this.form.controls.email
-          .setValue(res.email);
+        .subscribe((res: User) => {
+          this.form.controls.email.setValue(res.email);
           this.remember = true;
       });
     }
   }
 
   public async openHelp(): Promise<void> {
-    await this.crafter.pop(HelpComponent);
+    await this.crafter.modal(HelpComponent);
   }
 
   private watchMenu(): void {
     this.menuSrv.isOpen$
+    .pipe(takeUntil(this.unsubscribe$))
      .subscribe(res => this.open = res);
   }
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
+    Plugins.StatusBar.setBackgroundColor({color: '#00000000'});
   }
 
 }

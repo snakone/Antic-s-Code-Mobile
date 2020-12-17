@@ -1,7 +1,7 @@
 <ion-header mode="ios" class="ion-no-border">
-  <div class="add" *ngIf="public">
-    <ion-icon name="person-add"></ion-icon>
-    <ion-label>{{'ADD' | translate}}</ion-label>
+  <div class="add">
+    <ion-icon name="star"></ion-icon>
+    <ion-label>{{user.stats?.score.total || 0}}</ion-label>
   </div>
   <div class="user-buttons">
     <ion-button fill="clear" 
@@ -12,17 +12,17 @@
     <ion-button fill="clear" 
                 class="like"
                 (click)="stats()">
-      <ion-icon [name]="public ? 'heart' : 'star'"></ion-icon>
+      <ion-icon [name]="public ? 'person-add' : 'star'"></ion-icon>
     </ion-button>
   </div>
   <ion-toolbar>
     <ion-buttons slot="end">
       <ion-button (click)="openMenu()">
         <ion-icon *ngIf="menuSrv.isOpen$ | async; else closed" 
-                   class="menu" src="assets/img/arrow-right-solid.svg">
+                   class="menu" src="assets/icon/arrow-right-solid.svg">
         </ion-icon>
         <ng-template #closed>
-          <ion-icon class="menu" src="assets/img/menu.svg">
+          <ion-icon class="menu" src="assets/icon/menu.svg">
           </ion-icon>
         </ng-template>
       </ion-button>
@@ -31,9 +31,9 @@
       <img *ngIf="user.profile?.avatar; else noImage"
            [src]="user.profile.avatar" 
            [ngClass]="themeSrv.isDark() ? 'dark' : 'light'"
-           (error)="img.src = 'assets/img/no-avatar.png'; img.alt='No Image'"/>
+           (error)="img.src = 'assets/icon/no-avatar.png'; img.alt='No Image'"/>
       <ng-template #noImage>
-        <img src="assets/img/no-avatar.png"/>
+        <img src="assets/icon/no-avatar.png"/>
       </ng-template>
       <h3>{{user.name}}</h3>
       <p *ngIf="user.profile?.rol">{{user.profile?.rol | translate}}</p>

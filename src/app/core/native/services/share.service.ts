@@ -12,7 +12,7 @@ export class ShareService {
 
   public async share(payload: ShareData): Promise<boolean | void> {
     try {
-      return Share.share(payload);
+      await Share.share(payload);
     } catch (err) {
       this.crafter.alert('ERRORS.SHARE.MESSAGE');
       return await Promise.resolve(false);

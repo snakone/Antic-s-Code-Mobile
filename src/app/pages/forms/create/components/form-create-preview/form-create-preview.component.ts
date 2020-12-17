@@ -67,7 +67,7 @@ export class FormCreatePreviewComponent implements OnInit, OnDestroy {
       title: form.title,
       author: user.name,
       user: user._id,
-      cover: await this.uploadFile(data.cover),
+      cover: await this.uploadFile(data.cover, form.title),
       category: data.category,
       tags: data.tags,
       index: data.index,
@@ -89,9 +89,8 @@ export class FormCreatePreviewComponent implements OnInit, OnDestroy {
      }, () => this.crafter.loaderOff());
   }
 
-  private uploadFile(file: string): Promise<string> {
-    const name = new Date().valueOf().toString();
-    const ref = this.fire.ref('/covers/' + name);
+  private uploadFile(file: string, name: string): Promise<string> {
+    const ref = this.fire.ref(name);
     const task = ref.putString(file.split('base64,')[1], 'base64');
 
     return task.snapshotChanges()
@@ -99,7 +98,12 @@ export class FormCreatePreviewComponent implements OnInit, OnDestroy {
       last(),
       takeUntil(this.unsubscribe$),
       switchMap(() => ref.getDownloadURL())
-    ).toPromise();
+    ).toPromise()
+    .catch(async _ => ( await this.crafter.loaderOff(), this.showError()));
+  }
+
+  private showError(): void {
+    this.crafter.alert('ERRORS.CAMERA.MESSAGE');
   }
 
   ngOnDestroy() {

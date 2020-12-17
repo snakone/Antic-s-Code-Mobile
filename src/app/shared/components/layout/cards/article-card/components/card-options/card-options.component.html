@@ -5,14 +5,21 @@
                 color="primary" 
                 name="telescope-outline">
       </ion-icon>
-      <ion-label>Ver</ion-label>
+      <ion-label>{{'SEE' | translate}}</ion-label>
     </ion-item>
     <ion-item (click)="goTo('share')">
       <ion-icon slot="start"
                 color="tertiary"
                 name="share-social-outline">
       </ion-icon>
-      <ion-label>Compartir</ion-label>
+      <ion-label>{{'SHARE' | translate}}</ion-label>
+    </ion-item>
+    <ion-item (click)="goTo('pdf')">
+      <ion-icon slot="start"
+                color="secondary"
+                name="cloud-download-outline">
+      </ion-icon>
+      <ion-label>{{'DOWNLOAD' | translate}}</ion-label>
     </ion-item>
   </ion-list>
 </div>

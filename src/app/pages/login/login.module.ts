@@ -6,8 +6,10 @@ import { LoginPage } from './login.page';
 import { LoginPageRouting } from './login.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { SocialLoginComponent } from './components/social-login/social-login.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { CustomSlidesModule } from '@layout/custom-slides/custom-slides.module';
+
+import { SocialLoginComponent } from './components/social-login/social-login.component';
 import { HelpComponent } from './components/help/help.component';
 
 @NgModule({
@@ -18,7 +20,8 @@ import { HelpComponent } from './components/help/help.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    TranslateModule
+    TranslateModule,
+    CustomSlidesModule
   ],
   declarations: [
     LoginPage,

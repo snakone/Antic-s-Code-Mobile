@@ -33,12 +33,15 @@ export interface Article extends Content {
 export interface Draft extends Article {}
 
 export interface User {
- _id?: string;
- name: string;
- email: string;
- password?: string;
- account?: string;
- profile?: UserProfile;
+  _id?: string;
+  name?: string;
+  email?: string;
+  password?: string;
+  account?: string;
+  profile?: UserProfile;
+  showEmail?: boolean;
+  auth?: boolean;
+  stats?: UserStats;
 }
 
 interface UserProfile {
@@ -269,4 +272,33 @@ export interface DraftFormData {
   index: Index[];
   links: Link[],
   slideIndex: number;
+}
+
+export interface UserStats {
+  score: ScoreStats;
+}
+
+export interface ArticleStats {
+  written?: number;
+  score?: number;
+}
+
+export interface TestStats {
+  correct: number;
+  done?: number;
+  score?: number;
+}
+
+export interface ReactionStats {
+  likes?: number;
+  stars?: number;
+  score?: number;
+}
+
+export interface ScoreStats {
+  total?: number;
+  views?: number;
+  articles?: ArticleStats;
+  test?: TestStats;
+  reaction?: ReactionStats;
 }

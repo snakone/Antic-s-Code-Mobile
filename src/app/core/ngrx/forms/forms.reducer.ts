@@ -1,6 +1,6 @@
 import { Action, createReducer } from '@ngrx/store';
 import { DraftForm, Index, Link } from '@shared/interfaces/interfaces';
-import { FormGroupState, onNgrxForms, reset, SetValueAction, updateGroup, validate } from 'ngrx-forms';
+import { FormGroupState, onNgrxForms, SetValueAction, updateGroup, validate } from 'ngrx-forms';
 import { createFormGroupState, onNgrxFormsAction } from 'ngrx-forms';
 import { maxLength, minLength, required, requiredTrue } from 'ngrx-forms/validation';
 
@@ -63,6 +63,42 @@ const featureReducer = createReducer(
           userDefinedProperties: {
             ...state.userDefinedProperties,
             slideIndex: action.value as number
+          }
+        };
+      }
+      case 'title': {
+        return {
+          ...state,
+          controls: {
+            ...state.controls,
+            title: {
+              ...state.controls.title,
+              value: action.value as string
+            }
+          }
+        };
+      }
+      case 'summary': {
+        return {
+          ...state,
+          controls: {
+            ...state.controls,
+            summary: {
+              ...state.controls.summary,
+              value: action.value as string
+            }
+          }
+        };
+      }
+      case 'message': {
+        return {
+          ...state,
+          controls: {
+            ...state.controls,
+            message: {
+              ...state.controls.message,
+              value: action.value as string
+            }
           }
         };
       }
@@ -207,8 +243,7 @@ export const getForm = (state: FormGroupState<DraftForm>) => state;
 export const getIntroValid = (state: FormGroupState<DraftForm>): boolean =>
   (
     !!state.controls.markdown.value &&
-    !!state.controls.accept.value &&
-    (state.userDefinedProperties.slideIndex) === DraftSlides.INTRO
+    !!state.controls.accept.value
 );
 
 export const getDataValid = (state: FormGroupState<DraftForm>): boolean =>
@@ -216,21 +251,19 @@ export const getDataValid = (state: FormGroupState<DraftForm>): boolean =>
     !!state.userDefinedProperties.cover &&
     !!state.userDefinedProperties.category &&
     state.userDefinedProperties.tags.length > 0 &&
-    !!state.userDefinedProperties.level &&
-    (state.userDefinedProperties.slideIndex) === DraftSlides.DATA
+    state.userDefinedProperties.tags.length < 3 &&
+    !!state.userDefinedProperties.level
 );
 
 export const getTitleValid = (state: FormGroupState<DraftForm>): boolean =>
 (
   !state.controls.title.isInvalid &&
-  !state.controls.summary.isInvalid &&
-  (state.userDefinedProperties.slideIndex) === DraftSlides.TITLE
+  !state.controls.summary.isInvalid
 );
 
 export const getMessageValid = (state: FormGroupState<DraftForm>): boolean =>
 (
-  !state.controls.message.isInvalid &&
-  (state.userDefinedProperties.slideIndex) === DraftSlides.MESSAGE
+  !state.controls.message.isInvalid
 );
 
 const convertMessage = (

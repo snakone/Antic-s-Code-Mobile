@@ -1,0 +1,35 @@
+<ion-slides [options]="slideOpts" 
+            pager=true 
+            class="ion-padding"
+            #slider
+            (ionSlideDidChange)="getIndex()"
+            (ionSlidesDidLoad)="slideDidLoad($event)"
+            *ngIf="!(menuSrv.isOpen$ | async) && slides"> 
+  <ion-slide *ngFor="let s of slides; let last = last"
+              [ngClass]="{'centered': centeredImage}">
+    <img [src]="s.image" alt="Slide"/>
+    <span [innerHTML]="s.message | translate"></span>
+    <ng-container *ngIf="last">
+    <ion-button expand="full"
+                shape="round"
+                mode="md"
+                (click)="start()">
+      <ion-label>{{textButton | translate}}</ion-label>
+    </ion-button>
+    <ion-item *ngIf="checkBox">
+      <ion-checkbox mode="md" 
+                    slot="start"
+                    [(ngModel)]="hideTutorial"></ion-checkbox>
+      <ion-label>{{'NOT.SHOW.AGAIN' | translate}}</ion-label>
+    </ion-item>
+    </ng-container>
+  </ion-slide>
+  <app-slide-arrows [index]="index" 
+                    [length]="slides.length">
+  </app-slide-arrows>
+</ion-slides>
+<ion-icon class="close"
+          *ngIf="closeButton"
+          (click)="close()" 
+          name="close-circle-outline">
+</ion-icon>

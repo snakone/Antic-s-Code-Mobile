@@ -55,18 +55,18 @@ export class ImageUploadComponent implements OnInit, OnDestroy {
     try {
       reader.onload = (ev: any) => this.checkLength(ev.target.result);
     } catch (err) {
-      this.error();
+      this.showError();
     }
   }
 
   private checkLength(pic: string): void {
-    if (!pic) { return this.error(); }
+    if (!pic) { return this.showError(); }
     pic && pic.length / 1024 > 120 ?
     this.crafter.toast('MAX.LENGTH') :
     this.formFacade.action('cover', pic);
   }
 
-  public error(): void {
+  private showError(): void {
     this.crafter.alert('ERROS.CAMERA.MESSAGE');
   }
 

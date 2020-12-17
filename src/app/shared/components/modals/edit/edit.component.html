@@ -4,64 +4,26 @@
 </app-page-header>
 
 <ion-content>
-  <ng-container *ngIf="content$ | async">
-    <form [formGroup]="editForm" #f>
-      <ion-list inset="true">
-        <ion-item> <!-- TITLE -->
-          <ion-label position="stacked">
-            {{'TITLE' | translate}} 
-            <span class="white">(Min 10, Max 35)</span>
-          </ion-label>
-          <ion-input formControlName="title"></ion-input>
-        </ion-item>
-        <ion-item> <!-- COVER -->
-          <ion-label position="stacked">{{'IMAGE' | translate}} 
-            <span class="white">(URL)</span>
-          </ion-label>
-          <ion-input formControlName="cover"></ion-input>
-        </ion-item>
-        <ion-item> <!-- CATEGORY -->
-          <ion-label class="select">{{'CATEGORY.NAME' | translate}}</ion-label>
-          <ion-select formControlName="category">
-            <ion-select-option [value]="c" 
-                               *ngFor="let c of categories">{{c}}
-            </ion-select-option>
-          </ion-select>
-        </ion-item>
-        <ion-item> <!-- LEVEL -->
-          <ion-label class="select">{{'LEVEL.NAME' | translate}}</ion-label>
-          <ion-select formControlName="level">
-            <ion-select-option [value]="l" 
-                               *ngFor="let l of levels">
-                               {{l | translate}}
-            </ion-select-option>
-          </ion-select>
-        </ion-item>
-        <ion-item> <!-- TAGS -->
-          <ion-label class="select">{{'TAGS.NAME' | translate}} 
-            <span class="white">(Max 3)</span>
-          </ion-label>
-          <ion-select formControlName="tags" multiple="true">
-            <ion-select-option [value]="t" 
-                               *ngFor="let t of tags">
-                               {{t | translate}}
-            </ion-select-option>
-          </ion-select>
-        </ion-item>
-        <ion-item> <!-- SUMMARY -->
-          <ion-label position="stacked">{{'INTRO' | translate}} 
-            <span class="white">(Min 100)</span>
-          </ion-label>
-          <ion-textarea rows="5" formControlName="summary"></ion-textarea>
-        </ion-item>
-      </ion-list>
-    </form>
+  <ng-container *ngIf="content$ | async as content">
+    <div class="edit" *ngIf="draftForm">
+      <app-form-title [draftForm]="draftForm" 
+                      [content]="content"
+                      [editable]="true">
+      </app-form-title>
+      <app-data-picker [draftForm]="draftForm"
+                       [content]="content"
+                       [editable]="true">
+      </app-data-picker>
+    </div>
   </ng-container>
 </ion-content>
 
-<ion-footer>
+<ion-footer *ngIf="content$ | async as content">
   <ion-button expand="full" 
-              [disabled]="editForm.invalid" 
-              (click)="onSubmit()">{{'EDIT' | translate}}
+              [disabled]="!(dataValid$ | async) || 
+                          !(titleValid$ | async)" 
+              (click)="onSubmit(content)">{{'EDIT' | translate}}
   </ion-button>
 </ion-footer>
+
+

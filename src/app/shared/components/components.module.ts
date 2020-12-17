@@ -14,6 +14,7 @@ import { SettingsComponent } from './modals/settings/settings.component';
 import { IndexComponent } from './modals/index/index.component';
 import { PreviewComponent } from './modals/preview/preview.component';
 import { LinksComponent } from './modals/links/links.component';
+import { FormSharedModule } from '@pages/forms/shared/form-shared.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { LinksComponent } from './modals/links/links.component';
     ReactiveFormsModule,
     PageHeaderModule,
     TranslateModule,
-    MarkdownModule.forChild()
+    MarkdownModule.forChild(),
+    FormSharedModule
   ],
   exports: [
     EditComponent,

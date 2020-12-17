@@ -14,23 +14,10 @@ import { CREATE_SLIDES } from '@shared/data/slides';
 
 export class CreatePage implements OnInit {
 
-  @ViewChild('slider') slider: IonSlides;
   slides = CREATE_SLIDES;
-  index: number;
-  hideTutorial = false;
-
-  slideOpts = {
-    ...flipOpts,
-    initialSlide: 0,
-    effect: 'flip',
-    zoom: false,
-    speed: 300,
-    centeredSlides: true
-  };
 
   constructor(
     private menuCtrl: MenuController,
-    public menuSrv: MenuService,
     private router: Router,
     private ls: StorageService
   ) { }
@@ -39,12 +26,8 @@ export class CreatePage implements OnInit {
     this.menuCtrl.swipeGesture(false);
   }
 
-  public async getIndex(): Promise<void> {
-    this.index = await this.slider.getActiveIndex();
-  }
-
-  public start(): void {
-    if (this.hideTutorial) {
+  public start(e: boolean): void {
+    if (e) {
       this.ls.setKey('createTutorial', false);
     }
     this.router.navigateByUrl('/forms/create');

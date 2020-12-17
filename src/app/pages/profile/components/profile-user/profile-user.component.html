@@ -1,1 +1,37 @@
-works
+<div class="profile">
+  <ion-card>
+    <!-- <div class="icon">
+      <ion-icon src="assets/icon/id-card-regular.svg"></ion-icon>
+    </div> -->
+    <div class="info">
+      <h5>{{'ABOUT.ME' | translate}}</h5>
+      <p>{{user.profile?.bio || ('BIO.NOT.DEFINED' | translate)}}</p>
+    </div>
+  </ion-card>
+  <ion-card>
+    <div class="info">
+      <h5>{{'MY.SOCIAL' | translate}}</h5>
+      <div class="info-icons">
+        <ion-button type="button"
+                    [disabled]="!user.profile?.github"
+                    [href]="user.profile?.github"
+                    target="_blank">
+          <img src="assets/icon/github.svg"/> Github
+        </ion-button>
+        <ion-button type="button"
+                    [disabled]="!user.profile?.twitter"
+                    [href]="user.profile?.twitter"
+                    target="_blank">
+          <img src="assets/icon/twitter.svg"/> Twitter
+        </ion-button>
+        <ion-button type="button"
+                    class="portfolio"
+                    [disabled]="!user.profile?.portfolio"
+                    [href]="user.profile?.portfolio"
+                    target="_blank">
+          <ion-icon name="globe-outline"></ion-icon> Portfolio
+        </ion-button>
+      </div>
+    </div>
+  </ion-card>
+</div>

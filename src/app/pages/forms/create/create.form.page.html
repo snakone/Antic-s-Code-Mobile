@@ -1,5 +1,5 @@
 <app-page-header [title]="'CREATE' | translate"
-                  [showMenu]="false">
+                 [showMenu]="false">
 </app-page-header>
 
 <ion-content force-overscroll="false">
@@ -13,11 +13,10 @@
         <app-form-create-intro [draftForm]="form"></app-form-create-intro>
       </ion-slide>
       <ion-slide class="data">
-        <app-form-create-data [draftForm]="form">
-        </app-form-create-data>
+        <app-data-picker [draftForm]="form"></app-data-picker>
       </ion-slide>
       <ion-slide class="title">
-        <app-form-create-title [draftForm]="form"></app-form-create-title>
+        <app-form-title [draftForm]="form"></app-form-title>
       </ion-slide>
       <ion-slide class="index">
         <app-form-create-index [draftForm]="form"></app-form-create-index>

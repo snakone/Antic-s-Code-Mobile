@@ -10,8 +10,8 @@ import {
 
 import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
-import { filter, map } from 'rxjs/operators';
-import { CategoryAvatar } from '@shared/interfaces/interfaces';
+import { filter, map, tap } from 'rxjs/operators';
+import { ContentFacade } from '@store/content/content.facade';
 
 @Injectable({providedIn: 'root'})
 
@@ -19,10 +19,10 @@ export class ContentService {
 
   readonly API_CONTENT = environment.api + 'content/';
   page = 0;
-  public selected: CategoryAvatar;
 
   constructor(
-    private http: HttpService
+    private http: HttpService,
+    private contentFacade: ContentFacade
   ) { }
 
   public get(
@@ -55,13 +55,14 @@ export class ContentService {
       );
   }
 
-  public updateContentMessage(
+  public updateContent(
     article: Article
   ): Observable<Article> {
     return this.http
-      .put<DraftResponse>(this.API_CONTENT + 'message/', {article})
+      .put<DraftResponse>(this.API_CONTENT, {article})
       .pipe(
         filter(res => res && !!res.ok),
+        tap(res => this.contentFacade.setBySlug(res.draft)),
         map(res => res.draft)
       );
   }

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ThemeService } from '@services/theme/theme.service';
 import { User } from '@app/shared/interfaces/interfaces';
-import { UserService } from '@services/user/user.service';
 
 @Component({
   selector: 'app-profile-user',
@@ -12,7 +12,7 @@ export class ProfileUserComponent implements OnInit {
 
   @Input() user: User;
 
-  constructor(public userSrv: UserService) { }
+  constructor(public theme: ThemeService) { }
 
   ngOnInit() {}
 

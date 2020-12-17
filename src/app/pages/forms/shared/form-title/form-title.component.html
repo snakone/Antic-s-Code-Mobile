@@ -1,5 +1,10 @@
 <ion-list>
-  <ion-list-header>{{'ADD.TITLE' | translate}}</ion-list-header>
+  <ion-list-header>
+    <ng-container *ngIf="!editable; else editT">
+      {{'ADD.TITLE' | translate}}
+    </ng-container>
+    <ng-template #editT>{{'TITLE.EDIT' | translate}}</ng-template>
+  </ion-list-header>
   <ion-item>  <!-- TITLE -->
     <ion-label position="stacked">{{'TITLE' | translate}}</ion-label>
     <ion-input clearInput 
@@ -12,12 +17,17 @@
   </ion-item>
 </ion-list>
 
-<ion-chip color="success">
+<ion-chip color="success" *ngIf="!editable">
   {{'CHOOSE.TITLE' | translate}}
 </ion-chip>
 
 <ion-list class="summary">
-  <ion-list-header>{{'ADD.SUMMARY' | translate}}</ion-list-header>
+  <ion-list-header>
+    <ng-container *ngIf="!editable; else editS">
+      {{'ADD.SUMMARY' | translate}}
+    </ng-container>
+    <ng-template #editS>{{'SUMMARY.EDIT' | translate}}</ng-template> 
+  </ion-list-header>
   <ion-item>  <!-- SUMMARY -->
     <ion-label position="stacked">{{'SUMMARY' | translate}}</ion-label>
     <app-ngrx-form-error [control]="summary" position="top"></app-ngrx-form-error>
@@ -31,7 +41,8 @@
   </ion-item>
 </ion-list>
 
-<ion-chip color="success">
+<ion-chip color="success" *ngIf="!editable">
   <ion-icon slot="start" name="information-circle-outline"></ion-icon>
   {{'CHOOSE.SUMMARY' | translate}}
 </ion-chip>
+

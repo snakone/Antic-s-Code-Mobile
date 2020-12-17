@@ -8,7 +8,7 @@ import { MenuService } from '@services/menu/menu.service';
   styleUrls: ['./slide-arrows.component.scss']
 })
 
-export class SlideArrowsComponent implements OnInit {
+export class SlideArrowsComponent {
 
   @Input() index: number;
   @Input() length: number;
@@ -18,8 +18,5 @@ export class SlideArrowsComponent implements OnInit {
     public themeSrv: ThemeService
   ) { }
 
-  ngOnInit() {
-    this.index = 0;
-  }
 
 }

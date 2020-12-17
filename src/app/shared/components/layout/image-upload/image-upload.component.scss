@@ -7,7 +7,6 @@ ion-card {
   align-items: center;
   justify-content: center;
   margin: 0;
-  box-shadow: none;
   transition: border .3s ease-in;
   background-position: center center;
   background-size: cover;
@@ -44,10 +43,19 @@ ion-icon {
   width: 100%;
 }
 
+ion-text {
+  display: flex;
+  justify-content: center;
+}
+
+img[hidden] {
+  display: none;
+}
+ 
 .max {
   width: 100%;
   text-align: right;
   font-size: .8rem;
   color: var(--ion-color-text);
-  margin: 6px 6px 0 auto;
+  margin: 8px 6px 0 auto;
 }

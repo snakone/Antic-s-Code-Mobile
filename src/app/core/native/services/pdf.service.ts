@@ -7,13 +7,13 @@ import { Article } from '@shared/interfaces/interfaces';
 
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
-import { TDocumentDefinitions } from 'pdfmake/interfaces';
 import htmlToPdfmake from 'html-to-pdfmake';
 import { markedOptionsPDF } from '@app/core/markdown/markdown.module';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 import { FilesystemDirectory, Plugins } from '@capacitor/core';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
+import { DEFAULT_PDF_STYLES, makePdfRef } from '@app/shared/data/pdf';
 const { Filesystem } = Plugins;
 
 @Injectable({providedIn: 'root'})
@@ -39,17 +39,11 @@ export class PDFService {
           false,
           false,
           markedOptionsPDF()
-        )
+        ),
+        DEFAULT_PDF_STYLES
       );
 
-      const docRef: TDocumentDefinitions = {
-        info: {
-          title: article.title
-        },
-        watermark: { text: 'Antic\'s Code', color: 'pink', opacity: 0.2 },
-        content: txt
-      };
-
+      const docRef = makePdfRef(article, txt);
       this.pdfFile = pdfMake.createPdf(docRef);
       this.downloadPDF();
 
@@ -85,7 +79,10 @@ export class PDFService {
 
   private async saveToDevice(data: string) {
     try {
-      const path = `Antic\'s/article/${this.title || new Date().valueOf().toString()}.pdf`;
+      const path = `Antic\'s/article/${
+        this.title || 
+        new Date().valueOf().toString()}.pdf`;
+
       const result = await Filesystem.writeFile({
         path,
         data,
@@ -96,9 +93,9 @@ export class PDFService {
       this.fileOpen.open(result.uri, 'application/pdf')
        .then(_ => this.crafter.loaderOff());
     } catch (err) {
-      console.log(err);
-      await this.crafter.loaderOff();
-      this.crafter.alert('FILE.ERROR');
+        console.log(err);
+        await this.crafter.loaderOff();
+        this.crafter.alert('FILE.ERROR');
     }
   }
 }

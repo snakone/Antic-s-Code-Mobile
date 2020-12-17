@@ -8,15 +8,13 @@ import { PipesModule } from '@shared/pipes/pipes.module';
 import { LayoutModule } from '@layout/layout.module';
 import { ComponentsModule } from '@shared/components/components.module';
 import { SnippetsModule } from '@shared/components/snippets/snippets.module';
-import { RandomizerPipe } from '@shared/pipes/randomizer/randomizer.pipe';
 import { NgrxFormsModule } from 'ngrx-forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { FormSharedModule } from '../shared/form-shared.module';
 import { FormCreateIntroComponent } from './components/form-create-intro/form-create-intro.component';
-import { FormCreateDataComponent } from './components/form-create-data/form-create-data.component';
 import { FormCreateMessageComponent } from './components/form-create-message/form-create-message.component';
 import { FormCreateLinksComponent } from './components/form-create-links/form-create-links.component';
-import { FormCreateTitleComponent } from './components/form-create-title/form-create-title.component';
 import { FormCreateIndexComponent } from './components/form-create-index/form-create-index.component';
 import { FormCreatePreviewComponent } from './components/form-create-preview/form-create-preview.component';
 
@@ -24,10 +22,8 @@ import { FormCreatePreviewComponent } from './components/form-create-preview/for
   declarations: [
     CreateFormPage,
     FormCreateIntroComponent,
-    FormCreateDataComponent,
     FormCreateMessageComponent,
     FormCreateLinksComponent,
-    FormCreateTitleComponent,
     FormCreateIndexComponent,
     FormCreatePreviewComponent
   ],
@@ -41,10 +37,8 @@ import { FormCreatePreviewComponent } from './components/form-create-preview/for
     LayoutModule,
     ComponentsModule,
     NgrxFormsModule,
-    SnippetsModule
-  ],
-  providers: [
-    RandomizerPipe
+    SnippetsModule,
+    FormSharedModule
   ]
 })
 

@@ -71,12 +71,9 @@ export class DetailPage implements OnInit, OnDestroy {
                     this.crafter.alert('NO.EDITED');
     confirm.then(res => {
       if (res && !res.role) {
-        this.contentSrv.updateContentMessage(article)
+        this.contentSrv.updateContent(article)
         .pipe(takeUntil(this.unsubscribe$))
-         .subscribe(result => {
-           this.contentFacade.setBySlug(result);
-           this.crafter.toast('CONTENT.UPDATED');
-        });
+         .subscribe(_ => this.crafter.toast('CONTENT.UPDATED'));
       }
     });
   }

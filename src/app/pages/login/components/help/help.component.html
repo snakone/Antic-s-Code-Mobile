@@ -1,3 +1,9 @@
-<div class="help-content">
-  <ion-text>This page Works</ion-text>
-</div>
+<ion-content force-overscroll="false">
+  <app-custom-slides [slides]="slides" 
+                     [textButton]="'ALRIGHT'"
+                     [centeredImage]="false"
+                     [closeButton]="true"
+                     [checkBox]="true"
+                     (emitStart)="start($event)">
+  </app-custom-slides>
+</ion-content>

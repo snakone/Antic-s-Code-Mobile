@@ -19,6 +19,8 @@
   "DARK": "Dark",
   "AUTO.LOGIN": "Auto Login",
   "BACK.DEV": "Backend",
+  "ABOUT.ME": "About me",
+  "MY.SOCIAL": "My network",
   "BADGE": {
       "CLASSIC": "Classic",
       "HOT": "Hot",
@@ -27,12 +29,15 @@
       "PRO": "Prominent"
   },
   "BEFORE.ANYTHING": "First of all",
+  "SEE": "See",
+  "DOWNLOAD": "Download",
   "BEFORE.START": "Before we start, we are going to give you some tips to follow to create quality content.",
   "BIO.NOT.DEFINED": "Not Defined. Write something about You",
   "CANCEL": "Cancel",
   "CATEGORY": {
       "NAME": "Category"
   },
+  "ALRIGHT": "Let's go!",
   "CHOOSE.CATEGORY": "Choose a category",
   "CHOOSE.SUMMARY": "The summary will be the first thing the reader see about your content. It appears in the preview before you read it.",
   "CHOOSE.TITLE": "Choosing a good title is important, with it a unique link will be created that you can use to share your content.",
@@ -178,6 +183,8 @@
   "SAVING.DRAFT": "Saving draft...",
   "SEE.DRAFT": "See the draft",
   "SETTINGS": "Settings",
+  "TITLE.EDIT": "Edit the main title",
+  "SUMMARY.EDIT": "Edit the summary",
   "SHARE": "Share",
   "CREATE.NOW": "Create your first Draft!",
   "GO.AHEAD": "Go ahead and write something!",
@@ -192,6 +199,14 @@
           "SECOND": "Don't let your amazing ideas and knowledge escape from you. Portray them on Antic's!",
           "SIXTH": "Access, edit, save and share your content quickly and easily",
           "THIRD": "Any content you create will go directly to the cloud. Without worries"
+      },
+      "INTRO": {
+        "FIRST": "Welcome to <strong>Antic's Mobile</strong>. Follow this short tutorial to find out what this is all about",
+        "SECOND": "Antic's Mobile allows you to <strong>manage</strong> the content that appears in <a href='https://anticscode.netlify.com/' target='_blank'>Antic's Code</a>",
+        "THIRD": "Create content from <strong>Antic's Mobile</strong> and it will appear in Antic's Code automatically!",
+        "FOURTH": "You can create, delete, share, edit, customize your content at anytime from anywhere",
+        "FIFTH": "You will be part of a community of <strong>developers</strong>, take advantage and make new contacts",
+        "SIXTH": "Every time you create or interact with Antic's you <strong>earn points</strong>. Do you think you can reach the top?"
       }
   },
   "SPANISH": "Spanish",
