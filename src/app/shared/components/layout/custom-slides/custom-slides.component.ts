@@ -22,6 +22,7 @@ export class CustomSlidesComponent {
   @Input() checkBox: boolean;
   @Input() closeButton: boolean;
   @Input() centeredImage: boolean;
+  @Input() marginArrows: boolean;
 
   slideOpts = {
     ...flipOpts,

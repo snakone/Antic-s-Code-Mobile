@@ -9,7 +9,8 @@ ion-label {
 }
 
 ion-list {
-  margin-top: 2rem;
+  max-width: 550px;
+  margin: 2rem auto 0 auto;
 }
 
 ion-item {

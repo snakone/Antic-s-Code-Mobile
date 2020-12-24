@@ -19,7 +19,8 @@ ion-button {
 
 ion-buttons {
   position: relative;
-  top: calc(var(--ion-nav-height) * -1);
+  left: -3px;
+  top: -61px;
 }
 
 .header {
@@ -71,13 +72,20 @@ ion-buttons {
     transform: scale(.9);
     margin-right: .2rem;
     margin-left: .2rem;
+    opacity: 1 !important;
+    transition: all .3s ease-in;
 
     &.mail { background: var(--ion-active-gradient) }
     &.like { background: var(--ion-primary-gradient) }
+
+    &:hover {
+      filter: brightness(1.1);
+      transform: scale(1);
+    }
   }
 }
 
-.add {
+.score {
   position: absolute;
   left: .8rem;
   bottom: .5rem;

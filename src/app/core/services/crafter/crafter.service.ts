@@ -74,7 +74,7 @@ export class CrafterService {
 
   public async loader(msg?: string): Promise<void> {
     const loading = await this.loading.create({
-      message: this.translateMsg(msg ? msg : 'LOADING')
+      message: this.translateMsg(msg ?? 'LOADING')
     });
     return loading.present();
   }
@@ -100,7 +100,9 @@ export class CrafterService {
   }
 
   public async handleError(err: HttpErrorResponse): Promise<void> {
-    if (await this.alertCtrl.getTop()) { return; }
+    if (await this.alertCtrl.getTop()) { 
+      return;
+    }
     switch (err.status) {
       case 0: this.alert('ERRORS.WEB.MESSAGE');
               break;

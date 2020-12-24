@@ -1,0 +1,31 @@
+img {
+  max-height: 50%;
+  max-width: 70%;
+  margin: 0 auto 1.2rem;
+  position: relative;
+  left: 2px;
+}
+
+ion-slide {
+  height: 100%;
+  flex-direction: column;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+p { margin-top: 0 }
+
+ion-chip {
+  height: auto;
+  margin: .5rem 0;
+  font-size: 0.8rem;
+  line-height: inherit;
+  max-width: 320px;
+}
+
+ion-slide {
+  position: relative;
+  top: 4px;
+}

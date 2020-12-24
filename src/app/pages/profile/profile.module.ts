@@ -4,9 +4,8 @@ import { CommonModule } from '@angular/common';
 import { ProfilePage } from './profile.page';
 import { ProfilePageRouting } from './profile.routing';
 import { SharedModule } from '@shared/shared.module';
-import { ProfileStatsComponent } from './components/profile-stats/profile-stats.component';
-import { ProfileUserComponent } from './components/profile-user/profile-user.component';
 import { UserHeaderModule } from '@layout/user-header/user-header.module';
+import { SharedProfileModule } from '@layout/profile/profile.module';
 
 @NgModule({
   imports: [
@@ -14,12 +13,11 @@ import { UserHeaderModule } from '@layout/user-header/user-header.module';
     CommonModule,
     ProfilePageRouting,
     SharedModule,
-    UserHeaderModule
+    UserHeaderModule,
+    SharedProfileModule
   ],
   declarations: [
-    ProfilePage,
-    ProfileUserComponent,
-    ProfileStatsComponent
+    ProfilePage
   ]
 })
 

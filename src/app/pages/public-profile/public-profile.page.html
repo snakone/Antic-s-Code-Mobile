@@ -1,0 +1,16 @@
+<ng-container *ngIf="(user$ | async) as user">
+  <app-user-header [user]="user" 
+                  [public]="true"
+                  [showBack]="false">
+  </app-user-header>
+
+  <ion-content force-overscroll="false">
+    <app-profile-user [user]="user"></app-profile-user>
+  </ion-content>
+
+  <ion-footer class="ion-no-border" *ngIf="user">
+    <ion-toolbar>
+      <app-profile-footer [user]="user"></app-profile-footer>
+    </ion-toolbar>
+  </ion-footer>
+</ng-container>

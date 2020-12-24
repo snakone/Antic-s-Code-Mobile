@@ -44,6 +44,9 @@ export function markedOptionsFactory(): MarkedOptions {
 
 export function markedOptionsPDF(): MarkedOptions {
   const renderer = new MarkedRenderer();
+  renderer.code = (code, lang) => {
+    return `<div class="code">${code}</div>`;
+  }
 
   renderer.image = (href, title) => {
     return `<a role="link" 

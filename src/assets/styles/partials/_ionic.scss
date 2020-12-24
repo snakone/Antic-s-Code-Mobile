@@ -8,6 +8,7 @@ ion-item {
  --full-highlight-height: 0;
  --padding-start: 0;
  --inner-padding-end: 0;
+ cursor: pointer;
 }
 
 ion-back-button {
@@ -212,3 +213,13 @@ ion-checkbox {
 .alert-message.sc-ion-alert-ios:empty {
   padding-bottom: 0 !important;
 }
+
+.search-user .searchbar-input.sc-ion-searchbar-ios {
+  padding-left: calc(50% - 35px) !important;
+}
+
+.searchbar-left-aligned.sc-ion-searchbar-ios-h 
+.searchbar-input.sc-ion-searchbar-ios {
+  padding-left: 39px !important;
+}
+

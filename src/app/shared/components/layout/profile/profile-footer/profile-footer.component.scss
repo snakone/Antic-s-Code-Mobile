@@ -1,0 +1,39 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 33%);
+
+  & .item {
+    padding: .5rem;
+    text-align: center;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    &:after {
+      content: '';
+      height: 69%;
+      width: 1px;
+      background: var(--item-background);
+      position: absolute;
+      right: 0;
+    }
+
+    &:last-of-type {
+      &:after { width: 0 }
+    }
+  }
+}
+
+ion-icon {
+  color: #fff;
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 1.2rem;
+}
+
+ion-text {
+  font-weight: bold;
+  font-size: .8rem !important;
+}

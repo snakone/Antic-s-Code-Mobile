@@ -3,6 +3,20 @@ ion-item {
   --border-width: 0 !important;
 }
 
+ion-grid, ion-row, ion-col { padding: 0 }
+
+ion-col {
+  @media(min-width: 768px) {
+    &:nth-child(odd) {
+      padding-right: 1.5rem;
+    }
+
+    &:nth-child(even) {
+      padding-left: 1.5rem;
+    }
+  }
+}
+
 ion-avatar {
   width: 25px;
   height: 25px;
@@ -25,4 +39,10 @@ ion-avatar {
   }
 
   & p { margin: 0}
+}
+
+ion-label {
+  &:hover {
+    color: var(--ion-color-primary);
+  }
 }

@@ -5,3 +5,7 @@ export const HOME_HEADER: HeaderIcons[] = [
   { icon: 'file-tray-full-outline', route: '/home/drafts' }
 ];
 
+export const MAIL_HEADER: HeaderIcons[] = [
+  { icon: 'search-outline', route: '/mail/search' },
+];
+

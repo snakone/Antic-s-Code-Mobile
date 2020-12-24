@@ -22,10 +22,10 @@ ion-card {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: .8rem;
-  margin-bottom: 7.5vh;
   flex-wrap: wrap;
   position: relative;
+  max-width: 550px;
+  margin: .8rem auto 7.5vh auto;
 }
 
 input {

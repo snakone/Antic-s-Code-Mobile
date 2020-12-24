@@ -1,4 +1,5 @@
-import * as moment from "moment";
+import { URI } from "@app/app.config";
+import moment from "moment";
 import { TDocumentDefinitions } from "pdfmake/interfaces";
 import { Article } from "../interfaces/interfaces";
 
@@ -18,6 +19,14 @@ export const DEFAULT_PDF_STYLES = {
       marginTop: 10,
       marginBottom: 13
     },
+    ol: {
+      marginTop: 10,
+      marginBottom: 13
+    },
+    table: {
+      marginTop: 12,
+      marginBottom: 13
+    }
   }
 };
 
@@ -26,7 +35,7 @@ export const makePdfRef = (article: Article, txt: any): TDocumentDefinitions => 
     info: {
       title: article.title
     },
-    watermark: { text: 'Antic\'s Code', color: 'pink', opacity: 0.2 },
+    watermark: { text: 'Antic\'s Code', color: 'pink', opacity: 0.1 },
     content: [
       {
         columns: [
@@ -59,7 +68,59 @@ export const makePdfRef = (article: Article, txt: any): TDocumentDefinitions => 
         fontSize: 26,
         decoration: 'underline',
         color: '#ee7da8',
-        margin: [0, 5, 0, 8]
+        margin: [0, 5, 0, 18]
+      },
+      {
+        text: [
+          {
+            text: 'Autor: ',
+            bold: true
+          },
+          {
+            text: article.author
+          }
+        ],
+        margin: [0, 0, 0, 5]
+      },
+      {
+        text: [
+          {
+            text: 'Categoría: ',
+            bold: true
+          },
+          {
+            text: article.category
+          }
+        ],
+        margin: [0, 0, 0, 5]
+      },
+      {
+        text: [
+          {
+            text: 'Creado el: ',
+            bold: true
+          },
+          {
+            text: article.created
+          }
+        ],
+        margin: [0, 0, 0, 5]
+      },
+      {
+        text: [
+          {
+            text: 'Enlace: ',
+            bold: true
+          },
+          {
+            text: article.title,
+            link: `${URI}/article/${article.slug}`,
+            style: ['html-a'],
+            color: 'blue',
+            decoration: 'underline',
+          }
+        ],
+        margin: [0, 0, 0, 12]
       },
       ...txt
     ],
@@ -76,7 +137,10 @@ export const makePdfRef = (article: Article, txt: any): TDocumentDefinitions => 
             {
               text: ' Antic\'s Code',
               link: 'https://anticscode.netlify.com/',
-              fontSize: 10
+              fontSize: 10,
+              style: ['html-a'],
+              color: 'blue',
+              decoration: 'underline'
             }
           ]
         }
@@ -85,6 +149,12 @@ export const makePdfRef = (article: Article, txt: any): TDocumentDefinitions => 
     styles:{
       'pdf-page-break': {
         fontSize: 0
+      },
+      code: {
+        background: '#2d2d2d',
+        margin: [0, 6, 0, 6],
+        color: '#fff',
+        fontSize: 10
       },
       logo: {
         margin: [0, 8, 0, 0]

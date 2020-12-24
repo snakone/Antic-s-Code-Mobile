@@ -6,7 +6,7 @@
 <ion-content> 
   <ng-container *ngIf="(articles$ | async) as articles">
     <ng-container *ngIf="articles.length > 0; else noArticles">
-      <ion-grid>
+      <ion-grid class="articles-grid">
         <ion-row>
           <ion-col size="12" size-md="6"
                   *ngFor="let a of articles; let i = index">

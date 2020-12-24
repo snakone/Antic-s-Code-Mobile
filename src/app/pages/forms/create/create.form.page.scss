@@ -26,10 +26,15 @@ app-form-create-intro {
   display: block;
 }
 
-.intro, .title {
+.intro {
   overflow-y: scroll;
   display: block;
   text-align: left;
+}
+
+.title {
+  overflow-y: scroll;
+  display: block;
 }
 
 .message {

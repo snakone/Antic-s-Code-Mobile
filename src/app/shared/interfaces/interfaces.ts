@@ -86,6 +86,7 @@ export interface UserContentResponse extends ServerResponse, UserContent {}
 
 export interface UserResponse extends ServerResponse {
   user: User;
+  users?: User[];
   token?: string;
 }
 
