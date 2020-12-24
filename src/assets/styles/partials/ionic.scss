@@ -136,12 +136,8 @@ ion-label, ion-text {
 }
 
 .picker {
-  --height: 37vh;
   & button {
-    opacity: .8;
-    transition: all .05s ease-in-out;
     &.picker-opt-selected {
-      opacity: 1;
       font-weight: bold;
     }
   }
@@ -149,21 +145,37 @@ ion-label, ion-text {
   &-col {
     padding: 0 !important;
     &:nth-of-type(1) {
-      & button {
+      & button:nth-child(3n + 1) {
         color: var(--ion-color-primary);
+      }
+      & button:nth-child(3n + 2) {
+        color: var(--ion-color-secondary);
+      }
+      & button:nth-child(3n + 3) {
+        color: var(--ion-color-tertiary);
       }
     }
     &:nth-of-type(2) {
-      & button {
+      & button:nth-child(3n + 1) {
+        color: var(--ion-color-tertiary);
+      }
+      & button:nth-child(3n + 2) {
         color: var(--ion-color-secondary);
+      }
+      & button:nth-child(3n + 3) {
+        color: var(--ion-color-primary);
+      }
+
+      & button:last-of-type {
+        color: var(--ion-text-color)
       }
     }
   }
+}
 
-  &-columns {
-    position: relative;
-    top: -1.5vh;
-  }
+.picker-toolbar-cancel button {
+  opacity: 0.6;
+  color: var(--ion-text-color) !important;
 }
 
 ion-checkbox {
@@ -181,4 +193,22 @@ ion-checkbox {
 .message .native-textarea.sc-ion-textarea-ios {
   height: 60vh;
   padding-bottom: 10px;
+}
+
+.picker-below-highlight.sc-ion-picker-ios {
+  background: linear-gradient(to top, var(--background, var(--ion-background-color, #fff)) 30%, 
+              rgba(var(--background-rgb, var(--ion-background-color-rgb, 255, 255, 255)), 0.3) 100%);
+}
+
+.picker-above-highlight.sc-ion-picker-ios {
+  background: linear-gradient(to bottom, var(--background, var(--ion-background-color, #fff)) 20%, 
+              rgba(var(--background-rgb, var(--ion-background-color-rgb, 255, 255, 255)), 0.3) 100%);
+}
+
+.card-options .popover-content {
+  max-width: max-content !important;
+}
+
+.alert-message.sc-ion-alert-ios:empty {
+  padding-bottom: 0 !important;
 }

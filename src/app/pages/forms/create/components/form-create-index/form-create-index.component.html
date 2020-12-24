@@ -8,41 +8,48 @@
   <ion-chip color="success">
     {{'INDEX.USE' | translate}}
   </ion-chip>
-  <ion-item>
-    <ion-label position="stacked">{{'INDEX.TITLE' | translate}}</ion-label>
-    <ion-input clearInput 
-               required
-               #title
-               type="text"
-               maxlength="35"
-               minlength="5"
-               name="title">
-    </ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">{{'INDEX.SUBTITLE' | translate}}</ion-label>
-    <ion-input clearInput
-               required
-               #subtitle
-               type="text"
-               maxlength="35"
-               minlength="5"
-               name="subtitle">
-    </ion-input>
-  </ion-item>
-  <ion-button size="small" 
-              strong
-              [disabled]="!title.value || !subtitle.value"
-              (click)="addIndex(title, subtitle)">
-    {{'INSERT.INDEX' | translate}}
-  </ion-button>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ion-item>  <!-- TITLE -->
+      <ion-label position="stacked">{{'INDEX.TITLE' | translate}}</ion-label>
+      <ion-input clearInput 
+                 type="text"
+                 [maxlength]="35"
+                 formControlName="title">
+      </ion-input>
+      <app-form-error [control]="title" 
+                      [validator]="['minlength', 'required']">
+      </app-form-error>
+    </ion-item>
+    <ion-item>  <!-- SUBTITLE -->
+      <ion-label position="stacked">{{'INDEX.SUBTITLE' | translate}}</ion-label>
+      <ion-input clearInput
+                 formControlName="subtitle"
+                 type="text">
+      </ion-input>
+      <app-form-error [control]="subtitle" 
+                      [validator]="['minlength', 'required']">
+      </app-form-error>
+    </ion-item>
+    <ion-button size="small"
+                type="submit"
+                strong
+                [disabled]="form.invalid || !title.value || !subtitle.value">
+      {{'INSERT.INDEX' | translate}}
+    </ion-button>
+    <ion-button size="small"
+                (click)="delete()"
+                color="danger"
+                [disabled]="properties.index?.length === 0">
+      {{'DELETE.INDEX' | translate}}
+    </ion-button>
+  </form>
 </ion-list>
 
 <ion-fab vertical="bottom" 
          horizontal="end" 
          slot="fixed"
          class="animated fadeInRight"
-         *ngIf="index.length > 0">
+         *ngIf="properties.index?.length > 0">
   <ion-fab-button size="small" (click)="openIndex()"> 
     <ion-icon class="fab" name="list-circle-outline"></ion-icon>
   </ion-fab-button>

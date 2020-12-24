@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { CrafterService } from '@services/crafter/crafter.service';
 import { CameraService } from '@core/native/services/camera.service';
 import { Platform } from '@ionic/angular';
+import { Subject } from 'rxjs';
+import { FormsFacade } from '@store/forms/forms.facade';
+import { FormGroupState } from 'ngrx-forms';
+import { DraftForm } from '@shared/interfaces/interfaces';
 
 @Component({
   selector: 'app-image-upload',
@@ -9,20 +13,23 @@ import { Platform } from '@ionic/angular';
   styleUrls: ['./image-upload.component.scss'],
 })
 
-export class ImageUploadComponent implements OnInit {
+export class ImageUploadComponent implements OnInit, OnDestroy {
 
-  picture: string;
+  @Input() draftForm: FormGroupState<DraftForm>;
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private cameraSrv: CameraService,
     private crafter: CrafterService,
-    private platform: Platform
+    private platform: Platform,
+    private formFacade: FormsFacade
   ) { }
 
   ngOnInit() {}
 
+  public get properties() { return this.draftForm.userDefinedProperties; }
+
   public async upload(): Promise<void> {
-    this.picture = null;
     this.platform.is('cordova') ? this.isCordova() : this.notCordova();
   }
 
@@ -36,21 +43,36 @@ export class ImageUploadComponent implements OnInit {
     const el = document.getElementById('input');
     el.click();
     el.addEventListener('change', (e: any) => {
-      const file = e.target.files[0];
+      const file: File = e.target.files[0];
       if (!file) { return; }
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = (ev: any) => {
-        const pic = ev.target.result;
-        this.checkLength(pic);
-      };
+      this.setPicture(file);
     });
   }
 
+  private setPicture(file: File): void {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    try {
+      reader.onload = (ev: any) => this.checkLength(ev.target.result);
+    } catch (err) {
+      this.showError();
+    }
+  }
+
   private checkLength(pic: string): void {
+    if (!pic) { return this.showError(); }
     pic && pic.length / 1024 > 120 ?
-    (this.crafter.toast('MAX.LENGTH'), this.picture = null) :
-    this.picture = pic;
+    this.crafter.toast('MAX.LENGTH') :
+    this.formFacade.action('cover', pic);
+  }
+
+  private showError(): void {
+    this.crafter.alert('ERROS.CAMERA.MESSAGE');
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
 }

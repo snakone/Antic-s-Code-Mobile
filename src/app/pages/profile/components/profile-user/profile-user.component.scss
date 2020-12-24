@@ -1,0 +1,67 @@
+.profile {
+  margin-top: .666rem;
+  padding: 1rem 1rem 0 1rem;
+}
+
+ion-card {
+  align-items: center;
+  margin: 1rem 0 1.5rem 0;
+  font-size: .8rem;
+
+  & p {
+    font-size: 0.8rem !important;
+    margin: 0;
+    padding-right: 5px;
+  }
+
+  & .icon {
+    text-align: center;
+  }
+
+  .info {
+    position: relative;
+    padding: 1rem;
+
+    & h5 {
+      margin-bottom: 10px;
+      margin-top: 0;
+      color: #000;
+      font-size: .9rem;
+      font-weight: bold;
+      opacity: .8;
+    }
+
+    &-icons {
+      position: relative;
+      display: flex;
+      top: 3px;
+      padding: 3px 0;
+      
+      & ion-button {
+        --background: rgba(173, 173, 173, 0.103);
+        text-transform: none;
+        margin: 0 .4rem 0 0;
+        height: 32px;
+        --background-activated: rgba(138, 138, 138, 0.103);
+        font-size: .7rem;
+
+        &.portfolio {
+          color: var(--primary-color);
+        }
+      }
+      
+      & img {
+        width: 21px;
+        height: 21px;
+        margin-right: 5px;
+      }
+
+      & ion-icon {
+        font-size: 1.2rem;
+        position: relative;
+        color: rgba(86, 86, 86, 0.6);
+        left: -5px;
+      }
+    }
+  }
+}

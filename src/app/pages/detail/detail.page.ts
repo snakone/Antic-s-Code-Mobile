@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Article } from '@shared/interfaces/interfaces';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Article, Draft } from '@shared/interfaces/interfaces';
 import { Observable, Subject } from 'rxjs';
 import { ModalController } from '@ionic/angular';
 import { EditComponent } from '@shared/components/modals/edit/edit.component';
@@ -9,6 +9,9 @@ import { takeUntil } from 'rxjs/operators';
 import { CrafterService } from '@services/crafter/crafter.service';
 import { ContentFacade } from '@store/content/content.facade';
 import { ContentService } from '@services/content/content.service';
+import { DraftsService } from '@services/drafts/drafts.service';
+import { TranslateService } from '@ngx-translate/core';
+import { PDFService } from '@core/native/services/pdf.service';
 
 @Component({
   selector: 'app-detail',
@@ -27,7 +30,11 @@ export class DetailPage implements OnInit, OnDestroy {
     private modalCtrl: ModalController,
     private crafter: CrafterService,
     private contentFacade: ContentFacade,
-    private contentSrv: ContentService
+    private contentSrv: ContentService,
+    private draftSrv: DraftsService,
+    private translate: TranslateService,
+    private router: Router,
+    private pdfMaker: PDFService
   ) {}
 
   ngOnInit(): void {
@@ -64,14 +71,34 @@ export class DetailPage implements OnInit, OnDestroy {
                     this.crafter.alert('NO.EDITED');
     confirm.then(res => {
       if (res && !res.role) {
-        this.contentSrv.updateContentMessage(article)
+        this.contentSrv.updateContent(article)
         .pipe(takeUntil(this.unsubscribe$))
-         .subscribe(result => {
-           this.contentFacade.setBySlug(result);
-           this.crafter.toast('CONTENT.UPDATED');
+         .subscribe(_ => this.crafter.toast('CONTENT.UPDATED'));
+      }
+    });
+  }
+
+  public delete(draft: Draft): void {
+    const confirm = this.crafter.confirm(
+      this.translate.instant('DELETE.SURE'),
+      this.translate.instant('DELETE.DRAFT')
+    );
+    confirm.then(async res => {
+      if (!res.role) {
+        this.draftSrv.deleteDraftById(draft._id)
+        .pipe(takeUntil(this.unsubscribe$))
+        .subscribe((res: Draft) => {
+          this.crafter.toast('DRAFT.DELETED');
+          this.contentFacade.removeDraft(res);
+          this.router.navigateByUrl('/home/drafts');
         });
       }
     });
+  }
+
+  public async pdf(article: Article): Promise<void> {
+    await this.crafter.loader();
+    this.pdfMaker.createPDF(article);
   }
 
   ngOnDestroy() {

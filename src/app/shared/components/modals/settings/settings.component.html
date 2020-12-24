@@ -18,9 +18,9 @@
       </ion-icon>
       <ion-label>{{'THEME' | translate}}</ion-label>
       <ion-select [(ngModel)]="theme" 
-                  (ngModelChange)="themeChanged($event)">
+                  (ngModelChange)="change('theme', $event)">
         <ion-select-option [value]="t" 
-                            *ngFor="let t of ['light', 'dark']">{{t | titlecase}}
+                            *ngFor="let t of ['light', 'dark']">{{t.toUpperCase() | translate}}
         </ion-select-option>
       </ion-select>
     </ion-item>
@@ -31,11 +31,23 @@
       </ion-icon>
       <ion-label>{{'LANGUAGE' | translate}}</ion-label>
       <ion-select [(ngModel)]="language"
-                  (ngModelChange)="languageChanged($event)">
+                  (ngModelChange)="change('lang', $event)">
         <ion-select-option [value]="l.value" 
                             *ngFor="let l of lang">{{l.name | translate}}
         </ion-select-option>
       </ion-select>
+    </ion-item>
+    <ion-item> <!-- AUTO LOGIN -->
+      <ion-icon name="enter-outline" 
+                slot="start"
+                color="orange">
+      </ion-icon>
+      <ion-label>{{'AUTO.LOGIN' | translate}}</ion-label>
+      <ion-toggle mode="md"
+                  color="secondary"
+                  [(ngModel)]="login"
+                  (ngModelChange)="change('autoLogin', $event)">
+      </ion-toggle>
     </ion-item>
     <ion-item-divider mode="ios">  <!-- MY ACCOUNT -->
       <ion-label>
@@ -51,10 +63,9 @@
       <ion-toggle mode="md"
                   color="secondary"
                   [(ngModel)]="remember"
-                  (ngModelChange)="rememberChanged($event)">
+                  (ngModelChange)="change('remember', $event)">
       </ion-toggle>
     </ion-item>
-    
     <ion-item-divider mode="ios"> <!-- TUTORIALS -->
       <ion-label>
         {{'SHOW.TUTORIALS' | translate}}
@@ -69,7 +80,7 @@
       <ion-toggle mode="md"
                   color="secondary"
                   [(ngModel)]="intro"
-                  (ngModelChange)="introChanged($event)">
+                  (ngModelChange)="change('introTutorial', $event)">
       </ion-toggle>
     </ion-item>
     <ion-item> <!-- CREATE -->
@@ -81,7 +92,7 @@
       <ion-toggle mode="md"
                   color="secondary"
                   [(ngModel)]="create"
-                  (ngModelChange)="createChanged($event)">
+                  (ngModelChange)="change('createTutorial', $event)">
       </ion-toggle>
     </ion-item>
     <ng-container *ngIf="user">

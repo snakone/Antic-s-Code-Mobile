@@ -1,7 +1,13 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { CrafterService } from '@app/core/services/crafter/crafter.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides, MenuController } from '@ionic/angular';
-import { Subject } from 'rxjs';
+import { Observable } from 'rxjs';
+import { FormGroupState } from 'ngrx-forms';
+import { DraftSlides } from '@store/forms/forms.reducer';
+import { DraftForm } from '@shared/interfaces/interfaces';
+import { FormsFacade } from '@store/forms/forms.facade';
+import { StorageService } from '@services/storage/storage.service';
+import { CrafterService } from '@services/crafter/crafter.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create.form',
@@ -9,15 +15,18 @@ import { Subject } from 'rxjs';
   styleUrls: ['./create.form.page.scss']
 })
 
-export class CreateFormPage implements OnInit, OnDestroy {
+export class CreateFormPage implements OnInit {
 
   @ViewChild(IonSlides) slides: IonSlides;
-  // tslint:disable-next-line:variable-name
   private _index = 0;
   slidesLength = 7;
-  private unsubscribe$ = new Subject<void>();
-  userIndex = true;
-  saved = false;
+  draftForm$: Observable<FormGroupState<DraftForm>>;
+  enums = DraftSlides;
+
+  introValid$: Observable<boolean>;
+  dataValid$: Observable<boolean>;
+  titleValid$: Observable<boolean>;
+  messageValid$: Observable<boolean>;
 
   slideOpts = {
     allowTouchMove: false,
@@ -32,31 +41,57 @@ export class CreateFormPage implements OnInit, OnDestroy {
 
   constructor(
     private menuCtrl: MenuController,
-    private crafter: CrafterService
+    private formsFacade: FormsFacade,
+    private ls: StorageService,
+    private crafter: CrafterService,
+    private translate: TranslateService
   ) { }
 
   ngOnInit() {
-    this.menuCtrl.swipeGesture(false);
-    this.slideToIndex();
+    this.draftForm$ = this.formsFacade.form$;
+    this.getValidators();
   }
 
   public get index(): number {
     return this._index;
   }
 
-  public async change(): Promise<void> {
-    this._index = await this.slides.getActiveIndex();
-
-    if (this.index === this.slidesLength - 1) {
-      this.crafter.loader('SAVING.DRAFT');
-      setTimeout(() => {
-        this.crafter.loaderOff();
-        this.saved = true;
-      }, 3000);
+  public checkStorage(): void {
+    const form: FormGroupState<DraftForm> = this.ls.get('draftForm');
+    if (form) {
+      const index = form.userDefinedProperties.slideIndex;
+      if (index === (this.slidesLength - 1)) {
+        this.ls.setKey('draftForm', null);
+        return;
+      }
+      this.formsFacade.action('loadForm', form);
+      this.slideToIndex(index);
+    } else {
+      this.slideToIndex(0);
     }
   }
 
+  public async change(form: FormGroupState<DraftForm>): Promise<void> {
+    this._index = await this.slides.getActiveIndex();
+    this.formsFacade.action('slideIndex', this.index);
+
+    form = {...form, userDefinedProperties: {
+      ...form.userDefinedProperties,
+      slideIndex: this.index }
+    };
+
+    if (this.index === (this.slidesLength - 1)) {
+      this.formsFacade.finishForm(true);
+    }
+
+    this.ls.setKey('draftForm', form);
+  }
+
   public next(): void {
+    if (this.index + 1 === (this.slidesLength - 1)) {
+      this.showConfirm();
+      return;
+    }
     this.slides.slideNext();
   }
 
@@ -64,20 +99,27 @@ export class CreateFormPage implements OnInit, OnDestroy {
     this.slides.slidePrev();
   }
 
-  private slideToIndex(): void {
-    console.log('slide to index');
+  private slideToIndex(index: number): void {
+    this.slides.slideTo(index, 0);
   }
 
-  public async showIndex(e: boolean): Promise<void> {
-    this.userIndex = e;
-    e ? this.slidesLength++ : this.slidesLength--;
-    await this.slides.update();
+  private getValidators(): void {
+    this.introValid$ = this.formsFacade.introValid$;
+    this.dataValid$ = this.formsFacade.dataValid$;
+    this.titleValid$ = this.formsFacade.titleValid$;
+    this.messageValid$ = this.formsFacade.messageValid$;
   }
 
-  ngOnDestroy() {
-    this.menuCtrl.swipeGesture(true);
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
+  private showConfirm(): void {
+    const confirm = this.crafter.confirm(
+      this.translate.instant('DRAFT.CONTINUE'),
+      this.translate.instant('SAVE.DRAFT')
+    );
+    confirm.then(async res => {
+      if (!res.role) {
+        this.slides.slideNext();
+      }
+    });
   }
 
 }

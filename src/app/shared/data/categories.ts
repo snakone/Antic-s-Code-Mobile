@@ -32,6 +32,11 @@ export const CATEGORIES: CategoryList[] = [
     category: 'React'
   },
   {
+    name: 'Vue Framework',
+    icon: 'vue-logo.png',
+    category: 'Vue',
+  },
+  {
     name: 'Server Javascript',
     icon: 'node-logo.png',
     category: 'Nodejs'

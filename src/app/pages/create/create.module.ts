@@ -8,7 +8,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CreatePageRouting } from './create.routing';
 import { CreatePage } from './create.page';
 import { PageHeaderModule } from '@layout/page-header/page-header.module';
-import { SnippetsModule } from '@shared/components/snippets/snippets.module';
+import { CustomSlidesModule } from '@layout/custom-slides/custom-slides.module';
 
 @NgModule({
   imports: [
@@ -18,7 +18,7 @@ import { SnippetsModule } from '@shared/components/snippets/snippets.module';
     CreatePageRouting,
     TranslateModule,
     PageHeaderModule,
-    SnippetsModule
+    CustomSlidesModule
   ],
   declarations: [CreatePage]
 })

@@ -1,34 +1,38 @@
 <app-page-header [title]="'CREATE' | translate"
-                  [showMenu]="false">
+                 [showMenu]="false">
 </app-page-header>
 
-<ion-content force-overscroll="false"> 
-  <ion-slides [options]="slideOpts" 
-              pager="true"
-              class="create"
-              (ionSlideWillChange)="change()">
-    <ion-slide class="intro">
-      <app-form-create-intro></app-form-create-intro>
-    </ion-slide>
-    <ion-slide class="data">
-      <app-form-create-data (index)="showIndex($event)"></app-form-create-data>
-    </ion-slide>
-    <ion-slide class="title">
-      <app-form-create-title></app-form-create-title>
-    </ion-slide>
-    <ion-slide *ngIf="userIndex" class="index">
-      <app-form-create-index></app-form-create-index>
-    </ion-slide>
-    <ion-slide class="message">
-      <app-form-create-message></app-form-create-message>
-    </ion-slide>
-    <ion-slide class="links">
-      <app-form-create-links></app-form-create-links>
-    </ion-slide>
-    <ion-slide>
-      <app-form-create-preview [saved]="saved"></app-form-create-preview>
-    </ion-slide>
-  </ion-slides>
+<ion-content force-overscroll="false">
+  <ng-container *ngIf="(draftForm$ | async) as form">
+    <ion-slides [options]="slideOpts" 
+                pager="true"
+                class="create"
+                (ionSlidesDidLoad)="checkStorage()"
+                (ionSlideWillChange)="change(form)">
+      <ion-slide class="intro">
+        <app-form-create-intro [draftForm]="form"></app-form-create-intro>
+      </ion-slide>
+      <ion-slide class="data">
+        <app-data-picker [draftForm]="form"></app-data-picker>
+      </ion-slide>
+      <ion-slide class="title">
+        <app-form-title [draftForm]="form"></app-form-title>
+      </ion-slide>
+      <ion-slide class="index">
+        <app-form-create-index [draftForm]="form"></app-form-create-index>
+      </ion-slide>
+      <ion-slide class="message">
+        <app-form-create-message [draftForm]="form"></app-form-create-message>
+      </ion-slide>
+      <ion-slide class="links">
+        <app-form-create-links [draftForm]="form"></app-form-create-links>
+      </ion-slide>
+      <ion-slide>
+        <app-form-create-preview [draftForm]="form">
+        </app-form-create-preview>
+      </ion-slide>
+    </ion-slides>
+  </ng-container>
 </ion-content>
 
 <ion-footer class="ion-no-border">
@@ -45,8 +49,12 @@
                 slot="end" 
                 color="dark" 
                 (click)="next()"
-                *ngIf="index != (slidesLength - 1)">
-       {{'NEXT' | translate}} 
+                *ngIf="index != (slidesLength - 1)"
+                [disabled]="index === enums.INTRO && !(introValid$ | async) ||
+                            index === enums.DATA && !(dataValid$ | async) ||
+                            index === enums.TITLE && !(titleValid$ | async) ||
+                            index === enums.MESSAGE && !(messageValid$ | async)">
+       {{'NEXT' | translate}}
        <ion-icon name="chevron-forward-outline"></ion-icon>
     </ion-button>
   </ion-toolbar>

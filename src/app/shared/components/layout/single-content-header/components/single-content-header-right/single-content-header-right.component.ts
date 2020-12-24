@@ -8,8 +8,8 @@ import { LIKE_PUSH } from '@shared/data/push';
 import { Article, Category, NotificationPayload, Reaction, User } from '@shared/interfaces/interfaces';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { ShareService } from '@services/share/share.service';
 import { environment } from '@env/environment';
+import { ShareService } from '@core/native/services/share.service';
 
 @Component({
   selector: 'app-single-content-header-right',

@@ -1,4 +1,23 @@
-<app-user-header [user]="user" [public]="false"></app-user-header>
+<app-user-header [user]="user"></app-user-header>
 <ion-content force-overscroll="false">
   <app-profile-user [user]="user"></app-profile-user>
 </ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <div class="grid">
+      <div class="item">
+        <ion-icon name="reader-outline"></ion-icon>
+        <ion-text>{{user.stats?.score.articles.written || 0}}</ion-text> 
+      </div>
+      <div class="item">
+        <ion-icon name="heart-outline"></ion-icon>
+        <ion-text>{{user.stats?.score.reaction.likes || 0}}</ion-text>
+      </div>
+      <div class="item">
+        <ion-icon name="people-outline"></ion-icon>
+        <ion-text>{{0}}</ion-text>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-footer>

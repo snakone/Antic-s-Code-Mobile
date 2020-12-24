@@ -1,7 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Link } from '@shared/interfaces/interfaces';
 import { CrafterService } from '@services/crafter/crafter.service';
 import { LinksComponent } from '@modals/links/links.component';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormsFacade } from '@store/forms/forms.facade';
+import { DraftForm } from '@shared/interfaces/interfaces';
+import { FormGroupState } from 'ngrx-forms';
+import { URL_PATTERN } from '@shared/data/patterns';
 
 @Component({
   selector: 'app-form-create-links',
@@ -12,20 +17,44 @@ import { LinksComponent } from '@modals/links/links.component';
 
 export class FormCreateLinksComponent implements OnInit {
 
-  links: Link[] = [];
+  @Input() draftForm: FormGroupState<DraftForm>;
+  form: FormGroup;
+  urlPattern = URL_PATTERN;
 
-  constructor(private crafter: CrafterService) { }
+  constructor(
+    private crafter: CrafterService,
+    private formsFacade: FormsFacade
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.createForm();
+  }
 
-  public addLink(t, u): void {
-    this.links.push({
-      name: t.value,
-      url: u.value,
-    });
+  get properties() { return this.draftForm.userDefinedProperties; }
+  get name() { return this.form.get('name'); }
+  get url() { return this.form.get('url'); }
+
+  private createForm(): void {
+    this.form = new FormGroup({
+       name: new FormControl('', [
+         Validators.minLength(5),
+         Validators.maxLength(35)
+       ]),
+      url: new FormControl('', [
+        Validators.minLength(5),
+        Validators.pattern(this.urlPattern)
+    ])});
+  }
+
+  public onSubmit(): void {
+    if (this.form.invalid) { return; }
+    const { name, url } = this.form.value;
+    const link: Link = { name, url };
+    this.formsFacade.action('links', link);
     this.crafter.toast('LINK.ADDED');
-    t.value = '';
-    u.value = '';
+    this.form.patchValue({name: '', url: ''});
+    this.name.setErrors(null);
+    this.url.setErrors(null);
   }
 
   public openTooltip(): void {
@@ -33,7 +62,13 @@ export class FormCreateLinksComponent implements OnInit {
   }
 
   public openLinks(): void {
-    this.crafter.modal(LinksComponent, {links: this.links});
+    this.crafter.modal(LinksComponent, {
+      links: this.properties.links
+    });
+  }
+
+  public delete(): void {
+    this.formsFacade.action('deleteLinks', true);
   }
 
 }

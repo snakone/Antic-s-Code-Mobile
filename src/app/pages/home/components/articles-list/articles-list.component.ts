@@ -4,7 +4,7 @@ import { ContentFacade } from '@store/content/content.facade';
 import { ThemeService } from '@services/theme/theme.service';
 import { Article } from '@shared/interfaces/interfaces';
 import { Observable, Subject } from 'rxjs';
-import { filter, takeUntil,  } from 'rxjs/operators';
+import { filter, takeUntil, tap,  } from 'rxjs/operators';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { HOME_HEADER } from '@shared/data/header';
 
@@ -22,6 +22,7 @@ export class ArticlesListComponent implements OnInit, OnDestroy {
   isDark: boolean;
   @ViewChild(IonInfiniteScroll) scroll: IonInfiniteScroll;
   header = HOME_HEADER;
+  disabled = false;
 
   slideOpts = {
     initialSlide: 0,
@@ -59,7 +60,7 @@ export class ArticlesListComponent implements OnInit, OnDestroy {
        filter(res => !!res),
        takeUntil(this.unsubscribe$)
      )
-     .subscribe(_ => this.scroll.disabled = true);
+     .subscribe(_ => this.disabled = true);
   }
 
   public load(e: any): void {

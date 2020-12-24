@@ -24,6 +24,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { ContentEffects } from './ngrx/content/content.effects';
 import { UserEffects } from './ngrx/user/user.effects';
 import { NativeModule } from './native/native.module';
+import { RandomizerPipe } from '@shared/pipes/randomizer/randomizer.pipe';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, CORE_MODULE_CONSTANTS.TRANSLATE_CONFIG.I18N_PATH,
@@ -60,7 +61,8 @@ export function createTranslateLoader(http: HttpClient) {
     LanguageService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: CORE_MODULE_CONFIG, useValue: CORE_MODULE_CONSTANTS },
-    { provide: ErrorHandler, useClass: ErrorHandlerService }
+    { provide: ErrorHandler, useClass: ErrorHandlerService },
+    RandomizerPipe
   ]
 })
 

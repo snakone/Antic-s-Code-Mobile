@@ -1,5 +1,5 @@
 import { props, createAction } from '@ngrx/store';
-import { Article, ArticlesDataResponse, UserContent } from '@shared/interfaces/interfaces';
+import { Article, ArticlesDataResponse, Draft, UserContent } from '@shared/interfaces/interfaces';
 
 // GET CONTENT
 export const get =
@@ -10,7 +10,7 @@ export const getSuccess =
   props<{ content: UserContent }>());
 
 export const getFailure =
-  createAction('[Articles API] Get Content Failure',
+  createAction('[Content API] Get Content Failure',
   props<{ error: string }>());
 
 // GET CONTENT BY SLUG
@@ -37,12 +37,22 @@ export const resetBySlug =
 
 // GET ARTICLES DATA
 export const getData =
-  createAction('[Articles API] Get Articles Data');
+  createAction('[Content API] Get Articles Data');
 
 export const getDataSuccess =
-  createAction('[Articles API] Get Articles Data Success',
+  createAction('[Content API] Get Articles Data Success',
   props<{ res: ArticlesDataResponse }>());
 
 export const getDataFailure =
-  createAction('[Articles API] Get Articles Data Failure',
+  createAction('[Content API] Get Articles Data Failure',
   props<{ error: string }>());
+
+// ADD NEW DRAFT
+export const addNewDraft =
+  createAction('[Content API] Add New Draft',
+  props<{ draft: Draft }>());
+
+// REMOVE DRAFT
+export const removeDraft =
+  createAction('[Content API] Remove Draft',
+  props<{ draft: Draft }>());

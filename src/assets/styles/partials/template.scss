@@ -3,6 +3,7 @@
   p {
     margin-top: 30px;
     line-height: 1.7 !important;
+    &.pdf-page-break { display: none }
   }
 
   ul, ol {

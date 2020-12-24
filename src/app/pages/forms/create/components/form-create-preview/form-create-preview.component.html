@@ -1,9 +1,13 @@
-<ng-container *ngIf="saved">
+<ng-container *ngIf="newDraft">
   <div class="animated fadeIn">
-    <img src="assets/img/congrats.svg"/>
+    <img src="assets/icon/congrats.svg"/>
     <h2>{{'CONGRATS' | translate}}</h2>
     <p>{{'DRAFT.PUBLISHED' | translate}}</p>
-    <ion-button size="small" color="secondary" shape="round">
+    <ion-button size="small" 
+                color="secondary" 
+                shape="round"
+                strong
+                (click)="detail()">
       <span>{{'SEE.DRAFT' | translate}}</span>
     </ion-button>
     <ion-button size="small" 

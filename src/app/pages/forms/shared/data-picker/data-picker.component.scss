@@ -5,6 +5,7 @@
 
 ion-label {
   padding-left: 8px;
+  font-size: .85rem !important;
 }
 
 ion-list {
@@ -14,16 +15,33 @@ ion-list {
 ion-item {
   position: relative;
   --full-highlight-height: 0;
-  --padding-bottom: .5rem;
+  --padding-bottom: .2rem;
   --border-width: 0 !important;
   --inner-border-width: 0 !important;
 }
 
+ion-chip {
+  height: 28px;
+  padding: 10px;
+  font-size: .8rem;
+}
+
 ion-icon[slot="start"] {
   font-size: 1.3rem;
+  margin-right: 1rem;
+}
+
+ion-icon[slot="end"] {
+  font-size: 1.1rem;
+  opacity: .4;
+  margin-right: 0;
 }
 
 ion-checkbox {
   margin: 0 1px 0 0;
+}
+
+ion-list.edit {
+  padding-bottom: 1.2rem;
 }
 

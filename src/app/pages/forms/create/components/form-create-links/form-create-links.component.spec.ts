@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { FormCreateLinksComponent } from './form-create-links.component';
@@ -7,7 +7,7 @@ describe('FormCreateLinksComponent', () => {
   let component: FormCreateLinksComponent;
   let fixture: ComponentFixture<FormCreateLinksComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ FormCreateLinksComponent ],
       imports: [IonicModule.forRoot()]

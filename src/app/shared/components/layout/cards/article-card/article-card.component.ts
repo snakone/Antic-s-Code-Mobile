@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { HelpComponent } from '@pages/login/components/help/help.component';
 import { CrafterService } from '@services/crafter/crafter.service';
 import { Article } from '@shared/interfaces/interfaces';
+import { CardOptionsComponent } from './components/card-options/card-options.component';
 
 @Component({
   selector: 'app-article-card',
@@ -18,8 +18,10 @@ export class ArticleCardComponent {
 
   constructor(private crafter: CrafterService) { }
 
-  public options(e: any): void {
-    this.crafter.pop(HelpComponent, null, 'share-pop');
+  public options(): void {
+    this.crafter.pop(CardOptionsComponent, {
+      article: this.article
+    }, 'card-options');
   }
 
 }

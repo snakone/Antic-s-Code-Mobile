@@ -23,6 +23,8 @@ export class SettingsComponent implements OnInit {
   remember: boolean;
   create: boolean;
   intro: boolean;
+  login: boolean;
+
   lang = LANGS;
   mail = YESNOT;
   user: User;
@@ -49,28 +51,17 @@ export class SettingsComponent implements OnInit {
     this.remember = this.ls.get('remember');
     this.create = this.ls.get('createTutorial');
     this.intro = this.ls.get('introTutorial');
+    this.login = this.ls.get('autoLogin');
   }
 
-  public themeChanged(value: string): void {
-    document.body.classList.toggle('dark');
-    this.ls.setKey('theme', value);
-  }
-
-  public languageChanged(value: string): void {
-    this.ls.setKey('lang', value);
-    this.languageSrv.change(value);
-  }
-
-  public rememberChanged(value: boolean): void {
-    this.ls.setKey('remember', value);
-  }
-
-  public createChanged(value: boolean): void {
-    this.ls.setKey('createTutorial', value);
-  }
-
-  public introChanged(value: boolean): void {
-    this.ls.setKey('introTutorial', value);
+  public change(key: string, value: boolean) {
+    this.ls.setKey(key, value);
+    switch(key) {
+      case 'theme': document.body.classList.toggle('dark');
+       break;
+      case 'lang': this.languageSrv.change(String(value));
+       break;
+    }
   }
 
   public logout(): void {

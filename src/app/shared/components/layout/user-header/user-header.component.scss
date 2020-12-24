@@ -79,16 +79,19 @@ ion-buttons {
 
 .add {
   position: absolute;
-  bottom: 4px;
   left: .8rem;
-  top: calc((var(--ion-nav-height) * 3));
+  bottom: .5rem;
   z-index: 100;
   display: flex;
   align-items: center;
 
   & ion-icon {
-    margin-right: .55rem;
+    margin-right: .65rem;
     color: #fff;
+
+    &[name="star"] {
+      color: #ecbb18;
+    }
   }
 
   & ion-label {

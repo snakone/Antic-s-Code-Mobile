@@ -10,8 +10,10 @@
   <ion-card-content>
     <ion-list inset="true">
       <ion-item class="first">
-        <ion-label [routerLink]="'/detail/' + article.slug">{{article.title}}</ion-label>
-        <ion-button slot="end" fill="clear" (click)="options($event)">
+        <ion-label [routerLink]="'/detail/' + article.slug">
+          {{article.title}}
+        </ion-label>
+        <ion-button slot="end" fill="clear" (click)="options()">
           <ion-icon name="ellipsis-vertical-outline"
                     color="secondary">
           </ion-icon>
@@ -25,7 +27,7 @@
       </ion-chip>
       <ion-chip color="secondary">
         <div>
-          <ion-icon src="assets/img/eye-regular.svg"></ion-icon>
+          <ion-icon src="assets/icon/eye-regular.svg"></ion-icon>
           <ion-text>{{article.views}}</ion-text>
         </div>
       </ion-chip>

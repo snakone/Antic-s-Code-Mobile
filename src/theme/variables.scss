@@ -64,6 +64,13 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 
+  --ion-color-orange: #ff813d;
+  --ion-color-orange-rgb: 255,129,61;
+  --ion-color-orange-contrast: #000000;
+  --ion-color-orange-contrast-rgb: 0,0,0;
+  --ion-color-orange-shade: #e07236;
+  --ion-color-orange-tint: #ff8e50;
+
   --ion-background-color: #ffffff;
   --ion-background-color-rgb: 255,255,255;
   --ion-item-padding: .5rem;
@@ -79,14 +86,13 @@
   --ion-nav-height: 60px;
   --ion-active-color: rgba(135, 228, 255, .8);
   --ion-active-gradient: linear-gradient(156deg, rgb(176, 228, 243) 0%, rgb(154, 232, 253) 50%, rgb(135, 228, 255) 100%);
-  --menu-width: 290px;
+  --menu-width: 300px;
   --item-background: rgba(231, 231, 231, 0.5);
   --ion-color-category: rgba(231, 231, 231, .9);
 
   // FONTS
   --primary-font-size: 16px;
   --ion-text-color: #48494e;
-  --ion-text-color-rgb: rgb(72, 73, 78);
   --ion-fancy-font: 'Fredoka One';
   --ion-font-family: 'Montserrat' !important;
     font-family: 'Montserrat' !important;

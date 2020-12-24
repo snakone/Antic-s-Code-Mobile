@@ -1,31 +1,14 @@
-ion-label {
- --color: var(--ion-color-primary) !important;
+ion-button { 
+  margin: 0;
+  --background: var(--ion-header-background-invert);
+  color: #fff;
 }
 
-ion-input, ion-textarea {
- font-size: .9rem;
- padding: 5px 0 !important;
+.edit {
+  padding: 1rem 1rem 0;
+  height: 100%;
 }
 
-ion-select {
- max-width: 60%;
- font-size: .9rem;
-}
-
-ion-button { margin: 0 }
-ion-list { 
- margin-top: 0 !important;
- margin-bottom: 0 !important;
-}
-
-.white {
- color: var(--ion-color-dark);
-}
-
-.select {
- font-size: .75rem !important;
-}
-
-ion-select::part(icon) {
- margin-left: .6rem;
+hr {
+  margin-top: 2rem;
 }

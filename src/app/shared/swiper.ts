@@ -62,7 +62,7 @@ export const flipOpts = {
           eventTriggered = true;
           swiper.animating = false;
           const triggerEvents = ['webkitTransitionEnd', 'transitionend'];
-          // tslint:disable-next-line:prefer-for-of
+          // eslint-disable-next-line @typescript-eslint/prefer-for-of
           for (let i = 0; i < triggerEvents.length; i += 1) {
             $wrapperEl.trigger(triggerEvents[i]);
           }
@@ -125,7 +125,7 @@ export const coverOpts = {
         if (Math.abs(rotateY) < 0.001) { rotateY = 0; }
         if (Math.abs(rotateX) < 0.001) { rotateX = 0; }
 
-        // tslint:disable-next-line:max-line-length
+        // eslint-disable-next-line max-len
         const slideTransform = `translate3d(${translateX}px,${translateY}px,${translateZ}px)  rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
         $slideEl.transform(slideTransform);
         $slideEl[0].style.zIndex = -Math.abs(Math.round(offsetMultiplier)) + 1;

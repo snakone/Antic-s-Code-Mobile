@@ -64,6 +64,7 @@ export class UserService {
 
   public logout(): void {
     this.ls.setKey('token', null);
+    this.ls.setKey('draftForm', null);
     this.user = null;
     this.auth.logOut();
     this.userFacade.logOut();

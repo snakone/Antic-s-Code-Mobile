@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CrafterService } from '@services/crafter/crafter.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '@shared/interfaces/interfaces';
 import { Subject } from 'rxjs';
 import { UserService } from '@core/services/user/user.service';
-import { takeUntil, finalize, tap } from 'rxjs/operators';
+import { takeUntil, finalize } from 'rxjs/operators';
 import { LoginService } from '@services/login/login.service';
 import { StorageService } from '@services/storage/storage.service';
 import { NavController } from '@ionic/angular';
@@ -12,11 +12,12 @@ import { HelpComponent } from './components/help/help.component';
 import { MenuService } from '@services/menu/menu.service';
 import { ThemeService } from '@services/theme/theme.service';
 
+import { Plugins } from '@capacitor/core';
+
 @Component({
   selector: 'app-login',
   templateUrl: 'login.page.html',
-  styleUrls: ['login.page.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['login.page.scss']
 })
 
 export class LoginPage implements OnInit, OnDestroy {
@@ -38,25 +39,32 @@ export class LoginPage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.checkToken();
-    this.createForm();
+    this.loginForm();
     this.rememberMe();
     this.watchMenu();
     this.remember = this.ls.get('remember');
+    Plugins.StatusBar.setBackgroundColor({color: '#000000'});
   }
 
   private async checkToken(): Promise<void> {
-    if (!this.ls.get('token')) { return; }
-    await this.crafter.loader();
+    if (!this.ls.get('token') || 
+        !this.ls.get('autoLogin')) { return; }
 
+    await this.crafter.loader();
     this.userSrv.verifyToken()
     .pipe(
       takeUntil(this.unsubscribe$),
       finalize(() => this.crafter.loaderOff())
     )
-    .subscribe(_ => this.nav.navigateRoot('home'));
+    .subscribe(_ => {
+      this.nav.navigateRoot('home');
+      if (this.ls.get('introTutorial')) {
+        this.openHelp();
+      }
+    });
   }
 
-  private createForm(): void {
+  private loginForm(): void {
     this.form = new FormGroup({
        email: new FormControl('', [
          Validators.required,
@@ -86,6 +94,9 @@ export class LoginPage implements OnInit, OnDestroy {
     .subscribe(_ => {
       this.ls.setKey('remember', this.remember);
       this.nav.navigateRoot('home');
+      if (this.ls.get('introTutorial')) {
+        this.openHelp();
+      }
     });
   }
 
@@ -96,26 +107,27 @@ export class LoginPage implements OnInit, OnDestroy {
     if ( re && id) {
       this.userSrv.getUserById(id)
        .pipe(takeUntil(this.unsubscribe$))
-       .subscribe((res: User) => {
-          this.form.controls.email
-          .setValue(res.email);
+        .subscribe((res: User) => {
+          this.form.controls.email.setValue(res.email);
           this.remember = true;
       });
     }
   }
 
   public async openHelp(): Promise<void> {
-    await this.crafter.pop(HelpComponent);
+    await this.crafter.modal(HelpComponent);
   }
 
   private watchMenu(): void {
     this.menuSrv.isOpen$
+    .pipe(takeUntil(this.unsubscribe$))
      .subscribe(res => this.open = res);
   }
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
+    Plugins.StatusBar.setBackgroundColor({color: '#00000000'});
   }
 
 }

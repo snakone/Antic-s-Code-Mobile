@@ -1,0 +1,10 @@
+<div *ngIf="control.isInvalid && (control.isDirty || control.isTouched)" 
+      class="form-error"
+      [ngClass]="{'top': position === 'top'}">
+  <span *ngIf="control.errors.required">
+    {{'FIELD.REQUIRED' | translate}}
+  </span>
+  <span *ngIf="control.errors.minLength">
+    {{'MIN.LENGTH' | translate: { length: control.errors.minLength.minLength} }}
+  </span>
+</div>

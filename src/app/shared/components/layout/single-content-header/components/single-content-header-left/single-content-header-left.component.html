@@ -5,7 +5,8 @@
     </span>
   </li>
   <li>
-    <div class="badge-category hide-mobile">
+    <div class="badge-category"
+          [ngClass]="{'hide-mobile': content.badges?.length >= 2}">
       <img [src]="content.category | logo"
            [alt]="content.category" loading="lazy"/>
       <span class="white">{{content.category | translate}}</span>

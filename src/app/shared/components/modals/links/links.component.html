@@ -5,6 +5,18 @@
 
 <ion-content force-overscroll="false">
   <ng-container *ngIf="links">
-    {{links | json}}
+    <div class="content">
+      <ion-chip color="success">
+        {{'CHECK.LINKS' | translate}}
+      </ion-chip>
+    </div>
+    <ion-list inset="true">
+      <ion-item *ngFor="let l of links" 
+                [href]="l.url" 
+                target="_blank">
+        <ion-icon name="link-outline" slot="start"></ion-icon>
+        <ion-label>{{l.name}}</ion-label>
+      </ion-item>
+    </ion-list>
   </ng-container>
 </ion-content>

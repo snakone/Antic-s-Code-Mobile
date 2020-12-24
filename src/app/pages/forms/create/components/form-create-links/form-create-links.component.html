@@ -5,44 +5,58 @@
               (click)="openTooltip()"
               name="help-circle-outline"></ion-icon>
   </ion-list-header>
+  <div class="form-error default" 
+       *ngIf="properties.links?.length >= 3">
+    <span>{{'LINKS.LIMIT' | translate}}</span>
+  </div>
   <ion-chip color="success">
     {{'LINKS.USE' | translate}}
   </ion-chip>
-  <ion-item>
-    <ion-label position="stacked">{{'LINK.TITLE' | translate}}</ion-label>
-    <ion-input clearInput 
-               required
-               #title
-               type="text"
-               maxlength="35"
-               minlength="5"
-               name="title">
-    </ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">{{'LINK.URL' | translate}}</ion-label>
-    <ion-input clearInput
-               required
-               #url
-               type="text"
-               maxlength="35"
-               minlength="5"
-               name="subtitle">
-    </ion-input>
-  </ion-item>
-  <ion-button size="small" 
-              strong
-              [disabled]="!title.value || !url.value"
-              (click)="addLink(title, url)">
-    {{'INSERT.LINK' | translate}}
-  </ion-button>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ion-item>  <!-- TITLE -->
+      <ion-label position="stacked">{{'LINK.TITLE' | translate}}</ion-label>
+      <ion-input clearInput 
+                 type="text"
+                 [maxlength]="35"
+                 formControlName="name">
+      </ion-input>
+      <app-form-error [control]="name" 
+                      [validator]="['minlength', 'required']">
+      </app-form-error>
+    </ion-item>
+    <ion-item>  <!-- URL -->
+      <ion-label position="stacked">{{'LINK.URL' | translate}}</ion-label>
+      <ion-input clearInput
+                 type="text"
+                 formControlName="url">
+      </ion-input>
+      <app-form-error [control]="url" 
+                      [validator]="['minlength', 'required', 'pattern']">
+      </app-form-error>
+    </ion-item>
+    <ion-button size="small"
+                type="submit"
+                strong
+                [disabled]="form.invalid || 
+                            !name.value || 
+                            !url.value || 
+                            properties.links?.length >= 3">
+      {{'INSERT.LINK' | translate}}
+    </ion-button>
+    <ion-button size="small"
+                (click)="delete()"
+                color="danger"
+                [disabled]="properties.links?.length === 0">
+      {{'DELETE.LINKS' | translate}}
+    </ion-button>
+  </form>
 </ion-list>
 
 <ion-fab vertical="bottom" 
          horizontal="end" 
          slot="fixed"
          class="animated fadeInRight"
-         *ngIf="links.length > 0">
+         *ngIf="properties.links?.length > 0">
   <ion-fab-button size="small" (click)="openLinks()"> 
     <ion-icon class="fab" name="link-outline"></ion-icon>
   </ion-fab-button>

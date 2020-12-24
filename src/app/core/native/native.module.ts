@@ -1,16 +1,14 @@
 import { NgModule } from '@angular/core';
-import { UploadService } from '../services/upload/upload.service';
-import { CameraService } from './services/camera.service';
 import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
 
 @NgModule({
   declarations: [],
   providers: [
-    CameraService,
-    UploadService,
     Camera,
-    File
+    File,
+    FileOpener
   ]
 })
 

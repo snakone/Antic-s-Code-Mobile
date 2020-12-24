@@ -61,6 +61,20 @@ const featureReducer = createReducer(
   on(ContentActions.getFailure, (state, { error }) => (
     { ...state, contentLoaded: false, error }
   )),
+  // ADD NEW DRAFT
+  on(ContentActions.addNewDraft, (state, { draft }) => (
+    { 
+      ...state, 
+      drafts: [draft, ...state.drafts]
+    }
+  )),
+  // REMOVE DRAFT
+  on(ContentActions.removeDraft, (state, { draft }) => (
+    { 
+      ...state, 
+      drafts: [...state.drafts].filter(d => d._id !== draft._id)
+    }
+  )),
   // GET BY SLUG
   on(ContentActions.getBySlug, state => (
     { ...state, error: null }
@@ -107,7 +121,7 @@ const featureReducer = createReducer(
       error: null
     }
   )),
-  on(ContentActions.getFailure, (state, { error }) => (
+  on(ContentActions.getDataFailure, (state, { error }) => (
     { ...state, articlesLoaded: false, error }
   )),
   // RESET BY SLUG
@@ -145,7 +159,7 @@ export const getDataLoaded = (state: ContentState): boolean => {
 };
 
 function completed(articles: Article[]): boolean {
-  return articles.length === 0 ? true : false;
+  return articles.length === 0;
 }
 
 function checkDraft(state: ContentState, draft: Article): Article[] {

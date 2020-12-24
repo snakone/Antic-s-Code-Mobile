@@ -11,9 +11,18 @@ ion-avatar {
 
 .no-content {
   width: 100%;
-  height: calc(100vh - 156px);
+  height: calc(100% - var(--ion-nav-height)); 
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   font-size: 1.5rem;
+
+  & img {
+    max-height: 50%;
+    max-width: 80%;
+    margin: 0 auto 2rem;
+  }
+
+  & p { margin: 0}
 }
