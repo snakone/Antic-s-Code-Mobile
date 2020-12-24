@@ -42,6 +42,7 @@ export interface User {
   showEmail?: boolean;
   auth?: boolean;
   stats?: UserStats;
+  friends?: User[];
 }
 
 interface UserProfile {
@@ -53,6 +54,11 @@ interface UserProfile {
  github?: string;
  portfolio?: string;
  language?: string;
+}
+
+export interface UserSlide {
+  user: User;
+  selected: boolean;
 }
 
 export interface ServerResponse {

@@ -1,5 +1,5 @@
-<div class="user-chat animated fadeInUp">
-  <p>
-    mail-user works! {{name}}
-  </p>
-</div>
+<ng-container *ngIf="(user$ | async) as user">
+  <div class="user-chat animated fadeInUp">
+    {{ user.name }}
+  </div>
+</ng-container>

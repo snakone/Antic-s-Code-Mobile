@@ -9,8 +9,8 @@
 </ion-searchbar>
 
 <ion-list inset="true" *ngIf="(filtered$ | async) as users">
-  <ion-item detail *ngFor="let u of users"
+  <ion-item detail *ngFor="let u of users | friends"
             [routerLink]="'/public/' + u.name">
-    <ion-label>{{u.name}}</ion-label>
+    <ion-label>{{u.name | titlecase}}</ion-label>
   </ion-item>
 </ion-list>

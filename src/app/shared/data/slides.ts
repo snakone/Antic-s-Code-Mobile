@@ -53,3 +53,25 @@ export const INTRO_SLIDES: CustomSlide[] = [
     message: 'SLIDES.INTRO.SIXTH'
   }
 ];
+
+export const FRIENDS_SLIDES_OPTS = {
+  initialSlide: 0,
+  slidesPerView: 5.3,
+  zoom: false,
+  speed: 300,
+  spaceBetween: 8,
+  centeredSlides: true,
+  centeredSlidesBounds: true,
+  breakpoints: {
+    640: {
+      slidesPerView: 7.3
+    },
+    900: {
+      slidesPerView: 8.3
+    },
+    993: {
+      slidesPerView: 10.3
+    }
+  }
+};
+

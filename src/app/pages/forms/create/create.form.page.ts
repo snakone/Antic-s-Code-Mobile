@@ -111,10 +111,7 @@ export class CreateFormPage implements OnInit {
   }
 
   private showConfirm(): void {
-    const confirm = this.crafter.confirm(
-      this.translate.instant('DRAFT.CONTINUE'),
-      this.translate.instant('SAVE.DRAFT')
-    );
+    const confirm = this.crafter.confirm('DRAFT.CONTINUE', 'SAVE.DRAFT');
     confirm.then(async res => {
       if (!res.role) {
         this.slides.slideNext();

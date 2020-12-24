@@ -65,10 +65,7 @@ export class SettingsComponent implements OnInit {
   }
 
   public logout(): void {
-    const confirm = this.crafter.confirm(
-      this.translate.instant('SURE.EXIT'),
-      this.translate.instant('LOGOUT')
-    );
+    const confirm = this.crafter.confirm('SURE.EXIT', 'LOGOUT');
     confirm.then(async res => {
       if (!res.role) {
         this.userSrv.logout();

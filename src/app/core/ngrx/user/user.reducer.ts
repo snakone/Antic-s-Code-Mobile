@@ -1,6 +1,7 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import * as UserActions from './user.actions';
 import { User } from '@shared/interfaces/interfaces';
+import { ME } from '@app/app.config';
 
 export interface UserState {
   user: User;
@@ -23,8 +24,14 @@ export const initialState: UserState = {
 const featureReducer = createReducer(
   initialState,
   // SET USER
-  on(UserActions.set, (state, { user }) => (
-    { ...state, user, loaded: true, error: null }
+  on(UserActions.set, (state) => (
+    { ...state, user: null, error: null }
+  )),
+  on(UserActions.setSuccess, (state, { user }) => (
+    { ...state, user, error: null }
+  )),
+  on(UserActions.setFailure, (state, { error }) => (
+    { ...state, loaded: false, error, user: null }
   )),
   // GET ALL USERS
   on(UserActions.getUsers, (state) => (
@@ -35,8 +42,8 @@ const featureReducer = createReducer(
       ...state,
       usersLoaded: true,
       error: null,
-      users,
-      filtered: users
+      users: users.filter(u => u._id !== ME),
+      filtered: users.filter(u => u._id !== ME)
     }
   )),
   on(UserActions.getUsersFailure, (state, { error }) => (

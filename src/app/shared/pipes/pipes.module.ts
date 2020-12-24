@@ -5,6 +5,7 @@ import { ChipPipe } from './chip/chip.pipe';
 import { BadgePipe } from './badge/badge.pipe';
 import { ImagePipe } from './image/image.pipe';
 import { RandomizerPipe } from './randomizer/randomizer.pipe';
+import { FriendsPipe } from './friends/friends.pipe';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { RandomizerPipe } from './randomizer/randomizer.pipe';
     ChipPipe,
     ImagePipe,
     BadgePipe,
-    RandomizerPipe
+    RandomizerPipe,
+    FriendsPipe
   ],
   exports: [
     LogoPipe,
@@ -21,7 +23,8 @@ import { RandomizerPipe } from './randomizer/randomizer.pipe';
     ChipPipe,
     ImagePipe,
     BadgePipe,
-    RandomizerPipe
+    RandomizerPipe,
+    FriendsPipe
   ]
 })
 

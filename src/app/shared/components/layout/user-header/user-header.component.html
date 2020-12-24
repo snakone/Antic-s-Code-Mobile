@@ -6,11 +6,19 @@
     <ion-label>{{user.stats?.score.total || 0}}</ion-label>
   </div>
   <div class="user-buttons">
-    <ion-button fill="clear" 
-                class="mail"
+    <ion-button fill="clear"
+                *ngIf="!(public && isAdded(me$ | async)); else remove"
+                class="mail animated fadeIn"
                 (click)="mail()">
       <ion-icon [name]="public ? 'person-add' : 'mail'"></ion-icon>
     </ion-button>
+    <ng-template #remove>
+      <ion-button fill="clear"
+                  class="remove animated fadeIn"
+                  (click)="removeFriend()">
+        <ion-icon name="person-remove"></ion-icon>
+      </ion-button>
+    </ng-template>
     <ion-button fill="clear" 
                 class="like"
                 (click)="stats()">
@@ -38,6 +46,7 @@
       <img *ngIf="user.profile?.avatar; else noImage"
            [src]="user.profile.avatar" 
            [ngClass]="themeSrv.isDark() ? 'dark' : 'light'"
+           #img
            (error)="img.src = 'assets/icon/no-avatar.png'; img.alt='No Image'"/>
       <ng-template #noImage>
         <img [ngClass]="themeSrv.isDark() ? 'dark' : 'light'"

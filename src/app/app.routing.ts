@@ -38,6 +38,12 @@ const routes: Routes = [
     canLoad: [UserGuard]
   },
   {
+    path: 'users',
+    loadChildren: () => import('./pages/users/users.module')
+    .then(m => m.UsersPageModule),
+    canLoad: [UserGuard]
+  },
+  {
     path: 'public/:name',
     loadChildren: () => import('./pages/public-profile/public-profile.module')
     .then(m => m.PublicProfilePageModule),

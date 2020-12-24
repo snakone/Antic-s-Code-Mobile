@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from '@services/menu/menu.service';
 import { MenuController } from '@ionic/angular';
-import { UserService } from '@services/user/user.service';
 import { User } from '@shared/interfaces/interfaces';
 import { MAIL_HEADER } from '@shared/data/header';
 import { Router } from '@angular/router';
+import { UserFacade } from '@store/user/user.facade';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-mail-header',
@@ -14,22 +15,22 @@ import { Router } from '@angular/router';
 
 export class MailHeaderComponent implements OnInit {
 
-  user: User;
+  user$: Observable<User>;
   icons = MAIL_HEADER;
 
   constructor(
     public menuSrv: MenuService,
     private menu: MenuController,
-    private userSrv: UserService,
+    private userFacade: UserFacade,
     private router: Router
   ) { }
 
   ngOnInit() {
-    this.user = this.userSrv.getUser();
+    this.user$ = this.userFacade.user$;
   }
 
-  public navigate(id: string): void {
-    this.router.navigateByUrl('mail/user/' + id);
+  public navigate(name: string): void {
+    this.router.navigateByUrl('mail/user/' + name);
   }
 
   public openMenu(): void {

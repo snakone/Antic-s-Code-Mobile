@@ -31,6 +31,14 @@ export const set =
   createAction('[User API] Set User',
   props<{ user: User }>());
 
+export const setSuccess =
+  createAction('[Users API] Set User Success',
+  props<{ user: User }>());
+
+export const setFailure =
+  createAction('[Users API] Set User Failure',
+  props<{ error: string }>());
+
 // SEARCH USERS
 export const search =
   createAction('[Users API] Search Users',

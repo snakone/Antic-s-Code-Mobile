@@ -11,6 +11,7 @@ import { MailPage } from './mail.page';
 import { MailIntroComponent } from './components/mail-intro/mail-intro.component';
 import { MailSearchComponent } from './components/mail-search/mail-search.component';
 import { MailUserComponent } from './components/mail-user/mail-user.component';
+import { PipesModule } from '@shared/pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MailUserComponent } from './components/mail-user/mail-user.component';
     IonicModule,
     TranslateModule,
     MailHeaderModule,
-    RouterModule
+    RouterModule,
+    PipesModule
   ]
 })
 

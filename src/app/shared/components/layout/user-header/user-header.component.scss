@@ -31,6 +31,7 @@ ion-buttons {
 
   & img {
     width: 70px;
+    height: 70px;
     border-radius: 50%;
     margin-bottom: 4px;
     position: relative;
@@ -72,17 +73,23 @@ ion-buttons {
     transform: scale(.9);
     margin-right: .2rem;
     margin-left: .2rem;
-    opacity: 1 !important;
+    opacity: 1;
     transition: all .3s ease-in;
 
     &.mail { background: var(--ion-active-gradient) }
     &.like { background: var(--ion-primary-gradient) }
+    &.remove { background: var(--ion-color-danger) }
 
     &:hover {
       filter: brightness(1.1);
       transform: scale(1);
     }
   }
+}
+
+ion-button[disabled] {
+  opacity: .73 !important;
+  filter: grayscale(1);
 }
 
 .score {

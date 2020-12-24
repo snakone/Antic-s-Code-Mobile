@@ -27,6 +27,16 @@ export class UserEffects {
     ))))
   );
 
+  // SET USER
+  setUserEffect$ = createEffect(() => this.actions
+  .pipe(
+    ofType(UserActions.set),
+    map((action) => UserActions.setSuccess({ user: action.user })),
+      catchError(error =>
+        of(UserActions.setFailure({ error: error.message }))
+    ))
+  );
+
   // GET USER BY NAME
   getUserByNameEffect$ = createEffect(() => this.actions
   .pipe(

@@ -19,7 +19,7 @@ const routes: Routes = [
         component: MailSearchComponent
       },
       {
-        path: 'user/:id',
+        path: 'user/:name',
         component: MailUserComponent
       }
     ]

@@ -10,6 +10,16 @@ export const MENU: MenuLink[] = [
     title: 'PROFILE',
     icon: 'person-circle-outline',
     route: '/profile'
+  },
+  {
+    title: 'MAIL',
+    icon: 'mail-outline',
+    route: '/mail'
+  },
+  {
+    title: 'USERS',
+    icon: 'people-outline',
+    route: '/users'
   }
 ];
 
