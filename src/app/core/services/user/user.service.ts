@@ -7,6 +7,8 @@ import { environment } from '@env/environment';
 import { filter, tap, map } from 'rxjs/operators';
 import { AuthService } from '@services/login/auth.service';
 import { UserFacade } from '@store/user/user.facade';
+import { ContentFacade } from '@store/content/content.facade';
+import { ContentService } from '@services/content/content.service';
 
 @Injectable({providedIn: 'root'})
 
@@ -21,7 +23,9 @@ export class UserService {
     private http: HttpService,
     private ls: StorageService,
     private auth: AuthService,
-    private userFacade: UserFacade
+    private userFacade: UserFacade,
+    private contentFacade: ContentFacade,
+    private contentSrv: ContentService
   ) { }
 
   public getUser(): User {
@@ -57,6 +61,15 @@ export class UserService {
       .pipe(
         filter(res => res && !!res.ok),
         map(res => res.user)
+      );
+  }
+
+  public getUserEmailById(id: string): Observable<string> {
+    return this.http
+      .get<UserResponse>(this.API_USER + 'email/' + id)
+      .pipe(
+        filter(res => res && !!res.ok),
+        map(res => res.user.email)
       );
   }
 
@@ -103,6 +116,7 @@ export class UserService {
     this.setUser(data.user);
     this.ls.setKey('token', data.token);
     this.ls.setKey('user', data.user._id);
+    this.contentFacade.resetContent();
   }
 
   public logout(): void {
@@ -111,6 +125,7 @@ export class UserService {
     this.user = null;
     this.auth.logOut();
     this.userFacade.logOut();
+    this.contentSrv.resetPage();
   }
 
 }

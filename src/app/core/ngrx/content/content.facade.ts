@@ -25,7 +25,9 @@ export class ContentFacade {
   byCategoryCountLoaded$ = this.store.select(fromContent.getCategoryCountLoaded);
   likes$ = this.store.select(fromContent.getTotalLikes);
 
-  constructor(private store: Store<AppState>) { }
+  constructor(
+    private store: Store<AppState>
+  ) { }
 
   public get(): void {
     this.store.dispatch(ContentActions.get());
@@ -49,6 +51,10 @@ export class ContentFacade {
 
   public addNewDraft(draft: Draft): void {
     this.store.dispatch(ContentActions.addNewDraft({draft}));
+  }
+
+  public resetContent(): void {
+    this.store.dispatch(ContentActions.resetContent());
   }
 
   public removeDraft(draft: Draft): void {

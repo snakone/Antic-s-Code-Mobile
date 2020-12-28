@@ -5,7 +5,7 @@ import { CrafterService } from '@services/crafter/crafter.service';
 import { StorageService } from '@services/storage/storage.service';
 import { LanguageService } from '@core/language/services/language.service';
 import { TranslateService } from '@ngx-translate/core';
-import { MenuController, ModalController } from '@ionic/angular';
+import { MenuController, ModalController, NavController } from '@ionic/angular';
 import { LANGS, YESNOT } from '@shared/data/app';
 import { User } from '@shared/interfaces/interfaces';
 
@@ -32,12 +32,11 @@ export class SettingsComponent implements OnInit {
   constructor(
     private userSrv: UserService,
     private crafter: CrafterService,
-    private router: Router,
     private ls: StorageService,
     private languageSrv: LanguageService,
-    private translate: TranslateService,
     private modalCtrl: ModalController,
-    private menuCtrl: MenuController
+    private menuCtrl: MenuController,
+    private nav: NavController
   ) {}
 
   ngOnInit() {
@@ -71,7 +70,7 @@ export class SettingsComponent implements OnInit {
         this.userSrv.logout();
         this.modalCtrl.dismiss();
         await this.menuCtrl.close();
-        this.router.navigateByUrl('login');
+        this.nav.navigateRoot('/login');
       }
     });
   }

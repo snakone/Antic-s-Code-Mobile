@@ -28,15 +28,6 @@ ion-card {
   margin: .8rem auto 7.5vh auto;
 }
 
-input {
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
 ion-icon {
   font-size: 3rem;
   margin-bottom: .666rem;
@@ -46,10 +37,6 @@ ion-icon {
 ion-text {
   display: flex;
   justify-content: center;
-}
-
-img[hidden] {
-  display: none;
 }
  
 .max {

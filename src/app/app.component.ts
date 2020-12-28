@@ -7,9 +7,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { StorageService } from '@core/services/storage/storage.service';
 import { Plugins } from '@capacitor/core';
 
-import { registerWebPlugin } from "@capacitor/core";
-import { FileSharer } from '@byteowls/capacitor-filesharer';
-
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -31,14 +28,11 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      if (this.platform.is('hybrid')) {
         Plugins.SplashScreen.hide();
         Plugins.StatusBar.setOverlaysWebView({overlay: true});
-        registerWebPlugin(FileSharer);
-      }
-      timer(2000).subscribe(() => {
-        this.showSplash = false;
-      });
+        timer(2000).subscribe(() => {
+          this.showSplash = false;
+        });
     });
     this.translate.setDefaultLang(APP_CONSTANTS.DEFAULT_LANGUAGE);
     this.translate.use(APP_CONSTANTS.DEFAULT_LANGUAGE);

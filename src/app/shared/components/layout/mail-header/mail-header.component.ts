@@ -29,8 +29,8 @@ export class MailHeaderComponent implements OnInit {
     this.user$ = this.userFacade.user$;
   }
 
-  public navigate(name: string): void {
-    this.router.navigateByUrl('mail/user/' + name);
+  public navigate(id: string): void {
+    this.router.navigateByUrl('mail/user/' + id);
   }
 
   public openMenu(): void {

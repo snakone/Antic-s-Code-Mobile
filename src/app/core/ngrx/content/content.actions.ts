@@ -56,3 +56,7 @@ export const addNewDraft =
 export const removeDraft =
   createAction('[Content API] Remove Draft',
   props<{ draft: Draft }>());
+
+// RESET CONTENT
+export const resetContent =
+  createAction('[Content API] Reset Content');

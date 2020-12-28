@@ -1,7 +1,8 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import * as UserActions from './user.actions';
 import { User } from '@shared/interfaces/interfaces';
-import { ME } from '@app/app.config';
+import { environment } from '@env/environment';
+
 
 export interface UserState {
   user: User;
@@ -42,15 +43,15 @@ const featureReducer = createReducer(
       ...state,
       usersLoaded: true,
       error: null,
-      users: users.filter(u => u._id !== ME),
-      filtered: users.filter(u => u._id !== ME)
+      users: users.filter(u => u._id !== environment.id),
+      filtered: users.filter(u => u._id !== environment.id)
     }
   )),
   on(UserActions.getUsersFailure, (state, { error }) => (
     { ...state, loaded: false, error, users: null }
   )),
   // GET USER BY NAME
-  on(UserActions.getByName, (state, { name }) => (
+  on(UserActions.getByName, (state) => (
     { ...state, publicLoaded: false, error: null }
   )),
   on(UserActions.getByNameSuccess, (state, { user }) => (
@@ -68,7 +69,8 @@ const featureReducer = createReducer(
   on(UserActions.search, (state, { value }) => (
     {
       ...state,
-      filtered: [...[...state.users].filter(u => u.name.match(new RegExp(value, 'i')))],
+      filtered: [...[...state.users]
+                  .filter(u => u.name.match(new RegExp(value, 'i')))],
       error: null
     }
   )),

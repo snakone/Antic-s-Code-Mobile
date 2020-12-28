@@ -3,7 +3,7 @@
                  [icons]="header">
 </app-page-header>
 
-<ion-content> 
+<ion-content>
   <ng-container *ngIf="(articles$ | async) as articles">
     <ng-container *ngIf="articles.length > 0; else noArticles">
       <ion-grid class="articles-grid">

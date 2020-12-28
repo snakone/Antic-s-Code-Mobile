@@ -4,9 +4,10 @@ import { ContentFacade } from '@store/content/content.facade';
 import { ThemeService } from '@services/theme/theme.service';
 import { Article } from '@shared/interfaces/interfaces';
 import { Observable, Subject } from 'rxjs';
-import { filter, takeUntil, tap,  } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { HOME_HEADER } from '@shared/data/header';
+import { ContentService } from '@services/content/content.service';
 
 @Component({
   selector: 'app-articles-list',
@@ -38,7 +39,8 @@ export class ArticlesListComponent implements OnInit, OnDestroy {
   constructor(
     private contentFacade: ContentFacade,
     private router: Router,
-    private theme: ThemeService
+    private theme: ThemeService,
+    private contentSrv: ContentService
   ) { }
 
   ngOnInit() {

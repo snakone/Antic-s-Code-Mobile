@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UserFacade } from '@store/user/user.facade';
-import { User } from '@shared/interfaces/interfaces';
+import { Mail } from '@shared/interfaces/interfaces';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { MailFacade } from '@store/mail/mail.facade';
 
 @Component({
   selector: 'app-mail-user',
@@ -13,29 +13,28 @@ import { takeUntil } from 'rxjs/operators';
 
 export class MailUserComponent implements OnInit, OnDestroy {
 
-  user$: Observable<User>;
+  mail$: Observable<Mail[]>;
   private unsubscribe$ = new Subject<void>();
 
   constructor(
     private route: ActivatedRoute,
-    private userFacade: UserFacade,
+    private mailFacade: MailFacade,
   ) { }
 
   ngOnInit() {
-    this.user$ = this.userFacade.byName$;
-    this.getUserByName();
+    this.mail$ = this.mailFacade.byFriend$;
+    this.getMailByFriend();
   }
   
-  private getUserByName(): void {
+  private getMailByFriend(): void {
     this.route.params
      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(params => this.userFacade.getByName(params.name));
+      .subscribe(params => this.mailFacade.getByFriend(params.id));
   }
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
-    this.userFacade.resetByName();
   }
 
 }

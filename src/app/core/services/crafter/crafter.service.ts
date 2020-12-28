@@ -25,6 +25,7 @@ export class CrafterService {
   ) { }
 
   public async alert(message: string, header = true): Promise<void> {
+    if (await this.alertCtrl.getTop()) { return; }
     const alert = await this.alertCtrl.create({
       header: header ? 'Antic\'s Code Mobile' : null,
       mode: 'ios',
@@ -35,6 +36,7 @@ export class CrafterService {
   }
 
   public async confirm(message: string, header: string): Promise<any> {
+    if (await this.alertCtrl.getTop()) { return; }
     const alert = await this.alertCtrl.create({
       header: this.translateMsg(header),
       message: this.translateMsg(message),
@@ -53,11 +55,12 @@ export class CrafterService {
   }
 
   public async toast(message: string): Promise<void> {
+    if (await this.toastCtrl.getTop()) { return; }
     const toast = await this.toastCtrl.create({
       message: this.translateMsg(message),
       duration: 3000,
       color: 'light',
-      position: 'top',
+      position: 'bottom',
       cssClass: 'toast-sheet'
     });
     return toast.present();
@@ -73,6 +76,7 @@ export class CrafterService {
   }
 
   public async loader(msg?: string): Promise<void> {
+    if (await this.loading.getTop()) { return; }
     const loading = await this.loading.create({
       message: this.translateMsg(msg ?? 'LOADING')
     });
@@ -80,7 +84,9 @@ export class CrafterService {
   }
 
   public async loaderOff(): Promise<void> {
-    await this.loading.dismiss();
+    if (await this.loading.getTop()) { 
+      await this.loading.dismiss();
+     }
   }
 
   public async pop<T>(
@@ -89,6 +95,7 @@ export class CrafterService {
     cssClass?: string,
     event?: any
   ): Promise<void> {
+    if (await this.popCtrl.getTop()) { return; }
     const popover = await this.popCtrl.create({
       component,
       componentProps: data,
@@ -100,9 +107,7 @@ export class CrafterService {
   }
 
   public async handleError(err: HttpErrorResponse): Promise<void> {
-    if (await this.alertCtrl.getTop()) { 
-      return;
-    }
+    if (await this.alertCtrl.getTop()) { return; }
     switch (err.status) {
       case 0: this.alert('ERRORS.WEB.MESSAGE');
               break;

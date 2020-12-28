@@ -32,7 +32,7 @@ export class FriendsSlidesComponent implements OnInit {
     this.slides.map(u => u.selected = false);
     slide.selected = true;
     this.slider.slideTo(index);
-    this.selected.emit(slide.user.name);
+    this.selected.emit(slide.user._id);
   }
 
 }

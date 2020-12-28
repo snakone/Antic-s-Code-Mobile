@@ -104,12 +104,13 @@ export class LoginPage implements OnInit, OnDestroy {
   private rememberMe(): void {
     const id = this.ls.get('user');
     const re = this.ls.get('remember');
+    const token = this.ls.get('token');
 
-    if ( re && id) {
-      this.userSrv.getUserById(id)
+    if ( re && id && !token) {
+      this.userSrv.getUserEmailById(id)
        .pipe(takeUntil(this.unsubscribe$))
-        .subscribe((res: User) => {
-          this.form.controls.email.setValue(res.email);
+        .subscribe(email => {
+          this.form.controls.email.setValue(email);
           this.remember = true;
       });
     }
@@ -126,7 +127,6 @@ export class LoginPage implements OnInit, OnDestroy {
   }
 
   private setBackground(color: string): void {
-    if (!this.platform.is('hybrid')) { return; }
     Plugins.StatusBar.setBackgroundColor({color});
   }
 

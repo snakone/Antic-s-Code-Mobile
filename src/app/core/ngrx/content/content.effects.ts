@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import * as ContentActions from '../content/content.actions';
-import { map, concatMap, catchError } from 'rxjs/operators';
+import { map, concatMap, catchError, switchMap, tap } from 'rxjs/operators';
 import { ContentService } from '@services/content/content.service';
 
 @Injectable()

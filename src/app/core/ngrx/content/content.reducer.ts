@@ -124,6 +124,16 @@ const featureReducer = createReducer(
   on(ContentActions.getDataFailure, (state, { error }) => (
     { ...state, articlesLoaded: false, error }
   )),
+  // RESET CONTENT
+  on(ContentActions.resetContent, (state) => (
+    { 
+      ...state, 
+      contentLoaded: false, 
+      articles: [], 
+      drafts: [], 
+      full: false
+    }
+  )),
   // RESET BY SLUG
   on(ContentActions.resetBySlug, (state) => (
     { ...state, bySlugLoaded: false, bySlug: null }

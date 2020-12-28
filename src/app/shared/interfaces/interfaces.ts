@@ -302,10 +302,40 @@ export interface ReactionStats {
   score?: number;
 }
 
+export interface ProfileStats {
+  likes?: number;
+  stars?: number;
+  views?: number;
+}
+
 export interface ScoreStats {
   total?: number;
-  views?: number;
   articles?: ArticleStats;
   test?: TestStats;
   reaction?: ReactionStats;
+  user?: ProfileStats;
+}
+
+export interface Mail {
+  _id?: string;
+  sender?: User;
+  receiver?: User;
+  subject?: string;
+  messages?: MailMessage[];
+  created?: string;
+  last?: MailMessage;
+}
+
+export interface MailMessage {
+  _id?: string;
+  subject?: string;
+  message?: string;
+  sender?: User;
+  receiver?: User;
+  date?: string;
+  read?: boolean;
+}
+
+export interface MailResponse extends ServerResponse {
+  mail?: Mail[];
 }

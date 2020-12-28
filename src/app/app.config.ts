@@ -7,9 +7,8 @@ import * as fromUser from '@store/user/user.reducer';
 import { FormGroupState } from 'ngrx-forms';
 import { DraftForm } from './shared/interfaces/interfaces';
 
-export const URI = 'https://anticscode.netlify.com';
+export const URI = 'https://anticscode.com';
 export const APP_VERSION = '0.2.0';
-export const ME = '5d7b56610d35cc0017f4ef9c';
 
 export interface AppConfig {
   TITLE: string;
