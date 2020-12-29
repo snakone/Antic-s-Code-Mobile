@@ -3,7 +3,6 @@ import * as UserActions from './user.actions';
 import { User } from '@shared/interfaces/interfaces';
 import { environment } from '@env/environment';
 
-
 export interface UserState {
   user: User;
   users: User[];

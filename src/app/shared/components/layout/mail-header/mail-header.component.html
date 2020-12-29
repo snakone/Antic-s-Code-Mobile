@@ -22,7 +22,8 @@
     </ion-buttons>
     <div class="slides">
       <app-friends-slides (selected)="navigate($event)"
-                          [user]="user$ | async">
+                          [user]="user$ | async"
+                          [online]="online$ | async">
       </app-friends-slides>
     </div>
   </ion-toolbar>

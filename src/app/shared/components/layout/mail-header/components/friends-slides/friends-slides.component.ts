@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { User, UserSlide } from '@shared/interfaces/interfaces';
+import { Component, EventEmitter, Input, Output, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
+import { User, UserOnline, UserSlide } from '@shared/interfaces/interfaces';
 import { IonSlides } from '@ionic/angular';
 import { ThemeService } from '@services/theme/theme.service';
 import { FRIENDS_SLIDES_OPTS } from '@shared/data/slides';
@@ -10,21 +10,36 @@ import { FRIENDS_SLIDES_OPTS } from '@shared/data/slides';
   styleUrls: ['./friends-slides.component.scss'],
 })
 
-export class FriendsSlidesComponent implements OnInit {
+export class FriendsSlidesComponent implements OnChanges {
 
   @ViewChild('slider') slider: IonSlides;
   @Input() user: User;
+  @Input() online: UserOnline[];
   @Output() selected = new EventEmitter<string>();
   slides: UserSlide[];
   slideOpts = FRIENDS_SLIDES_OPTS
 
   constructor(public themeSrv: ThemeService) { }
 
-  ngOnInit() {
-    this.slides = this.user.friends?.map(f => ({user: f, selected: false})) || [];
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.online.currentValue?.length > 0) {
+      this.createSlides();
+    }
   }
 
-  public didLoad(e): void {
+  private createSlides(): void {
+    this.slides = this.user.
+                   friends?.map(f => (
+                     {
+                       user: f, 
+                       selected: false, 
+                       online: this.online?.find(
+                         o => o.user === f._id)?.online || false
+                    })).sort(f => f.online ? -1 : 1) || [];
+    this.didLoad();
+  }
+
+  public didLoad(): void {
     this.slider.update();
   }
 

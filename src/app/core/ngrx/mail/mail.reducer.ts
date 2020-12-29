@@ -38,6 +38,9 @@ const featureReducer = createReducer(
       unread: [...mail].reduce((acc, curr) => acc + (curr.last.read ? 0 : 1), 0)
     }
   )),
+  on(MailActions.getFailure, (state, { error }) => (
+    { ...state, mailLoaded: false, error }
+  )),
   // GET BY FRIEND
   on(MailActions.getByFriend, (state) => (
     { ...state, error: null, mail: [] }

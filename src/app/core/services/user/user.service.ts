@@ -9,6 +9,7 @@ import { AuthService } from '@services/login/auth.service';
 import { UserFacade } from '@store/user/user.facade';
 import { ContentFacade } from '@store/content/content.facade';
 import { ContentService } from '@services/content/content.service';
+import { SocketService } from '@core/sockets/services/socket.service';
 
 @Injectable({providedIn: 'root'})
 
@@ -25,7 +26,8 @@ export class UserService {
     private auth: AuthService,
     private userFacade: UserFacade,
     private contentFacade: ContentFacade,
-    private contentSrv: ContentService
+    private contentSrv: ContentService,
+    private socket: SocketService
   ) { }
 
   public getUser(): User {
@@ -78,7 +80,7 @@ export class UserService {
       .post<UserResponse>(this.API_USERS + 'add', {id})
       .pipe(
         filter(res => res && !!res.ok),
-        tap(res => this.UserLogIn(res))
+        tap(res => this.UserLogIn(res, false))
       );
   }
 
@@ -87,7 +89,7 @@ export class UserService {
       .delete<UserResponse>(this.API_USERS + 'remove/' + id)
       .pipe(
         filter(res => res && !!res.ok),
-        tap(res => this.UserLogIn(res))
+        tap(res => this.UserLogIn(res, false))
       );
   }
 
@@ -96,7 +98,7 @@ export class UserService {
       .post<UserResponse>(this.API_TOKEN + id, null)
       .pipe(
         filter(res => res && !!res.ok),
-        tap(res => this.UserLogIn(res)),
+        tap(res => this.UserLogIn(res, true)),
         map(res => res.user)
       );
   }
@@ -107,25 +109,28 @@ export class UserService {
       .get<UserResponse>(this.API_TOKEN)
       .pipe(
         filter(res => res && !!res.ok),
-        tap(res => this.UserLogIn(res)),
+        tap(res => this.UserLogIn(res, true)),
         map(res => res.user)
       );
   }
 
-  public UserLogIn(data: UserResponse): void {
+  public UserLogIn(data: UserResponse, emit: boolean): void {
     this.setUser(data.user);
     this.ls.setKey('token', data.token);
     this.ls.setKey('user', data.user._id);
     this.contentFacade.resetContent();
+    if (emit) { this.socket.emit('online', data.user); }
   }
 
   public logout(): void {
     this.ls.setKey('token', null);
     this.ls.setKey('draftForm', null);
+    this.socket.emit('offline', this.user);
     this.user = null;
     this.auth.logOut();
     this.userFacade.logOut();
     this.contentSrv.resetPage();
+    
   }
 
 }

@@ -12,6 +12,7 @@ import { UserService } from '@services/user/user.service';
 
 import { Plugins } from '@capacitor/core';
 import "@codetrix-studio/capacitor-google-auth";
+import { SocketService } from '@app/core/sockets/services/socket.service';
 
 
 @Component({
@@ -31,7 +32,8 @@ export class SocialLoginComponent implements OnDestroy {
     private userSrv: UserService,
     private authSrv: AuthService,
     private sw: PushService,
-    private crafter: CrafterService
+    private crafter: CrafterService,
+    private socket: SocketService
   ) { }
 
   public async google(): Promise<void> {
@@ -55,7 +57,7 @@ export class SocialLoginComponent implements OnDestroy {
   }
 
   private handleSignIn(data: UserResponse): void {
-    this.userSrv.UserLogIn(data);
+    this.userSrv.UserLogIn(data, true);
     this.nav.navigateRoot('home');
     if (data.message.indexOf('Created') > -1) {
       this.sw.send(

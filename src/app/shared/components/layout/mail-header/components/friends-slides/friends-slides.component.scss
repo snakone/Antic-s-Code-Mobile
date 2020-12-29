@@ -15,10 +15,22 @@ ion-avatar {
  width: 45px;
  height: 45px;
  cursor: pointer;
+ position: relative;
 
  &.active {
    filter: brightness(1.2);
    opacity: 1;
+ }
+
+ & span {
+   display: block;
+   position: absolute;
+   width: 10px;
+   height: 10px;
+   border-radius: 50%;
+   background: var(--ion-color-success);
+   top: 0;
+   right: 0;
  }
 }
 

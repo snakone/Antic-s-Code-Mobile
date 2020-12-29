@@ -59,6 +59,7 @@ interface UserProfile {
 export interface UserSlide {
   user: User;
   selected: boolean;
+  online?: boolean;
 }
 
 export interface ServerResponse {
@@ -338,4 +339,14 @@ export interface MailMessage {
 
 export interface MailResponse extends ServerResponse {
   mail?: Mail[];
+}
+
+export interface UserOnline {
+  user: string;
+  online: boolean;
+  socketID: string;
+}
+
+export interface OnlineResponse extends ServerResponse {
+  online?: UserOnline[];
 }

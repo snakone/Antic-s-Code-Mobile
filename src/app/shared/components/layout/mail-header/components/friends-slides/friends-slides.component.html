@@ -1,9 +1,10 @@
 <ion-slides [options]="slideOpts"
             #slider
-            (ionSlidesDidLoad)="didLoad($event)">
+            (ionSlidesDidLoad)="didLoad()">
   <ion-slide *ngFor="let friend of slides; let i = index" 
              (click)="pick(friend,i)">
     <ion-avatar [ngClass]="{'active': friend.selected}">
+      <span *ngIf="friend.online"></span>
       <img *ngIf="friend.user.profile?.avatar; else noImage"
            [src]="friend.user.profile.avatar"
            #img

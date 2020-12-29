@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CrafterService } from '@services/crafter/crafter.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { User } from '@shared/interfaces/interfaces';
 import { Subject } from 'rxjs';
 import { UserService } from '@core/services/user/user.service';
 import { takeUntil, finalize } from 'rxjs/operators';
@@ -127,7 +126,9 @@ export class LoginPage implements OnInit, OnDestroy {
   }
 
   private setBackground(color: string): void {
-    Plugins.StatusBar.setBackgroundColor({color});
+    if (this.platform.is('hybrid')) {
+      Plugins.StatusBar.setBackgroundColor({color});
+    }
   }
 
   ngOnDestroy(): void {

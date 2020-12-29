@@ -23,6 +23,7 @@ import { reducers } from './ngrx/ngrx.index';
 import { EffectsModule } from '@ngrx/effects';
 import { ContentEffects } from './ngrx/content/content.effects';
 import { UserEffects } from './ngrx/user/user.effects';
+
 import { NativeModule } from './native/native.module';
 import { SocketsModule } from './sockets/sockets.module';
 import { RandomizerPipe } from '@shared/pipes/randomizer/randomizer.pipe';

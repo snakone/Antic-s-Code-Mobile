@@ -6,6 +6,7 @@ import { FriendsSlidesComponent } from './components/friends-slides/friends-slid
 import { PipesModule } from '@shared/pipes/pipes.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
+import { OnlineAccessModule } from '@store/online/data-access/online-access.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { RouterModule } from '@angular/router';
     IonicModule,
     PipesModule,
     TranslateModule,
-    RouterModule
+    RouterModule,
+    OnlineAccessModule
   ],
   exports: [MailHeaderComponent]
 })
