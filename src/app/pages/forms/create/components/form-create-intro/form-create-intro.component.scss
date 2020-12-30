@@ -3,6 +3,11 @@ ion-list {
   margin-bottom: 0 !important;
 }
 
+form {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
 ion-item:not(.default) {
   transition: all .3s ease-in;
   --full-highlight-height: 0;

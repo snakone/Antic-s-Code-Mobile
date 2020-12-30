@@ -1,0 +1,23 @@
+<app-page-header [title]="'USERS' | translate"
+                 [showBack]="true">
+</app-page-header>
+
+
+<ion-content force-overscroll="false" class="ion-padding">
+  <ion-searchbar debounce="500"
+                mode="ios"
+                [placeholder]="'SEARCH.USERS' | translate"
+                showCancelButton="never"
+                inputmode="text"
+                type="text"
+                class="search-user"
+                (ionChange)="search($event)">
+  </ion-searchbar>
+
+  <ion-list inset="true" *ngIf="(filtered$ | async) as users">
+    <ion-item detail *ngFor="let u of users"
+              [routerLink]="'/public/' + u.name">
+      <ion-label>{{u.name | titlecase}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -21,7 +21,7 @@ export class AuthService {
     return this.http
       .post<UserResponse>(this.API_AUTH, user)
       .pipe(
-        filter(res => res && !!res.ok)
+        filter(res => res && !!res.ok),
       );
   }
 

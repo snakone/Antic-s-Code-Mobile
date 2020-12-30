@@ -2,18 +2,17 @@ import { Injectable } from '@angular/core';
 import { CrafterService } from '@services/crafter/crafter.service';
 
 import { MarkdownService } from 'ngx-markdown';
-import { Platform } from '@ionic/angular';
 import { Article } from '@shared/interfaces/interfaces';
 
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import htmlToPdfmake from 'html-to-pdfmake';
-import { markedOptionsPDF } from '@app/core/markdown/markdown.module';
+import { markedOptionsPDF } from '@core/markdown/markdown.module';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 import { FilesystemDirectory, Plugins } from '@capacitor/core';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
-import { DEFAULT_PDF_STYLES, makePdfRef } from '@app/shared/data/pdf';
+import { DEFAULT_PDF_STYLES, makePdfRef } from '@shared/data/pdf';
 const { Filesystem } = Plugins;
 
 @Injectable({providedIn: 'root'})
@@ -25,7 +24,6 @@ export class PDFService {
 
   constructor(
     private crafter: CrafterService,
-    private platform: Platform,
     private markdownSrv: MarkdownService,
     private fileOpen: FileOpener
   ) { }
@@ -59,19 +57,6 @@ export class PDFService {
       this.crafter.loaderOff();
       return;
     }
-    if (!this.platform.is('hybrid')) {
-      this.pdfFile.download(this.title, () => this.crafter.loaderOff());
-    } else {
-      this.hybridDownload();
-    }
-  }
-
-  private hybridDownload(): void {
-    if (!this.pdfFile) {
-      this.crafter.loaderOff();
-      return;
-    }
-
     this.pdfFile.getBase64(async (data: string) => {
       this.saveToDevice(data);
     });

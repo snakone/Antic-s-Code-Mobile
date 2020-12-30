@@ -1,7 +1,8 @@
 import { ErrorHandler, Injectable, Injector, NgZone } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { ErrorService } from '../services/error/error.service';
+import { LoadingController } from '@ionic/angular';
+import { CrafterService } from '@core/services/crafter/crafter.service';
 
 @Injectable()
 
@@ -11,8 +12,10 @@ export class ErrorHandlerService implements ErrorHandler {
 
   constructor(private injector: Injector) { }
 
-  handleError(error: Error | HttpErrorResponse): void {
+  async handleError(error: Error | HttpErrorResponse): Promise<void> {
+
     const service = this.injector.get(ErrorService);
+
     switch (error.constructor) {
       case TypeError: {
         console.error('Type Error! ', error);
@@ -24,8 +27,9 @@ export class ErrorHandlerService implements ErrorHandler {
       }
     }
 
-    if (error instanceof HttpErrorResponse) { return; }
-    service.saveError(error);
+    if (!(error instanceof HttpErrorResponse)) {
+      service.saveError(error);
+    } 
 
     if (this.chunkFailedMessage.test(error?.message || null)) {
       window.location.reload();

@@ -33,7 +33,11 @@ export class MenuComponent implements OnInit {
   }
 
   public async open(route: string): Promise<void> {
-    if (route === '/profile' || route === '/home') {
+    if (
+      route === '/profile' || 
+      route === '/home' ||
+      route === '/mail' ||
+      route === '/users') {
       this.menuCtrl.close();
       return;
     }

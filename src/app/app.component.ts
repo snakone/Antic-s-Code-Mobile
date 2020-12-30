@@ -6,9 +6,7 @@ import { APP_CONSTANTS } from './app.config';
 import { TranslateService } from '@ngx-translate/core';
 import { StorageService } from '@core/services/storage/storage.service';
 import { Plugins } from '@capacitor/core';
-
-import { registerWebPlugin } from "@capacitor/core";
-import { FileSharer } from '@byteowls/capacitor-filesharer';
+import { SocketService } from '@core/sockets/services/socket.service';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +22,7 @@ export class AppComponent {
     private platform: Platform,
     private translate: TranslateService,
     private ls: StorageService,
+    public socket: SocketService
   ) {
     this.initializeApp();
     this.checkTheme();
@@ -34,8 +33,8 @@ export class AppComponent {
       if (this.platform.is('hybrid')) {
         Plugins.SplashScreen.hide();
         Plugins.StatusBar.setOverlaysWebView({overlay: true});
-        registerWebPlugin(FileSharer);
       }
+
       timer(2000).subscribe(() => {
         this.showSplash = false;
       });

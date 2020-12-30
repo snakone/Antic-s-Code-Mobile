@@ -22,19 +22,10 @@ ion-card {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: .8rem;
-  margin-bottom: 7.5vh;
   flex-wrap: wrap;
   position: relative;
-}
-
-input {
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
+  max-width: 550px;
+  margin: .8rem auto 7.5vh auto;
 }
 
 ion-icon {
@@ -46,10 +37,6 @@ ion-icon {
 ion-text {
   display: flex;
   justify-content: center;
-}
-
-img[hidden] {
-  display: none;
 }
  
 .max {

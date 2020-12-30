@@ -1,13 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CrafterService } from '@services/crafter/crafter.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { User } from '@shared/interfaces/interfaces';
 import { Subject } from 'rxjs';
 import { UserService } from '@core/services/user/user.service';
 import { takeUntil, finalize } from 'rxjs/operators';
 import { LoginService } from '@services/login/login.service';
 import { StorageService } from '@services/storage/storage.service';
-import { NavController } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 import { HelpComponent } from './components/help/help.component';
 import { MenuService } from '@services/menu/menu.service';
 import { ThemeService } from '@services/theme/theme.service';
@@ -34,7 +33,8 @@ export class LoginPage implements OnInit, OnDestroy {
     private ls: StorageService,
     private nav: NavController,
     public menuSrv: MenuService,
-    public themeSrv: ThemeService
+    public themeSrv: ThemeService,
+    private platform: Platform
   ) {}
 
   ngOnInit() {
@@ -43,7 +43,7 @@ export class LoginPage implements OnInit, OnDestroy {
     this.rememberMe();
     this.watchMenu();
     this.remember = this.ls.get('remember');
-    Plugins.StatusBar.setBackgroundColor({color: '#000000'});
+    this.setBackground('#000000');
   }
 
   private async checkToken(): Promise<void> {
@@ -103,12 +103,13 @@ export class LoginPage implements OnInit, OnDestroy {
   private rememberMe(): void {
     const id = this.ls.get('user');
     const re = this.ls.get('remember');
+    const token = this.ls.get('token');
 
-    if ( re && id) {
-      this.userSrv.getUserById(id)
+    if ( re && id && !token) {
+      this.userSrv.getUserEmailById(id)
        .pipe(takeUntil(this.unsubscribe$))
-        .subscribe((res: User) => {
-          this.form.controls.email.setValue(res.email);
+        .subscribe(email => {
+          this.form.controls.email.setValue(email);
           this.remember = true;
       });
     }
@@ -124,10 +125,16 @@ export class LoginPage implements OnInit, OnDestroy {
      .subscribe(res => this.open = res);
   }
 
+  private setBackground(color: string): void {
+    if (this.platform.is('hybrid')) {
+      Plugins.StatusBar.setBackgroundColor({color});
+    }
+  }
+
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
-    Plugins.StatusBar.setBackgroundColor({color: '#00000000'});
+    this.setBackground('#00000000');
   }
 
 }

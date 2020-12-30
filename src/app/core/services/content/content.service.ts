@@ -67,6 +67,10 @@ export class ContentService {
       );
   }
 
+  public resetPage(): void {
+    this.page = 0;
+  }
+
 }
 
 

@@ -4,11 +4,10 @@
 import { InjectionToken } from '@angular/core';
 import * as fromContent from '@store/content/content.reducer';
 import * as fromUser from '@store/user/user.reducer';
-import * as fromForms from '@store/forms/forms.reducer';
 import { FormGroupState } from 'ngrx-forms';
 import { DraftForm } from './shared/interfaces/interfaces';
 
-export const URI = 'https://anticscode.netlify.com';
+export const URI = 'https://anticscode.com';
 export const APP_VERSION = '0.2.0';
 
 export interface AppConfig {

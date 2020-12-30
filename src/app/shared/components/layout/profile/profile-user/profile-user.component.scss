@@ -1,16 +1,17 @@
 .profile {
-  margin-top: .666rem;
-  padding: 1rem 1rem 0 1rem;
+  margin-top: 2rem;
 }
+
+ion-grid, ion-row, ion-col { padding: 0 }
 
 ion-card {
   align-items: center;
-  margin: 1rem 0 1.5rem 0;
   font-size: .8rem;
+  margin: 1rem;
 
   & p {
     font-size: 0.8rem !important;
-    margin: 0;
+    margin: .5rem 0 0 0;
     padding-right: 5px;
   }
 
@@ -22,31 +23,37 @@ ion-card {
     position: relative;
     padding: 1rem;
 
-    & h5 {
-      margin-bottom: 10px;
-      margin-top: 0;
-      color: #000;
-      font-size: .9rem;
+    & ion-label { 
       font-weight: bold;
-      opacity: .8;
+      font-size: 1rem !important;
+      margin-right: 0 !important;
+      outline: none;
+      color: var(--ion-text-color);
     }
 
     &-icons {
       position: relative;
       display: flex;
+      margin-top: .4rem;
       top: 3px;
       padding: 3px 0;
       
       & ion-button {
-        --background: rgba(173, 173, 173, 0.103);
         text-transform: none;
-        margin: 0 .4rem 0 0;
+        margin: 0 .3rem 0 0;
         height: 32px;
-        --background-activated: rgba(138, 138, 138, 0.103);
         font-size: .7rem;
+        --background: rgba(173, 173, 173, 0.103);
+        --background-activated: rgba(138, 138, 138, 0.103);
+        --background-hover: rgba(138, 138, 138, 0.103);
+        --color: var(--ion-text-color);
 
         &.portfolio {
           color: var(--primary-color);
+        }
+
+        @media(min-width: 375px) {
+          margin: 0 .8rem 0 0;
         }
       }
       

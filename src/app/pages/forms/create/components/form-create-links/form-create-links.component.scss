@@ -8,9 +8,14 @@ ion-list-header {
   align-items: center;
 }
 
+ion-list, ion-chip {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
 ion-chip {
   height: auto;
-  margin: .5rem 0;
+  margin: .5rem auto;
   font-size: 0.8rem;
   line-height: inherit;
 }

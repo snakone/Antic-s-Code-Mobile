@@ -1,0 +1,20 @@
+<ion-slides [options]="slideOpts"
+            #slider
+            (ionSlidesDidLoad)="didLoad()">
+  <ion-slide *ngFor="let friend of slides; let i = index" 
+             (click)="pick(friend,i)">
+    <ion-avatar [ngClass]="{'active': friend.selected}">
+      <span *ngIf="friend.online"></span>
+      <img *ngIf="friend.user.profile?.avatar; else noImage"
+           [src]="friend.user.profile.avatar"
+           #img
+           [ngClass]="themeSrv.isDark() ? 'dark' : 'light'"
+           (error)="img.src = 'assets/icon/no-avatar.png'; img.alt='No Image'"/>
+      <ng-template #noImage>
+        <img [ngClass]="themeSrv.isDark() ? 'dark' : 'light'"
+             src="assets/icon/no-avatar.png"/>
+      </ng-template>
+    </ion-avatar>
+    <p>{{friend.user.name | titlecase}}</p>
+  </ion-slide>
+</ion-slides>

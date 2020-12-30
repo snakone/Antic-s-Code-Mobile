@@ -1,0 +1,32 @@
+ion-item {
+  --full-highlight-height: 0;
+  --border-width: 0 !important;
+  outline: none;
+  padding-left: 2vw;
+}
+
+ion-searchbar, ion-list {
+  max-width: 550px;
+}
+
+ion-list {
+  margin: 3rem auto 0 auto !important;
+}
+
+ion-searchbar {
+  padding: 2.8rem 0 2.2rem 0;
+  position: fixed;
+  left: 50%;
+  margin: 0 auto;
+  margin-top: -24px;
+  width: 90%;
+  transform: translateX(-50%);
+  z-index: 100;
+  background: var(--ion-background-color);
+}
+
+ion-label {
+  &:hover {
+    color: var(--ion-color-primary);
+  }
+}

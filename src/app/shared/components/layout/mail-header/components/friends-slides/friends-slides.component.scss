@@ -1,0 +1,46 @@
+img {
+  width: 45px;
+  height: 45px;
+}
+
+ion-slide {
+  flex-direction: column;
+}
+
+ion-avatar {
+ border: 1px solid #fff;
+ background: var(--item-background);
+ transition: all .3 ease-in-out;
+ opacity: .8;
+ width: 45px;
+ height: 45px;
+ cursor: pointer;
+ position: relative;
+
+ &.active {
+   filter: brightness(1.2);
+   opacity: 1;
+ }
+
+ & span {
+   display: block;
+   position: absolute;
+   width: 10px;
+   height: 10px;
+   border-radius: 50%;
+   background: var(--ion-color-success);
+   top: 0;
+   right: 0;
+ }
+}
+
+p {
+  margin: .4rem 0 0;
+  color: #fff;
+  font-size: .65rem !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-width: 55px;
+}

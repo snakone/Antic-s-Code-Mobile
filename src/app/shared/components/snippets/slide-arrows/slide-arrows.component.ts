@@ -12,6 +12,7 @@ export class SlideArrowsComponent {
 
   @Input() index: number;
   @Input() length: number;
+  @Input() marginArrows: boolean;
 
   constructor(
     public menuSrv: MenuService,

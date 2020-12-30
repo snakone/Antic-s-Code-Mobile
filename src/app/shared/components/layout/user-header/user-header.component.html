@@ -1,21 +1,36 @@
-<ion-header mode="ios" class="ion-no-border">
-  <div class="add">
+<ion-header mode="ios" 
+            class="ion-no-border"
+            *ngIf="user">
+  <div class="score">
     <ion-icon name="star"></ion-icon>
     <ion-label>{{user.stats?.score.total || 0}}</ion-label>
   </div>
   <div class="user-buttons">
-    <ion-button fill="clear" 
-                class="mail"
+    <ion-button fill="clear"
+                *ngIf="!(public && isAdded(me$ | async)); else remove"
+                class="mail animated fadeIn"
                 (click)="mail()">
-      <ion-icon name="mail"></ion-icon>
+      <ion-icon [name]="public ? 'person-add' : 'mail'"></ion-icon>
     </ion-button>
+    <ng-template #remove>
+      <ion-button fill="clear"
+                  class="remove animated fadeIn"
+                  (click)="removeFriend()">
+        <ion-icon name="person-remove"></ion-icon>
+      </ion-button>
+    </ng-template>
     <ion-button fill="clear" 
                 class="like"
                 (click)="stats()">
-      <ion-icon [name]="public ? 'person-add' : 'star'"></ion-icon>
+      <ion-icon name="star"></ion-icon>
     </ion-button>
   </div>
   <ion-toolbar>
+    <ion-buttons slot="start" *ngIf="showBack">
+      <ion-back-button defaultHref="/home"
+                       [text]="null">
+      </ion-back-button>
+    </ion-buttons>
     <ion-buttons slot="end">
       <ion-button (click)="openMenu()">
         <ion-icon *ngIf="menuSrv.isOpen$ | async; else closed" 
@@ -27,15 +42,17 @@
         </ng-template>
       </ion-button>
     </ion-buttons>
-    <div class="header" *ngIf="user">
+    <div class="header">
       <img *ngIf="user.profile?.avatar; else noImage"
            [src]="user.profile.avatar" 
            [ngClass]="themeSrv.isDark() ? 'dark' : 'light'"
+           #img
            (error)="img.src = 'assets/icon/no-avatar.png'; img.alt='No Image'"/>
       <ng-template #noImage>
-        <img src="assets/icon/no-avatar.png"/>
+        <img [ngClass]="themeSrv.isDark() ? 'dark' : 'light'"
+             src="assets/icon/no-avatar.png"/>
       </ng-template>
-      <h3>{{user.name}}</h3>
+      <h3>{{user.name | titlecase}}</h3>
       <p *ngIf="user.profile?.rol">{{user.profile?.rol | translate}}</p>
     </div>
   </ion-toolbar>

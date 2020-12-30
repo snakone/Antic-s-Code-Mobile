@@ -3,15 +3,20 @@ ion-item {
   --inner-border-width: 0 !important;
 }
 
+ion-list, ion-chip {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
 ion-list-header {
   padding-left: 0;
 }
 
 ion-chip {
   height: auto;
-  margin: 0;
   font-size: 0.8rem;
   line-height: inherit;
+  text-align: left;
 }
 
 ion-input {

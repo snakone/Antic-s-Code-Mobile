@@ -79,10 +79,7 @@ export class DetailPage implements OnInit, OnDestroy {
   }
 
   public delete(draft: Draft): void {
-    const confirm = this.crafter.confirm(
-      this.translate.instant('DELETE.SURE'),
-      this.translate.instant('DELETE.DRAFT')
-    );
+    const confirm = this.crafter.confirm('DELETE.SURE', 'DELETE.DRAFT');
     confirm.then(async res => {
       if (!res.role) {
         this.draftSrv.deleteDraftById(draft._id)

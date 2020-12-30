@@ -61,6 +61,11 @@
   animation-timing-function: linear;
 }
 
+.m-top .arrow-content-left,
+.m-top .arrow-content-right {
+  top: 36px;
+}
+
 .arrow-right-light { 
   animation-name: bounceAlpha;
   background-image: url(../../../assets/icon/arrow-right-light.svg);

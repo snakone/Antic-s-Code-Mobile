@@ -42,6 +42,7 @@ export interface User {
   showEmail?: boolean;
   auth?: boolean;
   stats?: UserStats;
+  friends?: User[];
 }
 
 interface UserProfile {
@@ -53,6 +54,12 @@ interface UserProfile {
  github?: string;
  portfolio?: string;
  language?: string;
+}
+
+export interface UserSlide {
+  user: User;
+  selected: boolean;
+  online?: boolean;
 }
 
 export interface ServerResponse {
@@ -86,6 +93,7 @@ export interface UserContentResponse extends ServerResponse, UserContent {}
 
 export interface UserResponse extends ServerResponse {
   user: User;
+  users?: User[];
   token?: string;
 }
 
@@ -295,10 +303,50 @@ export interface ReactionStats {
   score?: number;
 }
 
+export interface ProfileStats {
+  likes?: number;
+  stars?: number;
+  views?: number;
+}
+
 export interface ScoreStats {
   total?: number;
-  views?: number;
   articles?: ArticleStats;
   test?: TestStats;
   reaction?: ReactionStats;
+  user?: ProfileStats;
+}
+
+export interface Mail {
+  _id?: string;
+  sender?: User;
+  receiver?: User;
+  subject?: string;
+  messages?: MailMessage[];
+  created?: string;
+  last?: MailMessage;
+}
+
+export interface MailMessage {
+  _id?: string;
+  subject?: string;
+  message?: string;
+  sender?: User;
+  receiver?: User;
+  date?: string;
+  read?: boolean;
+}
+
+export interface MailResponse extends ServerResponse {
+  mail?: Mail[];
+}
+
+export interface UserOnline {
+  user: string;
+  online: boolean;
+  socketID: string;
+}
+
+export interface OnlineResponse extends ServerResponse {
+  online?: UserOnline[];
 }

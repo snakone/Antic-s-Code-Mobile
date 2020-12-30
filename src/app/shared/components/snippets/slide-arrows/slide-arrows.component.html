@@ -1,4 +1,6 @@
-<div class="arrows" *ngIf="!(menuSrv.isOpen$ | async)">
+<div class="arrows" 
+     *ngIf="!(menuSrv.isOpen$ | async)"
+     [ngClass]="{'m-top': marginArrows}">
   <div class="arrow-content-left" *ngIf="index != (length - 1)">
     <span class="arrow-first"
           [ngClass]="themeSrv.isDark() ? 

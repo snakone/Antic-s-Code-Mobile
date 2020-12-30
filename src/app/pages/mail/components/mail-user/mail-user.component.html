@@ -1,0 +1,12 @@
+<ng-container *ngIf="(mail$ | async) as mail">
+  <div class="user-chat animated fadeInUp">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="6"
+                  *ngFor="let m of mail">
+            <app-mail-user-card [mail]="m.last"></app-mail-user-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ng-container>

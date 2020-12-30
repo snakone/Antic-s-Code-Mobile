@@ -17,7 +17,7 @@ import { LanguageModule } from '@core/language/language.module';
     TranslateModule,
     LanguageModule
   ],
-  providers: []
+  providers: [],
 })
 
 export class SharedModule { }

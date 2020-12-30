@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnDestroy, Input } from '@angular/core';
 import { CrafterService } from '@services/crafter/crafter.service';
 import { CameraService } from '@core/native/services/camera.service';
-import { Platform } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { FormsFacade } from '@store/forms/forms.facade';
 import { FormGroupState } from 'ngrx-forms';
 import { DraftForm } from '@shared/interfaces/interfaces';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-image-upload',
@@ -13,7 +13,7 @@ import { DraftForm } from '@shared/interfaces/interfaces';
   styleUrls: ['./image-upload.component.scss'],
 })
 
-export class ImageUploadComponent implements OnInit, OnDestroy {
+export class ImageUploadComponent implements OnDestroy {
 
   @Input() draftForm: FormGroupState<DraftForm>;
   private unsubscribe$ = new Subject<void>();
@@ -21,41 +21,17 @@ export class ImageUploadComponent implements OnInit, OnDestroy {
   constructor(
     private cameraSrv: CameraService,
     private crafter: CrafterService,
-    private platform: Platform,
-    private formFacade: FormsFacade
+    private formFacade: FormsFacade,
+    private platform: Platform
   ) { }
-
-  ngOnInit() {}
 
   public get properties() { return this.draftForm.userDefinedProperties; }
 
   public async upload(): Promise<void> {
-    this.platform.is('cordova') ? this.isCordova() : this.notCordova();
-  }
-
-  private async isCordova(): Promise<void> {
-    const pic = await this.cameraSrv.openSource();
-    this.crafter.loaderOff();
-    this.checkLength(pic);
-  }
-
-  private notCordova(): void {
-    const el = document.getElementById('input');
-    el.click();
-    el.addEventListener('change', (e: any) => {
-      const file: File = e.target.files[0];
-      if (!file) { return; }
-      this.setPicture(file);
-    });
-  }
-
-  private setPicture(file: File): void {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    try {
-      reader.onload = (ev: any) => this.checkLength(ev.target.result);
-    } catch (err) {
-      this.showError();
+    if (this.platform.is('hybrid')) {
+      const pic = await this.cameraSrv.openSource();
+      this.crafter.loaderOff();
+      this.checkLength(pic);
     }
   }
 

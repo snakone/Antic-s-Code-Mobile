@@ -1,14 +1,8 @@
 <div class="card-container">
-  <input type="file" 
-         name="picture" 
-         id="input" 
-         style="display: none;"
-         accept="image/jpeg, image/png">
   <ion-card button="true" 
            (click)="upload()"
            [ngClass]="{'photo': properties.cover}"
            [style.background-image]="'url('+ properties.cover +')' | sanitizer:'style'">
-           <img hidden (error)="properties.cover = null" [src]="properties.cover"/>
     <ng-container *ngIf="!properties.cover; else isImage">
       <ion-icon name="image-outline" color="medium"></ion-icon>
       <ion-text>{{'LOAD.PHOTO' | translate}}</ion-text>

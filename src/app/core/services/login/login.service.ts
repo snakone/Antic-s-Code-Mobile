@@ -22,7 +22,7 @@ export class LoginService {
       .post<UserResponse>(this.API_LOGIN, body)
       .pipe(
         filter(res => res && !!res.ok),
-        tap(res => this.userSrv.UserLogIn(res)),
+        tap(res => this.userSrv.UserLogIn(res, true)),
         map(res => res.user)
       );
   }

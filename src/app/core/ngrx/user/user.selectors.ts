@@ -13,7 +13,28 @@ export const get = createSelector(
   getUserState, fromUser.get
 );
 
-export const getLoaded = createSelector(
-  getUserState, fromUser.getLoaded
+export const getUsersLoaded = createSelector(
+  getUserState, fromUser.getUsersLoaded
 );
+
+export const getUsers = createSelector(
+  getUserState, fromUser.getUsers
+);
+
+export const getPublic = createSelector(
+  getUserState, fromUser.getPublic
+);
+
+export const getPublicLoaded = createSelector(
+  getUserState, fromUser.getPublicLoaded
+);
+
+export const getFiltered = createSelector(
+  getUserState, fromUser.getFiltered
+);
+
+export const getByName = createSelector(
+  getUserState, fromUser.getByName
+);
+
 

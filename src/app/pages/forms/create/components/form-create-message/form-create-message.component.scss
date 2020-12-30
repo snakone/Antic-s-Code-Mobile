@@ -9,6 +9,11 @@ ion-list-header {
   margin-left: 1rem;
 }
 
+ion-list {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
 ion-textarea {
   --padding-bottom: 1rem;
   --background: var(--ion-color-link);
