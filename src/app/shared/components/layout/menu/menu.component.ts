@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MenuController, ModalController } from '@ionic/angular';
 import { MenuService } from '@services/menu/menu.service';
 import { SettingsComponent } from '../../modals/settings/settings.component';
-import { Router } from '@angular/router';
 import { User } from '@shared/interfaces/interfaces';
 import { Observable } from 'rxjs';
 import { UserFacade } from '@store/user/user.facade';
@@ -24,7 +23,7 @@ export class MenuComponent implements OnInit {
     private menuCtrl: MenuController,
     private menuSrv: MenuService,
     private modalCtrl: ModalController,
-    private router: Router,
+
     private userFacade: UserFacade
   ) { }
 
@@ -32,20 +31,14 @@ export class MenuComponent implements OnInit {
     this.user$ = this.userFacade.user$;
   }
 
-  public async open(route: string): Promise<void> {
-    if (
-      route === '/profile' || 
-      route === '/home' ||
-      route === '/mail' ||
-      route === '/users') {
-      this.menuCtrl.close();
-      return;
-    }
+  public close(): void {
+    this.menuCtrl.close();
+  }
 
+  public async settings(): Promise<void> {
     const modal = await this.modalCtrl.create({
-      component: this.selectComp(route)
+      component: this.selectComp('/settings') 
     });
-
     modal.present();
   }
 

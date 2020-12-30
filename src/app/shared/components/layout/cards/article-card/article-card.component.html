@@ -1,7 +1,7 @@
 <ion-card>
   <ion-img [src]="article.cover" 
            class="cover"
-           [routerLink]="'/detail/' + article.slug"></ion-img>
+           [routerLink]="'/detail/' + article.slug" [state]="{public: public}"></ion-img>
   <div class="category">
     <ion-img [src]="(dark && article.category === 'Deno' ? 
                      article.category + '-dark' : article.category) | logo">
@@ -10,7 +10,7 @@
   <ion-card-content>
     <ion-list inset="true">
       <ion-item class="first">
-        <ion-label [routerLink]="'/detail/' + article.slug">
+        <ion-label [routerLink]="'/detail/' + article.slug" [state]="{public: public}">
           {{article.title}}
         </ion-label>
         <ion-button slot="end" fill="clear" (click)="options()">
