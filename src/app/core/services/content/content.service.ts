@@ -59,7 +59,7 @@ export class ContentService {
     article: Article
   ): Observable<Article> {
     return this.http
-      .put<DraftResponse>(this.API_CONTENT, {article})
+      .put<DraftResponse>(this.API_CONTENT, article)
       .pipe(
         filter(res => res && !!res.ok),
         tap(res => this.contentFacade.setBySlug(res.draft)),

@@ -7,7 +7,10 @@
               ngPreserveWhitespaces
               [data]="article.message">
     </markdown>
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab vertical="bottom" 
+             horizontal="end" 
+             slot="fixed"
+             *ngIf="!public">
       <ion-fab-button class="first">
         <ion-icon name="settings-outline"></ion-icon>
       </ion-fab-button>

@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { CustomSlide } from '@shared/interfaces/interfaces';
-import { flipOpts } from '@shared/swiper';
+import { flipOpts } from '@app/shared/data/swiper';
 import { MenuService } from '@services/menu/menu.service';
 import { IonSlides, ModalController } from '@ionic/angular';
 

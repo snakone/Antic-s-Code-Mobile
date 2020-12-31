@@ -10,8 +10,8 @@ import { CrafterService } from '@services/crafter/crafter.service';
 import { ContentFacade } from '@store/content/content.facade';
 import { ContentService } from '@services/content/content.service';
 import { DraftsService } from '@services/drafts/drafts.service';
-import { TranslateService } from '@ngx-translate/core';
 import { PDFService } from '@core/native/services/pdf.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-detail',
@@ -24,6 +24,7 @@ export class DetailPage implements OnInit, OnDestroy {
   content$: Observable<Article>;
   private unsubscribe$ = new Subject<void>();
   edited = false;
+  public: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,15 +33,21 @@ export class DetailPage implements OnInit, OnDestroy {
     private contentFacade: ContentFacade,
     private contentSrv: ContentService,
     private draftSrv: DraftsService,
-    private translate: TranslateService,
     private router: Router,
-    private pdfMaker: PDFService
+    private pdfMaker: PDFService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
     const slug = this.route.snapshot.paramMap.get('slug');
+    this.public = this.isPublic();
     this.contentFacade.getBySlug(slug);
     this.content$ = this.contentFacade.bySlug$;
+  }
+
+  private isPublic(): boolean {
+    const state: any = this.location.getState();
+    return state.public as boolean;
   }
 
   public async open(page: string): Promise<void> {

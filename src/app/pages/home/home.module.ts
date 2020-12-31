@@ -11,7 +11,6 @@ import { PageHeaderModule } from '@layout/page-header/page-header.module';
 import { ArticlesListComponent } from './components/articles-list/articles-list.component';
 import { DraftListComponent } from './components/draft-list/draft-list.component';
 import { CardsModule } from '@layout/cards/cards.module';
-import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   declarations: [
@@ -26,8 +25,7 @@ import { MarkdownModule } from 'ngx-markdown';
     PipesModule,
     PageHeaderModule,
     TranslateModule,
-    CardsModule,
-    MarkdownModule.forChild()
+    CardsModule
   ]
 })
 

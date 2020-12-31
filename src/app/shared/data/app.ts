@@ -20,6 +20,11 @@ export const MENU: MenuLink[] = [
     title: 'USERS',
     icon: 'people-outline',
     route: '/users'
+  },
+  {
+    title: 'SHOWCASE',
+    icon: 'storefront-outline',
+    route: '/articles'
   }
 ];
 

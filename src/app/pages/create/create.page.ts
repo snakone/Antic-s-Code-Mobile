@@ -1,7 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { flipOpts } from '@shared/swiper';
-import { IonSlides, MenuController } from '@ionic/angular';
-import { MenuService } from '@services/menu/menu.service';
+import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { StorageService } from '@services/storage/storage.service';
 import { CREATE_SLIDES } from '@shared/data/slides';

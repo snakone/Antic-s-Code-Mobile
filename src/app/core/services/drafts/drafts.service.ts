@@ -22,25 +22,6 @@ export class DraftsService {
       );
   }
 
-  public updateDraft(draft: Draft): Observable<Draft> {
-    return this.http
-      .put<DraftResponse>(this.API_DRAFTS, draft)
-      .pipe(
-        filter(res => res && !!res.ok),
-        map(res => res.draft)
-      );
-  }
-
-  public updateDraftMessage(
-    message: string, id: string
-  ): Observable<DraftResponse> {
-    return this.http
-      .put<DraftResponse>(this.API_DRAFTS + 'message/' + id, {message})
-      .pipe(
-        filter(res => res && !!res.ok)
-      );
-  }
-
   public deleteDraftById(
     id: string
   ): Observable<Draft> {

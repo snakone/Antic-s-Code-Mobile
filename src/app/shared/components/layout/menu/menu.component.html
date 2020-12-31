@@ -15,7 +15,7 @@
     <ion-list inset="true" class="menu">
       <ng-container *ngIf="user$ | async">
         <ion-item *ngFor="let m of menu"
-                  (click)="open(m.route)"
+                  (click)="close()"
                   [routerLink]="m.route"
                   routerLinkActive="active"
                   detail 
@@ -24,7 +24,7 @@
           <ion-label color="dark">{{m.title | translate}}</ion-label>
         </ion-item>
       </ng-container>
-      <ion-item (click)="open('/settings')"
+      <ion-item (click)="settings()"
                 detail 
                 lines="none">
         <ion-icon slot="start" name="settings-outline"></ion-icon>

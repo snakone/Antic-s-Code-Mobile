@@ -15,6 +15,7 @@ export class ArticleCardComponent {
   @Input() article: Article;
   @Input() index: number;
   @Input() dark: boolean;
+  @Input() public: boolean;
 
   constructor(private crafter: CrafterService) { }
 
