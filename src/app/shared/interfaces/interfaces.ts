@@ -42,7 +42,6 @@ export interface User {
   showEmail?: boolean;
   auth?: boolean;
   stats?: UserStats;
-  friends?: User[];
 }
 
 interface UserProfile {
@@ -349,4 +348,14 @@ export interface UserOnline {
 
 export interface OnlineResponse extends ServerResponse {
   online?: UserOnline[];
+}
+
+export interface UserFriends {
+  user: User;
+  friends: User[];
+}
+
+export interface FriendsResponse extends ServerResponse {
+  friends?: User[];
+  friend?: User;
 }

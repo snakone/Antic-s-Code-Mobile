@@ -1,13 +1,13 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuService } from '@services/menu/menu.service';
 import { MenuController } from '@ionic/angular';
 import { User, UserOnline } from '@shared/interfaces/interfaces';
 import { MAIL_HEADER } from '@shared/data/header';
 import { Router } from '@angular/router';
 import { UserFacade } from '@store/user/user.facade';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { OnlineFacade } from '@store/online/online.facade';
-import { filter, takeUntil } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-mail-header',
@@ -15,12 +15,11 @@ import { filter, takeUntil } from 'rxjs/operators';
   styleUrls: ['./mail-header.component.scss'],
 })
 
-export class MailHeaderComponent implements OnInit, OnDestroy {
+export class MailHeaderComponent implements OnInit {
 
-  user$: Observable<User>;
+  friends$: Observable<User[]>;
   online$: Observable<UserOnline[]>;
   icons = MAIL_HEADER;
-  private unsubscribe$ = new Subject<void>();
 
   constructor(
     public menuSrv: MenuService,
@@ -31,19 +30,9 @@ export class MailHeaderComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.user$ = this.userFacade.user$;
+    this.friends$ = this.userFacade.friends$;
     this.online$ = this.onlineFacade.online$;
-    this.checkData();
     this.listenOnline();
-  }
-
-  private checkData(): void {
-    this.onlineFacade.loaded$
-    .pipe(
-      filter(res => !res),
-      takeUntil(this.unsubscribe$)
-    )
-    .subscribe(_ => this.onlineFacade.get());
   }
 
   private listenOnline(): void {
@@ -56,11 +45,6 @@ export class MailHeaderComponent implements OnInit, OnDestroy {
 
   public openMenu(): void {
     this.menu.toggle('main');
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
   }
 
 }

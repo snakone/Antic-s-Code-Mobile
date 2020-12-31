@@ -9,6 +9,6 @@
   </div>
   <div class="item">
     <ion-icon name="people-outline"></ion-icon>
-    <ion-text>{{user.friends?.length || 0}}</ion-text>
+    <ion-text>{{(friends$ | async).length || 0}}</ion-text>
   </div>
 </div>

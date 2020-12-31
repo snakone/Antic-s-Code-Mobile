@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild, OnChanges } from '@angular/core';
 import { User, UserOnline, UserSlide } from '@shared/interfaces/interfaces';
 import { IonSlides } from '@ionic/angular';
 import { ThemeService } from '@services/theme/theme.service';
@@ -13,7 +13,7 @@ import { FRIENDS_SLIDES_OPTS } from '@shared/data/slides';
 export class FriendsSlidesComponent implements OnChanges {
 
   @ViewChild('slider') slider: IonSlides;
-  @Input() user: User;
+  @Input() friends: User[];
   @Input() online: UserOnline[];
   @Output() selected = new EventEmitter<string>();
   slides: UserSlide[];
@@ -21,15 +21,14 @@ export class FriendsSlidesComponent implements OnChanges {
 
   constructor(public themeSrv: ThemeService) { }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.online.currentValue?.length > 0) {
+  ngOnChanges() {
+    setTimeout(() => {
       this.createSlides();
-    }
+    }, 2000);
   }
 
   private createSlides(): void {
-    this.slides = this.user.
-                   friends?.map(f => (
+    this.slides = this.friends?.map(f => (
                      {
                        user: f, 
                        selected: false, 
@@ -40,7 +39,7 @@ export class FriendsSlidesComponent implements OnChanges {
   }
 
   public didLoad(): void {
-    this.slider.update();
+    if (this.slider) { this.slider.update(); }
   }
 
   public pick(slide: UserSlide, index: number): void {

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MailFacade } from '@store/mail/mail.facade';
-import { Subject } from 'rxjs';
+import { forkJoin, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
+import { UserFacade } from '@store/user/user.facade';
+import { OnlineFacade } from '@store/online/online.facade';
 
 @Component({
   selector: 'app-mail',
@@ -13,7 +15,11 @@ export class MailPage implements OnInit {
 
   private unsubscribe$ = new Subject<void>();
 
-  constructor(private mailFacade: MailFacade) { }
+  constructor(
+    private mailFacade: MailFacade,
+    private userFacade: UserFacade,
+    private onlineFacade: OnlineFacade
+  ) { }
 
   ngOnInit() {
     this.checkData();
@@ -26,6 +32,20 @@ export class MailPage implements OnInit {
        takeUntil(this.unsubscribe$)
       )
      .subscribe(_ => this.mailFacade.get());
+
+    this.userFacade.friendsLoaded$
+    .pipe(
+      filter(res => !res),
+      takeUntil(this.unsubscribe$)
+    )
+    .subscribe(_ => this.userFacade.getFriends());
+
+    this.onlineFacade.loaded$
+    .pipe(
+      filter(res => !res),
+      takeUntil(this.unsubscribe$)
+    )
+    .subscribe(_ => this.onlineFacade.get());
   }
 
   ngOnDestroy(): void {

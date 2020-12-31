@@ -11,15 +11,23 @@ ion-avatar {
  border: 1px solid #fff;
  background: var(--item-background);
  transition: all .3 ease-in-out;
- opacity: .8;
+ opacity: .7 !important;
  width: 45px;
  height: 45px;
  cursor: pointer;
  position: relative;
+ outline: none;
+ display: flex;
+ align-items: center;
+ justify-content: center;
 
  &.active {
    filter: brightness(1.2);
-   opacity: 1;
+   opacity: 1 !important;
+ }
+
+ & ion-icon {
+   font-size: 2.5rem;
  }
 
  & span {

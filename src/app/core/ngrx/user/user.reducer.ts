@@ -1,6 +1,6 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import * as UserActions from './user.actions';
-import { User } from '@shared/interfaces/interfaces';
+import { User, UserFriends } from '@shared/interfaces/interfaces';
 import { environment } from '@env/environment';
 
 export interface UserState {
@@ -10,6 +10,8 @@ export interface UserState {
   usersLoaded: boolean;
   public: User;
   publicLoaded: boolean;
+  friends: User[],
+  friendsLoaded: boolean
 }
 
 export const initialState: UserState = {
@@ -18,7 +20,9 @@ export const initialState: UserState = {
   filtered: [],
   usersLoaded: false,
   public: null,
-  publicLoaded: false
+  publicLoaded: false,
+  friends: [],
+  friendsLoaded: false
 };
 
 const featureReducer = createReducer(
@@ -42,12 +46,27 @@ const featureReducer = createReducer(
       ...state,
       usersLoaded: true,
       error: null,
-      users: users.filter(u => u._id !== environment.id),
-      filtered: users.filter(u => u._id !== environment.id)
+      users: users,
+      filtered: users
     }
   )),
   on(UserActions.getUsersFailure, (state, { error }) => (
     { ...state, loaded: false, error, users: null }
+  )),
+  // GET FRIENDS
+  on(UserActions.getFriends, (state) => (
+    { ...state, loaded: false, error: null }
+  )),
+  on(UserActions.getFriendsSuccess, (state, { friends }) => (
+    {
+      ...state,
+      friends,
+      friendsLoaded: true,
+      error: null,
+    }
+  )),
+  on(UserActions.getFriendsFailure, (state, { error }) => (
+    { ...state, friendsLoaded: false, error, friends: null }
   )),
   // GET USER BY NAME
   on(UserActions.getByName, (state) => (
@@ -71,6 +90,22 @@ const featureReducer = createReducer(
       filtered: [...[...state.users]
                   .filter(u => u.name.match(new RegExp(value, 'i')))],
       error: null
+    }
+  )),
+  // ADD FRIEND
+  on(UserActions.addFriend, (state, {friend}) => (
+    { 
+      ...state, 
+      error: null, 
+      friends: [...state.friends, friend]
+    }
+  )),
+  // REMOVE FRIEND
+  on(UserActions.removeFriend, (state, {friend}) => (
+    { 
+      ...state, 
+      error: null, 
+      friends: [...state.friends].filter(f => f._id !== friend._id)
     }
   )),
   // USER LOG OUT
@@ -99,3 +134,5 @@ export const getPublic = (state: UserState) => state.public;
 export const getByName = (state: UserState) => state.public;
 export const getUsersLoaded = (state: UserState) => state.usersLoaded;
 export const getPublicLoaded = (state: UserState) => state.publicLoaded;
+export const getFriends = (state: UserState) => state.friends;
+export const getFriendsLoaded = (state: UserState) => state.friendsLoaded;

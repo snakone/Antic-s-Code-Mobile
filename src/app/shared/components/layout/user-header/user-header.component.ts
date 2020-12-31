@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ThemeService } from '@services/theme/theme.service';
 import { MenuService } from '@services/menu/menu.service';
 import { User } from '@shared/interfaces/interfaces';
@@ -7,8 +7,9 @@ import { Router } from '@angular/router';
 import { CrafterService } from '@services/crafter/crafter.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService } from '@services/user/user.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { UserFacade } from '@store/user/user.facade';
+import { filter, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-header',
@@ -17,12 +18,13 @@ import { UserFacade } from '@store/user/user.facade';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class UserHeaderComponent implements OnInit {
+export class UserHeaderComponent implements OnInit, OnDestroy {
 
   @Input() user: User;
   @Input() public: boolean;
   @Input() showBack: boolean;
-  me$: Observable<User>;
+  friends$: Observable<User[]>;
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     public menuSrv: MenuService,
@@ -36,7 +38,17 @@ export class UserHeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() { 
-    this.me$ = this.userFacade.user$;
+    this.checkData();
+    this.friends$ = this.userFacade.friends$;
+  }
+
+  private checkData(): void {
+    this.userFacade.friendsLoaded$
+    .pipe(
+      filter(res => !res),
+      takeUntil(this.unsubscribe$)
+    )
+    .subscribe(_ => this.userFacade.getFriends());
   }
 
   public openMenu(): void {
@@ -67,7 +79,10 @@ export class UserHeaderComponent implements OnInit {
     confirm.then(async res => {
       if (!res.role) {
         this.userSrv.addUserAsFriend(this.user._id)
-         .subscribe(_ => this.crafter.toast(toast));
+         .subscribe(_ => {
+           this.crafter.toast(toast);
+           this.userFacade.addFriend(_);
+        });
       }
     });
   }
@@ -88,13 +103,21 @@ export class UserHeaderComponent implements OnInit {
     confirm.then(async res => {
       if (!res.role) {
         this.userSrv.removeUserAsFriend(this.user._id)
-         .subscribe(_ => this.crafter.toast(toast));
+         .subscribe(_ => {
+           this.crafter.toast(toast);
+           this.userFacade.removeFriend(_);
+        });
       }
     });
   }
 
-  public isAdded(me: User): boolean {
-    return me.friends.some(f => f._id === this.user._id);
+  public isAdded(friends: User[]): boolean {
+    return friends.some(f => f._id === this.user._id);
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
 }

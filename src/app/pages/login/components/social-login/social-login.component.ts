@@ -44,7 +44,9 @@ export class SocialLoginComponent implements OnDestroy {
         email: user.email,
         profile: {
           avatar: user.imageUrl
-        }
+        },
+        auth: true,
+        password: 'AuthUsersDoesntNeedPassword'
       };
   
       this.authSrv.signIn(authUser)

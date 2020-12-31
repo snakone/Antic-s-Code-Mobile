@@ -10,8 +10,8 @@ export class FriendsPipe implements PipeTransform {
 
   constructor(private userSrv: UserService) { }
 
-  transform(value: User[], args?: string): User[] {
+  transform(value: User[], args?: User[]): User[] {
     if (!value) { return []; }
-    return value.filter(user => !this.user.friends.some(f => f._id === user._id));
+    return value.filter(user => !args.some(f => f._id === user._id));
   }
 }

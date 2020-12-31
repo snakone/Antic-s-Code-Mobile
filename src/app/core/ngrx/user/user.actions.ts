@@ -1,4 +1,4 @@
-import { User } from '@shared/interfaces/interfaces';
+import { User, UserFriends } from '@shared/interfaces/interfaces';
 import { createAction, props } from '@ngrx/store';
 
 // GET ALL USERS
@@ -47,6 +47,28 @@ export const search =
 // USER LOGOUT
 export const userLogOut =
   createAction('[Users API] User Log Out');
+
+// GET FRIENDS
+export const getFriends =
+  createAction('[Users API] Get User Friends');
+
+export const getFriendsSuccess =
+  createAction('[Users API] Get User Friends Success',
+  props<{ friends: User[] }>());
+
+export const getFriendsFailure =
+  createAction('[Users API] Get User Friends Failure',
+  props<{ error: string }>());
+
+// ADD FRIEND
+export const addFriend =
+  createAction('[User API] Add User Friend',
+  props<{ friend: User }>());
+
+// REMOVE FRIEND
+export const removeFriend =
+  createAction('[User API] Remove User Friend',
+  props<{ friend: User }>());
 
 // RESET BY NAME
 export const resetByName =

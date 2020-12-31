@@ -7,7 +7,7 @@
   </div>
   <div class="user-buttons">
     <ion-button fill="clear"
-                *ngIf="!(public && isAdded(me$ | async)); else remove"
+                *ngIf="!(public && isAdded(friends$ | async)); else remove"
                 class="mail animated fadeIn"
                 (click)="mail()">
       <ion-icon [name]="public ? 'person-add' : 'mail'"></ion-icon>

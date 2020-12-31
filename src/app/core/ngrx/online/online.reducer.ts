@@ -37,11 +37,9 @@ const featureReducer = createReducer(
     {
       ...state,
       error: null,
-      online: [...state.online].map(o => {
-        if (online?.user && o.user === online.user) { return online };
-        if (!online?.user && o.socketID === online.socketID) { return online };
-        return o;
-      }),
+      online: online.online ? 
+              [...state.online, online] : 
+              [...state.online].filter(o => o.socketID !== online.socketID)
     }
   )),
   on(OnlineActions.listenOnlineFailure, (state, { error }) => (

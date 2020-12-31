@@ -14,7 +14,7 @@
       </ion-icon>
       <ion-label>{{'SHARE' | translate}}</ion-label>
     </ion-item>
-    <ion-item (click)="goTo('pdf')">
+    <ion-item (click)="goTo('pdf')" *ngIf="!public">
       <ion-icon slot="start"
                 color="secondary"
                 name="cloud-download-outline">

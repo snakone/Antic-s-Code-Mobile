@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import * as UserActions from './user.actions';
-import { map, concatMap, catchError, delay } from 'rxjs/operators';
+import { map, concatMap, catchError } from 'rxjs/operators';
 import { UserService } from '@core/services/user/user.service';
 
 @Injectable()
@@ -47,6 +47,19 @@ export class UserEffects {
         map(user => UserActions.getByNameSuccess({ user })),
         catchError(error =>
             of(UserActions.getByNameFailure({ error: error.message }))
+    ))))
+  );
+
+  // GET USER FRIENDS
+  getFriendsEffect$ = createEffect(() => this.actions
+  .pipe(
+    ofType(UserActions.getFriends),
+    concatMap(() =>
+      this.userSrv.getFriends()
+      .pipe(
+        map(friends => UserActions.getFriendsSuccess({ friends })),
+          catchError(error =>
+              of(UserActions.getFriendsFailure({ error: error.message }))
     ))))
   );
 

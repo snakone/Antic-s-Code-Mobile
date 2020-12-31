@@ -4,7 +4,7 @@ import { ThemeService } from '@services/theme/theme.service';
 import { Article } from '@shared/interfaces/interfaces';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { Observable, Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
+import { filter, takeUntil, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-articles',
@@ -27,7 +27,12 @@ export class ArticlesPage implements OnInit {
 
   ngOnInit() {
     this.checkData();
-    this.articles$ = this.articlesFacade.articles$;
+    this.articles$ = this.articlesFacade.articles$
+      .pipe(tap(res => {
+        if (res.length === 1) {
+          this.articlesFacade.get();
+        }
+      }));
     this.isDark = this.theme.isDark();
   }
 

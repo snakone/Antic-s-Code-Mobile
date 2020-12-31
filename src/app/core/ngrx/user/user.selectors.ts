@@ -37,4 +37,12 @@ export const getByName = createSelector(
   getUserState, fromUser.getByName
 );
 
+export const getFriends = createSelector(
+  getUserState, fromUser.getFriends
+);
+
+export const getFriendsLoaded = createSelector(
+  getUserState, fromUser.getFriendsLoaded
+);
+
 

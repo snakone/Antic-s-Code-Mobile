@@ -16,6 +16,7 @@ import { Article } from '@shared/interfaces/interfaces';
 export class CardOptionsComponent implements OnInit {
 
   @Input() article: Article;
+  @Input() public: boolean;
 
   constructor(
     private router: Router,

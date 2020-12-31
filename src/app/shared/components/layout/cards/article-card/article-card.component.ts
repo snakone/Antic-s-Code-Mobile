@@ -21,7 +21,8 @@ export class ArticleCardComponent {
 
   public options(): void {
     this.crafter.pop(CardOptionsComponent, {
-      article: this.article
+      article: this.article,
+      public: this.public
     }, 'card-options');
   }
 

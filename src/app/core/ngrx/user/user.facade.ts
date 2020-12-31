@@ -15,6 +15,8 @@ export class UserFacade {
   users$ = this.store.select(fromUser.getUsers);
   filtered$ = this.store.select(fromUser.getFiltered);
   byName$ = this.store.select(fromUser.getByName);
+  friends$ = this.store.select(fromUser.getFriends);
+  friendsLoaded$ = this.store.select(fromUser.getFriendsLoaded);
 
   constructor(private store: Store<AppState>) { }
 
@@ -24,6 +26,18 @@ export class UserFacade {
 
   public getUsers(): void {
     this.store.dispatch(UserActions.getUsers());
+  }
+
+  public getFriends(): void {
+    this.store.dispatch(UserActions.getFriends());
+  }
+
+  public addFriend(friend: User): void {
+    this.store.dispatch(UserActions.addFriend({friend}));
+  }
+
+  public removeFriend(friend: User): void {
+    this.store.dispatch(UserActions.removeFriend({friend}));
   }
 
   public getByName(name: string): void {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http/http.service';
-import { User, UserResponse } from '@shared/interfaces/interfaces';
+import { FriendsResponse, User, UserFriends, UserResponse } from '@shared/interfaces/interfaces';
 import { Observable, of } from 'rxjs';
 import { StorageService } from '@services/storage/storage.service';
 import { environment } from '@env/environment';
@@ -16,6 +16,7 @@ import { SocketService } from '@core/sockets/services/socket.service';
 export class UserService {
 
   readonly API_USER = environment.api + 'user/';
+  readonly API_FRIENDS = environment.api + 'friends/';
   readonly API_USERS = environment.api + 'users/';
   readonly API_TOKEN = environment.api + 'token/';
   private user: User;
@@ -75,21 +76,30 @@ export class UserService {
       );
   }
 
-  public addUserAsFriend(id: string): Observable<UserResponse> {
+  public getFriends(): Observable<User[]> {
     return this.http
-      .post<UserResponse>(this.API_USERS + 'add', {id})
+      .get<FriendsResponse>(this.API_FRIENDS)
       .pipe(
         filter(res => res && !!res.ok),
-        tap(res => this.UserLogIn(res, false))
+        map(_ => _.friends)
       );
   }
 
-  public removeUserAsFriend(id: string): Observable<UserResponse> {
+  public addUserAsFriend(id: string): Observable<User> {
     return this.http
-      .delete<UserResponse>(this.API_USERS + 'remove/' + id)
+      .post<FriendsResponse>(this.API_FRIENDS + 'add', {id})
       .pipe(
         filter(res => res && !!res.ok),
-        tap(res => this.UserLogIn(res, false))
+        map(_ => _.friend)
+      );
+  }
+
+  public removeUserAsFriend(id: string): Observable<User> {
+    return this.http
+      .delete<FriendsResponse>(this.API_FRIENDS + 'remove/' + id)
+      .pipe(
+        filter(res => res && !!res.ok),
+        map(_ => _.friend)
       );
   }
 

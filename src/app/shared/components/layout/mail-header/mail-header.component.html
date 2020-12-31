@@ -22,11 +22,12 @@
     </ion-buttons>
     <div class="slides">
       <app-friends-slides (selected)="navigate($event)"
-                          [user]="user$ | async"
+                          [friends]="friends$ | async"
                           [online]="online$ | async">
       </app-friends-slides>
     </div>
   </ion-toolbar>
 </ion-header>
+
 
 
