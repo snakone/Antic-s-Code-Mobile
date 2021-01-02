@@ -3,6 +3,8 @@ import { User, UserOnline, UserSlide } from '@shared/interfaces/interfaces';
 import { IonSlides } from '@ionic/angular';
 import { ThemeService } from '@services/theme/theme.service';
 import { FRIENDS_SLIDES_OPTS } from '@shared/data/slides';
+import { StorageService } from '@services/storage/storage.service';
+import { UserService } from '@services/user/user.service';
 
 @Component({
   selector: 'app-friends-slides',
@@ -19,7 +21,11 @@ export class FriendsSlidesComponent implements OnChanges {
   slides: UserSlide[];
   slideOpts = FRIENDS_SLIDES_OPTS
 
-  constructor(public themeSrv: ThemeService) { }
+  constructor(
+    public themeSrv: ThemeService,
+    private ls: StorageService,
+    private userSrv: UserService
+  ) { }
 
   ngOnChanges() {
     setTimeout(() => {
@@ -32,8 +38,14 @@ export class FriendsSlidesComponent implements OnChanges {
                      {
                        user: f, 
                        selected: false, 
-                       online: this.online?.find(
-                         o => o.user === f._id)?.online || false
+                       online: (
+                         this.online?.find(
+                          o => o.user === f._id)?.online || false
+                         ) &&
+                         (
+                           this.userSrv.getUser()._id === f._id && 
+                           this.ls.get('showOnline')
+                         )
                     })).sort(f => f.online ? -1 : 1) || [];
     this.didLoad();
   }

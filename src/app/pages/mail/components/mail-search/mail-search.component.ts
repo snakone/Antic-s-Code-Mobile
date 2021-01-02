@@ -16,25 +16,25 @@ export class MailSearchComponent implements OnInit, OnDestroy {
   filtered$: Observable<User[]>;
   friends$: Observable<User[]>;
 
-  constructor(private usersFacade: UserFacade) { }
+  constructor(private userFacade: UserFacade) { }
 
   ngOnInit() {
     this.checkData();
-    this.filtered$ = this.usersFacade.filtered$;
-    this.friends$ = this.usersFacade.friends$;
+    this.filtered$ = this.userFacade.filtered$;
+    this.friends$ = this.userFacade.friends$;
   }
 
   private checkData(): void {
-    this.usersFacade.loaded$
+    this.userFacade.loaded$
      .pipe(
        takeUntil(this.unsubscribe$),
        filter(res => !res)
       )
-     .subscribe(_ => this.usersFacade.getUsers());
+     .subscribe(_ => this.userFacade.getUsers());
   }
 
   public search(e): void {
-    this.usersFacade.search(e.detail.value);
+    this.userFacade.search(e.detail.value);
   }
 
   ngOnDestroy(): void {

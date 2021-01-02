@@ -45,4 +45,8 @@ export const getFriendsLoaded = createSelector(
   getUserState, fromUser.getFriendsLoaded
 );
 
+export const getFriendsCount = createSelector(
+  getUserState, fromUser.getFriendsCount
+);
+
 

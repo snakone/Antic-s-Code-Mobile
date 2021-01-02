@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserFacade } from '@store/user/user.facade';
 import { User } from '@shared/interfaces/interfaces';
 import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-public-profile-page',
@@ -12,10 +12,11 @@ import { takeUntil } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class PublicProfilePage implements OnInit, OnDestroy {
+export class PublicProfilePage implements OnInit {
 
   user$: Observable<User>;
   private unsubscribe$ = new Subject<void>();
+  friendsCount$: Observable<number>;
 
   constructor(
     private userFacade: UserFacade,
@@ -24,7 +25,9 @@ export class PublicProfilePage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.user$ = this.userFacade.byName$;
+    this.friendsCount$ = this.userFacade.friendsCount$;
     this.getUserByName();
+    this.checkData();
   }
 
   private getUserByName(): void {
@@ -33,7 +36,16 @@ export class PublicProfilePage implements OnInit, OnDestroy {
       .subscribe(params => this.userFacade.getByName(params.name));
   }
 
-  ngOnDestroy(): void {
+  private checkData(): void {
+    this.userFacade.friendsLoaded$
+    .pipe(
+      filter(res => !res),
+      takeUntil(this.unsubscribe$)
+    )
+    .subscribe(_ => this.userFacade.getFriends());
+  }
+
+  ionViewDidLeave() {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
     this.userFacade.resetByName();

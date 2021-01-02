@@ -16,6 +16,7 @@ export interface StorageConfig extends ModuleConfig {
   INTRO_TUTORIAL: boolean;
   DRAFT_FORM: FormGroupState<DraftForm>;
   AUTO_LOGIN: boolean;
+  SHOW_ONLINE: boolean;
 }
 
 export const STORAGE_CONSTANTS: StorageConfig = {
@@ -26,7 +27,8 @@ export const STORAGE_CONSTANTS: StorageConfig = {
   CREATE_TUTORIAL: true,
   INTRO_TUTORIAL: true,
   DRAFT_FORM: newForm(),
-  AUTO_LOGIN: true
+  AUTO_LOGIN: true,
+  SHOW_ONLINE: true
 };
 
 export class Storage {
@@ -38,7 +40,8 @@ export class Storage {
   createTutorial = STORAGE_CONSTANTS.CREATE_TUTORIAL;
   introTutorial = STORAGE_CONSTANTS.INTRO_TUTORIAL;
   draftForm = STORAGE_CONSTANTS.DRAFT_FORM;
-  autoLogin= STORAGE_CONSTANTS.AUTO_LOGIN;
+  autoLogin = STORAGE_CONSTANTS.AUTO_LOGIN;
+  showOnline = STORAGE_CONSTANTS.SHOW_ONLINE;
 }
 
 export let STORAGE_CONFIG = new InjectionToken<StorageConfig>('storage.config');

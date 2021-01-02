@@ -1,4 +1,4 @@
-import { User, UserFriends } from '@shared/interfaces/interfaces';
+import { User, UserResponse } from '@shared/interfaces/interfaces';
 import { createAction, props } from '@ngrx/store';
 
 // GET ALL USERS
@@ -20,7 +20,7 @@ export const getByName =
 
 export const getByNameSuccess =
   createAction('[Users API] Get User By Name Success',
-  props<{ user: User }>());
+  props<{ res: UserResponse }>());
 
 export const getByNameFailure =
   createAction('[Users API] Get User By Name Failure',

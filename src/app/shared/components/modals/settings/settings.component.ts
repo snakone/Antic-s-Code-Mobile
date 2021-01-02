@@ -24,6 +24,7 @@ export class SettingsComponent implements OnInit {
   create: boolean;
   intro: boolean;
   login: boolean;
+  online: boolean;
 
   lang = LANGS;
   mail = YESNOT;
@@ -51,6 +52,7 @@ export class SettingsComponent implements OnInit {
     this.create = this.ls.get('createTutorial');
     this.intro = this.ls.get('introTutorial');
     this.login = this.ls.get('autoLogin');
+    this.online = this.ls.get('showOnline');
   }
 
   public change(key: string, value: boolean) {

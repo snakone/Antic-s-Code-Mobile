@@ -1,10 +1,10 @@
 <ion-slides [options]="slideOpts"
             #slider
-            (ionSlidesDidLoad)="didLoad()" *ngIf="slides">
+            (ionSlidesDidLoad)="didLoad()" *ngIf="slides; else loading">
   <ion-slide *ngFor="let friend of slides; let i = index" 
              (click)="pick(friend,i)">
     <ion-avatar [ngClass]="{'active': friend.selected}"
-                class="animated fadeIn">
+                class="animated fadeIn" *ngIf="friend">
       <span *ngIf="friend.online"></span>
       <img *ngIf="friend.user.profile?.avatar; else noImage"
            [src]="friend.user.profile.avatar"
@@ -18,7 +18,7 @@
     </ion-avatar>
     <p>{{friend.user.name | titlecase}}</p>
   </ion-slide>
-  <ion-slide *ngIf="slides.length <= 3">
+  <ion-slide *ngIf="slides?.length <= 3">
     <ion-avatar class="animated fadeIn"
                 [routerLink]="'/mail/search'">
       <ion-icon name="add-outline"></ion-icon>
@@ -26,3 +26,9 @@
     <p>{{'ADD.MORE' | translate</p>
   </ion-slide>
 </ion-slides>
+
+<ng-template #loading>
+  <div class="spinner">
+    <ion-spinner color="light"></ion-spinner>
+  </div>
+</ng-template>

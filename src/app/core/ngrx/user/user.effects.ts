@@ -44,7 +44,7 @@ export class UserEffects {
     concatMap((action) =>
     this.userSrv.getByName(action.name)
       .pipe(
-        map(user => UserActions.getByNameSuccess({ user })),
+        map(res => UserActions.getByNameSuccess({ res })),
         catchError(error =>
             of(UserActions.getByNameFailure({ error: error.message }))
     ))))

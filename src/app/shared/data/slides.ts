@@ -63,14 +63,23 @@ export const FRIENDS_SLIDES_OPTS = {
   centeredSlides: true,
   centeredSlidesBounds: true,
   breakpoints: {
+    400: {
+      slidesPerView: 5.8
+    },
+    500: {
+      slidesPerView: 6.7
+    },
     640: {
       slidesPerView: 7.3
     },
+    750: {
+      slidesPerView: 8.6
+    },
     900: {
-      slidesPerView: 8.3
+      slidesPerView: 10.3
     },
     993: {
-      slidesPerView: 10.3
+      slidesPerView: 12.3
     }
   }
 };

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http/http.service';
-import { FriendsResponse, User, UserFriends, UserResponse } from '@shared/interfaces/interfaces';
+import { FriendsResponse, User, UserFriends, UserFriendsResponse, UserResponse } from '@shared/interfaces/interfaces';
 import { Observable, of } from 'rxjs';
 import { StorageService } from '@services/storage/storage.service';
 import { environment } from '@env/environment';
@@ -40,12 +40,11 @@ export class UserService {
     this.userFacade.set(user);
   }
 
-  public getByName(name: string): Observable<User> {
+  public getByName(name: string): Observable<UserResponse> {
     return this.http
       .get<UserResponse>(this.API_USERS + `public/${name}`)
       .pipe(
-        filter(res => res && !!res.ok),
-        map(_ => _.user)
+        filter(res => res && !!res.ok)
       );
   }
 
@@ -82,6 +81,15 @@ export class UserService {
       .pipe(
         filter(res => res && !!res.ok),
         map(_ => _.friends)
+      );
+  }
+
+  public getFriendsByUser(name: string): Observable<number> {
+    return this.http
+      .get<UserFriendsResponse>(this.API_FRIENDS + name)
+      .pipe(
+        filter(res => res && !!res.ok),
+        map(_ => _.count)
       );
   }
 

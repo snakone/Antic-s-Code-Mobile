@@ -66,6 +66,18 @@
                   (ngModelChange)="change('remember', $event)">
       </ion-toggle>
     </ion-item>
+    <ion-item> <!-- ONLINE -->
+      <ion-icon name="wifi-outline" 
+                slot="start"
+                color="primary">
+      </ion-icon>
+      <ion-label>{{'ONLINE' | translate}}</ion-label>
+      <ion-toggle mode="md"
+                  color="secondary"
+                  [(ngModel)]="online"
+                  (ngModelChange)="change('online', $event)">
+      </ion-toggle>
+    </ion-item>
     <ion-item-divider mode="ios"> <!-- TUTORIALS -->
       <ion-label>
         {{'SHOW.TUTORIALS' | translate}}

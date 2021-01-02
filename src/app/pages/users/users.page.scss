@@ -5,11 +5,11 @@ ion-item {
   padding-left: 2vw;
 }
 
-ion-searchbar, ion-list {
+ion-searchbar, ion-virtual-scroll {
   max-width: 550px;
 }
 
-ion-list {
+ion-virtual-scroll {
   margin: 3rem auto 0 auto !important;
 }
 

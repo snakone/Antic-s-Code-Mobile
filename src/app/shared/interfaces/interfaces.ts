@@ -94,6 +94,7 @@ export interface UserResponse extends ServerResponse {
   user: User;
   users?: User[];
   token?: string;
+  friends?: number;
 }
 
 export interface DraftResponse extends ServerResponse {
@@ -358,4 +359,8 @@ export interface UserFriends {
 export interface FriendsResponse extends ServerResponse {
   friends?: User[];
   friend?: User;
+}
+
+export interface UserFriendsResponse extends ServerResponse {
+  count?: number;
 }

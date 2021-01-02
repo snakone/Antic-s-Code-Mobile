@@ -1,7 +1,6 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import * as UserActions from './user.actions';
-import { User, UserFriends } from '@shared/interfaces/interfaces';
-import { environment } from '@env/environment';
+import { User } from '@shared/interfaces/interfaces';
 
 export interface UserState {
   user: User;
@@ -10,8 +9,9 @@ export interface UserState {
   usersLoaded: boolean;
   public: User;
   publicLoaded: boolean;
-  friends: User[],
-  friendsLoaded: boolean
+  friends: User[];
+  friendsLoaded: boolean;
+  friendsCount: number;
 }
 
 export const initialState: UserState = {
@@ -22,7 +22,8 @@ export const initialState: UserState = {
   public: null,
   publicLoaded: false,
   friends: [],
-  friendsLoaded: false
+  friendsLoaded: false,
+  friendsCount: 0
 };
 
 const featureReducer = createReducer(
@@ -72,12 +73,13 @@ const featureReducer = createReducer(
   on(UserActions.getByName, (state) => (
     { ...state, publicLoaded: false, error: null }
   )),
-  on(UserActions.getByNameSuccess, (state, { user }) => (
+  on(UserActions.getByNameSuccess, (state, { res }) => (
     {
       ...state,
       publicLoaded: true,
       error: null,
-      public: user
+      public: res.user,
+      friendsCount: res.friends || 0
     }
   )),
   on(UserActions.getByNameFailure, (state, { error }) => (
@@ -136,3 +138,4 @@ export const getUsersLoaded = (state: UserState) => state.usersLoaded;
 export const getPublicLoaded = (state: UserState) => state.publicLoaded;
 export const getFriends = (state: UserState) => state.friends;
 export const getFriendsLoaded = (state: UserState) => state.friendsLoaded;
+export const getFriendsCount = (state: UserState) => state.friendsCount;

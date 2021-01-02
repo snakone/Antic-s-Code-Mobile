@@ -17,6 +17,7 @@ export class UserFacade {
   byName$ = this.store.select(fromUser.getByName);
   friends$ = this.store.select(fromUser.getFriends);
   friendsLoaded$ = this.store.select(fromUser.getFriendsLoaded);
+  friendsCount$ = this.store.select(fromUser.getFriendsCount);
 
   constructor(private store: Store<AppState>) { }
 

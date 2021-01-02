@@ -1,10 +1,8 @@
 <ion-header mode="ios" class="ion-no-border">
   <ion-toolbar mode="md">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/profile"
-                       [text]="null">
-      </ion-back-button>
-    </ion-buttons>
+    <ion-title class="animated fadeInLeftBounce">
+               {{'MAIL' | translate}}
+    </ion-title>
     <ion-buttons slot="end">
       <ion-button *ngFor="let i of icons"
                   [routerLink]="i.route">

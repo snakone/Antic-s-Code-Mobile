@@ -29,7 +29,8 @@
               "firebase/app",
               "firebase/auth",
               "@firebase/auth",
-              "file-saver"
+              "file-saver",
+              "socket.io-client"
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [

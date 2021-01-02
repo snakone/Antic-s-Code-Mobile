@@ -1,0 +1,13 @@
+<ion-avatar class="animated fadeIn" slot="start">
+  <ion-img *ngIf="user.profile?.avatar; else noImage"
+        [src]="user.profile.avatar"
+        #img
+        alt="Avatar"
+        [ngClass]="themeSrv.isDark() ? 'dark' : 'light'"
+        (ionError)="img.src = 'assets/icon/no-avatar.png'; img.alt='No Image'">
+  </ion-img>
+  <ng-template #noImage>
+    <img [ngClass]="themeSrv.isDark() ? 'dark' : 'light'"
+          src="assets/icon/no-avatar.png"/>
+  </ng-template>
+</ion-avatar>

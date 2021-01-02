@@ -12,6 +12,11 @@ export const MENU: MenuLink[] = [
     route: '/profile'
   },
   {
+    title: 'FRIENDS',
+    icon: 'bug-outline',
+    route: '/friends'
+  },
+  {
     title: 'MAIL',
     icon: 'mail-outline',
     route: '/mail'

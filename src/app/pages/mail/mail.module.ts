@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { MailHeaderModule } from '@layout/mail-header/mail-header.module';
 import { MailAccessModule } from '@store/mail/data-access/mail-access.module';
 import { PipesModule } from '@shared/pipes/pipes.module';
+import { SnippetsModule } from '@shared/components/snippets/snippets.module';
 
 import { MailPage } from './mail.page';
 import { MailIntroComponent } from './components/mail-intro/mail-intro.component';
@@ -31,7 +32,8 @@ import { MailUserCardComponent } from './components/mail-user/components/mail-us
     MailHeaderModule,
     RouterModule,
     PipesModule,
-    MailAccessModule
+    MailAccessModule,
+    SnippetsModule
   ]
 })
 

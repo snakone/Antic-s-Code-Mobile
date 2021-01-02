@@ -9,6 +9,9 @@
 
 <ion-footer class="ion-no-border">
   <ion-toolbar>
-    <app-profile-footer [user]="user"></app-profile-footer>
+    <app-profile-footer [user]="user"
+                        [public]="false"
+                        [friends]="friends$ | async">
+    </app-profile-footer>
   </ion-toolbar>
 </ion-footer>

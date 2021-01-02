@@ -9,7 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { UserService } from '@services/user/user.service';
 import { Observable, Subject } from 'rxjs';
 import { UserFacade } from '@store/user/user.facade';
-import { filter, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-header',
@@ -24,6 +24,7 @@ export class UserHeaderComponent implements OnInit, OnDestroy {
   @Input() public: boolean;
   @Input() showBack: boolean;
   friends$: Observable<User[]>;
+  myself: boolean;
   private unsubscribe$ = new Subject<void>();
 
   constructor(
@@ -38,17 +39,8 @@ export class UserHeaderComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() { 
-    this.checkData();
     this.friends$ = this.userFacade.friends$;
-  }
-
-  private checkData(): void {
-    this.userFacade.friendsLoaded$
-    .pipe(
-      filter(res => !res),
-      takeUntil(this.unsubscribe$)
-    )
-    .subscribe(_ => this.userFacade.getFriends());
+    this.myself = this.userSrv.getUser()._id === this.user._id;
   }
 
   public openMenu(): void {
@@ -79,6 +71,7 @@ export class UserHeaderComponent implements OnInit, OnDestroy {
     confirm.then(async res => {
       if (!res.role) {
         this.userSrv.addUserAsFriend(this.user._id)
+        .pipe(takeUntil(this.unsubscribe$))
          .subscribe(_ => {
            this.crafter.toast(toast);
            this.userFacade.addFriend(_);
@@ -103,6 +96,7 @@ export class UserHeaderComponent implements OnInit, OnDestroy {
     confirm.then(async res => {
       if (!res.role) {
         this.userSrv.removeUserAsFriend(this.user._id)
+        .pipe(takeUntil(this.unsubscribe$))
          .subscribe(_ => {
            this.crafter.toast(toast);
            this.userFacade.removeFriend(_);

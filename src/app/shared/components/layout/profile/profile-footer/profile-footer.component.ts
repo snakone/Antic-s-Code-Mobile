@@ -10,31 +10,15 @@ import { filter, takeUntil } from 'rxjs/operators';
   styleUrls: ['./profile-footer.component.scss'],
 })
 
-export class ProfileFooterComponent implements OnInit, OnDestroy {
+export class ProfileFooterComponent implements OnInit {
 
   @Input() user: User;
-  friends$: Observable<User[]>;
-  private unsubscribe$ = new Subject<void>();
+  @Input() public: boolean;
+  @Input() friends: User[];
+  @Input() count: number;
 
-  constructor(private userFacade: UserFacade) { }
+  constructor() { }
 
-  ngOnInit() {
-    this.checkData();
-    this.friends$ = this.userFacade.friends$;
-  }
-
-  private checkData(): void {
-    this.userFacade.friendsLoaded$
-    .pipe(
-      filter(res => !res),
-      takeUntil(this.unsubscribe$)
-    )
-    .subscribe(_ => this.userFacade.getFriends());
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
-  }
+  ngOnInit() { }
 
 }

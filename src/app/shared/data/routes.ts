@@ -42,6 +42,12 @@ export const ROUTES: Routes = [
     canLoad: [UserGuard]
   },
   {
+    path: 'friends',
+    loadChildren: () => import('../../pages/friends/friends.module')
+    .then(m => m.FriendsPageModule),
+    canLoad: [UserGuard]
+  },
+  {
     path: 'public/:name',
     loadChildren: () => import('../../pages/public-profile/public-profile.module')
     .then(m => m.PublicProfilePageModule),

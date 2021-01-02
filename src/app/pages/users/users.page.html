@@ -14,10 +14,15 @@
                 (ionChange)="search($event)">
   </ion-searchbar>
 
-  <ion-list inset="true" *ngIf="(filtered$ | async) as users">
-    <ion-item detail *ngFor="let u of users"
-              [routerLink]="'/public/' + u.name">
-      <ion-label>{{u.name | titlecase}}</ion-label>
+  <ng-container *ngIf="(filtered$ | async) as users">
+    <ion-virtual-scroll [items]="users" approxItemHeight="45px">
+      <ion-item detail *virtualItem="let user"
+                lines="none"
+                [routerLink]="'/public/' + user.name">
+      <app-user-avatar [user]="user"></app-user-avatar>
+      <ion-label>{{user.name | titlecase}}</ion-label>
     </ion-item>
-  </ion-list>
+    </ion-virtual-scroll>
+  </ng-container>
+
 </ion-content>

@@ -5,10 +5,11 @@
   </div>
   <div class="item">
     <ion-icon name="heart-outline"></ion-icon>
-    <ion-text>{{user.stats?.score.reaction.likes || 0}}</ion-text>
+    <ion-text>{{user.stats?.score.user?.likes || 0}}</ion-text>
   </div>
   <div class="item">
     <ion-icon name="people-outline"></ion-icon>
-    <ion-text>{{(friends$ | async).length || 0}}</ion-text>
+    <ion-text *ngIf="!public">{{friends?.length || 0}}</ion-text>
+    <ion-text *ngIf="public">{{count || 0}}</ion-text>
   </div>
 </div>

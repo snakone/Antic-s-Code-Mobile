@@ -6,19 +6,28 @@
     <ion-label>{{user.stats?.score.total || 0}}</ion-label>
   </div>
   <div class="user-buttons">
-    <ion-button fill="clear"
-                *ngIf="!(public && isAdded(friends$ | async)); else remove"
-                class="mail animated fadeIn"
-                (click)="mail()">
-      <ion-icon [name]="public ? 'person-add' : 'mail'"></ion-icon>
-    </ion-button>
-    <ng-template #remove>
+    <ng-container *ngIf="!myself && public">
       <ion-button fill="clear"
-                  class="remove animated fadeIn"
-                  (click)="removeFriend()">
-        <ion-icon name="person-remove"></ion-icon>
+                  *ngIf="!(isAdded(friends$ | async)); else remove"
+                  class="mail animated fadeIn"
+                  (click)="mail()">
+        <ion-icon name="person-add"></ion-icon>
       </ion-button>
-    </ng-template>
+      <ng-template #remove>
+        <ion-button fill="clear"
+                    class="remove animated fadeIn"
+                    (click)="removeFriend()">
+          <ion-icon name="person-remove"></ion-icon>
+        </ion-button>
+      </ng-template>
+    </ng-container>
+    <ng-container *ngIf="myself && !public">
+      <ion-button fill="clear"
+                  class="mail animated fadeIn"
+                  (click)="mail()">
+        <ion-icon name="mail"></ion-icon>
+      </ion-button>
+    </ng-container>
     <ion-button fill="clear" 
                 class="like"
                 (click)="stats()">

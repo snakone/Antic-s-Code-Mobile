@@ -2,24 +2,24 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 
-import { UsersRoutingModule } from './users.routing';
-import { UsersPage } from './users.page';
+import { FriendsPageRouting } from './friends.routing';
 import { PageHeaderModule } from '@layout/page-header/page-header.module';
 import { TranslateModule } from '@ngx-translate/core';
-import { SnippetsModule } from '@shared/components/snippets/snippets.module';
+import { OnlineAccessModule } from '@store/online/data-access/online-access.module';
+import { FriendsPage } from './friends.page';
 
 @NgModule({
   declarations: [
-    UsersPage
+    FriendsPage
   ],
   imports: [
     CommonModule,
-    UsersRoutingModule,
-    PageHeaderModule,
-    TranslateModule,
+    FriendsPageRouting,
     IonicModule,
-    SnippetsModule
+    TranslateModule,
+    PageHeaderModule,
+    OnlineAccessModule
   ]
 })
 
-export class UsersPageModule { }
+export class FriendsPageModule { }
