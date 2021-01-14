@@ -40,6 +40,7 @@ export interface User {
   account?: string;
   profile?: UserProfile;
   showEmail?: boolean;
+  showOnline?: boolean;
   auth?: boolean;
   stats?: UserStats;
 }

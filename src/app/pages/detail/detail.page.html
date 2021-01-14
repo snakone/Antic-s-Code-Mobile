@@ -10,7 +10,7 @@
     <ion-fab vertical="bottom" 
              horizontal="end" 
              slot="fixed"
-             *ngIf="!public">
+             *ngIf="isPublic(article)">
       <ion-fab-button class="first">
         <ion-icon name="settings-outline"></ion-icon>
       </ion-fab-button>

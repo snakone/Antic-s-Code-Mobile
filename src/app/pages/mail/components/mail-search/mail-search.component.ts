@@ -14,14 +14,12 @@ export class MailSearchComponent implements OnInit, OnDestroy {
 
   private unsubscribe$ = new Subject<void>();
   filtered$: Observable<User[]>;
-  friends$: Observable<User[]>;
 
   constructor(private userFacade: UserFacade) { }
 
   ngOnInit() {
     this.checkData();
     this.filtered$ = this.userFacade.filtered$;
-    this.friends$ = this.userFacade.friends$;
   }
 
   private checkData(): void {

@@ -4,7 +4,7 @@
   <ion-slide *ngFor="let friend of slides; let i = index" 
              (click)="pick(friend,i)">
     <ion-avatar [ngClass]="{'active': friend.selected}"
-                class="animated fadeIn" *ngIf="friend">
+                *ngIf="friend">
       <span *ngIf="friend.online"></span>
       <img *ngIf="friend.user.profile?.avatar; else noImage"
            [src]="friend.user.profile.avatar"
@@ -16,14 +16,16 @@
              src="assets/icon/no-avatar.png"/>
       </ng-template>
     </ion-avatar>
-    <p>{{friend.user.name | titlecase}}</p>
+    <p [ngClass]="{'active': friend.selected}">
+      {{friend.user.name | titlecase}}
+    </p>
   </ion-slide>
   <ion-slide *ngIf="slides?.length <= 3">
-    <ion-avatar class="animated fadeIn"
+    <ion-avatar class="animated fadeIn active"
                 [routerLink]="'/mail/search'">
       <ion-icon name="add-outline"></ion-icon>
     </ion-avatar>
-    <p>{{'ADD.MORE' | translate</p>
+    <p class="active">{{'ADD.MORE' | translate}}</p>
   </ion-slide>
 </ion-slides>
 

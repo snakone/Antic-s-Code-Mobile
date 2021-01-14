@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Article, Draft } from '@shared/interfaces/interfaces';
+import { Article, Draft, User } from '@shared/interfaces/interfaces';
 import { Observable, Subject } from 'rxjs';
 import { ModalController } from '@ionic/angular';
 import { EditComponent } from '@shared/components/modals/edit/edit.component';
@@ -11,7 +11,7 @@ import { ContentFacade } from '@store/content/content.facade';
 import { ContentService } from '@services/content/content.service';
 import { DraftsService } from '@services/drafts/drafts.service';
 import { PDFService } from '@core/native/services/pdf.service';
-import { Location } from '@angular/common';
+import { UserService } from '@core/services/user/user.service';
 
 @Component({
   selector: 'app-detail',
@@ -24,7 +24,7 @@ export class DetailPage implements OnInit, OnDestroy {
   content$: Observable<Article>;
   private unsubscribe$ = new Subject<void>();
   edited = false;
-  public: boolean;
+  user: User;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,19 +35,17 @@ export class DetailPage implements OnInit, OnDestroy {
     private draftSrv: DraftsService,
     private router: Router,
     private pdfMaker: PDFService,
-    private location: Location
+    private userSrv: UserService
   ) {}
 
   ngOnInit(): void {
     const slug = this.route.snapshot.paramMap.get('slug');
-    this.public = this.isPublic();
     this.contentFacade.getBySlug(slug);
     this.content$ = this.contentFacade.bySlug$;
   }
 
-  private isPublic(): boolean {
-    const state: any = this.location.getState();
-    return state.public as boolean;
+  public isPublic(content: Article): boolean {
+    return content.user === this.userSrv.getUser()._id;
   }
 
   public async open(page: string): Promise<void> {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MenuService } from '@services/menu/menu.service';
 import { MenuController } from '@ionic/angular';
 import { User, UserOnline } from '@shared/interfaces/interfaces';
@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import { UserFacade } from '@store/user/user.facade';
 import { Observable } from 'rxjs';
 import { OnlineFacade } from '@store/online/online.facade';
-import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-mail-header',
@@ -20,6 +19,7 @@ export class MailHeaderComponent implements OnInit {
   friends$: Observable<User[]>;
   online$: Observable<UserOnline[]>;
   icons = MAIL_HEADER;
+  @Input() params: string;
 
   constructor(
     public menuSrv: MenuService,

@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { UserService } from '@services/user/user.service';
-import { Router } from '@angular/router';
 import { CrafterService } from '@services/crafter/crafter.service';
 import { StorageService } from '@services/storage/storage.service';
 import { LanguageService } from '@core/language/services/language.service';
-import { TranslateService } from '@ngx-translate/core';
 import { MenuController, ModalController, NavController } from '@ionic/angular';
 import { LANGS, YESNOT } from '@shared/data/app';
 import { User } from '@shared/interfaces/interfaces';
+import { OnlineService } from '@core/services/online/online.service';
 
 @Component({
   selector: 'app-settings',
@@ -37,12 +36,13 @@ export class SettingsComponent implements OnInit {
     private languageSrv: LanguageService,
     private modalCtrl: ModalController,
     private menuCtrl: MenuController,
-    private nav: NavController
-  ) {}
+    private nav: NavController,
+    private onlineSrv: OnlineService
+  ) { }
 
   ngOnInit() {
-    this.getLocalData();
     this.user = this.userSrv.getUser();
+    this.getLocalData();
   }
 
   private getLocalData(): void {
@@ -52,7 +52,7 @@ export class SettingsComponent implements OnInit {
     this.create = this.ls.get('createTutorial');
     this.intro = this.ls.get('introTutorial');
     this.login = this.ls.get('autoLogin');
-    this.online = this.ls.get('showOnline');
+    this.online = this.user.showOnline;
   }
 
   public change(key: string, value: boolean) {
@@ -61,6 +61,8 @@ export class SettingsComponent implements OnInit {
       case 'theme': document.body.classList.toggle('dark');
        break;
       case 'lang': this.languageSrv.change(String(value));
+       break;
+      case 'online': this.onlineSrv.setShowOnline(value).toPromise().then();
        break;
     }
   }

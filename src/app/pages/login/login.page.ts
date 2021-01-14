@@ -58,9 +58,7 @@ export class LoginPage implements OnInit, OnDestroy {
     )
     .subscribe(_ => {
       this.nav.navigateRoot('home');
-      if (this.ls.get('introTutorial')) {
-        this.openHelp();
-      }
+      if (this.ls.get('introTutorial')) { this.openHelp(); }
     });
   }
 

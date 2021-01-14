@@ -29,4 +29,12 @@ ion-label {
   &:hover {
     color: var(--ion-color-primary);
   }
+
+  & p { 
+    font-size: .8rem !important;
+    color: var(--ion-color-dark);
+    opacity: .6;
+  }
 }
+
+h3 { outline: none }

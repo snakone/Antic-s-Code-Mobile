@@ -38,7 +38,7 @@ const featureReducer = createReducer(
       ...state,
       error: null,
       online: online.online ? 
-              [...state.online, online] : 
+              [online, ...state.online] : 
               [...state.online].filter(o => o.socketID !== online.socketID)
     }
   )),

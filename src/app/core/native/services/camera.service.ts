@@ -9,7 +9,7 @@ export class CameraService {
   sourceOpts: CameraOptions = {
     quality: 100,
     destinationType: this.camera.DestinationType.DATA_URL,
-    encodingType: this.camera.EncodingType.JPEG,
+    encodingType: this.camera.EncodingType.JPEG | this.camera.EncodingType.PNG,
     mediaType: this.camera.MediaType.PICTURE,
     sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
   };
@@ -22,7 +22,8 @@ export class CameraService {
   public async openSource(): Promise<string> {
     try {
       this.crafter.loader();
-      return 'data:image/jpg;base64,' + await this.camera.getPicture(this.sourceOpts);
+      return 'data:image/jpg;base64,' + 
+       await this.camera.getPicture(this.sourceOpts);
     } catch (err) {
       console.log(err);
       this.crafter.loaderOff();

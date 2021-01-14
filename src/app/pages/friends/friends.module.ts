@@ -7,10 +7,13 @@ import { PageHeaderModule } from '@layout/page-header/page-header.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { OnlineAccessModule } from '@store/online/data-access/online-access.module';
 import { FriendsPage } from './friends.page';
+import { SnippetsModule } from '@shared/components/snippets/snippets.module';
+import { FriendOptionsComponent } from './components/friend-options/friend-options.component';
 
 @NgModule({
   declarations: [
-    FriendsPage
+    FriendsPage,
+    FriendOptionsComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +21,8 @@ import { FriendsPage } from './friends.page';
     IonicModule,
     TranslateModule,
     PageHeaderModule,
-    OnlineAccessModule
+    OnlineAccessModule,
+    SnippetsModule
   ]
 })
 

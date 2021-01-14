@@ -1,9 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { CrafterService } from '@app/core/services/crafter/crafter.service';
 import { User, UserOnline } from '@shared/interfaces/interfaces';
 import { OnlineFacade } from '@store/online/online.facade';
 import { UserFacade } from '@store/user/user.facade';
 import { Observable, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
+import { FriendOptionsComponent } from './components/friend-options/friend-options.component';
+
 
 @Component({
   selector: 'app-friends',
@@ -19,11 +22,12 @@ export class FriendsPage implements OnInit, OnDestroy {
 
   constructor(
     private userFacade: UserFacade,
-    private onlineFacade: OnlineFacade
+    private onlineFacade: OnlineFacade,
+    private crafter: CrafterService
   ) { }
 
   ngOnInit() {
-    this.friends$ = this.userFacade.friends$;
+    this.friends$ = this.userFacade.filteredFriends$;
     this.online$ = this.onlineFacade.online$;
     this.checkData();
   }
@@ -42,6 +46,16 @@ export class FriendsPage implements OnInit, OnDestroy {
       takeUntil(this.unsubscribe$)
     )
     .subscribe(_ => this.onlineFacade.get());
+  }
+
+  public options(friend: User, e): void {
+    this.crafter.pop(FriendOptionsComponent, {
+      friend,
+    }, 'options', e);
+  }
+
+  public search(e): void {
+    this.userFacade.searchFriends(e.detail.value);
   }
 
   ngOnDestroy(): void {

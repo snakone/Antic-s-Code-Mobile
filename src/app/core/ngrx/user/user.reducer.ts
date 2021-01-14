@@ -1,5 +1,6 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import * as UserActions from './user.actions';
+import * as OnlineActions from '../online/online.actions';
 import { User } from '@shared/interfaces/interfaces';
 
 export interface UserState {
@@ -10,6 +11,7 @@ export interface UserState {
   public: User;
   publicLoaded: boolean;
   friends: User[];
+  filteredFriends: User[];
   friendsLoaded: boolean;
   friendsCount: number;
 }
@@ -22,6 +24,7 @@ export const initialState: UserState = {
   public: null,
   publicLoaded: false,
   friends: [],
+  filteredFriends: [],
   friendsLoaded: false,
   friendsCount: 0
 };
@@ -47,8 +50,8 @@ const featureReducer = createReducer(
       ...state,
       usersLoaded: true,
       error: null,
-      users: users,
-      filtered: users
+      users: users.filter(u => u._id !== state.user._id),
+      filtered: users.filter(u => u._id !== state.user._id)
     }
   )),
   on(UserActions.getUsersFailure, (state, { error }) => (
@@ -62,6 +65,7 @@ const featureReducer = createReducer(
     {
       ...state,
       friends,
+      filteredFriends: friends,
       friendsLoaded: true,
       error: null,
     }
@@ -94,12 +98,22 @@ const featureReducer = createReducer(
       error: null
     }
   )),
+  // FILTER FRIENDS
+  on(UserActions.searchFriends, (state, { value }) => (
+    {
+      ...state,
+      filteredFriends: [...[...state.friends]
+                  .filter(f => f.name.match(new RegExp(value, 'i')))],
+      error: null
+    }
+  )),
   // ADD FRIEND
   on(UserActions.addFriend, (state, {friend}) => (
     { 
       ...state, 
       error: null, 
-      friends: [...state.friends, friend]
+      friends: [friend, ...state.friends],
+      filteredFriends: [friend, ...state.friends]
     }
   )),
   // REMOVE FRIEND
@@ -107,7 +121,8 @@ const featureReducer = createReducer(
     { 
       ...state, 
       error: null, 
-      friends: [...state.friends].filter(f => f._id !== friend._id)
+      friends: [...state.friends].filter(f => f._id !== friend._id),
+      filteredFriends: [...state.friends].filter(f => f._id !== friend._id)
     }
   )),
   // USER LOG OUT
@@ -121,6 +136,14 @@ const featureReducer = createReducer(
       publicLoaded: false,
       error: null,
       public: null
+    }
+  )),
+  // RESET FRIENDS
+  on(UserActions.resetFriends, (state) => (
+    {
+      ...state,
+      friends: [],
+      friendsLoaded: false
     }
   ))
 );
@@ -137,5 +160,6 @@ export const getByName = (state: UserState) => state.public;
 export const getUsersLoaded = (state: UserState) => state.usersLoaded;
 export const getPublicLoaded = (state: UserState) => state.publicLoaded;
 export const getFriends = (state: UserState) => state.friends;
+export const getFilteredFriends = (state: UserState) => state.filteredFriends;
 export const getFriendsLoaded = (state: UserState) => state.friendsLoaded;
 export const getFriendsCount = (state: UserState) => state.friendsCount;

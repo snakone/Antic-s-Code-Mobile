@@ -44,6 +44,11 @@ export const search =
   createAction('[Users API] Search Users',
   props<{ value: string }>());
 
+// SEARCH FRIENDS
+export const searchFriends =
+  createAction('[Users API] Search Users Friends',
+  props<{ value: string }>());
+
 // USER LOGOUT
 export const userLogOut =
   createAction('[Users API] User Log Out');
@@ -73,3 +78,7 @@ export const removeFriend =
 // RESET BY NAME
 export const resetByName =
   createAction('[Users API] Reset By User Name');
+
+// RESET FRIENDS
+export const resetFriends =
+  createAction('[Users API] Reset User Friends');

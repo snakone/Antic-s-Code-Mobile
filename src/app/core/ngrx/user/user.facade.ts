@@ -16,6 +16,7 @@ export class UserFacade {
   filtered$ = this.store.select(fromUser.getFiltered);
   byName$ = this.store.select(fromUser.getByName);
   friends$ = this.store.select(fromUser.getFriends);
+  filteredFriends$ = this.store.select(fromUser.getFilteredFriends);
   friendsLoaded$ = this.store.select(fromUser.getFriendsLoaded);
   friendsCount$ = this.store.select(fromUser.getFriendsCount);
 
@@ -49,12 +50,20 @@ export class UserFacade {
     this.store.dispatch(UserActions.search({value}));
   }
 
+  public searchFriends(value: string): void {
+    this.store.dispatch(UserActions.searchFriends({value}));
+  }
+
   public logOut(): void {
     this.store.dispatch(UserActions.userLogOut());
   }
 
   public resetByName(): void {
     this.store.dispatch(UserActions.resetByName());
+  }
+
+  public resetFriends(): void {
+    this.store.dispatch(UserActions.resetFriends());
   }
 
 }

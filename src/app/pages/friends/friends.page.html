@@ -2,6 +2,49 @@
                  [showMenu]="true">
 </app-page-header>
 
-<ion-content force-overscroll="false">
-  Friends works!
+<ion-content force-overscroll="false" class="ion-padding">
+  <ng-container *ngIf="(friends$ | async) as friends;">
+    <ng-container *ngIf="friends.length > 0; else noFriends">
+      <ion-searchbar debounce="500"
+                     mode="ios"
+                    [placeholder]="'SEARCH.FRIENDS' | translate"
+                     showCancelButton="never"
+                     inputmode="text"
+                     type="text"
+                     class="search-user"
+                    (ionChange)="search($event)">
+      </ion-searchbar>
+
+      <ion-virtual-scroll [items]="friends" approxItemHeight="45px">
+        <ion-item *virtualItem="let friend"
+                  lines="none"
+                  detail="false">
+          <app-user-avatar [user]="friend"></app-user-avatar>
+          <ion-label>
+            <h3 [routerLink]="'/public/' + friend.name">{{friend.name | titlecase}}</h3>
+            <p *ngIf="friend.profile?.rol">{{friend.profile?.rol | translate}}</p>
+          </ion-label>
+          <ion-buttons slot="end">
+            <ion-button (click)="options(friend, $event)">
+              <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+      </ion-virtual-scroll>
+    </ng-container>
+    <ng-template #noFriends>
+      <div class="no-content">
+        <img src="assets/icon/no-friends.svg"/>
+        <p>{{'NO.FRIENDS' | translate}}</p>
+        <p>{{'LOOK.FRIENDS' | translate}}</p>
+      </div>
+      <ion-fab vertical="bottom" 
+               horizontal="end" 
+               slot="fixed">
+        <ion-fab-button [routerLink]="'/users'"> 
+          <ion-icon name="person-add-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </ng-template>
+  </ng-container>
 </ion-content>

@@ -19,11 +19,11 @@ export class ArticleCardComponent {
 
   constructor(private crafter: CrafterService) { }
 
-  public options(): void {
+  public options(e): void {
     this.crafter.pop(CardOptionsComponent, {
       article: this.article,
       public: this.public
-    }, 'card-options');
+    }, 'article-options', e);
   }
 
 }

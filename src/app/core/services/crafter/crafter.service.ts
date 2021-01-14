@@ -26,6 +26,7 @@ export class CrafterService {
 
   public async alert(message: string, header = true): Promise<void> {
     if (await this.alertCtrl.getTop()) { return; }
+    if (await this.loading.getTop()) { await this.loading.dismiss(); }
     const alert = await this.alertCtrl.create({
       header: header ? 'Antic\'s Code Mobile' : null,
       mode: 'ios',

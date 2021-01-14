@@ -3,8 +3,6 @@ import { User, UserOnline, UserSlide } from '@shared/interfaces/interfaces';
 import { IonSlides } from '@ionic/angular';
 import { ThemeService } from '@services/theme/theme.service';
 import { FRIENDS_SLIDES_OPTS } from '@shared/data/slides';
-import { StorageService } from '@services/storage/storage.service';
-import { UserService } from '@services/user/user.service';
 
 @Component({
   selector: 'app-friends-slides',
@@ -18,40 +16,47 @@ export class FriendsSlidesComponent implements OnChanges {
   @Input() friends: User[];
   @Input() online: UserOnline[];
   @Output() selected = new EventEmitter<string>();
+  @Input() params: string;
   slides: UserSlide[];
-  slideOpts = FRIENDS_SLIDES_OPTS
+  slideOpts = FRIENDS_SLIDES_OPTS;
+  index = 0;
 
   constructor(
     public themeSrv: ThemeService,
-    private ls: StorageService,
-    private userSrv: UserService
   ) { }
 
   ngOnChanges() {
     setTimeout(() => {
       this.createSlides();
-    }, 2000);
+    }, 666);
   }
 
   private createSlides(): void {
-    this.slides = this.friends?.map(f => (
+    this.slides = this.friends?.map((f, i) => (
                      {
                        user: f, 
-                       selected: false, 
-                       online: (
+                       selected: this.params === f._id ? 
+                                 this.slideToIndex(i) : false, 
+                       online: f.showOnline && (
                          this.online?.find(
                           o => o.user === f._id)?.online || false
-                         ) &&
-                         (
-                           this.userSrv.getUser()._id === f._id && 
-                           this.ls.get('showOnline')
-                         )
+                       )
                     })).sort(f => f.online ? -1 : 1) || [];
     this.didLoad();
   }
 
-  public didLoad(): void {
-    if (this.slider) { this.slider.update(); }
+  public async didLoad(): Promise<void> {
+    if (this.slider) { 
+      await this.slider.update();
+      this.params ? 
+      this.slider.slideTo(this.index) :
+      this.slider.slideTo(0);
+    }
+  }
+
+  private slideToIndex(index: number): boolean {
+    this.index = index;
+    return true;
   }
 
   public pick(slide: UserSlide, index: number): void {

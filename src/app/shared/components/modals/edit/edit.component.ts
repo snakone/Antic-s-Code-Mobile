@@ -77,13 +77,18 @@ export class EditComponent implements OnInit, OnDestroy {
     });
   }
 
-  private async byFormToClass(content: Article | Draft): Promise<Article | Draft> {
+  private async byFormToClass(
+    content: Article | Draft
+  ): Promise<Article | Draft> {
     const form = this.draftForm.value;
     const data = this.draftForm.userDefinedProperties as DraftFormData;
 
     content.title = form.title;
     content.summary = form.summary;
-    content.cover = await this.uploadFile(data.cover, content.title);
+    content.cover = 
+      content.cover === data.cover ? 
+                        data.cover : 
+                        await this.uploadFile(data.cover, content.title);
     content.category = data.category;
     content.tags = data.tags;
     content.level = data.level;
@@ -91,7 +96,10 @@ export class EditComponent implements OnInit, OnDestroy {
     return content;
   }
 
-  private async uploadFile(file: string, name: string): Promise<string> {
+  private async uploadFile(
+    file: string, 
+    name: string
+  ): Promise<string> {
     const ref = this.fire.ref(name);
     const task = ref.putString(file.split('base64,')[1], 'base64');
 
@@ -101,7 +109,11 @@ export class EditComponent implements OnInit, OnDestroy {
        takeUntil(this.unsubscribe$),
        switchMap(() => ref.getDownloadURL())
      ).toPromise()
-      .catch(async _ => ( console.log(_), await this.crafter.loaderOff(), this.showError()))
+      .catch(async _ => {
+        console.log(_);
+        await this.crafter.loaderOff();
+        this.showError();
+    });
   }
 
   private showError(): void {

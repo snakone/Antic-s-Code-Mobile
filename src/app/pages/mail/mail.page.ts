@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MailFacade } from '@store/mail/mail.facade';
-import { forkJoin, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { UserFacade } from '@store/user/user.facade';
 import { OnlineFacade } from '@store/online/online.facade';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-mail',
@@ -14,15 +15,21 @@ import { OnlineFacade } from '@store/online/online.facade';
 export class MailPage implements OnInit {
 
   private unsubscribe$ = new Subject<void>();
+  params: string;
 
   constructor(
     private mailFacade: MailFacade,
     private userFacade: UserFacade,
-    private onlineFacade: OnlineFacade
+    private onlineFacade: OnlineFacade,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.checkData();
+  }
+
+  ionViewDidEnter() {
+    this.params = this.route.snapshot.root._routerState.url.split('/')[3];
   }
 
   private checkData(): void {

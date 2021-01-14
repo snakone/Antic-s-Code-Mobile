@@ -20,7 +20,10 @@
                 lines="none"
                 [routerLink]="'/public/' + user.name">
       <app-user-avatar [user]="user"></app-user-avatar>
-      <ion-label>{{user.name | titlecase}}</ion-label>
+      <ion-label>
+        <h3>{{user.name | titlecase}}</h3>
+        <p *ngIf="user.profile?.rol">{{user.profile?.rol | translate}}</p>
+      </ion-label>
     </ion-item>
     </ion-virtual-scroll>
   </ng-container>

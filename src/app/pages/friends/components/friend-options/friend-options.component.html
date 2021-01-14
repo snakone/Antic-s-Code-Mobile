@@ -1,0 +1,17 @@
+<div class="options">
+  <ion-list inset="true">
+    <ion-item (click)="goTo('profile')" detail>
+      <ion-icon slot="start" 
+                color="primary" 
+                name="person-outline">
+      </ion-icon>
+      <ion-label>{{'PROFILE' | translate}}</ion-label>
+    </ion-item>
+    <ion-item (click)="goTo('mail')" detail>
+      <ion-icon slot="start"
+                color="tertiary"
+                name="chatbubbles-outline"></ion-icon>
+      <ion-label>{{'MAIL' | translate}}</ion-label>
+    </ion-item>
+  </ion-list>
+</div>

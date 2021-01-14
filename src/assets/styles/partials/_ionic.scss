@@ -15,11 +15,23 @@ ion-back-button {
   --color: #fff;
 }
 
-ion-popover {
+ion-popover:not(.options):not(.article-options) {
   div.popover-content {
       top: 50% !important;
       left: 50% !important;
       transform: translate(-50%, -50%) !important;
+  }
+}
+
+ion-popover.options {
+  div.popover-content {
+      max-width: 150px;
+  }
+}
+
+ion-popover.article-options {
+  div.popover-content {
+      max-width: 180px;
   }
 }
 

@@ -37,13 +37,13 @@ export class ImageUploadComponent implements OnDestroy {
 
   private checkLength(pic: string): void {
     if (!pic) { return this.showError(); }
-    pic && pic.length / 1024 > 120 ?
+    pic && pic.length / 1024 > 230 ?
     this.crafter.toast('MAX.LENGTH') :
     this.formFacade.action('cover', pic);
   }
 
   private showError(): void {
-    this.crafter.alert('ERROS.CAMERA.MESSAGE');
+    this.crafter.alert('ERRORS.CAMERA.MESSAGE');
   }
 
   ngOnDestroy() {

@@ -132,12 +132,16 @@ export class UserService {
       );
   }
 
-  public UserLogIn(data: UserResponse, emit: boolean): void {
+  public UserLogIn(
+    data: UserResponse, 
+    emit: boolean,
+    reset: boolean = true
+  ): void {
     this.setUser(data.user);
     this.ls.setKey('token', data.token);
     this.ls.setKey('user', data.user._id);
-    this.contentFacade.resetContent();
-    if (emit) { this.socket.emit('online', data.user); }
+    if (reset) { this.contentFacade.resetContent(); }
+    if (emit && data.user.showOnline) { this.socket.emit('online', data.user); }
   }
 
   public logout(): void {
@@ -148,7 +152,6 @@ export class UserService {
     this.auth.logOut();
     this.userFacade.logOut();
     this.contentSrv.resetPage();
-    
   }
 
 }
