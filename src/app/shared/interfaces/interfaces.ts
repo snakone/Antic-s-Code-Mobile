@@ -333,7 +333,7 @@ export interface MailMessage {
   subject?: string;
   message?: string;
   sender?: User;
-  receiver?: User;
+  receiver?: User | string;
   date?: string;
   read?: boolean;
 }

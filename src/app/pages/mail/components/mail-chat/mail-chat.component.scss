@@ -1,0 +1,35 @@
+ion-content {
+  --padding-top: 162px !important;
+}
+
+ion-toolbar {
+  --background: var(--item-background);
+  --min-height: 52px;
+}
+
+ion-icon {
+  font-size: 2rem;
+}
+
+ion-button {
+  width: 35px;
+  height: 35px;
+  --background: var(--ion-color-secondary);
+  --border-radius: 50% !important;
+  cursor: pointer;
+}
+
+ion-buttons {
+  margin-right: .5rem;
+  margin-left: .9rem;
+  &:before {
+    content: '';
+    height: 105%;
+    position: absolute;
+    width: 1px;
+    right: 51px;
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+  }
+}
+
+

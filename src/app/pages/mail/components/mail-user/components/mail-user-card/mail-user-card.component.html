@@ -1,3 +1,7 @@
-<p>
-  {{mail | json}}
-</p>
+<ng-container *ngIf="mail">
+  <ion-card (click)="detail()">
+    <ion-card-content>
+      <h6>{{mail.subject}}</h6>
+    </ion-card-content>
+  </ion-card>
+</ng-container>

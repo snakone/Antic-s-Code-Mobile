@@ -40,7 +40,7 @@ export class MailHeaderComponent implements OnInit {
   }
 
   public navigate(id: string): void {
-    this.router.navigateByUrl('mail/user/' + id);
+    this.router.navigateByUrl('mail/user/' + id, {replaceUrl: true});
   }
 
   public openMenu(): void {

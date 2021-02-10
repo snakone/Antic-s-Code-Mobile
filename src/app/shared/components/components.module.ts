@@ -8,7 +8,6 @@ import { MarkDownComponent } from './modals/markdown/markdown.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MarkdownModule } from 'ngx-markdown';
 import { TranslateModule } from '@ngx-translate/core';
-import { CreateComponent } from './modals/create/create.component';
 import { PageHeaderModule } from './layout/page-header/page-header.module';
 import { SettingsComponent } from './modals/settings/settings.component';
 import { IndexComponent } from './modals/index/index.component';
@@ -21,7 +20,6 @@ import { FormSharedModule } from '@pages/forms/shared/form-shared.module';
     Error404Component,
     EditComponent,
     MarkDownComponent,
-    CreateComponent,
     SettingsComponent,
     IndexComponent,
     PreviewComponent,
@@ -41,7 +39,6 @@ import { FormSharedModule } from '@pages/forms/shared/form-shared.module';
   exports: [
     EditComponent,
     MarkDownComponent,
-    CreateComponent,
     SettingsComponent,
     PreviewComponent,
     IndexComponent,

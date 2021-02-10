@@ -3,5 +3,43 @@ ion-grid, ion-row, ion-col { padding: 0 }
 ion-grid { margin-bottom: 1rem }
 
 ion-content {
-  --padding-top: 162px !important;
+  --padding-top: 166px !important;
+  --padding-bottom: 0 !important;
+}
+
+ion-button {
+  margin-top: 2rem;
+  color: #fff;
+  --background: var(--ion-header-background-invert);
+}
+
+ion-label {
+  font-size: .75rem !important;
+}
+
+.no-content {
+  height: 100%;
+}
+
+p {
+  padding: 0 2rem;
+}
+
+img {
+  max-height: 50%;
+  max-width: 65%;
+  margin: 0 auto 1.4rem;
+  position: relative;
+  left: 2px;
+}
+
+ion-fab-button {
+  --background: var(--ion-primary-gradient);
+  --color: #fff;
+}
+
+ion-icon { 
+  font-size: 2.2rem;
+  position: relative;
+  top: -2px;
 }

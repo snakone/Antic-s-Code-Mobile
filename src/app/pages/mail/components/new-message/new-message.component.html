@@ -1,0 +1,75 @@
+<app-page-header [title]="'NEW.MESSAGE' | translate"
+                 [href]="false"
+                 [showMenu]="false">
+</app-page-header>
+
+<ion-content class="ion-padding" force-overscroll="false">
+  <form [formGroup]="form" 
+        (ngSubmit)="onSubmit()"
+        *ngIf="form">
+    <ion-list>
+      <ion-item>  <!-- RECEIVER -->
+        <ion-label position="stacked">{{'FOR' | translate}}</ion-label>
+        <ion-input clearInput 
+                   type="text"
+                   formControlName="receiver">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>  <!-- SUBJECT -->
+        <div class="flex-div">
+          <ion-label position="stacked">{{'SUBJECT' | translate}}</ion-label>
+          <ion-icon name="backspace-outline"
+                    *ngIf="custom"
+                    (click)="back()">
+          </ion-icon>
+        </div>
+        <ion-input clearInput 
+                   type="text"
+                   [maxlength]="35"
+                   [minlength]="5"
+                   formControlName="subject"
+                   *ngIf="custom">
+        </ion-input>
+        <ion-select formControlName="subject" 
+                    [placeholder]="'SELECT.SUBJECT' | translate" 
+                    (ngModelChange)="change($event)"
+                    *ngIf="!custom">{{'SUBJECT' | translate}}>
+          <ion-select-option [value]="s" 
+                             *ngFor="let s of subjects$ | async">
+                            {{s}}
+          </ion-select-option>
+          <ion-select-option class="custom"
+                             value="custom">
+           {{'CUSTOM.SUBJECT' | translate}}
+          </ion-select-option>
+        </ion-select>
+        <app-form-error [control]="subject"
+                        *ngIf="custom"
+                        [validator]="['minlength', 'required']">
+        </app-form-error>
+      </ion-item>
+
+      <ion-item>  <!-- MESSAGE -->
+        <ion-label position="stacked">{{'MESSAGE' | translate}}</ion-label>
+        <ion-textarea inputmode="text"
+                      type="text"
+                      rows="6"
+                      formControlName="message"
+                      [maxlength]="150"
+                      [minlength]="2">
+        </ion-textarea>
+        <app-form-error [control]="message" 
+                        [validator]="['minlength', 'required']">
+        </app-form-error>
+      </ion-item>
+      <ion-button expand="full"
+                    shape="round"
+                    mode="md"
+                    type="submit"
+                    [disabled]="form.invalid">
+          <ion-label>{{'SEND' | translate}}</ion-label>
+      </ion-button>
+    </ion-list>
+  </form>
+</ion-content>

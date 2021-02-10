@@ -5,31 +5,25 @@ import * as MailActions from './mail.actions';
 import * as fromMail from './mail.selectors';
 import { MailPartialState } from '../ngrx.config';
 
-import { Mail, MailMessage } from '@shared/interfaces/interfaces';
+import { MailMessage } from '@shared/interfaces/interfaces';
 
 @Injectable()
 
 export class MailFacade {
 
-  mail$ = this.store.select(fromMail.getMail);
-  mailLoaded$ = this.store.select(fromMail.getLoaded);
-  filtered$ = this.store.select(fromMail.getFiltered);
   selected$ = this.store.select(fromMail.getSelected);
   unread$ = this.store.select(fromMail.getUnread);
+  single$ = this.store.select(fromMail.getSingle);
   byFriend$ = this.store.select(fromMail.getByFriend);
 
   constructor(private store: Store<MailPartialState>) { }
-
-  public get(): void {
-    this.store.dispatch(MailActions.get());
-  }
 
   public getByFriend(friend: string): void {
     this.store.dispatch(MailActions.getByFriend({friend}));
   }
 
-  public set(mail: Mail): void {
-    this.store.dispatch(MailActions.set({mail}));
+  public set(subject: string): void {
+    this.store.dispatch(MailActions.set({subject}));
   }
 
   public send(message: MailMessage): void {
@@ -46,6 +40,10 @@ export class MailFacade {
 
   public reset(): void {
     this.store.dispatch(MailActions.reset());
+  }
+  
+  public resetSingle(): void {
+    this.store.dispatch(MailActions.resetSingle());
   }
 
 }

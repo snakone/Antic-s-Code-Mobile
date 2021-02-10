@@ -1,0 +1,29 @@
+<ion-content force-overscroll="false" 
+             class="ion-padding"
+             *ngIf="(single$ | async) as chat"
+             scroll-events="true"
+             #content>
+  <div class="message" *ngFor="let c of chat.messages">
+    {{c.message}}
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar class="no-border">
+    <ion-textarea inputmode="text"
+                  type="text"
+                  rows="1"
+                  [maxlength]="300"
+                  [minlength]="2"
+                  [(ngModel)]="message"
+                  [placeholder]="'WRITE.MESSAGE' | translate">
+    </ion-textarea>
+    <ion-buttons slot="end" fill="outline">
+      <ion-button (click)="send()"
+                  [disabled]="message.length < 2">
+        <ion-icon name="arrow-forward-circle-outline" 
+                  color="light">
+        </ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

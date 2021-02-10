@@ -23,6 +23,7 @@ import { reducers } from './ngrx/ngrx.index';
 import { EffectsModule } from '@ngrx/effects';
 import { ContentEffects } from './ngrx/content/content.effects';
 import { UserEffects } from './ngrx/user/user.effects';
+import { MailAccessModule } from '@store/mail/data-access/mail-access.module';
 
 import { NativeModule } from './native/native.module';
 import { SocketsModule } from './sockets/sockets.module';
@@ -57,7 +58,8 @@ export function createTranslateLoader(http: HttpClient) {
     AngularFireAuthModule,
     AngularFireStorageModule,
     NativeModule,
-    SocketsModule
+    SocketsModule,
+    MailAccessModule
   ],
   providers: [
     HttpService,

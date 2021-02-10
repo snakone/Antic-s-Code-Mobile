@@ -1,9 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Mail } from '@shared/interfaces/interfaces';
 import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, tap } from 'rxjs/operators';
 import { MailFacade } from '@store/mail/mail.facade';
+import { CrafterService } from '@services/crafter/crafter.service';
+import { NewMessageComponent } from '../new-message/new-message.component';
 
 @Component({
   selector: 'app-mail-user',
@@ -11,17 +13,20 @@ import { MailFacade } from '@store/mail/mail.facade';
   styleUrls: ['./mail-user.component.scss'],
 })
 
-export class MailUserComponent implements OnInit, OnDestroy {
+export class MailUserComponent {
 
   mail$: Observable<Mail[]>;
   private unsubscribe$ = new Subject<void>();
+  friend: string;
+  image: string;
 
   constructor(
     private route: ActivatedRoute,
     private mailFacade: MailFacade,
+    private crafter: CrafterService
   ) { }
 
-  ngOnInit() {
+  ionViewDidEnter() {
     this.mail$ = this.mailFacade.byFriend$;
     this.getMailByFriend();
   }
@@ -29,10 +34,17 @@ export class MailUserComponent implements OnInit, OnDestroy {
   private getMailByFriend(): void {
     this.route.params
      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(params => this.mailFacade.getByFriend(params.id));
+      .subscribe(params => {
+        this.friend = params.id;
+        this.mailFacade.getByFriend(params.id);
+     });
   }
 
-  ngOnDestroy(): void {
+  public async send(): Promise<void> {
+    await this.crafter.modal(NewMessageComponent, { friend: this.friend});
+  }
+
+  ionViewWillLeave() {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }

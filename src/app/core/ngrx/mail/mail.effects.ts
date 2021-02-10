@@ -14,18 +14,6 @@ export class MailEffects {
     private mailSrv: MailService
   ) { }
 
-  // GET MAIL
-  getMailEffect$ = createEffect(() => this.actions
-    .pipe(
-      ofType(MailActions.get),
-      concatMap(() => this.mailSrv.get()
-        .pipe(
-          map(mail => MailActions.getSuccess({mail})),
-          catchError(error =>
-              of(MailActions.getFailure({ error: error.message }))
-    ))))
-  );
-
   // GET BY FRIEND
   getByFriendEffect$ = createEffect(() => this.actions
     .pipe(
@@ -49,16 +37,6 @@ export class MailEffects {
               of(MailActions.sendFailure({ error: error.message }))
     ))))
   );
-
-  // SET MAIL
-  setMailEffect$ = createEffect(() => this.actions
-    .pipe(
-      ofType(MailActions.set),
-      map(action => MailActions.setSuccess({selected: action.mail}),
-          catchError(error =>
-              of(MailActions.setFailure({ error: error.message }))
-    ))
-  ));
 
   // MARK UNREAD
   markUnreadEffect$ = createEffect(() => this.actions

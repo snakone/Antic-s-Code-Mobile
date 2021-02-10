@@ -3,47 +3,26 @@ import * as MailActions from './mail.actions';
 import { Mail } from '@shared/interfaces/interfaces';
 
 export interface MailState {
-  mail: Mail[];
-  mailLoaded: boolean;
-  filtered: Mail[];
   selected: Mail;
   unread: number;
+  single: Mail;
   friend: Mail[];
   friendLoaded: boolean;
 }
 
 export const inititalState: MailState = {
-  mail: [],
-  mailLoaded: false,
-  filtered: [],
   selected: null,
   unread: 0,
+  single: null,
   friend: [],
   friendLoaded: false
 };
 
 const featureReducer = createReducer(
   inititalState,
-  // GET MAIL
-  on(MailActions.get, (state) => (
-    { ...state, error: null, filtered: [] }
-  )),
-  on(MailActions.getSuccess, (state, { mail }) => (
-    {
-      ...state,
-      error: null,
-      mail,
-      filtered: mail,
-      mailLoaded: true,
-      unread: [...mail].reduce((acc, curr) => acc + (curr.last.read ? 0 : 1), 0)
-    }
-  )),
-  on(MailActions.getFailure, (state, { error }) => (
-    { ...state, mailLoaded: false, error }
-  )),
   // GET BY FRIEND
   on(MailActions.getByFriend, (state) => (
-    { ...state, error: null, mail: [] }
+    { ...state, error: null }
   )),
   on(MailActions.getByFriendSuccess, (state, { mail }) => (
     {
@@ -57,24 +36,19 @@ const featureReducer = createReducer(
     { ...state, friendLoaded: false, error }
   )),
   // SET MAIL MESSAGE
-  on(MailActions.set, (state) => (
-    { ...state, error: null, selected: null }
-  )),
-  on(MailActions.setSuccess, (state, { selected }) => (
-    {
-      ...state,
+  on(MailActions.set, (state, { subject }) => (
+    { 
+      ...state, 
       error: null,
-      selected
+      single: [...state.friend].find(f => f.subject === subject)
     }
-  )),
-  on(MailActions.setFailure, (state, { error }) => (
-    { ...state, selected: null, error }
   )),
   // MARK UNREAD
   on(MailActions.markUnread, (state, { id, mark }) => (
     {
       ...state,
-      mail: [...state.mail].map(i => i.last._id === id ? (i.last.read = mark, i) : i),
+      mail: [...state.friend]
+       .map(i => i.last._id === id ? (i.last.read = mark, i) : i),
       error: null
     }
   )),
@@ -85,15 +59,21 @@ const featureReducer = createReducer(
       friend: [],
       friendLoaded: false
     }
+  )),
+  // RESET SINGLE
+  on(MailActions.resetSingle, (state) => (
+    {
+      ...state,
+      single: null,
+      error: null
+    }
   ))
 );
 
-export const getMail = (state: MailState) => state.mail;
-export const getMailLoaded = (state: MailState) => state.mailLoaded;
-export const getFiltered = (state: MailState) => state.filtered;
 export const getSelected = (state: MailState) => state.selected;
 export const getUnread = (state: MailState) => state.unread;
 export const getByFriend = (state: MailState) => state.friend;
+export const getSingle = (state: MailState) => state.single;
 export const getByFriendLoaded = (state: MailState) => state.friendLoaded;
 
 export function reducer(state: MailState | undefined, action: Action) {

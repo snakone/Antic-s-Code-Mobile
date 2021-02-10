@@ -1,9 +1,9 @@
 <ion-list>
   <ion-list-header>
-    <ng-container *ngIf="!editable; else editT">
+    <ng-container *ngIf="!editable; else editTitle">
       {{'ADD.TITLE' | translate}}
     </ng-container>
-    <ng-template #editT>{{'TITLE.EDIT' | translate}}</ng-template>
+    <ng-template #editTitle>{{'TITLE.EDIT' | translate}}</ng-template>
   </ion-list-header>
   <ion-item>  <!-- TITLE -->
     <ion-label position="stacked">{{'TITLE' | translate}}</ion-label>

@@ -4,6 +4,7 @@ import { MailPage } from './mail.page';
 import { MailIntroComponent } from './components/mail-intro/mail-intro.component';
 import { MailSearchComponent } from './components/mail-search/mail-search.component';
 import { MailUserComponent } from './components/mail-user/mail-user.component';
+import { MailChatComponent } from './components/mail-chat/mail-chat.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path: 'user/:id',
         component: MailUserComponent
+      },
+      {
+        path: 'chat',
+        component: MailChatComponent
       }
     ]
   }

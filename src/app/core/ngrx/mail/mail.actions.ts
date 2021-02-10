@@ -1,18 +1,6 @@
 import { props, createAction } from '@ngrx/store';
 import { Mail, MailMessage } from '@shared/interfaces/interfaces';
 
-// GET MAIL
-export const get =
-  createAction('[Mail API] Get Mail');
-
-export const getSuccess =
-  createAction('[Mail API] Get Mail Success',
-  props<{ mail: Mail[] }>());
-
-export const getFailure =
-  createAction('[Mail API] Get Mail Failure',
-  props<{ error: string }>());
-
 // GET BY FRIEND
 export const getByFriend =
   createAction('[Mail API] Get Mail By Friend',
@@ -42,15 +30,7 @@ export const sendFailure =
 // SET MAIL
 export const set =
   createAction('[Mail API] Set Mail Message',
-  props<{ mail: Mail }>());
-
-export const setSuccess =
-  createAction('[Mail API] Set Mail Success',
-  props<{ selected: Mail }>());
-
-export const setFailure =
-  createAction('[Mail API] Set Mail Failure',
-  props<{ error: string }>());
+  props<{ subject: string }>());
 
 // FILTER MAIL
 export const filter =
@@ -76,4 +56,8 @@ export const reload =
 // RESET MAIL
 export const reset =
   createAction('[Mail API] Reset Mail');
+
+// RESET MAIL
+export const resetSingle =
+  createAction('[Mail API] Reset Single Mail');
 

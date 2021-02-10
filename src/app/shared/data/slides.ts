@@ -56,15 +56,18 @@ export const INTRO_SLIDES: CustomSlide[] = [
 
 export const FRIENDS_SLIDES_OPTS = {
   initialSlide: 0,
-  slidesPerView: 5.3,
+  slidesPerView: 5.8,
   zoom: false,
   speed: 300,
   spaceBetween: 8,
   centeredSlides: true,
   centeredSlidesBounds: true,
   breakpoints: {
+    300: {
+      slidesPerView: 5.3
+    },
     400: {
-      slidesPerView: 5.8
+      slidesPerView: 6.3
     },
     500: {
       slidesPerView: 6.7

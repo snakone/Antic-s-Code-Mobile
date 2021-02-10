@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { User } from '@shared/interfaces/interfaces';
 import { UserFacade } from '@store/user/user.facade';
 import { Observable, Subject } from 'rxjs';
@@ -8,6 +8,7 @@ import { filter, takeUntil } from 'rxjs/operators';
   selector: 'app-mail-search',
   templateUrl: './mail-search.component.html',
   styleUrls: ['./mail-search.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class MailSearchComponent implements OnInit, OnDestroy {

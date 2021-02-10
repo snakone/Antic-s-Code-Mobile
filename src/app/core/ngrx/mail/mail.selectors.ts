@@ -9,18 +9,6 @@ export const getMailState = createSelector(
   (state: MailPartialState) => state.mail
 );
 
-export const getMail = createSelector(
-  getMailState, fromMail.getMail
-);
-
-export const getLoaded = createSelector(
-  getMailState, fromMail.getMailLoaded
-);
-
-export const getFiltered = createSelector(
-  getMailState, fromMail.getFiltered
-);
-
 export const getSelected = createSelector(
   getMailState, fromMail.getSelected
 );
@@ -35,4 +23,8 @@ export const getByFriend = createSelector(
 
 export const getByFriendLoaded = createSelector(
   getMailState, fromMail.getByFriendLoaded
+);
+
+export const getSingle = createSelector(
+  getMailState, fromMail.getSingle
 );
